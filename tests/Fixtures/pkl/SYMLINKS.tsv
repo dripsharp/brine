@@ -1,0 +1,2 @@
+path	target	source-path	source-sha256
+pkl-core/src/test/files/LanguageSnippetTests/input-helper/globtest/childlinked	child/	pkl-core/src/test/files/LanguageSnippetTests/input-helper/globtest/childlinked	2affd42fb4ab5d3937747d31d118219afff6ac4116f0382d4a6bf8a6654ce273

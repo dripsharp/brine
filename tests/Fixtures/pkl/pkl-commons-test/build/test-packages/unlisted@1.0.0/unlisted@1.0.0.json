@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "packageUri": "package://localhost:0/unlisted@1.0.0",
+  "name": "unlisted",
+  "version": "1.0.0",
+  "packageZipUrl": "https://localhost:0/unlisted@1.0.0/unlisted@1.0.0.zip",
+  "dependencies": {},
+  "packageZipChecksums": {
+    "sha256": "55e32f4c3750c55fd29300176636d17072c752f0e35d1deff8f9b2618f7029bc"
+  },
+  "sourceCode": "https://example.com/unlisted",
+  "documentation": "https://example.com/unlisted-docs",
+  "license": "UNLICENSED",
+  "authors": [
+    "unlisted@example.com"
+  ],
+  "issueTracker": "https://example.com/unlisted/issues",
+  "annotations": [
+    {
+      "type": "PObject",
+      "classInfo": {
+        "moduleName": "pkl.base",
+        "class": "Unlisted",
+        "moduleUri": "pkl:base"
+      },
+      "properties": {}
+    }
+  ]
+}

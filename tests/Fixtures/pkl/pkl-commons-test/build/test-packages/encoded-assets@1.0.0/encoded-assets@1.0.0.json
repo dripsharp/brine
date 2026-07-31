@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "name": "encoded-assets",
+  "packageUri": "package://localhost:0/encoded-assets@1.0.0",
+  "packageZipUrl": "https://localhost:0/encoded-assets@1.0.0/encoded-assets@1.0.0.zip",
+  "dependencies": {},
+  "version": "1.0.0",
+  "packageZipChecksums": {"sha256": "9fb3c7beaeb5eb15f1cca1932a04d92911a4341ab67e3ae3065842b0e95350a2"}
+}

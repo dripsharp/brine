@@ -1,0 +1,11 @@
+source-path	sha256	lines	line-budget	review-evidence	role
+src/dripsharp/consumer_tests.clj	35cc66fe2e50ee10bf29e2d3e8f9ce09069aa2d60fcaf43bbe853bcde0162c0c	381	381	beads:pkl-nk5q	generic-test-emitter
+src/dripsharp/pkl/brine_xunit.clj	3923debe25373993bad7408f710f0b3cd18ee6713bcd4bbcf139a06adc03319b	565	565	beads:pkl-nk5q	brine-test-generator
+targets/pkl/consumer-tests/CoreConsumerTests.cs	124ff154dcfdc0e852c7995802f4a249ba6e15325da13de4dee9f28df779d1af	33	33	beads:pkl-nk5q	authored-public-api-smoke-test
+targets/pkl/consumer-tests/ParserConsumerTests.cs	45b80f1e75ca189c3f43c2e646fec8f70c9132aff38018873cc99d9692464fd2	41	41	beads:pkl-nk5q	authored-public-api-smoke-test
+targets/pkl/consumer-tests/UpstreamContractTests.cs	10a18fb55dc8dd353004b75f77e7a5751aa3ee6c3be05b2f3f5069d06862a48e	481	481	beads:pkl-nk5q	authored-xunit-contract-adapter
+targets/pkl/consumer-tests/fixtures/sample.pkl	59ca6eaa229aee0998e880122880ed9841bdf6e6bbb9448687e7ba86cc845a78	2	2	beads:pkl-nk5q	authored-smoke-fixture
+validation/language-snippet-runner/LanguageSnippetPackageRunner.cs	2057ef27df9d3eaedd580e3f510a523e97215330e600d58edb285fb7ecae737d	886	886	beads:pkl-nk5q	authored-language-package-adapter
+validation/pkl-core-corpus/PklCorePackageCorpusRunner.cs	30bdc95746403404297e26d9edb96d733873dfea4ba2f55602a6826ca537d424	6196	6196	beads:pkl-nk5q	authored-core-package-adapter
+validation/pkl-core-corpus/fixtures/module.pkl	88f92d58d9706e16b293aacf471dd930213780b70cbf773d31c716c3e1e84682	1	1	beads:pkl-nk5q	authored-core-fixture-emulator
+validation/pkl-core-corpus/fixtures/payload.txt	434728a410a78f56fc1b5899c3593436e61ab0c731e9072d95e96db290205e53	1	1	beads:pkl-nk5q	authored-core-fixture-emulator

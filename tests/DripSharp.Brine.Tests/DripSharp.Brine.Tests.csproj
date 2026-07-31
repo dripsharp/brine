@@ -17,6 +17,8 @@
   <ItemGroup>
     <ProjectReference Include="../../src/DripSharp.Brine/DripSharp.Brine.csproj" />
     <ProjectReference Include="../../src/DripSharp.Brine.Parser/DripSharp.Brine.Parser.csproj" />
+    <ProjectReference Include="../DripSharp.Brine.LanguageSnippetRunner/DripSharp.Brine.LanguageSnippetRunner.csproj" />
+    <ProjectReference Include="../DripSharp.Brine.CoreTestRunner/DripSharp.Brine.CoreTestRunner.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Fixtures/sample.pkl" CopyToOutputDirectory="PreserveNewest" />

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "packageUri": "package://localhost:0/packageContainingWildcardCharacters@1.0.0",
+  "name": "packageContainingWildcardCharacters",
+  "version": "1.0.0",
+  "packageZipUrl": "https://localhost:0/packageContainingWildcardCharacters@1.0.0/packageContainingWildcardCharacters@1.0.0.zip",
+  "dependencies": {},
+  "packageZipChecksums": {
+    "sha256": "30625234b0f1862b3456fa7ee778a086c367383cce5fea69957f23e6180d873a"
+  }
+}
