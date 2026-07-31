@@ -6,8 +6,8 @@ This is a generated publication repository. Durable source, translation, runtime
 
 ## Projects
 
-- [`DripSharp.Brine`](src/DripSharp.Brine/DripSharp.Brine.csproj) — Brine — Pkl for .NET (`net8.0`)
-- [`DripSharp.Brine.Parser`](src/DripSharp.Brine.Parser/DripSharp.Brine.Parser.csproj) — Brine Parser — Pkl for .NET (`net8.0`)
+- [`DripSharp.Brine`](src/DripSharp.Brine/DripSharp.Brine.csproj) — Brine — Pkl for .NET (`net10.0`)
+- [`DripSharp.Brine.Parser`](src/DripSharp.Brine.Parser/DripSharp.Brine.Parser.csproj) — Brine Parser — Pkl for .NET (`net10.0`)
 
 ## Build and test
 
