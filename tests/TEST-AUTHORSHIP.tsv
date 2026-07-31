@@ -1,6 +1,6 @@
 source-path	sha256	lines	line-budget	review-evidence	role
 src/dripsharp/consumer_tests.clj	35cc66fe2e50ee10bf29e2d3e8f9ce09069aa2d60fcaf43bbe853bcde0162c0c	381	381	beads:pkl-nk5q	generic-test-emitter
-src/dripsharp/pkl/brine_xunit.clj	3923debe25373993bad7408f710f0b3cd18ee6713bcd4bbcf139a06adc03319b	565	565	beads:pkl-nk5q	brine-test-generator
+src/dripsharp/pkl/brine_xunit.clj	544dc0f1ea266d9e684367ff510a41eea15416d6355058831118207735541ed7	631	631	beads:pkl-nk5q	brine-test-generator
 targets/pkl/consumer-tests/CoreConsumerTests.cs	124ff154dcfdc0e852c7995802f4a249ba6e15325da13de4dee9f28df779d1af	33	33	beads:pkl-nk5q	authored-public-api-smoke-test
 targets/pkl/consumer-tests/ParserConsumerTests.cs	45b80f1e75ca189c3f43c2e646fec8f70c9132aff38018873cc99d9692464fd2	41	41	beads:pkl-nk5q	authored-public-api-smoke-test
 targets/pkl/consumer-tests/UpstreamContractTests.cs	10a18fb55dc8dd353004b75f77e7a5751aa3ee6c3be05b2f3f5069d06862a48e	481	481	beads:pkl-nk5q	authored-xunit-contract-adapter

@@ -39,8 +39,8 @@ bf920484106d197c27c558efc75c67db3da33ccb06d7141605dcfc73c2789ec4  Fixtures/pkl/p
 7589f1b802d6b5b93c468fb6399d2235d44d83f27409da2b036455ccb6e07ce5  Fixtures/pkl/pkl-commons-test/build/test-packages/deprecated@1.0.0/deprecated@1.0.0.json
 a4cf0c4541508bfba44aab47eda2c468b2903026dfbec20dbe6e1e5692da7299  Fixtures/pkl/pkl-commons-test/build/test-packages/deprecated@1.0.0/deprecated@1.0.0.json.sha256
 6b0b4e0296f09491d2676f09b812016abba895690eb3ef05db5b92d48473512c  Fixtures/pkl/pkl-commons-test/build/test-packages/deprecated@1.0.0/deprecated@1.0.0.zip
-b93ff5915df691c70fa14ead1917d8e454626cba60e661a5dc8e89d844954625  Fixtures/pkl/pkl-commons-test/build/test-packages/encoded-assets@1.0.0/encoded-assets@1.0.0.json
-9fb3c7beaeb5eb15f1cca1932a04d92911a4341ab67e3ae3065842b0e95350a2  Fixtures/pkl/pkl-commons-test/build/test-packages/encoded-assets@1.0.0/encoded-assets@1.0.0.zip
+99268b06d1dd17155426eed4dd96b3c4bf9ace7b1c88c6c5d3a43997ca067d1b  Fixtures/pkl/pkl-commons-test/build/test-packages/encoded-assets@1.0.0/encoded-assets@1.0.0.json
+724574042b26adebb0ad8991abf556617f5bef2985306ea8d72639bdb2e7eb76  Fixtures/pkl/pkl-commons-test/build/test-packages/encoded-assets@1.0.0/encoded-assets@1.0.0.zip
 2a0c2bea89982a988b190966f56fcfd32c4360a4fee3153692d0421a03054265  Fixtures/pkl/pkl-commons-test/build/test-packages/encoded-assets@1.0.0/encoded-source/hash#query?.pkl
 6069ae8045b221967180478d22bb2f954dbab5dd7804ecb6e3c32f738ce49a45  Fixtures/pkl/pkl-commons-test/build/test-packages/encoded-assets@1.0.0/encoded-source/hello world.pkl
 7adfca586a35aaf8cb9afa27dba2a0f88280cb36a2d943cad7aa913e6a0a2125  Fixtures/pkl/pkl-commons-test/build/test-packages/encoded-assets@1.0.0/encoded-source/reserved/slash.pkl
@@ -1125,6 +1125,6 @@ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  Fixtures/pkl/p
 2005efdc2e213d9cf6c129e0b85f9d2ce28d501f7b0d994a683dfa2ac8c65828  Fixtures/pkl/pkl-core/src/test/resources/org/pkl/core/stdlib/protobufRendererTest.textproto
 b263e08f8cc7aa29d649fb9a7979a265911a03789d4cc573e1b55b24291f412e  NOTICE.md
 95ea28ce7d143657093431a998501bfed7e973652bdfdc8076e87419df65ca0e  README.md
-d952ef28a9894ad272df29b0abc19192d948d412b58f3d780200fd0413f207e5  TEST-AUTHORSHIP.tsv
+ea01a069d28ebc35bd875fb2ad912ee10a393128b29c5447f2cceb23e416d8cc  TEST-AUTHORSHIP.tsv
 5f83fab5970672e41b79bfecb63347bdc2c5e9c5e730dd5ff4fa5dbab6b653b9  TEST-BOUNDARY.md
-87097a655fd1d015347b3a3f74920db53874e835ce6ed8eb685a6af6c61737c8  TEST-PROVENANCE.tsv
+f22affc6e4eb8ba198dc623fb39683ecd6eb5138c0dea5e14c2ae7b798c71e60  TEST-PROVENANCE.tsv
