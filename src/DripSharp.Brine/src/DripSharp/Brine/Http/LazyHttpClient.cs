@@ -50,7 +50,8 @@ try {
 this.client = (this.supplier)();
 } catch (global::System.Exception t) {
 this.exception = t;
-throw t;
+global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(t);
+throw new global::System.InvalidOperationException("unreachable");
 }
 }
 return this.client!;

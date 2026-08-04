@@ -63,7 +63,7 @@ return false;
 }
 
 public string? GetFileCacheLocation() {
-return ((global::DripSharp.Brine.Module.ModuleKey)this.@delegate).GetFileCacheLocation()!;
+return ((global::DripSharp.Brine.Module.ModuleKey)(this.@delegate)).GetFileCacheLocation()!;
 }
 
 public bool HasHierarchicalUris() {
@@ -71,7 +71,7 @@ return (this.@delegate).HasHierarchicalUris();
 }
 
 public bool IsLocal() {
-return ((global::DripSharp.Brine.Module.ModuleKey)this.@delegate).IsLocal();
+return ((global::DripSharp.Brine.Module.ModuleKey)(this.@delegate)).IsLocal();
 }
 
 public bool IsGlobbable() {

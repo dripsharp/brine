@@ -13,13 +13,15 @@ This is a generated publication repository. Durable source, translation, runtime
 
 From a clean checkout:
 
+### `DripSharp.Brine.Tests`
+
 ```sh
 dotnet restore tests/DripSharp.Brine.Tests/DripSharp.Brine.Tests.csproj
-dotnet build tests/DripSharp.Brine.Tests/DripSharp.Brine.Tests.csproj --configuration Release --no-restore
+dotnet build tests/DripSharp.Brine.Tests/DripSharp.Brine.Tests.csproj --configuration Release --no-restore --no-incremental -warnaserror
 dotnet test tests/DripSharp.Brine.Tests/DripSharp.Brine.Tests.csproj --configuration Release --no-restore --no-build
 ```
 
-The focused suite references only this checkout. See [`tests/README.md`](tests/README.md) for its generated inventory and execution contract.
+The shipped suites reference only this checkout. See [`tests/README.md`](tests/README.md) for its generated inventory and execution contract.
 
 ## Upstream
 

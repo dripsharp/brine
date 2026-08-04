@@ -23,7 +23,7 @@ global::DripSharp.Runtime.JavaCompat.Assert(() => sourceSection.IsAvailable(), (
 @out.AppendSandboxed(() => {
 var lines = PowerAssertions.Lines(sourceSection);
 var layerEntries = PowerAssertions.GetLayerEntries(trackedValues, sourceSection);
-var indentation = ((global::DripSharp.Runtime.JavaCompat.CollectionCount(lines) == 1) ? 0 : global::DripSharp.Runtime.JavaCompat.CollectionMin(global::DripSharp.Runtime.JavaCompat.ToListValues(global::DripSharp.Runtime.JavaCompat.Map(global::DripSharp.Runtime.JavaCompat.DropValues(lines, (long)(1)), (it) => PowerAssertions.LeadingWhitespace(it.GetCharacters())))));
+var indentation = ((global::DripSharp.Runtime.JavaCompat.CollectionCount(lines) == 1) ? 0 : global::DripSharp.Runtime.JavaCompat.CollectionMin(global::DripSharp.Runtime.JavaCompat.ToListValues(global::DripSharp.Runtime.JavaCompat.Map(global::DripSharp.Runtime.JavaCompat.DropValues(global::DripSharp.Runtime.JavaCompat.Stream(lines), (long)(1)), (it) => PowerAssertions.LeadingWhitespace(it.GetCharacters())))));
 var sourceLines = PowerAssertions.Lines(sourceSection);
 var renderedMarkers = false;
 for (var i = 0; (i < global::DripSharp.Runtime.JavaCompat.CollectionCount(sourceLines)); i++) {
@@ -83,7 +83,7 @@ return false;
 }
 var argsList = accessExpr.GetArgumentList();
 global::DripSharp.Runtime.JavaCompat.Assert(() => (argsList != default!));
-return global::DripSharp.Runtime.JavaCompat.AllValues(argsList.GetArguments(), PowerAssertions.IsLiteral);
+return global::DripSharp.Runtime.JavaCompat.AllValues(global::DripSharp.Runtime.JavaCompat.Stream(argsList.GetArguments()), PowerAssertions.IsLiteral);
 }
 
 private static bool ShouldHide(global::DripSharp.Brine.Runtime.Truffle.api.nodes.Node truffleNode, global::DripSharp.Brine.Parser.Syntax.Node parserNode, object value, global::DripSharp.Brine.Parser.Syntax.Expr rootExpr) {
@@ -164,7 +164,7 @@ return (elem.StartColumn < nextEntry.StartColumn);
 }
 
 private static global::System.Collections.Generic.IList<global::System.Collections.Generic.ICollection<LayerEntry>> BuildLayers(global::System.Collections.Generic.ICollection<LayerEntry> layerEntries, global::DripSharp.Brine.Runtime.Truffle.api.source.SourceSection line) {
-var sortedSections = global::DripSharp.Runtime.JavaCompat.ToListValues(global::DripSharp.Runtime.JavaCompat.StreamSorted(global::DripSharp.Runtime.JavaCompat.StreamFilter(layerEntries, (it) => (it.StartLine == line.GetStartLine())), global::DripSharp.Runtime.JavaCompat.ToComparison(global::DripSharp.Runtime.JavaCompat.ComparingInt<LayerEntry>((it) => -it.StartColumn))));
+var sortedSections = global::DripSharp.Runtime.JavaCompat.ToListValues(global::DripSharp.Runtime.JavaCompat.StreamSorted(global::DripSharp.Runtime.JavaCompat.StreamFilter(global::DripSharp.Runtime.JavaCompat.Stream(layerEntries), (it) => (it.StartLine == line.GetStartLine())), global::DripSharp.Runtime.JavaCompat.ToComparison(global::DripSharp.Runtime.JavaCompat.ComparingInt<LayerEntry>((it) => -it.StartColumn))));
 if ((sortedSections.Count == 0)) {
 return global::System.Array.Empty<global::System.Collections.Generic.ICollection<LayerEntry>>();
 }
@@ -180,7 +180,7 @@ layer.AddFirst(next);
 iter.Remove();
 } else {
 if (PowerAssertions.CanFitMarker(layer, next)) {
-layer.AddFirst(((global::DripSharp.Brine.Runtime.PowerAssertions.LayerEntry)next).ToMarker());
+layer.AddFirst(((LayerEntry)(next)).ToMarker());
 }
 }
 }
@@ -196,7 +196,7 @@ foreach (var entry in entries) {
 if (((prevEntry! != default!) && ((prevEntry!).StartColumn == entry.StartColumn))) {
 continue;
 }
-layer.AddFirst(((global::DripSharp.Brine.Runtime.PowerAssertions.LayerEntry)entry).ToMarker());
+layer.AddFirst(((LayerEntry)(entry)).ToMarker());
 prevEntry = entry;
 }
 return layer;

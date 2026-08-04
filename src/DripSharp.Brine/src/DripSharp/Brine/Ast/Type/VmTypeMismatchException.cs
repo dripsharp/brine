@@ -67,7 +67,7 @@ renderedType = valueFormatter.FormatStringValue(@string, "");
 } else {
 if (global::DripSharp.Runtime.JavaCompat.IsSet(this.expectedType)) {
 var stringLiterals = (global::System.Collections.Generic.ISet<string>)(this.expectedType!);
-renderedType = global::DripSharp.Runtime.JavaCompat.Collect(global::DripSharp.Runtime.JavaCompat.Map(stringLiterals, (l) => valueFormatter.FormatStringValue(l, "")), global::DripSharp.Runtime.JavaCompat.Joining("|"));
+renderedType = global::DripSharp.Runtime.JavaCompat.Collect(global::DripSharp.Runtime.JavaCompat.Map(global::DripSharp.Runtime.JavaCompat.Stream(stringLiterals), (l) => valueFormatter.FormatStringValue(l, "")), global::DripSharp.Runtime.JavaCompat.Joining("|"));
 } else {
 renderedType = global::DripSharp.Runtime.JavaCompat.StringValueOf(this.expectedType);
 }
@@ -112,7 +112,7 @@ if ((!withPowerAssertions || (this.trackedValues! == default!))) {
 return;
 }
 builder.Append("\n\n");
-global::DripSharp.Brine.Runtime.PowerAssertions.Render(builder, global::DripSharp.Runtime.JavaCompat.Concat(indent, "    "), this.constraintBodySourceSection, this.trackedValues!, (global::System.Action<global::DripSharp.Brine.Util.AnsiStringBuilder>?)default!);
+global::DripSharp.Brine.Runtime.PowerAssertions.Render(builder, global::DripSharp.Runtime.JavaCompat.Concat(indent, "    "), this.constraintBodySourceSection, this.trackedValues!, (global::System.Action<global::DripSharp.Brine.Util.AnsiStringBuilder>)default!);
 }
 
 protected internal override bool HasHint() {

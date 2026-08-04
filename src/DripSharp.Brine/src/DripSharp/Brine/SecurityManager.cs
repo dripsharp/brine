@@ -23,6 +23,6 @@ return default!;
 }
 
 public string? ResolveSecurePath(global::System.Uri uri) {
-return ((global::DripSharp.Brine.SecurityManager)this).ResolveSecurePath(uri, false)!;
+return this.ResolveSecurePath(uri, false)!;
 }
 }

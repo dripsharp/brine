@@ -311,7 +311,7 @@ T result = this.DefaultValue();
 var children = global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IEnumerable<global::DripSharp.Brine.Parser.Syntax.Node>>(node.Children());
 foreach (var child in children) {
 if ((child != default!)) {
-result = this.AggregateResult(result, child.Accept(this));
+result = this.AggregateResult(result, global::DripSharp.Runtime.JavaCompat.CastReference<T>(child.Accept(this)));
 }
 }
 return result;

@@ -59,7 +59,7 @@ return this.aliasedType;
 }
 
 public void Accept(global::DripSharp.Brine.ValueVisitor visitor) {
-((global::DripSharp.Brine.ValueVisitor)visitor).VisitTypeAlias(this);
+((global::DripSharp.Brine.ValueVisitor)(visitor)).VisitTypeAlias(this);
 }
 
 public T Accept<T>(global::DripSharp.Brine.ValueConverter<T> converter) {

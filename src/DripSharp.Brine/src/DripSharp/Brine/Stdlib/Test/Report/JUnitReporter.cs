@@ -48,11 +48,11 @@ global::DripSharp.Runtime.JavaCompat.WriterAppend(writer, JUnitReporter.RenderXM
 }
 
 public void Summarize(global::System.Collections.Generic.IList<global::DripSharp.Brine.TestResults> allTestResults, global::System.IO.TextWriter writer) {
-var totalTests = global::DripSharp.Runtime.JavaCompat.Sum(global::DripSharp.Runtime.JavaCompat.MapToLong(allTestResults, (value0) => value0.TotalTests()));
-var totalFailures = global::DripSharp.Runtime.JavaCompat.Sum(global::DripSharp.Runtime.JavaCompat.MapToLong(allTestResults, (value0) => value0.TotalFailures()));
+var totalTests = global::DripSharp.Runtime.JavaCompat.Sum(global::DripSharp.Runtime.JavaCompat.MapToLong(global::DripSharp.Runtime.JavaCompat.Stream(allTestResults), (value0) => value0.TotalTests()));
+var totalFailures = global::DripSharp.Runtime.JavaCompat.Sum(global::DripSharp.Runtime.JavaCompat.MapToLong(global::DripSharp.Runtime.JavaCompat.Stream(allTestResults), (value0) => value0.TotalFailures()));
 global::DripSharp.Runtime.JavaCompat.Assert(() => (this.aggregateSuiteName != default!));
 var attrs = this.BuildAttributes("name", this.aggregateSuiteName, "tests", totalTests, "failures", totalFailures);
-var suite = this.BuildXmlElement("testsuites", attrs, global::DripSharp.Runtime.JavaCompat.ToArray(global::DripSharp.Runtime.JavaCompat.Map(allTestResults, this.BuildSuite)));
+var suite = this.BuildXmlElement("testsuites", attrs, global::DripSharp.Runtime.JavaCompat.ToArray(global::DripSharp.Runtime.JavaCompat.Map(global::DripSharp.Runtime.JavaCompat.Stream(allTestResults), this.BuildSuite)));
 global::DripSharp.Runtime.JavaCompat.WriterAppend(writer, JUnitReporter.RenderXML("    ", "1.0", suite));
 }
 

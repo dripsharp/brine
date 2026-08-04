@@ -138,7 +138,7 @@ return ((double)((this.value * this.unit.GetNanos())) / other.GetNanos());
 }
 
 public void Accept(global::DripSharp.Brine.ValueVisitor visitor) {
-((global::DripSharp.Brine.ValueVisitor)visitor).VisitDuration(this);
+((global::DripSharp.Brine.ValueVisitor)(visitor)).VisitDuration(this);
 }
 
 public T Accept<T>(global::DripSharp.Brine.ValueConverter<T> converter) {

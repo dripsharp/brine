@@ -243,7 +243,8 @@ result__357_11 = callNode.Call(callTarget__362_15, receiver, property!.GetOwner(
 } catch (global::DripSharp.Brine.Runtime.VmException e) {
 global::DripSharp.Brine.Runtime.Truffle.api.CompilerDirectives.TransferToInterpreter();
 VmUtils.InsertStackFrame(member, callTarget__362_15, e);
-throw e;
+global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(e);
+throw new global::System.InvalidOperationException("unreachable");
 }
 }
 } else {

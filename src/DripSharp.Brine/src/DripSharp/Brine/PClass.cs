@@ -101,7 +101,7 @@ return ((this.moduleClass! != default!) ? this.moduleClass! : this);
 }
 
 public void Accept(global::DripSharp.Brine.ValueVisitor visitor) {
-((global::DripSharp.Brine.ValueVisitor)visitor).VisitClass(this);
+((global::DripSharp.Brine.ValueVisitor)(visitor)).VisitClass(this);
 }
 
 public T Accept<T>(global::DripSharp.Brine.ValueConverter<T> converter) {

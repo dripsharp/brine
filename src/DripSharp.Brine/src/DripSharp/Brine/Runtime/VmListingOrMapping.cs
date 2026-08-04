@@ -50,7 +50,8 @@ global::DripSharp.Brine.Runtime.Truffle.api.CompilerDirectives.TransferToInterpr
 if ((member! != default!)) {
 global::DripSharp.Brine.Runtime.VmUtils.InsertStackFrame(member!, callTarget, e);
 }
-throw e;
+global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(e);
+throw new global::System.InvalidOperationException("unreachable");
 }
 }
 
@@ -73,7 +74,8 @@ result = callNode.Call(callTarget, this.typeCheckReceiver!, this.typeCheckOwner!
 var member = global::DripSharp.Brine.Runtime.VmUtils.FindMember(base.parent!, key)!;
 global::DripSharp.Runtime.JavaCompat.Assert(() => (member! != default!));
 global::DripSharp.Brine.Runtime.VmUtils.InsertStackFrame(member!, callTarget, e);
-throw e;
+global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(e);
+throw new global::System.InvalidOperationException("unreachable");
 }
 }
 this.SetCachedValue(key, result!);

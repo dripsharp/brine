@@ -706,7 +706,6 @@ internal static partial class JavaCompat
 
     internal static int LongHashCode(long value) =>
         unchecked((int)(value ^ (long)((ulong)value >> 32)));
-
     internal static int StringHashCode(string value)
     {
         var result = 0;
@@ -722,6 +721,8 @@ internal static partial class JavaCompat
         float number => JavaFloatingString(number),
         Uri uri => UriToString(uri),
         Regex regex => JavaCompat.RegexPattern(regex),
+        System.Collections.IDictionary map when value.GetType().GetMethod(nameof(ToString), Type.EmptyTypes)?.DeclaringType == typeof(object) => "{" + string.Join(", ", map.Keys.Cast<object?>().Select(key => StringValueOf(key) + "=" + StringValueOf(map[key!]))) + "}",
+        System.Collections.IEnumerable values when value is not string && !value.GetType().IsArray && value.GetType().GetMethod(nameof(ToString), Type.EmptyTypes)?.DeclaringType == typeof(object) => "[" + string.Join(", ", values.Cast<object?>().Select(StringValueOf)) + "]",
         IFormattable formattable => formattable.ToString(null, CultureInfo.InvariantCulture),
         _ => value.ToString() ?? "null"
     };
@@ -732,8 +733,12 @@ internal static partial class JavaCompat
     internal static string StringValueOf(long value) => value.ToString(CultureInfo.InvariantCulture);
     internal static string StringJoin(string delimiter, IEnumerable<string> values) =>
         string.Join(delimiter, values);
+    internal static string StringJoin(string delimiter, params string[] values) =>
+        string.Join(delimiter, values);
     internal static string StringValueOf(float value) => JavaFloatingString(value);
     internal static string StringValueOf(double value) => JavaFloatingString(value);
+    internal static string ObjectsToString(object? value, string? nullDefault) =>
+        value is null ? nullDefault! : StringValueOf(value);
     internal static string Normalize(string value, NormalizationForm form) =>
         value.Normalize(form);
     internal static StringBuilder AppendValue(StringBuilder builder, object? value)
@@ -1176,7 +1181,7 @@ internal static partial class JavaCompat
     }
 
     internal static T ClassCast<T>(Type type, object value) =>
-        type.IsInstanceOfType(value) ? (T)value : throw new InvalidCastException();
+        value is null ? default! : type.IsInstanceOfType(value) ? (T)value : throw new InvalidCastException();
     internal static Type ClassAsSubclass(Type type, Type parentType) =>
         parentType.IsAssignableFrom(type)
             ? type
@@ -1212,6 +1217,13 @@ internal static partial class JavaCompat
     internal static ConstructorInfo ClassGetDeclaredConstructor(Type type, params Type[] parameterTypes) =>
         type.GetConstructor(
             BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance,
+            binder: null,
+            types: parameterTypes,
+            modifiers: null)
+        ?? throw new MissingMethodException(type.FullName, ".ctor");
+    internal static ConstructorInfo ClassGetConstructor(Type type, params Type[] parameterTypes) =>
+        type.GetConstructor(
+            BindingFlags.Public | BindingFlags.Instance,
             binder: null,
             types: parameterTypes,
             modifiers: null)

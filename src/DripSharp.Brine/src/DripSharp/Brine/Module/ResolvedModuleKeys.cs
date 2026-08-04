@@ -67,7 +67,8 @@ return global::DripSharp.Runtime.JavaCompat.ReadString(this.path, global::DripSh
 if (global::DripSharp.Runtime.JavaCompat.IsDirectory(this.path)) {
 throw new global::System.IO.IOException("Is a directory");
 }
-throw e;
+global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(e);
+throw new global::System.InvalidOperationException("unreachable");
 }
 }
 }

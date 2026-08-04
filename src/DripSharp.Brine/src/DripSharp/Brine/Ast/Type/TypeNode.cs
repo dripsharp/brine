@@ -831,7 +831,7 @@ return global::DripSharp.Runtime.JavaCompat.CollectionContains(this.stringLitera
 }
 
 protected internal override global::DripSharp.Brine.PType DoExport() {
-return new global::DripSharp.Brine.PType.Union(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.PType>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.PType>>(global::DripSharp.Runtime.JavaCompat.ToListValues(global::DripSharp.Runtime.JavaCompat.Map(this.stringLiterals, (value0) => new global::DripSharp.Brine.PType.StringLiteral(value0))))));
+return new global::DripSharp.Brine.PType.Union(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.PType>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.PType>>(global::DripSharp.Runtime.JavaCompat.ToListValues(global::DripSharp.Runtime.JavaCompat.Map(global::DripSharp.Runtime.JavaCompat.Stream(this.stringLiterals), (value0) => new global::DripSharp.Brine.PType.StringLiteral(value0))))));
 }
 
 protected internal override bool DoIsEquivalentTo(TypeNode other) {
@@ -1410,7 +1410,8 @@ this.keyTypeNode!.ExecuteEagerly(frame, memberKey);
 } catch (global::DripSharp.Brine.Ast.Type.VmTypeMismatchException e) {
 global::DripSharp.Brine.Runtime.Truffle.api.CompilerDirectives.TransferToInterpreter();
 e.PutInsertedStackFrame(this.GetRootNode().GetCallTarget(), global::DripSharp.Brine.Runtime.VmUtils.CreateStackFrame(member.GetHeaderSection(), member.GetQualifiedName()));
-throw e;
+global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(e);
+throw new global::System.InvalidOperationException("unreachable");
 }
 }
 if (!skipValueTypeChecks) {

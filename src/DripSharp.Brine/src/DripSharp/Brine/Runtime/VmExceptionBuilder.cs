@@ -290,7 +290,7 @@ result.Add(member.GetName());
 }
 return true;
 });
-return global::DripSharp.Runtime.JavaCompat.ToListValues(global::DripSharp.Runtime.JavaCompat.StreamSorted(result));
+return global::DripSharp.Runtime.JavaCompat.ToListValues(global::DripSharp.Runtime.JavaCompat.StreamSorted(global::DripSharp.Runtime.JavaCompat.Stream(result)));
 }
 
 private global::System.Collections.Generic.IList<global::DripSharp.Brine.Runtime.Identifier> CollectMethodNames(global::DripSharp.Brine.Runtime.VmClass clazz) {

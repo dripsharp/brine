@@ -45,7 +45,8 @@ break;
 } catch (global::DripSharp.Brine.Runtime.Truffle.api.nodes.UnexpectedResultException e) {
 wasOnReturnExecuted = true;
 this.probeNode.OnReturnValue(frame, e.GetResult());
-throw e;
+global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(e);
+throw new global::System.InvalidOperationException("unreachable");
 }
 } catch (global::System.Exception t) {
 object result = this.probeNode.OnReturnExceptionalOrUnwind(frame, t, wasOnReturnExecuted);
@@ -60,7 +61,8 @@ if ((result != default!)) {
 throw new global::DripSharp.Brine.Runtime.Truffle.api.nodes.UnexpectedResultException(result);
 }
 }
-throw t;
+global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(t);
+throw new global::System.InvalidOperationException("unreachable");
 }
 }
 return returnValue;
@@ -80,7 +82,8 @@ break;
 } catch (global::DripSharp.Brine.Runtime.Truffle.api.nodes.UnexpectedResultException e) {
 wasOnReturnExecuted = true;
 this.probeNode.OnReturnValue(frame, e.GetResult());
-throw e;
+global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(e);
+throw new global::System.InvalidOperationException("unreachable");
 }
 } catch (global::System.Exception t) {
 object result = this.probeNode.OnReturnExceptionalOrUnwind(frame, t, wasOnReturnExecuted);
@@ -95,7 +98,8 @@ if ((result != default!)) {
 throw new global::DripSharp.Brine.Runtime.Truffle.api.nodes.UnexpectedResultException(result);
 }
 }
-throw t;
+global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(t);
+throw new global::System.InvalidOperationException("unreachable");
 }
 }
 return returnValue;
@@ -121,7 +125,8 @@ returnValue = result;
 break;
 }
 }
-throw t;
+global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(t);
+throw new global::System.InvalidOperationException("unreachable");
 }
 }
 return returnValue;
@@ -141,7 +146,8 @@ break;
 } catch (global::DripSharp.Brine.Runtime.Truffle.api.nodes.UnexpectedResultException e) {
 wasOnReturnExecuted = true;
 this.probeNode.OnReturnValue(frame, e.GetResult());
-throw e;
+global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(e);
+throw new global::System.InvalidOperationException("unreachable");
 }
 } catch (global::System.Exception t) {
 object result = this.probeNode.OnReturnExceptionalOrUnwind(frame, t, wasOnReturnExecuted);
@@ -156,7 +162,8 @@ if ((result != default!)) {
 throw new global::DripSharp.Brine.Runtime.Truffle.api.nodes.UnexpectedResultException(result);
 }
 }
-throw t;
+global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(t);
+throw new global::System.InvalidOperationException("unreachable");
 }
 }
 return returnValue;
@@ -182,7 +189,8 @@ returnValue = result;
 break;
 }
 }
-throw t;
+global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(t);
+throw new global::System.InvalidOperationException("unreachable");
 }
 }
 return returnValue;

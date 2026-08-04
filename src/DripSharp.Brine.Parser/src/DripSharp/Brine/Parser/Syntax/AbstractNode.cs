@@ -27,7 +27,7 @@ this.span = span;
 if (global::DripSharp.Runtime.JavaCompat.ListIsEmpty(children)) {
 this.children = global::DripSharp.Runtime.JavaCompat.ListOf<global::DripSharp.Brine.Parser.Syntax.Node>();
 } else {
-this.children = global::DripSharp.Runtime.JavaCompat.UnmodifiableList(global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IEnumerable<global::DripSharp.Brine.Parser.Syntax.Node>>(children));
+this.children = global::DripSharp.Runtime.JavaCompat.UnmodifiableList(global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IEnumerable<global::DripSharp.Brine.Parser.Syntax.Node>>(global::DripSharp.Runtime.JavaCompat.ToListValues<global::DripSharp.Brine.Parser.Syntax.Node?>(children)));
 }
 foreach (var node in children) {
 if ((node != default!)) {

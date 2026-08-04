@@ -148,7 +148,7 @@ global::DripSharp.Brine.Packages.PackageUtils.CheckHasNoChecksumComponent(packag
 var objChecksum = @object.GetProperty("checksums");
 global::DripSharp.Brine.Packages.Checksums checksums = default!;
 if ((objChecksum is global::DripSharp.Brine.PObject pObject)) {
-var sha256 = (string)(((global::DripSharp.Brine.Composite)pObject).Get("sha256")!);
+var sha256 = (string)(((global::DripSharp.Brine.Composite)(pObject)).Get("sha256")!);
 global::DripSharp.Runtime.JavaCompat.Assert(() => (sha256! != default!));
 checksums = new global::DripSharp.Brine.Packages.Checksums(sha256!);
 }
@@ -171,7 +171,7 @@ pkg = Project.ParsePackage((global::DripSharp.Brine.PObject)(pkgObj!));
 var evaluatorSettings = Project.GetProperty<global::DripSharp.Brine.EvaluatorSettings.PklEvaluatorSettings>(module, "evaluatorSettings", (settings) => global::DripSharp.Brine.EvaluatorSettings.PklEvaluatorSettings.Parse((global::DripSharp.Brine.Value)(settings!)));
 var resolvedEvaluatorSettings = Project.GetProperty<global::DripSharp.Brine.EvaluatorSettings.PklEvaluatorSettings>(module, "resolvedEvaluatorSettings", (settings) => global::DripSharp.Brine.EvaluatorSettings.PklEvaluatorSettings.Parse((global::DripSharp.Brine.Value)(settings!)));
 var testPathStrs = global::DripSharp.Runtime.JavaCompat.CastList<string>(Project.GetProperty(module, "tests"));
-var tests = global::DripSharp.Runtime.JavaCompat.ToListValues(global::DripSharp.Runtime.JavaCompat.Map(testPathStrs, (it) => global::DripSharp.Runtime.JavaCompat.NormalizeUri(global::DripSharp.Runtime.JavaCompat.ResolveUri(projectBaseUri, it))));
+var tests = global::DripSharp.Runtime.JavaCompat.ToListValues(global::DripSharp.Runtime.JavaCompat.Map(global::DripSharp.Runtime.JavaCompat.Stream(testPathStrs), (it) => global::DripSharp.Runtime.JavaCompat.NormalizeUri(global::DripSharp.Runtime.JavaCompat.ResolveUri(projectBaseUri, it))));
 var localProjectDependencies = Project.ParseLocalProjectDependencies(module);
 var annotations = Project.ParseAnnotations(module);
 return new Project(pkg!, dependencies, evaluatorSettings, resolvedEvaluatorSettings, projectFileUri, projectBaseUri, tests, localProjectDependencies, annotations);
@@ -198,7 +198,7 @@ return global::DripSharp.Runtime.JavaCompat.RequireNonNull(Project.GetNullablePr
 }
 
 private static object? GetNullableProperty(global::DripSharp.Brine.Composite @object, string propertyName) {
-var result = ((global::DripSharp.Brine.Composite)@object).GetPropertyOrNull(propertyName)!;
+var result = ((global::DripSharp.Brine.Composite)(@object)).GetPropertyOrNull(propertyName)!;
 if (((result! is global::DripSharp.Brine.PNull) || (result! == default!))) {
 return default!;
 }
@@ -206,7 +206,7 @@ return result!;
 }
 
 private static T? GetNullableProperty<T>(global::DripSharp.Brine.Composite @object, string propertyName, global::System.Func<object, T> f) {
-var value = ((global::DripSharp.Brine.Composite)@object).GetPropertyOrNull(propertyName)!;
+var value = ((global::DripSharp.Brine.Composite)(@object)).GetPropertyOrNull(propertyName)!;
 if (((value! is global::DripSharp.Brine.PNull) || (value! == default!))) {
 return default!;
 }
@@ -214,7 +214,7 @@ return f(value!);
 }
 
 private static global::System.Uri? GetNullableURI(global::DripSharp.Brine.Composite @object, string propertyName) {
-var value = ((global::DripSharp.Brine.Composite)@object).GetPropertyOrNull(propertyName)!;
+var value = ((global::DripSharp.Brine.Composite)(@object)).GetPropertyOrNull(propertyName)!;
 if (((value! is global::DripSharp.Brine.PNull) || (value! == default!))) {
 return default!;
 }
@@ -236,7 +236,7 @@ var license = (string)(Project.GetNullableProperty(pObj, "license")!);
 var licenseText = (string)(Project.GetNullableProperty(pObj, "licenseText")!);
 var issueTracker = Project.GetNullableURI(pObj, "issueTracker")!;
 var apiTestStrs = global::DripSharp.Runtime.JavaCompat.CastList<string>(Project.GetProperty(pObj, "apiTests"));
-var apiTests = global::DripSharp.Runtime.JavaCompat.ToListValues(global::DripSharp.Runtime.JavaCompat.Map(apiTestStrs, (value0) => global::DripSharp.Runtime.JavaCompat.PathOf(value0)));
+var apiTests = global::DripSharp.Runtime.JavaCompat.ToListValues(global::DripSharp.Runtime.JavaCompat.Map(global::DripSharp.Runtime.JavaCompat.Stream(apiTestStrs), (value0) => global::DripSharp.Runtime.JavaCompat.PathOf(value0)));
 var exclude = global::DripSharp.Runtime.JavaCompat.CastList<string>(Project.GetProperty(pObj, "exclude"));
 return new global::DripSharp.Brine.Project.Package(name, uri, version, packageZipUrl, description!, global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<string>>(authors), website!, documentation!, sourceCode!, sourceCodeUrlScheme!, license!, licenseText!, issueTracker!, global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<string>>(apiTests), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<string>>(exclude));
 }
@@ -274,7 +274,7 @@ return this.projectFileUri;
 }
 
 public global::System.Collections.Generic.IReadOnlyList<string> GetTests() {
-return global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<string>>(global::DripSharp.Runtime.JavaCompat.ToListValues(global::DripSharp.Runtime.JavaCompat.Map(this.tests, (it) => {
+return global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<string>>(global::DripSharp.Runtime.JavaCompat.ToListValues(global::DripSharp.Runtime.JavaCompat.Map(global::DripSharp.Runtime.JavaCompat.Stream(this.tests), (it) => {
 try {
 return global::DripSharp.Runtime.JavaCompat.PathOfUri(it);
 } catch (global::System.IO.IOException) {

@@ -31,7 +31,7 @@ return PklSettings.ParseSettings(module, moduleSource);
 }
 
 private static PklSettings ParseSettings(global::DripSharp.Brine.PObject module, global::DripSharp.Brine.ModuleSource location) {
-if ((!((((global::DripSharp.Brine.Composite)module).GetPropertyOrNull("editor")! is global::DripSharp.Brine.PObject pObject)) || !((((global::DripSharp.Brine.Composite)pObject).GetPropertyOrNull("urlScheme")! is string str)))) {
+if ((!((((global::DripSharp.Brine.Composite)(module)).GetPropertyOrNull("editor")! is global::DripSharp.Brine.PObject pObject)) || !((((global::DripSharp.Brine.Composite)(pObject)).GetPropertyOrNull("urlScheme")! is string str)))) {
 throw new global::DripSharp.Brine.Runtime.VmExceptionBuilder().EvalError("invalidSettingsFile", location.GetUri()).Build();
 }
 var editor = new Editor(str);

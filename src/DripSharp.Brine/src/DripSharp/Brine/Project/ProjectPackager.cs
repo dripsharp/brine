@@ -111,7 +111,8 @@ return;
 throw new global::DripSharp.Brine.PklException(global::DripSharp.Brine.Util.ErrorMessages.Create("unableToAccessPublishedPackage", pkg.Name, pkg.PackageZipUrl, statusCode));
 }
 }
-throw e;
+global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(e);
+throw new global::System.InvalidOperationException("unreachable");
 } catch (global::DripSharp.Brine.SecurityManagerException e) {
 throw new global::DripSharp.Brine.PklException(global::DripSharp.Runtime.JavaCompat.ExceptionMessage(e));
 }
@@ -154,7 +155,7 @@ throw new global::DripSharp.Brine.PklException(global::DripSharp.Brine.Util.Erro
 }
 
 private global::DripSharp.Brine.Packages.DependencyMetadata CreateDependencyMetadata(global::DripSharp.Brine.Project.Project project, global::DripSharp.Brine.Project.Package pkg, string packageZipChecksum) {
-return new global::DripSharp.Brine.Packages.DependencyMetadata(pkg.Name, pkg.Uri, pkg.Version, pkg.PackageZipUrl, new global::DripSharp.Brine.Packages.Checksums(packageZipChecksum), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<string, global::DripSharp.Brine.Packages.Dependency.RemoteDependency>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<string, global::DripSharp.Brine.Packages.Dependency.RemoteDependency>>(this.BuildDependencies(project))), pkg.SourceCodeUrlScheme!, pkg.SourceCode!, pkg.Documentation!, pkg.License!, pkg.LicenseText!, global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<string>?>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<string>?>(global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IList<string>>(pkg.Authors))), pkg.IssueTracker!, pkg.Description!, global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.PObject>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.PObject>>(project.GetAnnotations())));
+return new global::DripSharp.Brine.Packages.DependencyMetadata(pkg.Name, pkg.Uri, pkg.Version, pkg.PackageZipUrl, new global::DripSharp.Brine.Packages.Checksums(packageZipChecksum), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<string, global::DripSharp.Brine.Packages.Dependency.RemoteDependency>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<string, global::DripSharp.Brine.Packages.Dependency.RemoteDependency>>(this.BuildDependencies(project))), pkg.SourceCodeUrlScheme!, pkg.SourceCode!, pkg.Documentation!, pkg.License!, pkg.LicenseText!, global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<string>?>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<string>>(global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IList<string>>(pkg.Authors))), pkg.IssueTracker!, pkg.Description!, global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.PObject>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.PObject>>(project.GetAnnotations())));
 }
 
 private global::DripSharp.Brine.Runtime.JavaDigestOutputStream NewDigestOutputStream(global::System.IO.Stream outputStream) {

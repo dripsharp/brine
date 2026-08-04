@@ -424,7 +424,7 @@ this.Next();
 this.Ff(new global::System.Collections.Generic.List<global::DripSharp.Brine.Parser.Syntax.Generic.Node>());
 if ((((this.lookahead == global::DripSharp.Brine.Parser.Token.LBRACE) || (this.lookahead == global::DripSharp.Brine.Parser.Token.COLON)) || (this.lookahead == global::DripSharp.Brine.Parser.Token.ASSIGN))) {
 this.BacktrackTo(originalCursor);
-return this.ParseObjectProperty((global::System.Collections.Generic.IList<global::DripSharp.Brine.Parser.Syntax.Generic.Node>?)default!);
+return this.ParseObjectProperty((global::System.Collections.Generic.IList<global::DripSharp.Brine.Parser.Syntax.Generic.Node>)default!);
 } else {
 this.BacktrackTo(originalCursor);
 return this.ParseObjectElement();

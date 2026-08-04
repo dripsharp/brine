@@ -31,7 +31,7 @@ return this.source.CreateSection(span.CharIndex, span.Length);
 }
 
 protected internal global::DripSharp.Brine.Runtime.Truffle.api.source.SourceSection CreateSourceSection(global::System.Collections.Generic.IEnumerable<global::DripSharp.Brine.Parser.Syntax.Modifier> modifiers, global::DripSharp.Brine.Parser.Syntax.Modifier.ModifierValue symbol) {
-var modifierCtx = global::DripSharp.Runtime.JavaCompat.FindFirstOptional(global::DripSharp.Runtime.JavaCompat.StreamFilter(modifiers, (mod) => (mod.GetValue() == symbol))).OrElseThrow();
+var modifierCtx = global::DripSharp.Runtime.JavaCompat.FindFirstOptional(global::DripSharp.Runtime.JavaCompat.StreamFilter(global::DripSharp.Runtime.JavaCompat.Stream(modifiers), (mod) => (mod.GetValue() == symbol))).OrElseThrow();
 return this.CreateSourceSection(modifierCtx)!;
 }
 

@@ -250,7 +250,7 @@ global::DripSharp.Runtime.JavaCompat.MapPut(result, path, new ResolvedGlobElemen
 }
 
 private static global::System.Collections.Generic.IList<global::DripSharp.Brine.Module.PathElement> Sorted(global::System.Collections.Generic.IList<global::DripSharp.Brine.Module.PathElement> elements) {
-return global::DripSharp.Runtime.JavaCompat.ToListValues(global::DripSharp.Runtime.JavaCompat.StreamSorted(elements, global::DripSharp.Runtime.JavaCompat.ToComparison(global::DripSharp.Brine.Module.PathElement.comparator)));
+return global::DripSharp.Runtime.JavaCompat.ToListValues(global::DripSharp.Runtime.JavaCompat.StreamSorted(global::DripSharp.Runtime.JavaCompat.Stream(elements), global::DripSharp.Runtime.JavaCompat.ToComparison(global::DripSharp.Brine.Module.PathElement.comparator)));
 }
 
 private static bool IsRegularPathPart(string pathPart) {

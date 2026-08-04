@@ -31,7 +31,8 @@ return uri;
 if (global::DripSharp.Runtime.JavaCompat.Equals((((object)(e)).GetType().FullName ?? ((object)(e)).GetType().Name), "com.oracle.svm.core.jdk.UnsupportedFeatureError")) {
 throw new global::System.IO.IOException(global::DripSharp.Runtime.JavaCompat.Concat("Unsupported protocol: ", global::DripSharp.Runtime.JavaCompat.UriScheme(uri)!));
 }
-throw e;
+global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(e);
+throw new global::System.InvalidOperationException("unreachable");
 }
 }
 
@@ -176,7 +177,7 @@ return IoUtils.Resolve(baseUri, importUri);
 
 private static global::System.Uri ResolveTripleDotImport(global::DripSharp.Brine.SecurityManager securityManager, global::DripSharp.Brine.Module.ModuleKey moduleKey, string tripleDotPath) {
 var moduleKeyUri = moduleKey.GetUri();
-if ((!(((global::DripSharp.Brine.Module.ModuleKey)moduleKey).IsLocal()) || !moduleKey.HasHierarchicalUris())) {
+if ((!(((global::DripSharp.Brine.Module.ModuleKey)(moduleKey)).IsLocal()) || !moduleKey.HasHierarchicalUris())) {
 throw new global::DripSharp.Brine.Runtime.VmExceptionBuilder().EvalError("cannotResolveTripleDotImports", moduleKeyUri).Build();
 }
 var currentPath = (moduleKey.HasFragmentPaths() ? global::DripSharp.Runtime.JavaCompat.UriFragment(moduleKeyUri)! : global::DripSharp.Runtime.JavaCompat.UriPath(moduleKeyUri)!);
@@ -229,7 +230,7 @@ throw new global::DripSharp.Brine.Packages.PackageLoadError("cannotFindDependenc
 
 public static global::System.Uri Resolve(global::DripSharp.Brine.SecurityManager securityManager, global::DripSharp.Brine.Module.ModuleKey moduleKey, global::System.Uri importUri) {
 if (importUri.IsAbsoluteUri) {
-return ((global::DripSharp.Brine.Module.ModuleKey)moduleKey).ResolveUri(importUri);
+return ((global::DripSharp.Brine.Module.ModuleKey)(moduleKey)).ResolveUri(importUri);
 }
 var tripleDotPath = IoUtils.ParseTripleDotPath(importUri)!;
 if ((tripleDotPath! != default!)) {
@@ -241,7 +242,7 @@ var relativePart = global::DripSharp.Runtime.JavaCompat.UriSchemeSpecificPart(im
 if ((global::DripSharp.Runtime.JavaCompat.StringStartsWith(relativePart, "@") && !isPackage)) {
 return IoUtils.ResolveProjectDependency(moduleKey, relativePart);
 }
-return ((global::DripSharp.Brine.Module.ModuleKey)moduleKey).ResolveUri(importUri);
+return ((global::DripSharp.Brine.Module.ModuleKey)(moduleKey)).ResolveUri(importUri);
 }
 
 public static global::System.Uri Resolve(global::System.Uri baseUri, global::System.Uri newUri) {

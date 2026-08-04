@@ -34,7 +34,7 @@ return this.functionNode.GetCallTarget();
 private void ReportDeprecation(global::DripSharp.Brine.Runtime.Truffle.api.source.SourceSection callSite) {
 global::DripSharp.Runtime.JavaCompat.Assert(() => (this.deprecation! != default!));
 var logger = global::DripSharp.Brine.Runtime.VmContext.Get((global::DripSharp.Brine.Runtime.Truffle.api.nodes.Node?)default!).GetLogger();
-((global::DripSharp.Brine.Logger)logger).Warn(global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat("Method `", base.qualifiedName), "` is deprecated"), ((this.deprecation!.Length == 0) ? "" : global::DripSharp.Runtime.JavaCompat.Concat(": ", this.deprecation!))), global::DripSharp.Brine.Runtime.VmUtils.CreateStackFrame(callSite, (string?)default!));
+((global::DripSharp.Brine.Logger)(logger)).Warn(global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat("Method `", base.qualifiedName), "` is deprecated"), ((this.deprecation!.Length == 0) ? "" : global::DripSharp.Runtime.JavaCompat.Concat(": ", this.deprecation!))), global::DripSharp.Brine.Runtime.VmUtils.CreateStackFrame(callSite, (string?)default!));
 }
 
 public global::DripSharp.Brine.Runtime.Truffle.api.CallTarget GetCallTarget(global::DripSharp.Brine.Runtime.Truffle.api.source.SourceSection callSite) {

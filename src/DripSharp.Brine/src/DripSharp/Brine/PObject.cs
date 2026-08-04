@@ -49,7 +49,7 @@ throw new global::DripSharp.Brine.NoSuchPropertyException(global::DripSharp.Runt
 }
 
 public virtual void Accept(global::DripSharp.Brine.ValueVisitor visitor) {
-((global::DripSharp.Brine.ValueVisitor)visitor).VisitObject(this);
+((global::DripSharp.Brine.ValueVisitor)(visitor)).VisitObject(this);
 }
 
 public virtual T Accept<T>(global::DripSharp.Brine.ValueConverter<T> converter) {

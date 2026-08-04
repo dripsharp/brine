@@ -42,7 +42,7 @@ var rhs = this.prettyRenderer.Render(value);
 return global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat((global::DripSharp.Runtime.JavaCompat.StringContains(lhs, "\n") ? global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat("\n", TraceNode.AddIndent(lhs, "  ")), "\n=") : global::DripSharp.Runtime.JavaCompat.Concat(lhs, " =")), (global::DripSharp.Runtime.JavaCompat.StringContains(rhs, "\n") ? global::DripSharp.Runtime.JavaCompat.Concat("\n", TraceNode.AddIndent(rhs, "  ")) : global::DripSharp.Runtime.JavaCompat.Concat(" ", rhs))), "\n");
 }
 } throw new global::System.InvalidOperationException(); }))();
-((global::DripSharp.Brine.Logger)context.GetLogger()).Trace(message, global::DripSharp.Brine.Runtime.VmUtils.CreateStackFrame(sourceSection, (string?)default!));
+((global::DripSharp.Brine.Logger)(context.GetLogger())).Trace(message, global::DripSharp.Brine.Runtime.VmUtils.CreateStackFrame(sourceSection, (string?)default!));
 }
 
 private static string AddIndent(string s, string indent) {

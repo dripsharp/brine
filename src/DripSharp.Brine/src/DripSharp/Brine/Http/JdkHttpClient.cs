@@ -47,7 +47,8 @@ public void Close() {
 try {
 JdkHttpClient.closeMethod.invoke(this.underlying);
 } catch (global::System.Exception e) when (e is global::System.Exception) {
-throw e;
+global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(e);
+throw new global::System.InvalidOperationException("unreachable");
 } catch (global::System.Exception t) {
 throw new global::DripSharp.Runtime.JavaAssertionError(t);
 }

@@ -37,7 +37,7 @@ throw new global::DripSharp.Brine.NoSuchPropertyException(global::DripSharp.Runt
 }
 
 public override void Accept(global::DripSharp.Brine.ValueVisitor visitor) {
-((global::DripSharp.Brine.ValueVisitor)visitor).VisitModule(this);
+((global::DripSharp.Brine.ValueVisitor)(visitor)).VisitModule(this);
 }
 
 public override bool Equals(object? obj) {

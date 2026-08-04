@@ -17,7 +17,7 @@ return PNull.INSTANCE;
 }
 
 public void Accept(global::DripSharp.Brine.ValueVisitor visitor) {
-((global::DripSharp.Brine.ValueVisitor)visitor).VisitNull();
+((global::DripSharp.Brine.ValueVisitor)(visitor)).VisitNull();
 }
 
 public T Accept<T>(global::DripSharp.Brine.ValueConverter<T> converter) {

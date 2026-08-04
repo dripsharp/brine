@@ -43,7 +43,7 @@ throw global::DripSharp.Brine.PklBugException.UnreachableCode();
 
 public static global::DripSharp.Brine.StackFrameTransformer FromServiceProviders { get; } = StackFrameTransformers.LoadFromServiceProviders();
 
-public static global::DripSharp.Brine.StackFrameTransformer DefaultTransformer { get; } = global::DripSharp.Brine.StackFrameTransformerExtensions.AndThen(global::DripSharp.Brine.StackFrameTransformerExtensions.AndThen(StackFrameTransformers.FromServiceProviders, StackFrameTransformers.ConvertStdLibUrlToExternalUrl), StackFrameTransformers.ReplacePackageUriWithSourceCodeUrl);
+public static global::DripSharp.Brine.StackFrameTransformer DefaultTransformer { get; } = global::DripSharp.Brine.StackFrameTransformerExtensions.AndThen(((global::DripSharp.Brine.StackFrameTransformer)(global::DripSharp.Brine.StackFrameTransformerExtensions.AndThen(((global::DripSharp.Brine.StackFrameTransformer)(StackFrameTransformers.FromServiceProviders)), StackFrameTransformers.ConvertStdLibUrlToExternalUrl))), StackFrameTransformers.ReplacePackageUriWithSourceCodeUrl);
 
 private static global::DripSharp.Brine.StackFrame TransformUri(global::DripSharp.Brine.StackFrame frame, string path, string format) {
 var uri = frame.GetModuleUri();
@@ -70,11 +70,11 @@ return frame.WithModuleUri(global::DripSharp.Runtime.JavaCompat.UriToString(rela
 }
 
 public static global::DripSharp.Brine.StackFrameTransformer CreateDefault(global::DripSharp.Brine.Settings.PklSettings settings) {
-return global::DripSharp.Brine.StackFrameTransformerExtensions.AndThen(StackFrameTransformers.DefaultTransformer, StackFrameTransformers.ConvertFilePathToUriScheme(settings.EditorValue.UrlScheme));
+return global::DripSharp.Brine.StackFrameTransformerExtensions.AndThen(((global::DripSharp.Brine.StackFrameTransformer)(StackFrameTransformers.DefaultTransformer)), StackFrameTransformers.ConvertFilePathToUriScheme(settings.EditorValue.UrlScheme));
 }
 
 private static global::DripSharp.Brine.StackFrameTransformer LoadFromServiceProviders() {
 var loader = global::DripSharp.Brine.Util.IoUtils.CreateServiceLoader<global::DripSharp.Brine.StackFrameTransformer>(typeof(global::DripSharp.Brine.StackFrameTransformer));
-return global::DripSharp.Runtime.JavaCompat.ReduceOptional(loader, (t1, t2) => global::DripSharp.Brine.StackFrameTransformerExtensions.AndThen(t1, t2)).OrElse((t) => t);
+return global::DripSharp.Runtime.JavaCompat.ReduceOptional(loader, (t1, t2) => global::DripSharp.Brine.StackFrameTransformerExtensions.AndThen(((global::DripSharp.Brine.StackFrameTransformer)(t1)), t2)).OrElse((t) => t);
 }
 }

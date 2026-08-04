@@ -45,7 +45,7 @@ return new ExternalProcess(scheme, process, evaluatorId);
 public static void CloseQuietly(global::System.Collections.Generic.IEnumerable<global::DripSharp.Brine.Module.ModuleKeyFactory> factories) {
 foreach (global::DripSharp.Brine.Module.ModuleKeyFactory factory in factories) {
 try {
-((global::DripSharp.Brine.Module.ModuleKeyFactory)factory).Close();
+((global::DripSharp.Brine.Module.ModuleKeyFactory)(factory)).Close();
 } catch (global::System.Exception ignored) when (ignored is not global::System.TypeInitializationException) {}
 }
 }

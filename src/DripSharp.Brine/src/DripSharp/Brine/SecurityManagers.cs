@@ -52,7 +52,7 @@ return new StandardBuilder();
 internal partial class Standard : global::DripSharp.Brine.SecurityManager
 {
 public virtual string? ResolveSecurePath(global::System.Uri uri) {
-return ((global::DripSharp.Brine.SecurityManager)this).ResolveSecurePath(uri, false)!;
+return this.ResolveSecurePath(uri, false)!;
 }
 
 internal readonly global::System.Collections.Generic.IList<global::System.Text.RegularExpressions.Regex> allowedModules = default!;

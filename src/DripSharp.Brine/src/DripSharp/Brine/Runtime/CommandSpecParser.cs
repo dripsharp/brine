@@ -661,7 +661,7 @@ this.metavar = OptionBehavior.METAVAR_CHAR;
 return true;
 } else {
 if ((typeNode is global::DripSharp.Brine.Ast.Type.TypeNode.UnionOfStringLiteralsTypeNode unionOfStringLiteralsTypeNode)) {
-var choices = global::DripSharp.Runtime.JavaCompat.ToListValues(global::DripSharp.Runtime.JavaCompat.StreamSorted(unionOfStringLiteralsTypeNode.GetStringLiterals()));
+var choices = global::DripSharp.Runtime.JavaCompat.ToListValues(global::DripSharp.Runtime.JavaCompat.StreamSorted(global::DripSharp.Runtime.JavaCompat.Stream(unionOfStringLiteralsTypeNode.GetStringLiterals())));
 if ((this.each! == default!)) {
 this.each = (rawValue, workingDirUri) => {
 if (!(global::DripSharp.Runtime.JavaCompat.CollectionContains(unionOfStringLiteralsTypeNode.GetStringLiterals(), rawValue))) {

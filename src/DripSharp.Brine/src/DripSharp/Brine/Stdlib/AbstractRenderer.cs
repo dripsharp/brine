@@ -73,9 +73,11 @@ this.VisitDocument(converted);
 } catch (global::DripSharp.Brine.Runtime.VmException err) {
 if ((converted != value)) {
 err.SetHint(global::DripSharp.Runtime.JavaCompat.JavaStringFormat("This value was converted during rendering. Previous: %s. After: %s.", new global::DripSharp.Brine.Runtime.VmException.ProgramValue("before", value), new global::DripSharp.Brine.Runtime.VmException.ProgramValue("after", converted)));
-throw err;
+global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(err);
+throw new global::System.InvalidOperationException("unreachable");
 }
-throw err;
+global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(err);
+throw new global::System.InvalidOperationException("unreachable");
 }
 }
 
@@ -94,7 +96,8 @@ global::DripSharp.Brine.Runtime.PklRuntimeBridge.VisitVmValue(this, value);
 if ((e.GetReceiver()! == value)) {
 throw e.FillInHint(this.currPath, this.topLevelValue);
 }
-throw e;
+global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(e);
+throw new global::System.InvalidOperationException("unreachable");
 }
 }
 

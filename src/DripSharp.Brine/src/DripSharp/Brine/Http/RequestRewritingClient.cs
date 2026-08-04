@@ -44,7 +44,7 @@ this.requestTimeout = requestTimeout;
 this.testPort = testPort;
 this.@delegate = @delegate;
 this.rewritesMap = rewrites;
-this.rewrites = global::DripSharp.Runtime.JavaCompat.ToListValues(global::DripSharp.Runtime.JavaCompat.StreamSorted(global::DripSharp.Runtime.JavaCompat.Map(global::DripSharp.Runtime.JavaCompat.MapEntrySet(rewrites), (it) => global::DripSharp.Runtime.JavaCompat.MapEntry(this.NormalizeRewrite(it.Key), this.NormalizeRewrite(it.Value))), global::DripSharp.Runtime.JavaCompat.ToComparison(global::DripSharp.Runtime.JavaCompat.ComparingInt<global::DripSharp.Runtime.JavaMapEntry<global::System.Uri, global::System.Uri>>((it) => -(global::DripSharp.Runtime.JavaCompat.UriToString(it.Key).Length)))));
+this.rewrites = global::DripSharp.Runtime.JavaCompat.ToListValues(global::DripSharp.Runtime.JavaCompat.StreamSorted(global::DripSharp.Runtime.JavaCompat.Map(global::DripSharp.Runtime.JavaCompat.Stream(global::DripSharp.Runtime.JavaCompat.MapEntrySet(rewrites)), (it) => global::DripSharp.Runtime.JavaCompat.MapEntry(this.NormalizeRewrite(it.Key), this.NormalizeRewrite(it.Value))), global::DripSharp.Runtime.JavaCompat.ToComparison(global::DripSharp.Runtime.JavaCompat.ComparingInt<global::DripSharp.Runtime.JavaMapEntry<global::System.Uri, global::System.Uri>>((it) => -(global::DripSharp.Runtime.JavaCompat.UriToString(it.Key).Length)))));
 this.headers = headers;
 }
 
@@ -89,7 +89,8 @@ var rewrittenUri = this.RewriteUri(request.Uri());
 if ((rewrittenUri != request.Uri())) {
 throw new global::System.IO.IOException(global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.ExceptionMessage(e), global::DripSharp.Runtime.JavaCompat.Formatted(" (request was rewritten: %s -> %s)", request.Uri(), rewrittenUri)), e);
 }
-throw e;
+global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(e);
+throw new global::System.InvalidOperationException("unreachable");
 }
 }
 

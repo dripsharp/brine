@@ -48,7 +48,7 @@ return builder.ToString();
 
 private void Render(object value, global::System.Text.StringBuilder builder) {
 try {
-((global::DripSharp.Brine.Runtime.VmValueVisitor)new Visitor(this, builder)).Visit(value);
+((global::DripSharp.Brine.Runtime.VmValueVisitor)(new Visitor(this, builder))).Visit(value);
 } catch (LengthLimitReached) {}
 }
 
@@ -183,9 +183,9 @@ this.Append(global::DripSharp.Runtime.JavaCompat.ToUnsignedInt(bytes[i]));
 
 public virtual void VisitPair(global::DripSharp.Brine.Runtime.VmPair value) {
 this.Append("Pair(");
-((global::DripSharp.Brine.Runtime.VmValueVisitor)this).Visit(value.GetFirst());
+((global::DripSharp.Brine.Runtime.VmValueVisitor)(this)).Visit(value.GetFirst());
 this.Append(", ");
-((global::DripSharp.Brine.Runtime.VmValueVisitor)this).Visit(value.GetSecond());
+((global::DripSharp.Brine.Runtime.VmValueVisitor)(this)).Visit(value.GetSecond());
 this.Append(')');
 }
 
@@ -215,9 +215,9 @@ isFirst = false;
 } else {
 this.Append(", ");
 }
-((global::DripSharp.Brine.Runtime.VmValueVisitor)this).Visit(entry.Key);
+((global::DripSharp.Brine.Runtime.VmValueVisitor)(this)).Visit(entry.Key);
 this.Append(", ");
-((global::DripSharp.Brine.Runtime.VmValueVisitor)this).Visit(entry.Value);
+((global::DripSharp.Brine.Runtime.VmValueVisitor)(this)).Visit(entry.Value);
 }
 this.Append(')');
 this.contexts.Pop();
@@ -272,11 +272,11 @@ this.Append("null");
 public virtual void VisitReference(global::DripSharp.Brine.Runtime.VmReference value) {
 global::DripSharp.Runtime.JavaCompat.DequePush(this.contexts, Context.EXPLICIT);
 this.Append("Reference(");
-((global::DripSharp.Brine.Runtime.VmValueVisitor)this).Visit(value.GetDomain());
+((global::DripSharp.Brine.Runtime.VmValueVisitor)(this)).Visit(value.GetDomain());
 this.Append(", ");
 this.Append(value.GetReferentType());
 this.Append(", ");
-((global::DripSharp.Brine.Runtime.VmValueVisitor)this).Visit(value.GetData());
+((global::DripSharp.Brine.Runtime.VmValueVisitor)(this)).Visit(value.GetData());
 this.Append(")");
 foreach (var elem in value.GetPath()) {
 var property = global::DripSharp.Brine.Runtime.VmUtils.ReadMember(elem, global::DripSharp.Brine.Runtime.Identifier.PROPERTY);
@@ -285,7 +285,7 @@ this.Append(".");
 this.WriteIdentifier(propName);
 } else {
 this.Append("[");
-((global::DripSharp.Brine.Runtime.VmValueVisitor)this).Visit(global::DripSharp.Brine.Runtime.VmUtils.ReadMember(elem, global::DripSharp.Brine.Runtime.Identifier.KEY));
+((global::DripSharp.Brine.Runtime.VmValueVisitor)(this)).Visit(global::DripSharp.Brine.Runtime.VmUtils.ReadMember(elem, global::DripSharp.Brine.Runtime.Identifier.KEY));
 this.Append("]");
 }
 }
@@ -316,7 +316,7 @@ isFirst = false;
 } else {
 this.Append(", ");
 }
-((global::DripSharp.Brine.Runtime.VmValueVisitor)this).Visit(elem);
+((global::DripSharp.Brine.Runtime.VmValueVisitor)(this)).Visit(elem);
 }
 this.Append(')');
 this.contexts.Pop();
@@ -351,7 +351,7 @@ global::DripSharp.Runtime.JavaCompat.DequePush(this.contexts, Context.EXPLICIT);
 global::DripSharp.Runtime.JavaCompat.Assert(() => member.IsEntry());
 global::DripSharp.Runtime.JavaCompat.DequePush(this.contexts, Context.EXPLICIT);
 this.Append('[');
-((global::DripSharp.Brine.Runtime.VmValueVisitor)this).Visit(key);
+((global::DripSharp.Brine.Runtime.VmValueVisitor)(this)).Visit(key);
 this.Append(']');
 this.contexts.Pop();
 global::DripSharp.Runtime.JavaCompat.DequePush(this.contexts, Context.IMPLICIT);
@@ -365,7 +365,7 @@ this.Append(" = ");
 if ((value == default!)) {
 this.Append('?');
 } else {
-((global::DripSharp.Brine.Runtime.VmValueVisitor)this).Visit(value);
+((global::DripSharp.Brine.Runtime.VmValueVisitor)(this)).Visit(value);
 }
 this.contexts.Pop();
 this.Append(this.__outer.interiorNewline);

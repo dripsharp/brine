@@ -193,9 +193,9 @@ var valueClassInfo = global::DripSharp.Brine.Runtime.PklRuntimeBridge.PClassInfo
 if (valueClassInfo.Equals(classInfo)) {
 if ((value is global::DripSharp.Brine.Runtime.VmValue vmValue)) {
 vmValue.Force(false);
-return (T)(vmValue.Export()!);
+return global::DripSharp.Runtime.JavaCompat.CastReference<T>(vmValue.Export());
 }
-return (T)(value!);
+return global::DripSharp.Runtime.JavaCompat.CastReference<T>(value);
 }
 throw this.ModuleOutputValueTypeMismatch(module, global::DripSharp.Brine.Runtime.PklRuntimeBridge.PClassInfoAsObject(classInfo).AsObject(), value, output);
 });

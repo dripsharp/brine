@@ -35,7 +35,7 @@ return ((global::System.Collections.Generic.IEnumerable<object?>)new object?[] {
 }
 
 public void Accept(global::DripSharp.Brine.ValueVisitor visitor) {
-visitor.VisitPair(global::DripSharp.Brine.Runtime.PklRuntimeBridge.ObjectPair(global::DripSharp.Brine.Runtime.PklRuntimeBridge.ObjectPair(this)));
+(((global::DripSharp.Brine.ValueVisitor)(visitor))).VisitPair(global::DripSharp.Brine.Runtime.PklRuntimeBridge.ObjectPair(global::DripSharp.Brine.Runtime.PklRuntimeBridge.ObjectPair(this)));
 }
 
 public T Accept<T>(global::DripSharp.Brine.ValueConverter<T> converter) {

@@ -33,7 +33,7 @@ this.spanLookahead = this._lookahead.Span;
 
 internal global::DripSharp.Brine.Parser.Syntax.Module ParseModule() {
 if ((this.lookahead == global::DripSharp.Brine.Parser.Token.EOF)) {
-return new global::DripSharp.Brine.Parser.Syntax.Module(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ListOf<global::DripSharp.Brine.Parser.Syntax.Node?>((global::DripSharp.Brine.Parser.Syntax.Node?)default!))), new global::DripSharp.Brine.Parser.Span(0, 0));
+return new global::DripSharp.Brine.Parser.Syntax.Module(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node>>(global::DripSharp.Runtime.JavaCompat.ListOf<global::DripSharp.Brine.Parser.Syntax.Node?>((global::DripSharp.Brine.Parser.Syntax.Node?)default!))), new global::DripSharp.Brine.Parser.Span(0, 0));
 }
 if ((this.lookahead == global::DripSharp.Brine.Parser.Token.SHEBANG)) {
 this.Next();
@@ -65,11 +65,12 @@ while ((this.lookahead != global::DripSharp.Brine.Parser.Token.EOF)) {
 header = this.ParseMemberHeader();
 end = this.ParseModuleMember(header, nodes);
 }
-return new global::DripSharp.Brine.Parser.Syntax.Module(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(nodes)), start.EndWith(this.spanLookahead));
+return new global::DripSharp.Brine.Parser.Syntax.Module(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node>>(nodes)), start.EndWith(this.spanLookahead));
 } catch (global::DripSharp.Brine.Parser.ParserError pe) {
 var spanEnd = (!global::System.Object.ReferenceEquals(end!, default!) ? end! : start);
-pe.SetPartialParseResult(new global::DripSharp.Brine.Parser.Syntax.Module(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(nodes)), start.EndWith(spanEnd)));
-throw pe;
+pe.SetPartialParseResult(new global::DripSharp.Brine.Parser.Syntax.Module(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node>>(nodes)), start.EndWith(spanEnd)));
+global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(pe);
+throw new global::System.InvalidOperationException("unreachable");
 }
 }
 
@@ -145,7 +146,7 @@ global::DripSharp.Runtime.JavaCompat.Assert(() => (first! != default!));
 global::DripSharp.Runtime.JavaCompat.Assert(() => (last! != default!));
 span = first!.Span().EndWith(last!.Span());
 }
-return new global::DripSharp.Brine.Parser.Syntax.ReplInput(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(nodes)), span);
+return new global::DripSharp.Brine.Parser.Syntax.ReplInput(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node>>(nodes)), span);
 }
 
 private global::DripSharp.Brine.Parser.Syntax.ModuleDecl? ParseModuleDecl(MemberHeader header) {
@@ -181,7 +182,7 @@ global::DripSharp.Runtime.JavaCompat.Add(children, moduleName!);
 global::DripSharp.Runtime.JavaCompat.Add(children, extendsOrAmendsDecl!);
 global::DripSharp.Runtime.JavaCompat.Assert(() => !global::System.Object.ReferenceEquals(start!, default!));
 global::DripSharp.Runtime.JavaCompat.Assert(() => !global::System.Object.ReferenceEquals(end!, default!));
-return new global::DripSharp.Brine.Parser.Syntax.ModuleDecl(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(children)), modifiersOffset, nameOffset, start!.EndWith(end!));
+return new global::DripSharp.Brine.Parser.Syntax.ModuleDecl(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node>>(children)), modifiersOffset, nameOffset, start!.EndWith(end!));
 }
 return default!;
 }
@@ -323,7 +324,7 @@ global::DripSharp.Runtime.JavaCompat.Add(children, new global::DripSharp.Brine.P
 global::DripSharp.Runtime.JavaCompat.Add(children, identifier);
 global::DripSharp.Runtime.JavaCompat.Add(children, typePars!);
 global::DripSharp.Runtime.JavaCompat.Add(children, type);
-return new global::DripSharp.Brine.Parser.Syntax.TypeAlias(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(children)), modifiersOffset, nameOffset, startSpan.EndWith(type.Span()));
+return new global::DripSharp.Brine.Parser.Syntax.TypeAlias(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node>>(children)), modifiersOffset, nameOffset, startSpan.EndWith(type.Span()));
 }
 
 private global::DripSharp.Brine.Parser.Syntax.Class ParseClass(MemberHeader header) {
@@ -358,7 +359,7 @@ body = this.ParseClassBody();
 end = body!.Span();
 }
 global::DripSharp.Runtime.JavaCompat.Add(children, body!);
-return new global::DripSharp.Brine.Parser.Syntax.Class(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(children)), modifiersOffset, nameOffset, startSpan.EndWith(end));
+return new global::DripSharp.Brine.Parser.Syntax.Class(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node>>(children)), modifiersOffset, nameOffset, startSpan.EndWith(end));
 }
 
 private global::DripSharp.Brine.Parser.Syntax.ClassBody ParseClassBody() {
@@ -412,15 +413,15 @@ global::DripSharp.Runtime.JavaCompat.Add(children, typeAnnotation!);
 global::DripSharp.Runtime.JavaCompat.Add(children, expr!);
 global::DripSharp.Runtime.JavaCompat.AddAll(children, bodies);
 if ((expr! != default!)) {
-return new global::DripSharp.Brine.Parser.Syntax.ClassProperty(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(children)), modifiersOffset, nameOffset, start.EndWith(expr!.Span()));
+return new global::DripSharp.Brine.Parser.Syntax.ClassProperty(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node>>(children)), modifiersOffset, nameOffset, start.EndWith(expr!.Span()));
 }
 if (!(global::DripSharp.Runtime.JavaCompat.ListIsEmpty(bodies))) {
-return new global::DripSharp.Brine.Parser.Syntax.ClassProperty(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(children)), modifiersOffset, nameOffset, start.EndWith(global::DripSharp.Runtime.JavaCompat.ListGet(bodies, (global::DripSharp.Runtime.JavaCompat.CollectionCount(bodies) - 1)).Span()));
+return new global::DripSharp.Brine.Parser.Syntax.ClassProperty(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node>>(children)), modifiersOffset, nameOffset, start.EndWith(global::DripSharp.Runtime.JavaCompat.ListGet(bodies, (global::DripSharp.Runtime.JavaCompat.CollectionCount(bodies) - 1)).Span()));
 }
 if ((typeAnnotation! == default!)) {
 throw new global::DripSharp.Brine.Parser.ParserError(global::DripSharp.Brine.Parser.Util.ErrorMessages.Create("invalidProperty"), name.Span());
 }
-return new global::DripSharp.Brine.Parser.Syntax.ClassProperty(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(children)), modifiersOffset, nameOffset, start.EndWith(typeAnnotation!.Span()));
+return new global::DripSharp.Brine.Parser.Syntax.ClassProperty(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node>>(children)), modifiersOffset, nameOffset, start.EndWith(typeAnnotation!.Span()));
 }
 
 private global::DripSharp.Brine.Parser.Syntax.ClassMethod ParseClassMethod(MemberHeader header) {
@@ -458,7 +459,7 @@ expr = this.ParseExpr();
 end = expr!.Span();
 }
 global::DripSharp.Runtime.JavaCompat.Add(children, expr!);
-return new global::DripSharp.Brine.Parser.Syntax.ClassMethod(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(children)), modifiersOffset, nameOffset, headerSpanStart.EndWith(endHeader), start.EndWith(end));
+return new global::DripSharp.Brine.Parser.Syntax.ClassMethod(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node>>(children)), modifiersOffset, nameOffset, headerSpanStart.EndWith(endHeader), start.EndWith(end));
 }
 
 private global::DripSharp.Brine.Parser.Syntax.ObjectBody ParseObjectBody() {
@@ -500,7 +501,7 @@ global::DripSharp.Runtime.JavaCompat.Add(nodes, new global::DripSharp.Brine.Pars
 this.Expect(global::DripSharp.Brine.Parser.Token.ASSIGN, "unexpectedToken", "=");
 var expr = this.ParseExpr();
 membersOffset = 0;
-global::DripSharp.Runtime.JavaCompat.Add(nodes, new global::DripSharp.Brine.Parser.Syntax.ObjectMember.ObjectProperty(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.AsList<global::DripSharp.Brine.Parser.Syntax.Node>(identifier, typeAnnotation, expr))), 0, identifier.Span().EndWith(expr.Span())));
+global::DripSharp.Runtime.JavaCompat.Add(nodes, new global::DripSharp.Brine.Parser.Syntax.ObjectMember.ObjectProperty(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node>>(global::DripSharp.Runtime.JavaCompat.AsList<global::DripSharp.Brine.Parser.Syntax.Node>(identifier, typeAnnotation, expr))), 0, identifier.Span().EndWith(expr.Span())));
 }
 }
 } else {
@@ -531,7 +532,7 @@ case 91:
 this.Next();
 if ((((this.lookahead == global::DripSharp.Brine.Parser.Token.LBRACE) || (this.lookahead == global::DripSharp.Brine.Parser.Token.COLON)) || (this.lookahead == global::DripSharp.Brine.Parser.Token.ASSIGN))) {
 this.Backtrack();
-return this.ParseObjectProperty((global::System.Collections.Generic.IList<global::DripSharp.Brine.Parser.Syntax.Modifier>?)default!);
+return this.ParseObjectProperty((global::System.Collections.Generic.IList<global::DripSharp.Brine.Parser.Syntax.Modifier>)default!);
 } else {
 this.Backtrack();
 return this.ParseObjectElement();
@@ -599,7 +600,7 @@ global::DripSharp.Runtime.JavaCompat.AddAll(nodes__668_11, allModifiers!);
 global::DripSharp.Runtime.JavaCompat.Add(nodes__668_11, identifier);
 global::DripSharp.Runtime.JavaCompat.Add(nodes__668_11, typeAnnotation!);
 global::DripSharp.Runtime.JavaCompat.Add(nodes__668_11, expr);
-return new global::DripSharp.Brine.Parser.Syntax.ObjectMember.ObjectProperty(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(nodes__668_11)), global::DripSharp.Runtime.JavaCompat.CollectionCount(allModifiers!), start.EndWith(expr.Span()));
+return new global::DripSharp.Brine.Parser.Syntax.ObjectMember.ObjectProperty(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node>>(nodes__668_11)), global::DripSharp.Runtime.JavaCompat.CollectionCount(allModifiers!), start.EndWith(expr.Span()));
 }
 var bodies = this.ParseBodyList();
 var end = global::DripSharp.Runtime.JavaCompat.ListGet(bodies, (global::DripSharp.Runtime.JavaCompat.CollectionCount(bodies) - 1)).Span();
@@ -609,7 +610,7 @@ global::DripSharp.Runtime.JavaCompat.Add(nodes__678_9, identifier);
 global::DripSharp.Runtime.JavaCompat.Add(nodes__678_9, default!);
 global::DripSharp.Runtime.JavaCompat.Add(nodes__678_9, default!);
 global::DripSharp.Runtime.JavaCompat.AddAll(nodes__678_9, bodies);
-return new global::DripSharp.Brine.Parser.Syntax.ObjectMember.ObjectProperty(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(nodes__678_9)), global::DripSharp.Runtime.JavaCompat.CollectionCount(allModifiers!), start.EndWith(end));
+return new global::DripSharp.Brine.Parser.Syntax.ObjectMember.ObjectProperty(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node>>(nodes__678_9)), global::DripSharp.Runtime.JavaCompat.CollectionCount(allModifiers!), start.EndWith(end));
 }
 
 private global::DripSharp.Brine.Parser.Syntax.ObjectMember.ObjectMethod ParseObjectMethod(global::System.Collections.Generic.IList<global::DripSharp.Brine.Parser.Syntax.Modifier> modifiers) {
@@ -638,7 +639,7 @@ global::DripSharp.Runtime.JavaCompat.Add(nodes, @params!);
 global::DripSharp.Runtime.JavaCompat.Add(nodes, args);
 global::DripSharp.Runtime.JavaCompat.Add(nodes, typeAnnotation!);
 global::DripSharp.Runtime.JavaCompat.Add(nodes, expr);
-return new global::DripSharp.Brine.Parser.Syntax.ObjectMember.ObjectMethod(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(nodes)), global::DripSharp.Runtime.JavaCompat.CollectionCount(modifiers), start.EndWith(expr.Span()));
+return new global::DripSharp.Brine.Parser.Syntax.ObjectMember.ObjectMethod(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node>>(nodes)), global::DripSharp.Runtime.JavaCompat.CollectionCount(modifiers), start.EndWith(expr.Span()));
 }
 
 private global::DripSharp.Brine.Parser.Syntax.ObjectMember ParseMemberPredicate() {
@@ -660,7 +661,7 @@ throw new global::DripSharp.Brine.Parser.ParserError(global::DripSharp.Brine.Par
 if ((this.lookahead == global::DripSharp.Brine.Parser.Token.ASSIGN)) {
 this.Next();
 var expr = this.ParseExpr("}");
-return new global::DripSharp.Brine.Parser.Syntax.ObjectMember.MemberPredicate(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ListOf<global::DripSharp.Brine.Parser.Syntax.Node>(pred, expr))), start.EndWith(expr.Span()));
+return new global::DripSharp.Brine.Parser.Syntax.ObjectMember.MemberPredicate(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node>>(global::DripSharp.Runtime.JavaCompat.ListOf<global::DripSharp.Brine.Parser.Syntax.Node>(pred, expr))), start.EndWith(expr.Span()));
 }
 var bodies = this.ParseBodyList();
 var end = global::DripSharp.Runtime.JavaCompat.ListGet(bodies, (global::DripSharp.Runtime.JavaCompat.CollectionCount(bodies) - 1)).Span();
@@ -668,7 +669,7 @@ var nodes = new global::System.Collections.Generic.List<global::DripSharp.Brine.
 global::DripSharp.Runtime.JavaCompat.Add(nodes, pred);
 global::DripSharp.Runtime.JavaCompat.Add(nodes, default!);
 global::DripSharp.Runtime.JavaCompat.AddAll(nodes, bodies);
-return new global::DripSharp.Brine.Parser.Syntax.ObjectMember.MemberPredicate(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(nodes)), start.EndWith(end));
+return new global::DripSharp.Brine.Parser.Syntax.ObjectMember.MemberPredicate(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node>>(nodes)), start.EndWith(end));
 }
 
 private global::DripSharp.Brine.Parser.Syntax.ObjectMember ParseObjectEntry() {
@@ -678,7 +679,7 @@ this.Expect(global::DripSharp.Brine.Parser.Token.RBRACK, "unexpectedToken", "]")
 if ((this.lookahead == global::DripSharp.Brine.Parser.Token.ASSIGN)) {
 this.Next();
 var expr = this.ParseExpr("}");
-return new global::DripSharp.Brine.Parser.Syntax.ObjectMember.ObjectEntry(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ListOf<global::DripSharp.Brine.Parser.Syntax.Node>(key, expr))), start.EndWith(expr.Span()));
+return new global::DripSharp.Brine.Parser.Syntax.ObjectMember.ObjectEntry(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node>>(global::DripSharp.Runtime.JavaCompat.ListOf<global::DripSharp.Brine.Parser.Syntax.Node>(key, expr))), start.EndWith(expr.Span()));
 }
 var bodies = this.ParseBodyList();
 var end = global::DripSharp.Runtime.JavaCompat.ListGet(bodies, (global::DripSharp.Runtime.JavaCompat.CollectionCount(bodies) - 1)).Span();
@@ -686,7 +687,7 @@ var nodes = new global::System.Collections.Generic.List<global::DripSharp.Brine.
 global::DripSharp.Runtime.JavaCompat.Add(nodes, key);
 global::DripSharp.Runtime.JavaCompat.Add(nodes, default!);
 global::DripSharp.Runtime.JavaCompat.AddAll(nodes, bodies);
-return new global::DripSharp.Brine.Parser.Syntax.ObjectMember.ObjectEntry(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(nodes)), start.EndWith(end));
+return new global::DripSharp.Brine.Parser.Syntax.ObjectMember.ObjectEntry(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node>>(nodes)), start.EndWith(end));
 }
 
 private global::DripSharp.Brine.Parser.Syntax.ObjectMember.ObjectSpread ParseObjectSpread() {
@@ -1038,7 +1039,7 @@ if ((((expr is global::DripSharp.Brine.Parser.Syntax.Expr.ParenthesizedExpr) || 
 var body = this.ParseObjectBody();
 return this.ParseExprRest(new global::DripSharp.Brine.Parser.Syntax.Expr.AmendsExpr(expr, body, expr.Span().EndWith(body.Span())));
 }
-throw this.ParserError("unexpectedCurlyProbablyAmendsExpression", ((global::DripSharp.Brine.Parser.Syntax.Node)expr).Text(this.lexer.GetSource()));
+throw this.ParserError("unexpectedCurlyProbablyAmendsExpression", ((global::DripSharp.Brine.Parser.Syntax.Node)(expr)).Text(this.lexer.GetSource()));
 }
 if (((this.lookahead == global::DripSharp.Brine.Parser.Token.DOT) || (this.lookahead == global::DripSharp.Brine.Parser.Token.QDOT))) {
 var isNullable = (this.Next().Token == global::DripSharp.Brine.Parser.Token.QDOT);
@@ -1475,7 +1476,7 @@ body = this.ParseObjectBody();
 end = body!.Span();
 }
 global::DripSharp.Runtime.JavaCompat.Add(children, body!);
-return new global::DripSharp.Brine.Parser.Syntax.Annotation(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(children)), start.EndWith(end));
+return new global::DripSharp.Brine.Parser.Syntax.Annotation(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node>>(children)), start.EndWith(end));
 }
 
 private global::DripSharp.Brine.Parser.Syntax.Parameter ParseParameter() {

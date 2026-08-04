@@ -19,7 +19,7 @@ private readonly global::System.Collections.Generic.IList<global::DripSharp.Brin
 private readonly global::DripSharp.Brine.Runtime.JavaProxySelector? @delegate = default!;
 
 internal ProxySelector(global::System.Uri? proxyAddress, global::System.Collections.Generic.IList<string> noProxyRules) {
-this.noProxyRules = global::DripSharp.Runtime.JavaCompat.ToListValues(global::DripSharp.Runtime.JavaCompat.Map(noProxyRules, (value0) => new global::DripSharp.Brine.Http.NoProxyRule(value0)));
+this.noProxyRules = global::DripSharp.Runtime.JavaCompat.ToListValues(global::DripSharp.Runtime.JavaCompat.Map(global::DripSharp.Runtime.JavaCompat.Stream(noProxyRules), (value0) => new global::DripSharp.Brine.Http.NoProxyRule(value0)));
 if ((proxyAddress! == default!)) {
 this.@delegate = global::DripSharp.Brine.Runtime.JavaProxySelector.GetDefault();
 this.myProxy = default!;

@@ -168,7 +168,7 @@ return ((double)((this.value * this.unit.GetBytes())) / other.GetBytes());
 }
 
 public void Accept(global::DripSharp.Brine.ValueVisitor visitor) {
-((global::DripSharp.Brine.ValueVisitor)visitor).VisitDataSize(this);
+((global::DripSharp.Brine.ValueVisitor)(visitor)).VisitDataSize(this);
 }
 
 public T Accept<T>(global::DripSharp.Brine.ValueConverter<T> converter) {

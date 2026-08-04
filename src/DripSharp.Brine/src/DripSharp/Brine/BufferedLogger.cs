@@ -20,12 +20,12 @@ this.logger = logger;
 
 public void Trace(string message, global::DripSharp.Brine.StackFrame frame) {
 this.builder.Append(message).Append("\n");
-((global::DripSharp.Brine.Logger)this.logger).Trace(message, frame);
+((global::DripSharp.Brine.Logger)(this.logger)).Trace(message, frame);
 }
 
 public void Warn(string message, global::DripSharp.Brine.StackFrame frame) {
 this.builder.Append(message).Append("\n");
-((global::DripSharp.Brine.Logger)this.logger).Warn(message, frame);
+((global::DripSharp.Brine.Logger)(this.logger)).Warn(message, frame);
 }
 
 public void Clear() {

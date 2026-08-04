@@ -22,8 +22,8 @@ var rendered = global::DripSharp.Runtime.JavaCompat.ExceptionMessage((results.Er
 global::DripSharp.Brine.Stdlib.Test.Report.BaseReporter.AppendPadded(builder, rendered, "  ");
 builder.Append('\n');
 } else {
-var factFailures = global::DripSharp.Runtime.JavaCompat.ToListValues(global::DripSharp.Runtime.JavaCompat.StreamFilter(global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IList<global::DripSharp.Brine.TestResults.TestResult>>(results.Facts.Results), (value0) => value0.IsFailure()));
-var exampleFailures = global::DripSharp.Runtime.JavaCompat.ToListValues(global::DripSharp.Runtime.JavaCompat.StreamFilter(global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IList<global::DripSharp.Brine.TestResults.TestResult>>(results.Examples.Results), (value0) => value0.IsFailure()));
+var factFailures = global::DripSharp.Runtime.JavaCompat.ToListValues(global::DripSharp.Runtime.JavaCompat.StreamFilter(global::DripSharp.Runtime.JavaCompat.Stream(global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IList<global::DripSharp.Brine.TestResults.TestResult>>(results.Facts.Results)), (value0) => value0.IsFailure()));
+var exampleFailures = global::DripSharp.Runtime.JavaCompat.ToListValues(global::DripSharp.Runtime.JavaCompat.StreamFilter(global::DripSharp.Runtime.JavaCompat.Stream(global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IList<global::DripSharp.Brine.TestResults.TestResult>>(results.Examples.Results)), (value0) => value0.IsFailure()));
 if ((!(global::DripSharp.Runtime.JavaCompat.ListIsEmpty(factFailures)) || !(global::DripSharp.Runtime.JavaCompat.ListIsEmpty(exampleFailures)))) {
 builder.Append("module ").Append(results.ModuleName).Append('\n');
 this.ReportResults(results.Facts, factFailures, builder);

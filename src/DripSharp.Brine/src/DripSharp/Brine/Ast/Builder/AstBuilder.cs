@@ -138,7 +138,7 @@ break;
 }
 int defaultIndex = type.GetDefaultIndex();
 if (isUnionOfStringLiterals) {
-return new global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode.UnionOfStringLiterals(this.CreateSourceSection(type)!, defaultIndex, global::DripSharp.Runtime.JavaCompat.SetOfValues<string>(global::DripSharp.Runtime.JavaCompat.Map(elementTypes, (it) => ((global::DripSharp.Brine.Parser.Syntax.Type.StringConstantType)(it!)).GetStr().GetString())));
+return new global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode.UnionOfStringLiterals(this.CreateSourceSection(type)!, defaultIndex, global::DripSharp.Runtime.JavaCompat.SetOfValues<string>(global::DripSharp.Runtime.JavaCompat.Map(global::DripSharp.Runtime.JavaCompat.Stream(elementTypes), (it) => ((global::DripSharp.Brine.Parser.Syntax.Type.StringConstantType)(it!)).GetStr().GetString())));
 }
 var elements = new global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode[global::DripSharp.Runtime.JavaCompat.CollectionCount(elementTypes)];
 for (int i = 0; (i < global::DripSharp.Runtime.JavaCompat.CollectionCount(elementTypes)); i++) {
@@ -1151,7 +1151,7 @@ return global::DripSharp.Brine.TypeParameter.Variance.COVARIANT;
 } throw new global::System.InvalidOperationException(); }))();
 }
 var parameterName = paramCtx.GetIdentifier().GetValue();
-if (global::DripSharp.Runtime.JavaCompat.Any(result, (it) => global::DripSharp.Runtime.JavaCompat.Equals(it.GetName(), parameterName))) {
+if (global::DripSharp.Runtime.JavaCompat.Any(global::DripSharp.Runtime.JavaCompat.Stream(result), (it) => global::DripSharp.Runtime.JavaCompat.Equals(it.GetName(), parameterName))) {
 throw this.ExceptionBuilder().EvalError("duplicateTypeParameter", parameterName).WithSourceSection(this.CreateSourceSection(paramCtx)!).Build();
 }
 global::DripSharp.Runtime.JavaCompat.Add(result, new global::DripSharp.Brine.TypeParameter(variance, parameterName, i));
@@ -1310,19 +1310,19 @@ var modifierNodes = global::DripSharp.Runtime.JavaCompat.ToMutable<global::Syste
 var propertyName = prop.GetIdentifier();
 var modifiers = this.DoVisitModifiers(global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IList<global::DripSharp.Brine.Parser.Syntax.Modifier>>(modifierNodes), global::DripSharp.Brine.Ast.VmModifier.VALID_OBJECT_MEMBER_MODIFIERS, "invalidObjectMemberModifier");
 if ((global::DripSharp.Brine.Ast.VmModifier.IsConst(modifiers) && !(global::DripSharp.Brine.Ast.VmModifier.IsLocal(modifiers)))) {
-var constModifierCtx = global::DripSharp.Runtime.JavaCompat.FindFirstOptional(global::DripSharp.Runtime.JavaCompat.StreamFilter(modifierNodes, (it) => (it.GetValue() == global::DripSharp.Brine.Parser.Syntax.Modifier.ModifierValue.CONST))).Get();
+var constModifierCtx = global::DripSharp.Runtime.JavaCompat.FindFirstOptional(global::DripSharp.Runtime.JavaCompat.StreamFilter(global::DripSharp.Runtime.JavaCompat.Stream(modifierNodes), (it) => (it.GetValue() == global::DripSharp.Brine.Parser.Syntax.Modifier.ModifierValue.CONST))).Get();
 throw this.ExceptionBuilder().EvalError("invalidConstObjectMemberModifier").WithSourceSection(this.CreateSourceSection(constModifierCtx)!).Build();
 }
 return this.DoVisitObjectProperty(this.CreateSourceSection(prop)!, this.CreateSourceSection(propertyName)!, modifiers, propertyName.GetValue(), prop.GetTypeAnnotation(), prop.GetExpr(), global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IList<global::DripSharp.Brine.Parser.Syntax.ObjectBody>>(prop.GetBodyList()));
 }
 
 private global::DripSharp.Brine.Ast.Member.ObjectMember DoVisitObjectProperty(global::DripSharp.Brine.Parser.Syntax.Node node, global::System.Collections.Generic.IEnumerable<global::DripSharp.Brine.Parser.Syntax.Modifier> modifierNodes, global::DripSharp.Brine.Parser.Syntax.Identifier propertyName, global::DripSharp.Brine.Parser.Syntax.TypeAnnotation? typeAnn, global::DripSharp.Brine.Parser.Syntax.Expr? expr, global::System.Collections.Generic.IEnumerable<global::DripSharp.Brine.Parser.Syntax.ObjectBody>? bodies) {
-var modifiers = this.DoVisitModifiers(modifierNodes, global::DripSharp.Brine.Ast.VmModifier.VALID_OBJECT_MEMBER_MODIFIERS, "invalidObjectMemberModifier");
+var modifiers = this.DoVisitModifiers(global::DripSharp.Runtime.JavaCompat.ToListValues<global::DripSharp.Brine.Parser.Syntax.Modifier>(modifierNodes), global::DripSharp.Brine.Ast.VmModifier.VALID_OBJECT_MEMBER_MODIFIERS, "invalidObjectMemberModifier");
 if ((global::DripSharp.Brine.Ast.VmModifier.IsConst(modifiers) && !(global::DripSharp.Brine.Ast.VmModifier.IsLocal(modifiers)))) {
-var constModifierCtx = global::DripSharp.Runtime.JavaCompat.FindFirstOptional(global::DripSharp.Runtime.JavaCompat.StreamFilter(modifierNodes, (it) => (it.GetValue() == global::DripSharp.Brine.Parser.Syntax.Modifier.ModifierValue.CONST))).Get();
+var constModifierCtx = global::DripSharp.Runtime.JavaCompat.FindFirstOptional(global::DripSharp.Runtime.JavaCompat.StreamFilter(global::DripSharp.Runtime.JavaCompat.Stream(modifierNodes), (it) => (it.GetValue() == global::DripSharp.Brine.Parser.Syntax.Modifier.ModifierValue.CONST))).Get();
 throw this.ExceptionBuilder().EvalError("invalidConstObjectMemberModifier").WithSourceSection(this.CreateSourceSection(constModifierCtx)!).Build();
 }
-return this.DoVisitObjectProperty(this.CreateSourceSection(node)!, this.CreateSourceSection(propertyName)!, modifiers, propertyName.GetValue(), typeAnn!, expr!, bodies!);
+return this.DoVisitObjectProperty(this.CreateSourceSection(node)!, this.CreateSourceSection(propertyName)!, modifiers, propertyName.GetValue(), typeAnn!, expr!, global::DripSharp.Runtime.JavaCompat.ToListValues<global::DripSharp.Brine.Parser.Syntax.ObjectBody>(bodies!));
 }
 
 private global::DripSharp.Brine.Ast.Member.ObjectMember DoVisitObjectProperty(global::DripSharp.Brine.Runtime.Truffle.api.source.SourceSection sourceSection, global::DripSharp.Brine.Runtime.Truffle.api.source.SourceSection headerSection, int modifiers, string propertyName, global::DripSharp.Brine.Parser.Syntax.TypeAnnotation? typeAnn, global::DripSharp.Brine.Parser.Syntax.Expr? expr, global::System.Collections.Generic.IEnumerable<global::DripSharp.Brine.Parser.Syntax.ObjectBody>? body) {
@@ -1343,7 +1343,7 @@ if (((body! != default!) && !(global::DripSharp.Runtime.JavaCompat.ListIsEmpty(b
 if (isLocal) {
 throw this.ExceptionBuilder().EvalError("cannotAmendLocalPropertyDefinition").WithSourceSection(this.CreateSourceSection(global::DripSharp.Runtime.JavaCompat.ListGet(body!, 0))!).Build();
 }
-bodyNode = this.DoVisitObjectBody(body!, new global::DripSharp.Brine.Ast.Expression.Member.ReadSuperPropertyNode(AstBuilder.UnavailableSourceSection(), scope.GetName(), false));
+bodyNode = this.DoVisitObjectBody(global::DripSharp.Runtime.JavaCompat.ToListValues<global::DripSharp.Brine.Parser.Syntax.ObjectBody>(body!), new global::DripSharp.Brine.Ast.Expression.Member.ReadSuperPropertyNode(AstBuilder.UnavailableSourceSection(), scope.GetName(), false));
 } else {
 global::DripSharp.Runtime.JavaCompat.Assert(() => (expr! != default!));
 bodyNode = this.VisitExpr(expr!);
@@ -1487,16 +1487,16 @@ throw this.ExceptionBuilder().EvalError(errorMessage, global::DripSharp.Runtime.
 result += modifier;
 }
 if ((global::DripSharp.Brine.Ast.VmModifier.IsExternal(result) && !(global::DripSharp.Brine.Module.ModuleKeys.IsStdLibModule(this.moduleKey)))) {
-throw this.ExceptionBuilder().EvalError("cannotDefineExternalMember").WithSourceSection(this.CreateSourceSection(modifiers, global::DripSharp.Brine.Parser.Syntax.Modifier.ModifierValue.EXTERNAL)).Build();
+throw this.ExceptionBuilder().EvalError("cannotDefineExternalMember").WithSourceSection(this.CreateSourceSection(global::DripSharp.Runtime.JavaCompat.ToListValues<global::DripSharp.Brine.Parser.Syntax.Modifier>(modifiers), global::DripSharp.Brine.Parser.Syntax.Modifier.ModifierValue.EXTERNAL)).Build();
 }
 if ((global::DripSharp.Brine.Ast.VmModifier.IsLocal(result) && global::DripSharp.Brine.Ast.VmModifier.IsHidden(result))) {
-throw this.ExceptionBuilder().EvalError("redundantHiddenModifier").WithSourceSection(this.CreateSourceSection(modifiers, global::DripSharp.Brine.Parser.Syntax.Modifier.ModifierValue.HIDDEN)).Build();
+throw this.ExceptionBuilder().EvalError("redundantHiddenModifier").WithSourceSection(this.CreateSourceSection(global::DripSharp.Runtime.JavaCompat.ToListValues<global::DripSharp.Brine.Parser.Syntax.Modifier>(modifiers), global::DripSharp.Brine.Parser.Syntax.Modifier.ModifierValue.HIDDEN)).Build();
 }
 if ((global::DripSharp.Brine.Ast.VmModifier.IsLocal(result) && global::DripSharp.Brine.Ast.VmModifier.IsFixed(result))) {
-throw this.ExceptionBuilder().EvalError("redundantFixedModifier").WithSourceSection(this.CreateSourceSection(modifiers, global::DripSharp.Brine.Parser.Syntax.Modifier.ModifierValue.FIXED)).Build();
+throw this.ExceptionBuilder().EvalError("redundantFixedModifier").WithSourceSection(this.CreateSourceSection(global::DripSharp.Runtime.JavaCompat.ToListValues<global::DripSharp.Brine.Parser.Syntax.Modifier>(modifiers), global::DripSharp.Brine.Parser.Syntax.Modifier.ModifierValue.FIXED)).Build();
 }
 if ((global::DripSharp.Brine.Ast.VmModifier.IsAbstract(result) && global::DripSharp.Brine.Ast.VmModifier.IsOpen(result))) {
-throw this.ExceptionBuilder().EvalError("redundantOpenModifier").WithSourceSection(this.CreateSourceSection(modifiers, global::DripSharp.Brine.Parser.Syntax.Modifier.ModifierValue.OPEN)).Build();
+throw this.ExceptionBuilder().EvalError("redundantOpenModifier").WithSourceSection(this.CreateSourceSection(global::DripSharp.Runtime.JavaCompat.ToListValues<global::DripSharp.Brine.Parser.Syntax.Modifier>(modifiers), global::DripSharp.Brine.Parser.Syntax.Modifier.ModifierValue.OPEN)).Build();
 }
 return result;
 }
@@ -1545,7 +1545,7 @@ member.InitMemberNode(global::DripSharp.Brine.Ast.Member.ElementOrEntryNodeGen.C
 }
 } else {
 global::DripSharp.Runtime.JavaCompat.Assert(() => (objectBodyCtxs! != default!));
-var objectBody = this.DoVisitObjectBody(objectBodyCtxs!, new global::DripSharp.Brine.Ast.Expression.Member.ReadSuperEntryNode(AstBuilder.UnavailableSourceSection(), new global::DripSharp.Brine.Ast.Expression.Primary.GetMemberKeyNode()));
+var objectBody = this.DoVisitObjectBody(global::DripSharp.Runtime.JavaCompat.ToListValues<global::DripSharp.Brine.Parser.Syntax.ObjectBody>(objectBodyCtxs!), new global::DripSharp.Brine.Ast.Expression.Member.ReadSuperEntryNode(AstBuilder.UnavailableSourceSection(), new global::DripSharp.Brine.Ast.Expression.Primary.GetMemberKeyNode()));
 if (isForGeneratorScope) {
 objectBody = new global::DripSharp.Brine.Ast.Expression.Generator.RestoreForBindingsNode(objectBody, scope.GetParameterSlots(), scope.GetForGeneratorSlots());
 }

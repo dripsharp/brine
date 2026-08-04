@@ -73,7 +73,7 @@ return global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collection
 public override string ToString() {
 var result = this.pClass.GetDisplayName();
 if (!(global::DripSharp.Runtime.JavaCompat.ListIsEmpty(this.typeArguments))) {
-result += global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat("<", global::DripSharp.Runtime.JavaCompat.Collect(global::DripSharp.Runtime.JavaCompat.Map(this.typeArguments, (value0) => global::DripSharp.Runtime.JavaCompat.StringValueOf(value0)), global::DripSharp.Runtime.JavaCompat.Joining(", "))), ">");
+result += global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat("<", global::DripSharp.Runtime.JavaCompat.Collect(global::DripSharp.Runtime.JavaCompat.Map(global::DripSharp.Runtime.JavaCompat.Stream(this.typeArguments), (value0) => global::DripSharp.Runtime.JavaCompat.StringValueOf(value0)), global::DripSharp.Runtime.JavaCompat.Joining(", "))), ">");
 }
 return result;
 }
@@ -153,7 +153,7 @@ return this.aliasedType;
 public override string ToString() {
 var result = this.typeAlias.GetDisplayName();
 if (!(global::DripSharp.Runtime.JavaCompat.ListIsEmpty(this.typeArguments))) {
-result += global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat("<", global::DripSharp.Runtime.JavaCompat.Collect(global::DripSharp.Runtime.JavaCompat.Map(this.typeArguments, (value0) => global::DripSharp.Runtime.JavaCompat.StringValueOf(value0)), global::DripSharp.Runtime.JavaCompat.Joining(", "))), ">");
+result += global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat("<", global::DripSharp.Runtime.JavaCompat.Collect(global::DripSharp.Runtime.JavaCompat.Map(global::DripSharp.Runtime.JavaCompat.Stream(this.typeArguments), (value0) => global::DripSharp.Runtime.JavaCompat.StringValueOf(value0)), global::DripSharp.Runtime.JavaCompat.Joining(", "))), ">");
 }
 return result;
 }
@@ -179,7 +179,7 @@ return this.returnType;
 }
 
 public override string ToString() {
-return global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat("(", global::DripSharp.Runtime.JavaCompat.Collect(global::DripSharp.Runtime.JavaCompat.Map(this.parameterTypes, (value0) => global::DripSharp.Runtime.JavaCompat.StringValueOf(value0)), global::DripSharp.Runtime.JavaCompat.Joining(", "))), ") -> "), this.returnType);
+return global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat("(", global::DripSharp.Runtime.JavaCompat.Collect(global::DripSharp.Runtime.JavaCompat.Map(global::DripSharp.Runtime.JavaCompat.Stream(this.parameterTypes), (value0) => global::DripSharp.Runtime.JavaCompat.StringValueOf(value0)), global::DripSharp.Runtime.JavaCompat.Joining(", "))), ") -> "), this.returnType);
 }
 }
 
@@ -196,7 +196,7 @@ return global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collection
 }
 
 public override string ToString() {
-return global::DripSharp.Runtime.JavaCompat.Collect(global::DripSharp.Runtime.JavaCompat.Map(this.elementTypes, (value0) => global::DripSharp.Runtime.JavaCompat.StringValueOf(value0)), global::DripSharp.Runtime.JavaCompat.Joining(" | "));
+return global::DripSharp.Runtime.JavaCompat.Collect(global::DripSharp.Runtime.JavaCompat.Map(global::DripSharp.Runtime.JavaCompat.Stream(this.elementTypes), (value0) => global::DripSharp.Runtime.JavaCompat.StringValueOf(value0)), global::DripSharp.Runtime.JavaCompat.Joining(" | "));
 }
 }
 

@@ -170,7 +170,7 @@ public override object? Read(global::System.Uri uri) {
 global::DripSharp.Brine.Util.IoUtils.ValidateFileUri(uri);
 var securityManager = global::DripSharp.Brine.Runtime.VmContext.Get((global::DripSharp.Brine.Runtime.Truffle.api.nodes.Node?)default!).GetSecurityManager();
 try {
-var securePath = ((global::DripSharp.Brine.SecurityManager)securityManager).ResolveSecurePath(uri, true)!;
+var securePath = ((global::DripSharp.Brine.SecurityManager)(securityManager)).ResolveSecurePath(uri, true)!;
 if ((securePath! != default!)) {
 try {
 using (var @in = global::DripSharp.Runtime.JavaCompat.OpenInputStream(securePath!, new object())) {

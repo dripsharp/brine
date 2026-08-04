@@ -42,7 +42,7 @@ return this.referentType;
 }
 
 public virtual void Accept(global::DripSharp.Brine.ValueVisitor visitor) {
-((global::DripSharp.Brine.ValueVisitor)visitor).VisitReference(this);
+((global::DripSharp.Brine.ValueVisitor)(visitor)).VisitReference(this);
 }
 
 public virtual T Accept<T>(global::DripSharp.Brine.ValueConverter<T> converter) {

@@ -47,7 +47,7 @@ for (var curr__66_14 = this.composite; (curr__66_14 != default!); curr__66_14 = 
 this.AddPropertyCandidates(curr__66_14, false);
 }
 this.AddMethodCandidates(this.composite.GetVmClass().GetMethods(), false);
-return global::DripSharp.Runtime.JavaCompat.ToListValues(global::DripSharp.Runtime.JavaCompat.StreamSorted(this.candidates, global::DripSharp.Runtime.JavaCompat.ToComparison(global::DripSharp.Runtime.JavaCompat.NaturalOrder<Candidate>())));
+return global::DripSharp.Runtime.JavaCompat.ToListValues(global::DripSharp.Runtime.JavaCompat.StreamSorted(global::DripSharp.Runtime.JavaCompat.Stream(this.candidates), global::DripSharp.Runtime.JavaCompat.ToComparison(global::DripSharp.Runtime.JavaCompat.NaturalOrder<Candidate>())));
 }
 
 private void AddPropertyCandidates(global::DripSharp.Brine.Runtime.VmObjectLike @object, bool includeLocal) {

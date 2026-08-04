@@ -29,7 +29,8 @@ global::DripSharp.Brine.Runtime.Truffle.api.CompilerDirectives.TransferToInterpr
 throw e.ToVmException();
 } catch (global::DripSharp.Brine.Runtime.VmException e) {
 global::DripSharp.Brine.Runtime.Truffle.api.CompilerDirectives.TransferToInterpreter();
-throw e;
+global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(e);
+throw new global::System.InvalidOperationException("unreachable");
 } catch (global::System.StackOverflowException e) {
 global::DripSharp.Brine.Runtime.Truffle.api.CompilerDirectives.TransferToInterpreter();
 throw new global::DripSharp.Brine.Runtime.VmStackOverflowException(e);

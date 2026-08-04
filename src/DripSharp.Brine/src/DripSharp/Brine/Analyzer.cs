@@ -46,7 +46,8 @@ return global::DripSharp.Brine.Runtime.VmImportAnalyzer.Analyze(sources, vmConte
 } catch (global::System.Exception e) when (e is global::DripSharp.Brine.SecurityManagerException or global::System.IO.IOException or global::DripSharp.Brine.Packages.PackageLoadError or global::DripSharp.Brine.Http.HttpClientException) {
 throw new global::DripSharp.Brine.PklException(global::DripSharp.Runtime.JavaCompat.ExceptionMessage(e), e);
 } catch (global::DripSharp.Brine.PklException err) {
-throw err;
+global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(err);
+throw new global::System.InvalidOperationException("unreachable");
 } catch (global::DripSharp.Brine.Runtime.VmException err) {
 throw err.ToPklException(this.transformer, this.color);
 } catch (global::System.Exception e) when (e is not global::System.TypeInitializationException) {

@@ -33,14 +33,14 @@ this.Write("<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.
 this.Write(PListRenderer.LINE_BREAK);
 this.Write("<plist version=\"1.0\">");
 this.Write(PListRenderer.LINE_BREAK);
-((global::DripSharp.Brine.ValueVisitor)new Visitor(this)).Visit(value);
+((global::DripSharp.Brine.ValueVisitor)(new Visitor(this))).Visit(value);
 this.Write(PListRenderer.LINE_BREAK);
 this.Write("</plist>");
 this.Write(PListRenderer.LINE_BREAK);
 }
 
 public void RenderValue(object value) {
-((global::DripSharp.Brine.ValueVisitor)new Visitor(this)).Visit(value);
+((global::DripSharp.Brine.ValueVisitor)(new Visitor(this))).Visit(value);
 }
 
 internal partial class Visitor : global::DripSharp.Brine.ValueVisitor
@@ -50,31 +50,31 @@ if ((value is global::DripSharp.Brine.Value v)) {
 v.Accept(this);
 } else {
 if ((value is string @string)) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitString(@string);
+this.VisitString(@string);
 } else {
 if ((value is bool b)) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitBoolean(b);
+this.VisitBoolean(b);
 } else {
 if ((value is long l)) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitInt(l);
+this.VisitInt(l);
 } else {
 if ((value is double d)) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitFloat(d);
+this.VisitFloat(d);
 } else {
 if ((value is global::System.Collections.Generic.IList<object> list)) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitList(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<object>>(list));
+this.VisitList(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<object>>(global::DripSharp.Runtime.JavaCompat.CastObjects(list)));
 } else {
 if ((value is global::System.Collections.Generic.ISet<object> set)) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitSet(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlySet<object>>(set));
+this.VisitSet(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlySet<object>>(set));
 } else {
 if ((value is global::System.Collections.Generic.IDictionary<object, object> map)) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitMap(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<object, object>>(global::DripSharp.Runtime.JavaCompat.CastDictionary<object, object>(map)));
+this.VisitMap(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<object, object>>(global::DripSharp.Runtime.JavaCompat.CastDictionary<object, object>(map)));
 } else {
 if ((value is global::System.Text.RegularExpressions.Regex pattern)) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitRegex(pattern);
+this.VisitRegex(pattern);
 } else {
 if ((value is byte[] bytes)) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitBytes(bytes);
+this.VisitBytes(bytes);
 } else {
 throw new global::System.ArgumentException(global::DripSharp.Runtime.JavaCompat.Concat("Cannot visit value with unexpected type: ", value));
 }
@@ -92,7 +92,7 @@ throw new global::System.ArgumentException(global::DripSharp.Runtime.JavaCompat.
 public virtual void VisitDefault(object? value) {}
 
 public virtual void VisitReference(global::DripSharp.Brine.Reference value) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitDefault(value);
+this.VisitDefault(value);
 }
 
 private readonly PListRenderer __outer = default!;
@@ -187,7 +187,7 @@ this.__outer.Write(PListRenderer.charEscaper.Escape((string)(key!)));
 this.__outer.Write("</key>");
 this.__outer.Write(PListRenderer.LINE_BREAK);
 this.__outer.Write(this.currIndent);
-((global::DripSharp.Brine.ValueVisitor)this).Visit(value);
+((global::DripSharp.Brine.ValueVisitor)(this)).Visit(value);
 this.__outer.Write(PListRenderer.LINE_BREAK);
 }
 if (renderedAtLeastOneEntry) {
@@ -233,7 +233,7 @@ this.__outer.Write(PListRenderer.LINE_BREAK);
 this.currIndent += this.__outer.indent;
 foreach (var elem in iterable) {
 this.__outer.Write(this.currIndent);
-((global::DripSharp.Brine.ValueVisitor)this).Visit(elem);
+((global::DripSharp.Brine.ValueVisitor)(this)).Visit(elem);
 this.__outer.Write(PListRenderer.LINE_BREAK);
 }
 this.currIndent = global::DripSharp.Runtime.JavaCompat.StringSubstring(this.currIndent, 0, (this.currIndent.Length - this.__outer.indent.Length));
@@ -260,7 +260,7 @@ this.__outer.Write(PListRenderer.charEscaper.Escape(entry.Key));
 this.__outer.Write("</key>");
 this.__outer.Write(PListRenderer.LINE_BREAK);
 this.__outer.Write(this.currIndent);
-((global::DripSharp.Brine.ValueVisitor)this).Visit(value);
+((global::DripSharp.Brine.ValueVisitor)(this)).Visit(value);
 this.__outer.Write(PListRenderer.LINE_BREAK);
 }
 if (renderedAtLeastOneProperty) {

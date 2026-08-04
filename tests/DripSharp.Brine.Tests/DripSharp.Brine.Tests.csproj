@@ -7,6 +7,7 @@
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <RollForward>Major</RollForward>
   </PropertyGroup>
   <ItemGroup>
@@ -15,12 +16,13 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="3.1.4" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="../../src/DripSharp.Brine/DripSharp.Brine.csproj" />
     <ProjectReference Include="../../src/DripSharp.Brine.Parser/DripSharp.Brine.Parser.csproj" />
+    <ProjectReference Include="../../src/DripSharp.Brine/DripSharp.Brine.csproj" />
     <ProjectReference Include="../DripSharp.Brine.LanguageSnippetRunner/DripSharp.Brine.LanguageSnippetRunner.csproj" />
     <ProjectReference Include="../DripSharp.Brine.CoreTestRunner/DripSharp.Brine.CoreTestRunner.csproj" />
+    <ProjectReference Include="../DripSharp.Brine.ParserTestRunner/DripSharp.Brine.ParserTestRunner.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="Fixtures/sample.pkl" CopyToOutputDirectory="PreserveNewest" />
+    <None Update="Fixtures/sample.pkl" TargetPath="Fixtures/sample.pkl" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

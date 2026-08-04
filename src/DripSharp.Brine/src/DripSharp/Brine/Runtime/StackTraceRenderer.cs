@@ -25,14 +25,14 @@ internal void DoRender(global::System.Collections.Generic.IList<object> frames, 
 foreach (var frame in frames) {
 if ((frame is StackFrameLoop loop)) {
 if ((loop.Count == 1)) {
-this.DoRender(loop.Frames, (string?)default!, (global::System.Action<global::DripSharp.Brine.Util.AnsiStringBuilder, bool>?)default!, @out, leftMargin, isFirstElement);
+this.DoRender(loop.Frames, (string?)default!, (global::System.Action<global::DripSharp.Brine.Util.AnsiStringBuilder, bool>)default!, @out, leftMargin, isFirstElement);
 } else {
 if (!isFirstElement) {
 @out.Append(global::DripSharp.Brine.Util.AnsiTheme.STACK_TRACE_MARGIN, leftMargin).Append('\n');
 }
 @out.Append(global::DripSharp.Brine.Util.AnsiTheme.STACK_TRACE_MARGIN, leftMargin).Append(global::DripSharp.Brine.Util.AnsiTheme.STACK_TRACE_MARGIN, "\u250C\u2500 ").Append(global::DripSharp.Brine.Util.AnsiTheme.STACK_TRACE_LOOP_COUNT, loop.Count).Append(" repetitions of:\n");
 var newLeftMargin = global::DripSharp.Runtime.JavaCompat.Concat(leftMargin, "\u2502 ");
-this.DoRender(loop.Frames, (string?)default!, (global::System.Action<global::DripSharp.Brine.Util.AnsiStringBuilder, bool>?)default!, @out, newLeftMargin, isFirstElement);
+this.DoRender(loop.Frames, (string?)default!, (global::System.Action<global::DripSharp.Brine.Util.AnsiStringBuilder, bool>)default!, @out, newLeftMargin, isFirstElement);
 if (isFirstElement) {
 this.RenderHint(hint!, hintBuilder!, @out, newLeftMargin);
 isFirstElement = false;

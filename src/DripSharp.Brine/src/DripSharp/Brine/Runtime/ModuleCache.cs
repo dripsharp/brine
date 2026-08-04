@@ -10,7 +10,7 @@ namespace DripSharp.Brine.Runtime;
 
 internal sealed partial class ModuleCache
 {
-private static readonly global::System.Collections.Generic.ISet<global::System.Uri> STDLIB_MODULE_URIS = global::DripSharp.Runtime.JavaCompat.SetOfValues<global::System.Uri>(global::DripSharp.Runtime.JavaCompat.Map(global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.ISet<string>>((global::DripSharp.Brine.Release.Current()).StandardLibraryValue.Modules), (value0) => global::DripSharp.Runtime.JavaCompat.CreateUri(value0)));
+private static readonly global::System.Collections.Generic.ISet<global::System.Uri> STDLIB_MODULE_URIS = global::DripSharp.Runtime.JavaCompat.SetOfValues<global::System.Uri>(global::DripSharp.Runtime.JavaCompat.Map(global::DripSharp.Runtime.JavaCompat.Stream(global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.ISet<string>>((global::DripSharp.Brine.Release.Current()).StandardLibraryValue.Modules)), (value0) => global::DripSharp.Runtime.JavaCompat.CreateUri(value0)));
 
 public ModuleCache() {}
 
@@ -64,7 +64,7 @@ throw new global::DripSharp.Brine.Runtime.VmExceptionBuilder().WithOptionalLocat
 break;
 }
 }
-if (!(((global::DripSharp.Brine.Module.ModuleKey)moduleKey).IsCached())) {
+if (!(((global::DripSharp.Brine.Module.ModuleKey)(moduleKey)).IsCached())) {
 var resolvedKey__134_11 = this.Resolve(moduleKey, securityManager, importNode!);
 return this.DoLoad(moduleKey, resolvedKey__134_11, moduleResolver, moduleInstantiator, moduleInitializer, importNode!);
 }
@@ -98,7 +98,8 @@ moduleInitializer(moduleKey, resolvedKey, moduleResolver, result, module, import
 } catch (global::System.Exception e) when (e is not global::System.TypeInitializationException) {
 global::DripSharp.Runtime.JavaCompat.MapPut(this.modulesByOriginalUri, moduleKey.GetUri(), e);
 global::DripSharp.Runtime.JavaCompat.MapPut(this.modulesByResolvedUri, resolvedKey.GetUri(), e);
-throw e;
+global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(e);
+throw new global::System.InvalidOperationException("unreachable");
 }
 return module;
 }

@@ -128,7 +128,7 @@ return (this.@delegate).HasHierarchicalUris();
 }
 
 public virtual bool IsLocal() {
-return ((global::DripSharp.Brine.Module.ModuleKey)this.@delegate).IsLocal();
+return ((global::DripSharp.Brine.Module.ModuleKey)(this.@delegate)).IsLocal();
 }
 
 public virtual bool IsGlobbable() {
@@ -329,7 +329,7 @@ var uriPath = global::DripSharp.Runtime.JavaCompat.UriPath(this.uri)!;
 if (((((int)(global::System.IO.Path.DirectorySeparatorChar) == (int)('\\')) && (uriPath != default!)) && global::DripSharp.Runtime.JavaCompat.StringContains(uriPath, "\\"))) {
 throw global::DripSharp.Runtime.JavaCompat.NewFileNotFoundException();
 }
-var securePath = ((global::DripSharp.Brine.SecurityManager)securityManager).ResolveSecurePath(this.uri)!;
+var securePath = ((global::DripSharp.Brine.SecurityManager)(securityManager)).ResolveSecurePath(this.uri)!;
 string realPath;
 if ((securePath! != default!)) {
 realPath = securePath!;
@@ -415,7 +415,7 @@ return this.resolver.HasElement(uri);
 
 public global::DripSharp.Brine.Module.ResolvedModuleKey Resolve(global::DripSharp.Brine.SecurityManager securityManager) {
 securityManager.CheckResolveModule(this.uri);
-var securePath = ((global::DripSharp.Brine.SecurityManager)securityManager).ResolveSecurePath(this.uri)!;
+var securePath = ((global::DripSharp.Brine.SecurityManager)(securityManager)).ResolveSecurePath(this.uri)!;
 string path;
 if ((securePath! != default!)) {
 path = securePath!;
@@ -817,7 +817,7 @@ var dependency = this.GetProjectDependenciesManager().GetResolvedDependency(pack
 var local = this.GetLocalUri(dependency, packageAssetUri)!;
 if ((local! != default!)) {
 var moduleKey = global::DripSharp.Brine.Runtime.VmContext.Get((global::DripSharp.Brine.Runtime.Truffle.api.nodes.Node?)default!).GetModuleResolver().Resolve(local!);
-if ((!moduleKey.IsGlobbable() && !(((global::DripSharp.Brine.Module.ModuleKey)moduleKey).IsLocal()))) {
+if ((!moduleKey.IsGlobbable() && !(((global::DripSharp.Brine.Module.ModuleKey)(moduleKey)).IsLocal()))) {
 throw new global::DripSharp.Brine.Packages.PackageLoadError("cannotResolveInLocalDependencyNotGlobbableNorLocal", global::DripSharp.Runtime.JavaCompat.UriScheme(local!)!);
 }
 return moduleKey.HasElement(securityManager, local!);

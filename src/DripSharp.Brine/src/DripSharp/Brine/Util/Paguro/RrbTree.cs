@@ -369,7 +369,7 @@ return (RrbTree<E>)(this.Concat(that)!);
 }
 if ((this.Size() <= RrbTree<object>.MAX_NODE_LENGTH)) {
 for (int i__693_16 = 0; (i__693_16 < this.Size()); i__693_16++) {
-that = that.Insert(i__693_16, this.Get(i__693_16));
+that = that.Insert(i__693_16, global::DripSharp.Runtime.JavaCompat.CastReference<E>(this.Get(i__693_16)));
 }
 return that;
 }
@@ -502,7 +502,7 @@ if (!((other is global::System.Collections.Generic.IList<object>))) {
 return false;
 }
 global::System.Collections.Generic.IEnumerable<E> that = global::DripSharp.Runtime.JavaCompat.CastList<E>(other);
-return ((this.Size() == global::DripSharp.Runtime.JavaCompat.CollectionCount(that)) && global::DripSharp.Runtime.JavaCompat.SequenceEqual(this, that));
+return ((this.Size() == global::DripSharp.Runtime.JavaCompat.CollectionCount(that)) && global::DripSharp.Runtime.JavaCompat.SequenceEqual(this, global::DripSharp.Runtime.JavaCompat.ToListValues<E>(that)));
 }
 
 public override int GetHashCode() {

@@ -13,75 +13,75 @@ public partial interface ValueVisitor
 public void VisitDefault(object? value) {}
 
 public void VisitNull() {
-((global::DripSharp.Brine.ValueVisitor)this).VisitDefault((object?)default!);
+this.VisitDefault((object?)default!);
 }
 
 public void VisitString(string value) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitDefault(value);
+this.VisitDefault(value);
 }
 
 public void VisitBoolean(bool value) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitDefault(value);
+this.VisitDefault(value);
 }
 
 public void VisitInt(long value) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitDefault(value);
+this.VisitDefault(value);
 }
 
 public void VisitFloat(double value) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitDefault(value);
+this.VisitDefault(value);
 }
 
 public void VisitDuration(global::DripSharp.Brine.Duration value) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitDefault(value);
+this.VisitDefault(value);
 }
 
 public void VisitDataSize(global::DripSharp.Brine.DataSize value) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitDefault(value);
+this.VisitDefault(value);
 }
 
 public void VisitBytes(byte[] value) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitDefault(value);
+this.VisitDefault(value);
 }
 
 public void VisitPair(global::DripSharp.Brine.Pair<object, object> value) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitDefault(value);
+this.VisitDefault(value);
 }
 
 public void VisitList(global::System.Collections.Generic.IReadOnlyList<object> value) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitDefault(global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IList<object>>(value));
+this.VisitDefault(global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IList<object>>(value));
 }
 
 public void VisitSet(global::System.Collections.Generic.IReadOnlySet<object> value) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitDefault(global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.ISet<object>>(value));
+this.VisitDefault(global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.ISet<object>>(value));
 }
 
 public void VisitMap(global::System.Collections.Generic.IReadOnlyDictionary<object, object> value) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitDefault(global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IDictionary<object, object>>(value));
+this.VisitDefault(global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IDictionary<object, object>>(value));
 }
 
 public void VisitObject(global::DripSharp.Brine.PObject value) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitDefault(value);
+this.VisitDefault(value);
 }
 
 public void VisitModule(global::DripSharp.Brine.PModule value) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitDefault(value);
+this.VisitDefault(value);
 }
 
 public void VisitClass(global::DripSharp.Brine.PClass value) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitDefault(value);
+this.VisitDefault(value);
 }
 
 public void VisitTypeAlias(global::DripSharp.Brine.TypeAlias value) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitDefault(value);
+this.VisitDefault(value);
 }
 
 public void VisitRegex(global::System.Text.RegularExpressions.Regex value) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitDefault(value);
+this.VisitDefault(value);
 }
 
 public void VisitReference(global::DripSharp.Brine.Reference value) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitDefault(value);
+this.VisitDefault(value);
 }
 
 public void Visit(object value) {
@@ -89,31 +89,31 @@ if ((value is global::DripSharp.Brine.Value v)) {
 v.Accept(this);
 } else {
 if ((value is string @string)) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitString(@string);
+this.VisitString(@string);
 } else {
 if ((value is bool b)) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitBoolean(b);
+this.VisitBoolean(b);
 } else {
 if ((value is long l)) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitInt(l);
+this.VisitInt(l);
 } else {
 if ((value is double d)) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitFloat(d);
+this.VisitFloat(d);
 } else {
 if ((value is global::System.Collections.Generic.IList<object> list)) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitList(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<object>>(list));
+this.VisitList(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<object>>(global::DripSharp.Runtime.JavaCompat.CastObjects(list)));
 } else {
 if ((value is global::System.Collections.Generic.ISet<object> set)) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitSet(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlySet<object>>(set));
+this.VisitSet(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlySet<object>>(set));
 } else {
 if ((value is global::System.Collections.Generic.IDictionary<object, object> map)) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitMap(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<object, object>>(global::DripSharp.Runtime.JavaCompat.CastDictionary<object, object>(map)));
+this.VisitMap(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<object, object>>(global::DripSharp.Runtime.JavaCompat.CastDictionary<object, object>(map)));
 } else {
 if ((value is global::System.Text.RegularExpressions.Regex pattern)) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitRegex(pattern);
+this.VisitRegex(pattern);
 } else {
 if ((value is byte[] bytes)) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitBytes(bytes);
+this.VisitBytes(bytes);
 } else {
 throw new global::System.ArgumentException(global::DripSharp.Runtime.JavaCompat.Concat("Cannot visit value with unexpected type: ", value));
 }

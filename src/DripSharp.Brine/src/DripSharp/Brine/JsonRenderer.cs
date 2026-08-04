@@ -30,7 +30,7 @@ throw global::DripSharp.Runtime.JavaCompat.NewIOException(e);
 }
 
 public void RenderValue(object value) {
-((global::DripSharp.Brine.ValueVisitor)new Visitor(this)).Visit(value);
+((global::DripSharp.Brine.ValueVisitor)(new Visitor(this))).Visit(value);
 }
 
 internal partial class Visitor : global::DripSharp.Brine.ValueVisitor
@@ -40,31 +40,31 @@ if ((value is global::DripSharp.Brine.Value v)) {
 v.Accept(this);
 } else {
 if ((value is string @string)) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitString(@string);
+this.VisitString(@string);
 } else {
 if ((value is bool b)) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitBoolean(b);
+this.VisitBoolean(b);
 } else {
 if ((value is long l)) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitInt(l);
+this.VisitInt(l);
 } else {
 if ((value is double d)) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitFloat(d);
+this.VisitFloat(d);
 } else {
 if ((value is global::System.Collections.Generic.IList<object> list)) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitList(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<object>>(list));
+this.VisitList(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<object>>(global::DripSharp.Runtime.JavaCompat.CastObjects(list)));
 } else {
 if ((value is global::System.Collections.Generic.ISet<object> set)) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitSet(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlySet<object>>(set));
+this.VisitSet(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlySet<object>>(set));
 } else {
 if ((value is global::System.Collections.Generic.IDictionary<object, object> map)) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitMap(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<object, object>>(global::DripSharp.Runtime.JavaCompat.CastDictionary<object, object>(map)));
+this.VisitMap(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<object, object>>(global::DripSharp.Runtime.JavaCompat.CastDictionary<object, object>(map)));
 } else {
 if ((value is global::System.Text.RegularExpressions.Regex pattern)) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitRegex(pattern);
+this.VisitRegex(pattern);
 } else {
 if ((value is byte[] bytes)) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitBytes(bytes);
+this.VisitBytes(bytes);
 } else {
 throw new global::System.ArgumentException(global::DripSharp.Runtime.JavaCompat.Concat("Cannot visit value with unexpected type: ", value));
 }
@@ -82,7 +82,7 @@ throw new global::System.ArgumentException(global::DripSharp.Runtime.JavaCompat.
 public virtual void VisitDefault(object? value) {}
 
 public virtual void VisitReference(global::DripSharp.Brine.Reference value) {
-((global::DripSharp.Brine.ValueVisitor)this).VisitDefault(value);
+this.VisitDefault(value);
 }
 
 private readonly JsonRenderer __outer = default!;
@@ -139,8 +139,8 @@ throw new global::DripSharp.Brine.RendererException(global::DripSharp.Runtime.Ja
 public virtual void VisitPair(global::DripSharp.Brine.Pair<object, object> value) {
 try {
 this.__outer.writer.BeginArray();
-((global::DripSharp.Brine.ValueVisitor)this).Visit(value.GetFirst());
-((global::DripSharp.Brine.ValueVisitor)this).Visit(value.GetSecond());
+((global::DripSharp.Brine.ValueVisitor)(this)).Visit(value.GetFirst());
+((global::DripSharp.Brine.ValueVisitor)(this)).Visit(value.GetSecond());
 this.__outer.writer.EndArray();
 } catch (global::System.IO.IOException e) {
 throw global::DripSharp.Runtime.JavaCompat.NewIOException(e);
@@ -197,7 +197,7 @@ internal void DoVisitCollection(global::System.Collections.Generic.ICollection<o
 try {
 this.__outer.writer.BeginArray();
 foreach (var elem in collection) {
-((global::DripSharp.Brine.ValueVisitor)this).Visit(elem);
+((global::DripSharp.Brine.ValueVisitor)(this)).Visit(elem);
 }
 this.__outer.writer.EndArray();
 } catch (global::System.IO.IOException e) {
@@ -214,7 +214,7 @@ if ((this.__outer.omitNullProperties && (value is global::DripSharp.Brine.PNull)
 continue;
 }
 this.__outer.writer.Name(entry.Key);
-((global::DripSharp.Brine.ValueVisitor)this).Visit(value);
+((global::DripSharp.Brine.ValueVisitor)(this)).Visit(value);
 }
 this.__outer.writer.EndObject();
 } catch (global::System.IO.IOException e) {

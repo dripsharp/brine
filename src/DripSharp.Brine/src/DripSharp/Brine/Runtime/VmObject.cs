@@ -138,7 +138,8 @@ try {
 memberValue = global::DripSharp.Brine.Runtime.VmUtils.DoReadMember(this, owner, memberKey, member);
 } catch (global::DripSharp.Brine.Runtime.VmUndefinedValueException e) {
 if (!allowUndefinedValues) {
-throw e;
+global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(e);
+throw new global::System.InvalidOperationException("unreachable");
 }
 continue;
 }
@@ -150,7 +151,8 @@ global::DripSharp.Brine.Runtime.VmValue.Force(memberValue!, allowUndefinedValues
 }
 } catch (global::System.Exception t) {
 this.forced = false;
-throw t;
+global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(t);
+throw new global::System.InvalidOperationException("unreachable");
 }
 }
 

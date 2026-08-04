@@ -56,7 +56,7 @@ continue;
 }
 try {
 if (entry.IsGlob) {
-var theModuleKey = moduleResolver.Resolve(((global::DripSharp.Brine.Module.ModuleKey)moduleKey).ResolveUri(global::DripSharp.Brine.Util.IoUtils.ToUri(entry.StringValue)));
+var theModuleKey = moduleResolver.Resolve(((global::DripSharp.Brine.Module.ModuleKey)(moduleKey)).ResolveUri(global::DripSharp.Brine.Util.IoUtils.ToUri(entry.StringValue)));
 var elements = global::DripSharp.Brine.Util.GlobResolver.ResolveGlob(securityManager, theModuleKey, moduleKey, moduleKey.GetUri(), entry.StringValue);
 foreach (var globElement in elements.Values) {
 var moduleUri = globElement.Uri;

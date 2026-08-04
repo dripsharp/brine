@@ -20,10 +20,10 @@ this.transformer = transformer;
 }
 
 public void Trace(string message, global::DripSharp.Brine.StackFrame frame) {
-((global::DripSharp.Brine.Logger)this.@delegate).Trace(message, (this.transformer)(frame));
+((global::DripSharp.Brine.Logger)(this.@delegate)).Trace(message, (this.transformer)(frame));
 }
 
 public void Warn(string message, global::DripSharp.Brine.StackFrame frame) {
-((global::DripSharp.Brine.Logger)this.@delegate).Warn(message, (this.transformer)(frame));
+((global::DripSharp.Brine.Logger)(this.@delegate)).Warn(message, (this.transformer)(frame));
 }
 }

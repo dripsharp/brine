@@ -13,7 +13,7 @@ internal partial class ImportGraphUtils
 public static global::System.Collections.Generic.IList<global::System.Collections.Generic.IList<global::System.Uri>> FindImportCycles(global::DripSharp.Brine.ImportGraph importGraph) {
 var res = new global::System.Collections.Generic.List<global::System.Collections.Generic.IList<global::System.Uri>>();
 foreach (var uri in global::DripSharp.Runtime.JavaCompat.MapKeySet(global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IDictionary<global::System.Uri, global::System.Collections.Generic.ISet<global::DripSharp.Brine.ImportGraph.Import>>>(importGraph.Imports))) {
-if (global::DripSharp.Runtime.JavaCompat.Any(res, (it) => global::DripSharp.Runtime.JavaCompat.CollectionContains(it, uri))) {
+if (global::DripSharp.Runtime.JavaCompat.Any(global::DripSharp.Runtime.JavaCompat.Stream(res), (it) => global::DripSharp.Runtime.JavaCompat.CollectionContains(it, uri))) {
 continue;
 }
 var cycle = ImportGraphUtils.DoFindCycle(uri, importGraph, new global::System.Collections.Generic.List<global::System.Uri>(global::DripSharp.Runtime.JavaCompat.ListOf<global::System.Uri>(uri)))!;

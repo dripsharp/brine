@@ -114,7 +114,7 @@ return this.DoExecute(global::DripSharp.Brine.Runtime.VmUtils.GetOwner(frame));
 }
 
 internal long DoExecute(global::DripSharp.Brine.Runtime.VmObjectLike owner) {
-return (this.impl)((ENested)(owner.GetExtraStorage()!));
+return (this.impl)(global::DripSharp.Runtime.JavaCompat.CastReference<ENested>(global::DripSharp.Runtime.JavaCompat.CastReference<ENested>(owner.GetExtraStorage())));
 }
 }
 
@@ -135,7 +135,7 @@ return this.DoExecute(global::DripSharp.Brine.Runtime.VmUtils.GetOwner(frame));
 }
 
 internal bool DoExecute(global::DripSharp.Brine.Runtime.VmObjectLike owner) {
-return (this.impl)((ENested)(owner.GetExtraStorage()!));
+return (this.impl)(global::DripSharp.Runtime.JavaCompat.CastReference<ENested>(global::DripSharp.Runtime.JavaCompat.CastReference<ENested>(owner.GetExtraStorage())));
 }
 }
 
@@ -152,7 +152,7 @@ return this.DoExecute(global::DripSharp.Brine.Runtime.VmUtils.GetOwner(frame));
 }
 
 internal T DoExecute(global::DripSharp.Brine.Runtime.VmObjectLike owner) {
-return (this.impl)((ENested)(owner.GetExtraStorage()!));
+return (this.impl)(global::DripSharp.Runtime.JavaCompat.CastReference<ENested>(global::DripSharp.Runtime.JavaCompat.CastReference<ENested>(owner.GetExtraStorage())));
 }
 }
 }

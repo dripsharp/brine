@@ -84,7 +84,7 @@ if (((causeMessage != default!) && !(global::DripSharp.Runtime.JavaCompat.Equals
 @out.Append(((object)(cause)).GetType().Name).Append(": ").Append(causeMessage).Append('\n');
 }
 }
-var maxNameLength = global::DripSharp.Runtime.JavaCompat.MaxOptionalInt(global::DripSharp.Runtime.JavaCompat.Map(exception.GetProgramValues(), (v) => v.Name.Length)).GetValueOrDefault(0);
+var maxNameLength = global::DripSharp.Runtime.JavaCompat.MaxOptionalInt(global::DripSharp.Runtime.JavaCompat.Map(global::DripSharp.Runtime.JavaCompat.Stream(exception.GetProgramValues()), (v) => v.Name.Length)).GetValueOrDefault(0);
 foreach (var value in exception.GetProgramValues()) {
 @out.Append(value.Name).Append(global::DripSharp.Runtime.JavaCompat.Repeat(" ", global::System.Math.Max(0, (maxNameLength - value.Name.Length)))).Append(": ").Append(value).Append('\n');
 }

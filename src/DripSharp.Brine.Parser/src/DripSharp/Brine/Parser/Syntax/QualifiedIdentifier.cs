@@ -23,6 +23,6 @@ return global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collection
 }
 
 public string Text() {
-return global::DripSharp.Runtime.JavaCompat.Collect(global::DripSharp.Runtime.JavaCompat.Map(this.GetIdentifiers(), (value0) => value0.GetValue()), global::DripSharp.Runtime.JavaCompat.Joining("."));
+return global::DripSharp.Runtime.JavaCompat.Collect(global::DripSharp.Runtime.JavaCompat.Map(global::DripSharp.Runtime.JavaCompat.Stream(this.GetIdentifiers()), (value0) => value0.GetValue()), global::DripSharp.Runtime.JavaCompat.Joining("."));
 }
 }
