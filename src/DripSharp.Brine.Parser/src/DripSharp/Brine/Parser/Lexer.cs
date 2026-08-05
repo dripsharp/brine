@@ -311,7 +311,7 @@ return this.LexNumber(ch);
 if (Lexer.IsIdentifierStart(ch)) {
 return this.LexIdentifier();
 } else {
-throw this.LexError(global::DripSharp.Brine.Parser.Util.ErrorMessages.Create("invalidCharacter", (char)(ch)), (this.cursor - 1), 1);
+throw this.LexError(global::DripSharp.Brine.Parser.Util.ErrorMessages.Create("invalidCharacter", unchecked((char)(ch))), (this.cursor - 1), 1);
 }
 }
 }
@@ -560,10 +560,10 @@ next = this.NextChar();
 if (((next == (int)('\n')) || (next == (int)('\r')))) {
 throw this.LexError(global::DripSharp.Brine.Parser.Util.ErrorMessages.Create("invalidLineContinuationEscapeSequenceWhitespace"), (c - 2), ((this.cursor - c) + 2));
 }
-throw this.LexError(global::DripSharp.Brine.Parser.Util.ErrorMessages.Create("invalidCharacterEscapeSequence", global::DripSharp.Runtime.JavaCompat.Concat("\\", (char)(ch)), "\\"), (c - 2), 2);
+throw this.LexError(global::DripSharp.Brine.Parser.Util.ErrorMessages.Create("invalidCharacterEscapeSequence", global::DripSharp.Runtime.JavaCompat.Concat("\\", unchecked((char)(ch))), "\\"), (c - 2), 2);
 }
 default:
-throw this.LexError(global::DripSharp.Brine.Parser.Util.ErrorMessages.Create("invalidCharacterEscapeSequence", global::DripSharp.Runtime.JavaCompat.Concat("\\", (char)(ch)), "\\"), (this.cursor - 2), 2);
+throw this.LexError(global::DripSharp.Brine.Parser.Util.ErrorMessages.Create("invalidCharacterEscapeSequence", global::DripSharp.Runtime.JavaCompat.Concat("\\", unchecked((char)(ch))), "\\"), (this.cursor - 2), 2);
 } }))();
 }
 
@@ -851,7 +851,7 @@ private global::DripSharp.Brine.Parser.ParserError UnexpectedChar(int got, strin
 if ((got == Lexer.EOF)) {
 return this.UnexpectedChar("EOF", didYouMean);
 }
-return this.LexError("unexpectedCharacter", (char)(got), didYouMean);
+return this.LexError("unexpectedCharacter", unchecked((char)(got)), didYouMean);
 }
 
 private global::DripSharp.Brine.Parser.ParserError UnexpectedChar(string got, string didYouMean) {

@@ -212,7 +212,7 @@ private global::System.Collections.Generic.IDictionary<string, Property> Collect
 if ((clazz.superclass! != default!)) {
 this.CollectAllProperties(clazz.superclass!, collector);
 }
-global::DripSharp.Runtime.JavaCompat.MapPutAll(collector, clazz.properties);
+global::DripSharp.Runtime.JavaCompat.MapPutAll(collector, global::DripSharp.Runtime.JavaCompat.CastDictionary<string, Property>(clazz.properties));
 return collector;
 }
 
@@ -220,7 +220,7 @@ private global::System.Collections.Generic.IDictionary<string, Method> CollectAl
 if ((clazz.superclass! != default!)) {
 this.CollectAllMethods(clazz.superclass!, collector);
 }
-global::DripSharp.Runtime.JavaCompat.MapPutAll(collector, clazz.methods);
+global::DripSharp.Runtime.JavaCompat.MapPutAll(collector, global::DripSharp.Runtime.JavaCompat.CastDictionary<string, Method>(clazz.methods));
 return collector;
 }
 }

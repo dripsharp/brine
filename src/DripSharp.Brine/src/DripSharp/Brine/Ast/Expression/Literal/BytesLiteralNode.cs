@@ -35,7 +35,7 @@ for (var i = 0; (i < this.elements.Length); i++) {
 var elem = this.elements[i];
 try {
 var result = (long?)(typeNode.Execute(frame, elem.ExecuteGeneric(frame)));
-bytes[i] = unchecked((sbyte)(result));
+bytes[i] = unchecked((sbyte)(unchecked((sbyte)(result))));
 } catch (global::DripSharp.Brine.Ast.Type.VmTypeMismatchException err) {
 global::DripSharp.Brine.Runtime.Truffle.api.CompilerDirectives.TransferToInterpreter();
 err.PutInsertedStackFrame(this.GetRootNode().GetCallTarget(), global::DripSharp.Brine.Runtime.VmUtils.CreateStackFrame(elem.GetSourceSection(), this.GetRootNode().GetName()));

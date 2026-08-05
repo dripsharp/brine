@@ -191,7 +191,7 @@ return this;
 }
 
 public EvaluatorBuilder AddEnvironmentVariables(global::System.Collections.Generic.IReadOnlyDictionary<string, string> envVars) {
-global::DripSharp.Runtime.JavaCompat.MapPutAll(this.environmentVariables, global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IDictionary<string, string>>(envVars));
+global::DripSharp.Runtime.JavaCompat.MapPutAll(this.environmentVariables, global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IDictionary<string, string>>(global::DripSharp.Runtime.JavaCompat.CastDictionary<string, string>(envVars)));
 return this;
 }
 
@@ -210,7 +210,7 @@ return this;
 }
 
 public EvaluatorBuilder AddExternalProperties(global::System.Collections.Generic.IReadOnlyDictionary<string, string> properties) {
-global::DripSharp.Runtime.JavaCompat.MapPutAll(this.externalProperties, global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IDictionary<string, string>>(properties));
+global::DripSharp.Runtime.JavaCompat.MapPutAll(this.externalProperties, global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IDictionary<string, string>>(global::DripSharp.Runtime.JavaCompat.CastDictionary<string, string>(properties)));
 return this;
 }
 
@@ -362,6 +362,6 @@ this.securityManager = this.securityManagerBuilder.Build();
 if ((this.stackFrameTransformer! == default!)) {
 throw new global::System.InvalidOperationException("No stack frame transformer set.");
 }
-return new global::DripSharp.Brine.EvaluatorImpl(this.stackFrameTransformer!, this.color, this.securityManager!, this.httpClient, new global::DripSharp.Brine.Runtime.LoggerImpl(this.logger, this.stackFrameTransformer!), new global::System.Collections.Generic.List<global::DripSharp.Brine.Module.ModuleKeyFactory>(this.moduleKeyFactories), new global::System.Collections.Generic.List<global::DripSharp.Brine.Resource.ResourceReader>(this.resourceReaders), global::DripSharp.Runtime.JavaCompat.NewJavaDictionary<string, string>(this.environmentVariables), global::DripSharp.Runtime.JavaCompat.NewJavaDictionary<string, string>(this.externalProperties), this.timeout!, this.moduleCacheDir!, this.dependencies!, this.outputFormat!, this.traceMode, this.powerAssertionsEnabled);
+return new global::DripSharp.Brine.EvaluatorImpl(this.stackFrameTransformer!, this.color, this.securityManager!, this.httpClient, new global::DripSharp.Brine.Runtime.LoggerImpl(this.logger, this.stackFrameTransformer!), new global::System.Collections.Generic.List<global::DripSharp.Brine.Module.ModuleKeyFactory>(this.moduleKeyFactories), new global::System.Collections.Generic.List<global::DripSharp.Brine.Resource.ResourceReader>(this.resourceReaders), global::DripSharp.Runtime.JavaCompat.NewJavaDictionary<string, string>(global::DripSharp.Runtime.JavaCompat.CastDictionary<string, string>(this.environmentVariables)), global::DripSharp.Runtime.JavaCompat.NewJavaDictionary<string, string>(global::DripSharp.Runtime.JavaCompat.CastDictionary<string, string>(this.externalProperties)), this.timeout!, this.moduleCacheDir!, this.dependencies!, this.outputFormat!, this.traceMode, this.powerAssertionsEnabled);
 }
 }

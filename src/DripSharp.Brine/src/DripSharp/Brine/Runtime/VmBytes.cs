@@ -33,7 +33,7 @@ var bytes = new sbyte[elements.Length];
 for (var i = 0; (i < elements.Length); i++) {
 var exprNode = elements[i];
 global::DripSharp.Runtime.JavaCompat.Assert(() => (exprNode is global::DripSharp.Brine.Ast.ByteConstantValueNode));
-bytes[i] = ((global::DripSharp.Brine.Ast.ByteConstantValueNode)(exprNode!)).GetByteValue();
+bytes[i] = unchecked((sbyte)(((global::DripSharp.Brine.Ast.ByteConstantValueNode)(exprNode!)).GetByteValue()));
 }
 return new VmBytes(bytes);
 }

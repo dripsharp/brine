@@ -78,7 +78,7 @@ foreach (var entry in global::DripSharp.Runtime.JavaCompat.MapEntrySet(rewrites)
 global::DripSharp.Brine.Util.IoUtils.ValidateRewriteRule(entry.Key);
 global::DripSharp.Brine.Util.IoUtils.ValidateRewriteRule(entry.Value);
 }
-this.rewrites = global::DripSharp.Runtime.JavaCompat.NewJavaDictionary<global::System.Uri, global::System.Uri>(global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IDictionary<global::System.Uri, global::System.Uri>>(rewrites));
+this.rewrites = global::DripSharp.Runtime.JavaCompat.NewJavaDictionary<global::System.Uri, global::System.Uri>(global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IDictionary<global::System.Uri, global::System.Uri>>(global::DripSharp.Runtime.JavaCompat.CastDictionary<global::System.Uri, global::System.Uri>(rewrites)));
 return this;
 }
 

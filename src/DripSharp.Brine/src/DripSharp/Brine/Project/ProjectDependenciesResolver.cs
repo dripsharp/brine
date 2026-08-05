@@ -84,7 +84,7 @@ throw new global::DripSharp.Brine.PklException(global::DripSharp.Runtime.JavaCom
 private void ResolveDependencies(global::DripSharp.Brine.Project.DeclaredDependencies declaredDependencies) {
 var packageUri = declaredDependencies.MyPackageUri!;
 global::DripSharp.Runtime.JavaCompat.Assert(() => (packageUri! != default!));
-var projectDir = global::System.IO.Path.GetDirectoryName(global::DripSharp.Runtime.JavaCompat.PathOfUri(declaredDependencies.ProjectFileUri));
+var projectDir = global::DripSharp.Runtime.JavaCompat.PathParent(global::DripSharp.Runtime.JavaCompat.PathOfUri(declaredDependencies.ProjectFileUri));
 global::DripSharp.Runtime.JavaCompat.Assert(() => (projectDir != default!));
 var relativePath = global::DripSharp.Brine.Util.IoUtils.Relativize(projectDir, this.project.GetProjectDir());
 var localDependency = new global::DripSharp.Brine.Packages.Dependency.LocalDependency(packageUri!.ToProjectPackageUri(), relativePath);

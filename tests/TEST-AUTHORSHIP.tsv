@@ -1,6 +1,6 @@
 source-path	sha256	lines	line-budget	review-evidence	role
 gradle/pkl-parser-test-contract.gradle	cb101a43b76950e76661a5c87b9133576aecb53adf1a48215d8daed9c207afeb	45	45	beads:pkl-rjf1.1	pkl-parser-junit-discovery
-src/dripsharp/consumer_tests.clj	2f791f9eca70a6ea36d353fa99859e27d2504df1f6e1a2a84a246fed942a715f	590	590	beads:pkl-rjf1.1	generic-test-emitter
+src/dripsharp/consumer_tests.clj	b533b87a91b7b7a68de3a50c07bd3b8022d65bf68e6cda22d4005d9120a239a1	594	594	beads:pkl-rjf1.1	generic-test-emitter
 src/dripsharp/pkl/brine_xunit.clj	df4afc593f0fd6fd3b9930d93dc1b2ecad4dd4771a63ddce0eba9da6efbd25b8	690	690	beads:pkl-rjf1.1	brine-test-generator
 src/dripsharp/pkl/parser_test_contract.clj	d13afb824a731bfb00731baaa066ca7f1f7dd181d74f615e130c841766987fae	582	582	beads:pkl-rjf1.1	pkl-parser-contract-generator
 targets/pkl/consumer-tests/CoreConsumerTests.cs	124ff154dcfdc0e852c7995802f4a249ba6e15325da13de4dee9f28df779d1af	33	33	beads:pkl-nk5q	authored-public-api-smoke-test

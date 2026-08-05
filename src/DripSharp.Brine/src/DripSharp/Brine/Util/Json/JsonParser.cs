@@ -247,7 +247,7 @@ switch (this.current) {
 case var __case_271_12_0 when __case_271_12_0 == '"':
 case var __case_271_17_1 when __case_271_17_1 == '/':
 case var __case_271_22_2 when __case_271_22_2 == '\\':
-this.captureBuffer.Append(unchecked((char)((char)(this.current))));
+this.captureBuffer.Append(unchecked((char)(unchecked((char)(this.current)))));
 break;
 case var __case_272_12_0 when __case_272_12_0 == 'b':
 this.captureBuffer.Append('\b');
@@ -272,9 +272,9 @@ this.Read();
 if (!(this.IsHexDigit())) {
 throw this.Expected("hexadecimal digit");
 }
-hexChars[i] = unchecked((char)((char)(this.current)));
+hexChars[i] = unchecked((char)(unchecked((char)(this.current))));
 }
-this.captureBuffer.Append(unchecked((char)((char)(global::DripSharp.Runtime.JavaCompat.ParseInt(new string(hexChars), 16)))));
+this.captureBuffer.Append(unchecked((char)(unchecked((char)(global::DripSharp.Runtime.JavaCompat.ParseInt(new string(hexChars), 16))))));
 }
 break;
 default:

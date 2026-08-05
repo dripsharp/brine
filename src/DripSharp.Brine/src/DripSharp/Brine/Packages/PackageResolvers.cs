@@ -349,7 +349,7 @@ if ((checksums! != default!)) {
 inputStream = this.NewDigestInputStream(inputStream);
 }
 using (var @in = inputStream) {
-global::DripSharp.Runtime.JavaCompat.CreateDirectories(global::System.IO.Path.GetDirectoryName(path));
+global::DripSharp.Runtime.JavaCompat.CreateDirectories(global::DripSharp.Runtime.JavaCompat.PathParent(path));
 global::DripSharp.Runtime.JavaCompat.Copy(@in, path, global::DripSharp.Brine.Runtime.JavaCopyOption.REPLACE_EXISTING);
 if ((checksums! != default!)) {
 var digestInputStream = (global::DripSharp.Brine.Runtime.JavaDigestInputStream)(inputStream!);
@@ -370,7 +370,7 @@ global::DripSharp.Runtime.JavaCompat.CreateDirectories(this.tmpDir);
 var tmpPath = global::DripSharp.Runtime.JavaCompat.createTempFile(this.tmpDir, global::DripSharp.Brine.Util.IoUtils.EncodePath(packageUri.ToString().Replace("/", "-", global::System.StringComparison.Ordinal)), ".json");
 try {
 this.DownloadMetadata(packageUri, requestUri, tmpPath, checksums!);
-global::DripSharp.Runtime.JavaCompat.CreateDirectories(global::System.IO.Path.GetDirectoryName(cachePath));
+global::DripSharp.Runtime.JavaCompat.CreateDirectories(global::DripSharp.Runtime.JavaCompat.PathParent(cachePath));
 global::DripSharp.Runtime.JavaCompat.Move(tmpPath, cachePath, global::DripSharp.Brine.Runtime.JavaCopyOption.ATOMIC_MOVE);
 if (!(global::DripSharp.Brine.Util.IoUtils.IsWindows())) {
 global::DripSharp.Runtime.JavaCompat.setPosixFilePermissions(cachePath, DiskCachedPackageResolver.FILE_PERMISSIONS);
@@ -411,7 +411,7 @@ var tmpPath = global::DripSharp.Runtime.JavaCompat.createTempFile(this.tmpDir, g
 try {
 var checksumBytes = this.DownloadUriToPathAndComputeChecksum(dependencyMetadata.GetPackageZipUrl(), tmpPath);
 this.VerifyPackageZipBytes(packageUri, dependencyMetadata, checksumBytes);
-global::DripSharp.Runtime.JavaCompat.CreateDirectories(global::System.IO.Path.GetDirectoryName(cachePath));
+global::DripSharp.Runtime.JavaCompat.CreateDirectories(global::DripSharp.Runtime.JavaCompat.PathParent(cachePath));
 global::DripSharp.Runtime.JavaCompat.Move(tmpPath, cachePath, global::DripSharp.Brine.Runtime.JavaCopyOption.ATOMIC_MOVE);
 if (!(global::DripSharp.Brine.Util.IoUtils.IsWindows())) {
 global::DripSharp.Runtime.JavaCompat.setPosixFilePermissions(cachePath, DiskCachedPackageResolver.FILE_PERMISSIONS);

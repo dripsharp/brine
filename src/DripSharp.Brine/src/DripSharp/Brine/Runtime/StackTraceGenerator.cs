@@ -28,7 +28,7 @@ if (global::DripSharp.Runtime.JavaCompat.ListIsEmpty(truffleElements)) {
 this.AddFrame(this.exception.GetSourceSection()!, this.exception.GetMemberName()!);
 } else {
 var isFirst = true;
-var insertedStackFrames = global::DripSharp.Runtime.JavaCompat.NewJavaDictionary<global::DripSharp.Brine.Runtime.Truffle.api.CallTarget, global::DripSharp.Brine.StackFrame>(this.exception.GetInsertedStackFrames());
+var insertedStackFrames = global::DripSharp.Runtime.JavaCompat.NewJavaDictionary<global::DripSharp.Brine.Runtime.Truffle.api.CallTarget, global::DripSharp.Brine.StackFrame>(global::DripSharp.Runtime.JavaCompat.CastDictionary<global::DripSharp.Brine.Runtime.Truffle.api.CallTarget, global::DripSharp.Brine.StackFrame>(this.exception.GetInsertedStackFrames()));
 foreach (var element in truffleElements) {
 var callNode = element.GetLocation();
 this.AddFrame(this.FindDisplayableSourceSection(callNode, isFirst), this.GetMemberName(element)!);

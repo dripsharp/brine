@@ -19,7 +19,7 @@ this.builder = builder;
 }
 
 public override void Write(int c) {
-this.builder.Append(unchecked((char)((char)(c))));
+this.builder.Append(unchecked((char)(unchecked((char)(c)))));
 }
 
 public override void Write(char[] cbuf) {

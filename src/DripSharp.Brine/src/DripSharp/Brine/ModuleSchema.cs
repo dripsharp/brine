@@ -101,8 +101,8 @@ if (global::DripSharp.Runtime.JavaCompat.MapIsEmpty(this.classes)) {
 this.__allClasses = global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IDictionary<string, global::DripSharp.Brine.PClass>>(this.supermodule!.GetAllClasses());
 } else {
 this.__allClasses = new global::DripSharp.Runtime.JavaLinkedHashMap<string, global::DripSharp.Brine.PClass>();
-global::DripSharp.Runtime.JavaCompat.MapPutAll(this.__allClasses, global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IDictionary<string, global::DripSharp.Brine.PClass>>(this.supermodule!.GetAllClasses()));
-global::DripSharp.Runtime.JavaCompat.MapPutAll(this.__allClasses, this.classes);
+global::DripSharp.Runtime.JavaCompat.MapPutAll(this.__allClasses, global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IDictionary<string, global::DripSharp.Brine.PClass>>(global::DripSharp.Runtime.JavaCompat.CastDictionary<string, global::DripSharp.Brine.PClass>(this.supermodule!.GetAllClasses())));
+global::DripSharp.Runtime.JavaCompat.MapPutAll(this.__allClasses, global::DripSharp.Runtime.JavaCompat.CastDictionary<string, global::DripSharp.Brine.PClass>(this.classes));
 }
 }
 }
@@ -122,8 +122,8 @@ if (global::DripSharp.Runtime.JavaCompat.MapIsEmpty(this.typeAliases)) {
 this.__allTypeAliases = global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IDictionary<string, global::DripSharp.Brine.TypeAlias>>(this.supermodule!.GetAllTypeAliases());
 } else {
 this.__allTypeAliases = new global::DripSharp.Runtime.JavaLinkedHashMap<string, global::DripSharp.Brine.TypeAlias>();
-global::DripSharp.Runtime.JavaCompat.MapPutAll(this.__allTypeAliases, global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IDictionary<string, global::DripSharp.Brine.TypeAlias>>(this.supermodule!.GetAllTypeAliases()));
-global::DripSharp.Runtime.JavaCompat.MapPutAll(this.__allTypeAliases, this.typeAliases);
+global::DripSharp.Runtime.JavaCompat.MapPutAll(this.__allTypeAliases, global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IDictionary<string, global::DripSharp.Brine.TypeAlias>>(global::DripSharp.Runtime.JavaCompat.CastDictionary<string, global::DripSharp.Brine.TypeAlias>(this.supermodule!.GetAllTypeAliases())));
+global::DripSharp.Runtime.JavaCompat.MapPutAll(this.__allTypeAliases, global::DripSharp.Runtime.JavaCompat.CastDictionary<string, global::DripSharp.Brine.TypeAlias>(this.typeAliases));
 }
 }
 }

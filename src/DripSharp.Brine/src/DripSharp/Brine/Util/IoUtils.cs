@@ -551,7 +551,7 @@ for (var i = 0; (i < path.Length); i++) {
 var character = path[i];
 if ((IoUtils.IsReservedWindowsFilenameChar(character) && ((int)(character) != (int)('/')))) {
 sb.Append('(');
-sb.Append(global::DripSharp.Brine.Util.ByteArrayUtils.ToHex(new sbyte[] { unchecked((sbyte)((sbyte)(character))) }));
+sb.Append(global::DripSharp.Brine.Util.ByteArrayUtils.ToHex(new sbyte[] { unchecked((sbyte)(unchecked((sbyte)(character)))) }));
 sb.Append(")");
 } else {
 if (((int)(character) == (int)('('))) {

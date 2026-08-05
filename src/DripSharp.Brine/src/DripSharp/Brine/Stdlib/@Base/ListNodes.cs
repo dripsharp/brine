@@ -1250,7 +1250,7 @@ try {
 for (var i = 0; (i < self.GetLength()); i++) {
 var elem = self.Get((long)(i));
 var num = (long?)(typeNode.ExecuteEagerly(frame, elem));
-bytes[i] = unchecked((sbyte)(num));
+bytes[i] = unchecked((sbyte)(unchecked((sbyte)(num))));
 }
 } catch (global::DripSharp.Brine.Ast.Type.VmTypeMismatchException e) {
 global::DripSharp.Brine.Runtime.Truffle.api.CompilerDirectives.TransferToInterpreter();

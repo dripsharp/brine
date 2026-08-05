@@ -170,7 +170,7 @@ throw global::DripSharp.Brine.PklBugException.UnreachableCode();
 private string CreatePackageZipAndComputeChecksum(global::DripSharp.Brine.Project.Project project, global::System.Collections.Generic.IList<string> files, string outputZipFile) {
 global::DripSharp.Brine.Runtime.JavaDigestOutputStream digestOutputStream;
 try {
-global::DripSharp.Runtime.JavaCompat.CreateDirectories(global::System.IO.Path.GetDirectoryName(outputZipFile));
+global::DripSharp.Runtime.JavaCompat.CreateDirectories(global::DripSharp.Runtime.JavaCompat.PathParent(outputZipFile));
 digestOutputStream = this.NewDigestOutputStream(global::DripSharp.Runtime.JavaCompat.NewOutputStream(outputZipFile));
 } catch (global::System.IO.IOException e) {
 throw global::DripSharp.Runtime.JavaCompat.NewIOException(e);
@@ -256,7 +256,7 @@ throw new global::DripSharp.Brine.Runtime.VmExceptionBuilder().EvalError("invali
 if ((global::DripSharp.Runtime.JavaCompat.StringStartsWith(importStr, "/") && !(global::DripSharp.Runtime.JavaCompat.Equals(project.GetProjectDir().ToString()!, "/")))) {
 throw new global::DripSharp.Brine.Runtime.VmExceptionBuilder().EvalError("invalidRelativeProjectImport", importStr).WithSourceSection(sourceSection).Build().ToPklException(this.stackFrameTransformer, this.color);
 }
-var currentPath = global::System.IO.Path.GetDirectoryName(pklModulePath);
+var currentPath = global::DripSharp.Runtime.JavaCompat.PathParent(pklModulePath);
 global::DripSharp.Runtime.JavaCompat.Assert(() => (currentPath != default!));
 var importPath = global::DripSharp.Runtime.JavaCompat.StringSplit(global::DripSharp.Runtime.JavaCompat.UriPath(importUri)!, "/", 0);
 foreach (var segment in importPath) {

@@ -61,7 +61,7 @@ this.resourceManager = resourceManager;
 this.logger = logger;
 this.environmentVariables = environmentVariables;
 this.moduleCacheDir = moduleCacheDir!;
-var props = global::DripSharp.Runtime.JavaCompat.NewJavaDictionary<string, string>(externalProperties);
+var props = global::DripSharp.Runtime.JavaCompat.NewJavaDictionary<string, string>(global::DripSharp.Runtime.JavaCompat.CastDictionary<string, string>(externalProperties));
 if ((outputFormat! != default!)) {
 global::DripSharp.Runtime.JavaCompat.MapPut(props, Holder.OUTPUT_FORMAT_KEY, outputFormat!);
 }
