@@ -284,7 +284,7 @@ return global::DripSharp.Runtime.JavaCompat.MapRemove(this.@delegate, key);
 }
 
 public virtual void PutAll(global::System.Collections.Generic.IDictionary<string, object?> m) {
-global::DripSharp.Runtime.JavaCompat.MapPutAll(this.@delegate, global::DripSharp.Runtime.JavaCompat.CastDictionary<string, object>(m));
+global::DripSharp.Runtime.JavaCompat.MapPutAll(this.@delegate, global::DripSharp.Runtime.JavaCompat.CastDictionary<string, object?>(m));
 }
 
 public virtual void Clear() {

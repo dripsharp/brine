@@ -216,7 +216,7 @@ return this.DoEvaluate<string>(() => global::DripSharp.Brine.Runtime.VmUtils.Rea
 }
 
 internal byte[] EvaluateOutputBytes(global::DripSharp.Brine.Runtime.VmTyped fileOutput) {
-return this.DoEvaluate<byte[]>(() => global::DripSharp.Brine.Runtime.VmUtils.ReadBytesProperty(fileOutput).Export());
+return global::DripSharp.Runtime.JavaCompat.ToUnsignedBytes(this.DoEvaluate<byte[]>(() => global::DripSharp.Brine.Runtime.VmUtils.ReadBytesProperty(fileOutput).Export()));
 }
 
 private T DoEvaluate<T>(global::System.Func<T> supplier) {
