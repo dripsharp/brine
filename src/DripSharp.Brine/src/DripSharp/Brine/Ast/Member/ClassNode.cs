@@ -50,7 +50,7 @@ this.unresolvedPropertyNodes = unresolvedPropertyNodes;
 this.unresolvedMethodNodes = unresolvedMethodNodes;
 }
 
-public override global::DripSharp.Brine.Runtime.VmClass ExecuteGeneric(global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame frame) {
+public override object ExecuteGeneric(global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame frame) {
 if ((this.cachedClass != default!)) {
 return this.cachedClass;
 }
@@ -78,10 +78,10 @@ this.cachedClass.InitSupertype(supertypeNode, superclass!);
 }
 global::DripSharp.Brine.Runtime.VmUtils.EvaluateAnnotations(frame, this.annotationNodes, annotations);
 foreach (var node__145_14 in this.unresolvedPropertyNodes) {
-this.cachedClass.AddProperty(node__145_14.Execute(frame, this.cachedClass));
+this.cachedClass.AddProperty(((global::DripSharp.Brine.Ast.Member.ClassProperty)(node__145_14.Execute(frame, this.cachedClass))));
 }
 foreach (var node__149_14 in this.unresolvedMethodNodes) {
-this.cachedClass.AddMethod(node__149_14.Execute(frame, this.cachedClass));
+this.cachedClass.AddMethod(((global::DripSharp.Brine.Ast.Member.ClassMethod)(node__149_14.Execute(frame, this.cachedClass))));
 }
 this.cachedClass.NotifyInitialized();
 return this.cachedClass;

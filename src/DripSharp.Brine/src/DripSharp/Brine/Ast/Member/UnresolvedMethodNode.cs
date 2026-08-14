@@ -40,7 +40,7 @@ public global::DripSharp.Brine.Runtime.Truffle.api.source.SourceSection GetHeade
 return base.headerSection;
 }
 
-public override global::DripSharp.Brine.Ast.Member.ClassMethod Execute(global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame frame, global::DripSharp.Brine.Runtime.VmClass clazz) {
+public override global::DripSharp.Brine.Ast.Member.ClassMember Execute(global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame frame, global::DripSharp.Brine.Runtime.VmClass clazz) {
 global::DripSharp.Brine.Runtime.Truffle.api.CompilerDirectives.TransferToInterpreter();
 var annotations = global::DripSharp.Brine.Runtime.VmUtils.EvaluateAnnotations(frame, base.annotationNodes);
 var parameterTypeNodes = global::DripSharp.Brine.Runtime.VmUtils.ResolveParameterTypes(frame, base.descriptor, this.unresolvedParameterTypeNodes!);

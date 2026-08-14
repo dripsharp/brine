@@ -8,7 +8,7 @@
 #nullable enable
 namespace DripSharp.Brine;
 
-public sealed partial record class ImportGraph(global::System.Collections.Generic.IReadOnlyDictionary<global::System.Uri, global::System.Collections.Generic.IReadOnlySet<global::DripSharp.Brine.ImportGraph.Import>> Imports, global::System.Collections.Generic.IReadOnlyDictionary<global::System.Uri, global::System.Uri> ResolvedImports)
+public sealed partial record class ImportGraph(global::System.Collections.Generic.IReadOnlyDictionary<global::System.Uri, global::System.Collections.Generic.ISet<global::DripSharp.Brine.ImportGraph.Import>> Imports, global::System.Collections.Generic.IReadOnlyDictionary<global::System.Uri, global::System.Uri> ResolvedImports)
 {
 public sealed partial record class Import(global::System.Uri Uri) : global::System.IComparable<global::DripSharp.Brine.ImportGraph.Import>
 {
@@ -31,7 +31,7 @@ public static ImportGraph ParseFromJson(string input) {
 var parsed = global::DripSharp.Brine.Util.Json.Json.ParseObject(input);
 var imports = ImportGraph.ParseImports(parsed.GetObject("imports"));
 var resolvedImports = ImportGraph.ParseResolvedImports(parsed.GetObject("resolvedImports"));
-return new ImportGraph(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<global::System.Uri, global::System.Collections.Generic.IReadOnlySet<Import>>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<global::System.Uri, global::System.Collections.Generic.IReadOnlySet<Import>>>(imports)), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<global::System.Uri, global::System.Uri>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<global::System.Uri, global::System.Uri>>(resolvedImports)));
+return new ImportGraph(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<global::System.Uri, global::System.Collections.Generic.ISet<Import>>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<global::System.Uri, global::System.Collections.Generic.ISet<Import>>>(imports)), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<global::System.Uri, global::System.Uri>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<global::System.Uri, global::System.Uri>>(resolvedImports)));
 }
 
 private static global::System.Collections.Generic.IDictionary<global::System.Uri, global::System.Collections.Generic.ISet<Import>> ParseImports(global::DripSharp.Brine.Util.Json.Json.JsObject jsObject) {

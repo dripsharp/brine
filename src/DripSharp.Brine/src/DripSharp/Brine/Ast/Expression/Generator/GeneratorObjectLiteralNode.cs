@@ -17,7 +17,7 @@ public GeneratorObjectLiteralNode(global::DripSharp.Brine.Runtime.Truffle.api.so
 this.memberNodes = memberNodes;
 }
 
-protected internal override GeneratorObjectLiteralNode Copy(global::DripSharp.Brine.Ast.ExpressionNode newParentNode) {
+protected internal override global::DripSharp.Brine.Ast.Expression.Literal.ObjectLiteralNode Copy(global::DripSharp.Brine.Ast.ExpressionNode newParentNode) {
 return global::DripSharp.Brine.Ast.Expression.Generator.GeneratorObjectLiteralNodeGen.Create(base.sourceSection, base.language, base.qualifiedScopeName, base.isCustomThisScope, (global::DripSharp.Brine.Runtime.Truffle.api.frame.FrameDescriptor)default!, new global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode[0], this.memberNodes, newParentNode);
 }
 

@@ -147,11 +147,11 @@ return global::DripSharp.Brine.Runtime.BaseModule.GetTypeAliasClass();
 
 public override void Force(bool allowUndefinedValues) {}
 
-public override global::DripSharp.Brine.TypeAlias Export() {
+public override object Export() {
 lock (this.pTypeAliasLock) {
 if ((this.__pTypeAlias == default!)) {
 var pAnnotations = new global::System.Collections.Generic.List<global::DripSharp.Brine.PObject>(global::DripSharp.Runtime.JavaCompat.CollectionCount(this.annotations));
-this.__pTypeAlias = new global::DripSharp.Brine.TypeAlias(global::DripSharp.Brine.Runtime.VmUtils.ExportDocComment(this.docComment)!, new global::DripSharp.Brine.Member.SourceLocation(this.headerSection.GetStartLine(), this.sourceSection.GetEndLine()), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlySet<global::DripSharp.Brine.Modifier>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlySet<global::DripSharp.Brine.Modifier>>(global::DripSharp.Brine.Ast.VmModifier.Export(this.modifiers, true))), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.PObject>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.PObject>>(pAnnotations)), this.simpleName, this.GetModuleName(), this.qualifiedName, global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.TypeParameter>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.TypeParameter>>(this.typeParameters)), this.module.GetVmClass().Export());
+this.__pTypeAlias = new global::DripSharp.Brine.TypeAlias(global::DripSharp.Brine.Runtime.VmUtils.ExportDocComment(this.docComment)!, new global::DripSharp.Brine.Member.SourceLocation(this.headerSection.GetStartLine(), this.sourceSection.GetEndLine()), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.ISet<global::DripSharp.Brine.Modifier>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.ISet<global::DripSharp.Brine.Modifier>>(global::DripSharp.Brine.Ast.VmModifier.Export(this.modifiers, true))), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.PObject>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.PObject>>(pAnnotations)), this.simpleName, this.GetModuleName(), this.qualifiedName, global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.TypeParameter>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.TypeParameter>>(this.typeParameters)), ((global::DripSharp.Brine.PClass)(this.module.GetVmClass().Export())));
 foreach (var parameter in this.typeParameters) {
 parameter.InitOwner(this.__pTypeAlias);
 }
@@ -176,7 +176,7 @@ return global::DripSharp.Brine.Ast.VmModifier.GetMirrors(this.modifiers, false);
 }
 
 public global::DripSharp.Brine.Runtime.VmList GetTypeParameterMirrors() {
-var builder = global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder()));
 foreach (var typeParameter in this.typeParameters) {
 builder.Add(global::DripSharp.Brine.Runtime.MirrorFactories.typeParameterFactory.Create(typeParameter));
 }

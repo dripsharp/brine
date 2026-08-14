@@ -16,8 +16,8 @@ public static StackFrameTransformer AndThen(
     this StackFrameTransformer transformer,
     StackFrameTransformer next)
 {
-global::System.ArgumentNullException.ThrowIfNull(transformer);
-global::System.ArgumentNullException.ThrowIfNull(next);
+global::DripSharp.Runtime.JavaCompat.ThrowIfNull(transformer);
+global::DripSharp.Runtime.JavaCompat.ThrowIfNull(next);
 return frame => next(transformer(frame));
 }
 }

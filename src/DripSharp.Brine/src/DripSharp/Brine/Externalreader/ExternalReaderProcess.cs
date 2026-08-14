@@ -8,7 +8,7 @@
 #nullable enable
 namespace DripSharp.Brine.Externalreader;
 
-public partial interface ExternalReaderProcess : global::System.IDisposable
+public abstract partial class ExternalReaderProcess : global::System.IDisposable
 {
 public void Dispose() => this.Close();
 
@@ -16,13 +16,13 @@ public static ExternalReaderProcess Of(global::DripSharp.Brine.EvaluatorSettings
 return new global::DripSharp.Brine.Externalreader.ExternalReaderProcessImpl(spec);
 }
 
-public global::DripSharp.Brine.Externalreader.ExternalModuleResolver GetModuleResolver(long evaluatorId);
+public abstract global::DripSharp.Brine.Externalreader.ExternalModuleResolver GetModuleResolver(long evaluatorId);
 
-public global::DripSharp.Brine.Externalreader.ExternalResourceResolver GetResourceResolver(long evaluatorId);
+public abstract global::DripSharp.Brine.Externalreader.ExternalResourceResolver GetResourceResolver(long evaluatorId);
 
-public global::DripSharp.Brine.Externalreader.ModuleReaderSpec? GetModuleReaderSpec(string scheme);
+public abstract global::DripSharp.Brine.Externalreader.ModuleReaderSpec? GetModuleReaderSpec(string scheme);
 
-public global::DripSharp.Brine.Externalreader.ResourceReaderSpec? GetResourceReaderSpec(string scheme);
+public abstract global::DripSharp.Brine.Externalreader.ResourceReaderSpec? GetResourceReaderSpec(string scheme);
 
-public void Close();
+public abstract void Close();
 }

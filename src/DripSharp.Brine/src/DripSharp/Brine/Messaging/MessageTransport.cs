@@ -10,7 +10,7 @@ namespace DripSharp.Brine.Messaging;
 
 internal partial interface MessageTransport : global::System.IDisposable
 {
-public void Dispose() => this.Close();
+public void Dispose();
 
 internal delegate void OneWayHandler(global::DripSharp.Brine.Messaging.Message.OneWay msg);
 

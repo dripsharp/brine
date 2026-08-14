@@ -10,7 +10,7 @@ namespace DripSharp.Brine.Stdlib.Benchmark;
 
 internal sealed partial class BenchmarkUtils
 {
-private static readonly global::DripSharp.Brine.Stdlib.VmObjectFactory<BenchmarkResult> benchmarkResultFactory = new global::DripSharp.Brine.Stdlib.VmObjectFactory<BenchmarkResult>(global::DripSharp.Brine.Runtime.BenchmarkModule.GetBenchmarkResultClass).AddIntProperty("iterations", (value0) => value0.Iterations()).AddIntProperty("repetitions", (value0) => value0.Repetitions()).AddValueProperty("samples", (value0) => value0.Samples()).AddDurationProperty("min", (value0) => value0.Min()).AddDurationProperty("max", (value0) => value0.Max()).AddDurationProperty("mean", (value0) => value0.Mean()).AddDurationProperty("stdev", (value0) => value0.StdDeviation()).AddDurationProperty("error", (value0) => value0.ErrorMargin());
+private static readonly global::DripSharp.Brine.Stdlib.VmObjectFactory<BenchmarkResult> benchmarkResultFactory = ((global::DripSharp.Brine.Stdlib.VmObjectFactory<BenchmarkResult>)(((global::DripSharp.Brine.Stdlib.VmObjectFactory<BenchmarkResult>)(((global::DripSharp.Brine.Stdlib.VmObjectFactory<BenchmarkResult>)(((global::DripSharp.Brine.Stdlib.VmObjectFactory<BenchmarkResult>)(((global::DripSharp.Brine.Stdlib.VmObjectFactory<BenchmarkResult>)(((global::DripSharp.Brine.Stdlib.VmObjectFactory<BenchmarkResult>)(((global::DripSharp.Brine.Stdlib.VmObjectFactory<BenchmarkResult>)(((global::DripSharp.Brine.Stdlib.VmObjectFactory<BenchmarkResult>)(new global::DripSharp.Brine.Stdlib.VmObjectFactory<BenchmarkResult>(global::DripSharp.Brine.Runtime.BenchmarkModule.GetBenchmarkResultClass).AddIntProperty("iterations", (value0) => value0.Iterations()))).AddIntProperty("repetitions", (value0) => value0.Repetitions()))).AddValueProperty("samples", (value0) => value0.Samples()))).AddDurationProperty("min", (value0) => value0.Min()))).AddDurationProperty("max", (value0) => value0.Max()))).AddDurationProperty("mean", (value0) => value0.Mean()))).AddDurationProperty("stdev", (value0) => value0.StdDeviation()))).AddDurationProperty("error", (value0) => value0.ErrorMargin())));
 
 internal static global::DripSharp.Brine.Runtime.VmTyped RunBenchmark(global::DripSharp.Brine.Runtime.VmTyped benchmark, global::DripSharp.Brine.Runtime.JavaLongFunction<object> iterationRunner) {
 var iterations = unchecked((int)(((long?)(global::DripSharp.Brine.Runtime.VmUtils.ReadMember(benchmark, global::DripSharp.Brine.Runtime.Identifier.ITERATIONS)))));
@@ -156,7 +156,7 @@ internal static global::DripSharp.Brine.Runtime.VmValue ToList(double[] values, 
 if ((values == default!)) {
 return global::DripSharp.Brine.Runtime.VmNull.WithoutDefault();
 }
-var builder = global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder()));
 foreach (var value in values) {
 builder.Add(BenchmarkResult.ToDuration(value, unit));
 }

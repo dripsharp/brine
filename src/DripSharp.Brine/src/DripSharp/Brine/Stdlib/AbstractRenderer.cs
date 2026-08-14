@@ -73,11 +73,9 @@ this.VisitDocument(converted);
 } catch (global::DripSharp.Brine.Runtime.VmException err) {
 if ((converted != value)) {
 err.SetHint(global::DripSharp.Runtime.JavaCompat.JavaStringFormat("This value was converted during rendering. Previous: %s. After: %s.", new global::DripSharp.Brine.Runtime.VmException.ProgramValue("before", value), new global::DripSharp.Brine.Runtime.VmException.ProgramValue("after", converted)));
-global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(err);
-throw new global::System.InvalidOperationException("unreachable");
+throw;
 }
-global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(err);
-throw new global::System.InvalidOperationException("unreachable");
+throw;
 }
 }
 
@@ -96,8 +94,7 @@ global::DripSharp.Brine.Runtime.PklRuntimeBridge.VisitVmValue(this, value);
 if ((e.GetReceiver()! == value)) {
 throw e.FillInHint(this.currPath, this.topLevelValue);
 }
-global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(e);
-throw new global::System.InvalidOperationException("unreachable");
+throw;
 }
 }
 
@@ -273,7 +270,7 @@ var prevSourceSection = this.currSourceSection!;
 this.currSourceSection = sourceSection;
 global::DripSharp.Runtime.JavaCompat.DequePush(this.currPath, name);
 if ((classProperty! != default!)) {
-var propVal = this.converter.ConvertProperty(classProperty!, value, this.currPath);
+var propVal = ((global::DripSharp.Brine.Util.Pair<global::DripSharp.Brine.Runtime.Identifier, object>)(this.converter.ConvertProperty(classProperty!, value, this.currPath)));
 name = propVal.GetFirst();
 value = propVal.GetSecond();
 }

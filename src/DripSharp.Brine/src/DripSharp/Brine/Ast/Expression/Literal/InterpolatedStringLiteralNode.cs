@@ -18,7 +18,7 @@ public InterpolatedStringLiteralNode(global::DripSharp.Brine.Runtime.Truffle.api
 this.parts = parts;
 }
 
-public override string ExecuteGeneric(global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame frame) {
+public override object ExecuteGeneric(global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame frame) {
 var builder = global::DripSharp.Brine.Runtime.VmUtils.CreateBuilder();
 foreach (var part in this.parts) {
 global::DripSharp.Brine.Runtime.VmUtils.AppendToBuilder(builder, (string)(part.ExecuteGeneric(frame)!));

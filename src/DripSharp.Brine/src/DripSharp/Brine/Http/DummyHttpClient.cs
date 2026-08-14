@@ -12,17 +12,9 @@ internal sealed partial class DummyHttpClient : global::DripSharp.Brine.Http.Htt
 {
 public void Dispose() => this.Close();
 
-public global::DripSharp.Brine.Http.HttpClient.Builder CreateBuilder() {
-return new global::DripSharp.Brine.Http.HttpClientBuilder();
-}
-
-public global::DripSharp.Brine.Http.HttpClient DummyClient() {
-return new DummyHttpClient();
-}
-
-public global::DripSharp.Brine.Runtime.JavaHttpResponse<T> SendCompatibility<T>(global::DripSharp.Brine.Runtime.JavaHttpRequest request, global::DripSharp.Brine.Runtime.JavaHttpBodyHandler<T> responseBodyHandler, global::DripSharp.Brine.Http.HttpClient.HttpRequestChecker httpRequestChecker) {
+internal override global::DripSharp.Brine.Runtime.JavaHttpResponse<T> SendCompatibility<T>(global::DripSharp.Brine.Runtime.JavaHttpRequest request, global::DripSharp.Brine.Runtime.JavaHttpBodyHandler<T> responseBodyHandler, global::DripSharp.Brine.Http.HttpClient.HttpRequestChecker httpRequestChecker) {
 throw new global::DripSharp.Runtime.JavaAssertionError(global::DripSharp.Runtime.JavaCompat.Concat("Dummy HTTP client cannot send request: ", request));
 }
 
-public void Close() {}
+public override void Close() {}
 }

@@ -16,7 +16,7 @@ public GetEnclosingFrameNode(int levelsUp) {
 this.levelsUp = levelsUp;
 }
 
-public override global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame ExecuteGeneric(global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame frame) {
+public override object ExecuteGeneric(global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame frame) {
 return global::DripSharp.Brine.Runtime.VmUtils.GetFrame(frame, this.levelsUp);
 }
 

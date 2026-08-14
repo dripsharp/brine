@@ -14,13 +14,9 @@ internal abstract partial class AbstractPackageResolver : global::DripSharp.Brin
 {
 public void Dispose() => this.Close();
 
-public abstract void DownloadPackage(global::DripSharp.Brine.Packages.PackageUri uri, global::DripSharp.Brine.Packages.Checksums? checksums, bool noTransitive);
+public abstract override void DownloadPackage(global::DripSharp.Brine.Packages.PackageUri uri, global::DripSharp.Brine.Packages.Checksums? checksums, bool noTransitive);
 
-public abstract byte[] GetBytes(global::DripSharp.Brine.Packages.PackageAssetUri uri, bool allowDirectories, global::DripSharp.Brine.Packages.Checksums? checksums);
-
-public virtual global::DripSharp.Brine.Packages.PackageResolver GetInstance(global::DripSharp.Brine.SecurityManager securityManager, global::DripSharp.Brine.Http.HttpClient httpClient, string? cachedDir) {
-return ((cachedDir! == default!) ? (global::DripSharp.Brine.Packages.PackageResolver)(new InMemoryPackageResolver(securityManager, httpClient)) : (global::DripSharp.Brine.Packages.PackageResolver)(new DiskCachedPackageResolver(securityManager, httpClient, cachedDir!)));
-}
+public abstract override byte[] GetBytes(global::DripSharp.Brine.Packages.PackageAssetUri uri, bool allowDirectories, global::DripSharp.Brine.Packages.Checksums? checksums);
 
 internal readonly global::DripSharp.Brine.Runtime.GraalCollections.EconomicMap<global::DripSharp.Brine.Packages.PackageUri, global::DripSharp.Brine.Packages.DependencyMetadata> cachedDependencyMetadata = default!;
 
@@ -38,7 +34,7 @@ this.httpClient = httpClient;
 this.cachedDependencyMetadata = global::DripSharp.Brine.Util.EconomicMaps.Create<global::DripSharp.Brine.Packages.PackageUri, global::DripSharp.Brine.Packages.DependencyMetadata>();
 }
 
-public virtual global::DripSharp.Brine.Packages.DependencyMetadata GetDependencyMetadata(global::DripSharp.Brine.Packages.PackageUri uri, global::DripSharp.Brine.Packages.Checksums? checksums) {
+public override global::DripSharp.Brine.Packages.DependencyMetadata GetDependencyMetadata(global::DripSharp.Brine.Packages.PackageUri uri, global::DripSharp.Brine.Packages.Checksums? checksums) {
 this.CheckNotClosed();
 lock (this.@lock) {
 var metadata = this.cachedDependencyMetadata.Get(uri);
@@ -50,7 +46,7 @@ return metadata;
 }
 }
 
-public virtual global::DripSharp.Brine.Util.Pair<global::DripSharp.Brine.Packages.DependencyMetadata, global::DripSharp.Brine.Packages.Checksums> GetDependencyMetadataAndComputeChecksum(global::DripSharp.Brine.Packages.PackageUri packageUri) {
+internal override global::DripSharp.Brine.Util.Pair<global::DripSharp.Brine.Packages.DependencyMetadata, global::DripSharp.Brine.Packages.Checksums> GetDependencyMetadataAndComputeChecksum(global::DripSharp.Brine.Packages.PackageUri packageUri) {
 var requestUri = packageUri.GetMetadataRequestUri();
 var inputStream = this.OpenExternalUri(requestUri);
 return this.ReadDependencyMetadataAndComputeChecksum(packageUri, inputStream);
@@ -69,17 +65,17 @@ throw new global::DripSharp.Brine.Packages.PackageLoadError(e, "invalidDependenc
 }
 }
 
-public virtual global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement> ListElements(global::DripSharp.Brine.Packages.PackageAssetUri uri, global::DripSharp.Brine.Packages.Checksums? checksums) {
+public override global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement> ListElements(global::DripSharp.Brine.Packages.PackageAssetUri uri, global::DripSharp.Brine.Packages.Checksums? checksums) {
 this.CheckNotClosed();
 return global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement>>(this.DoListElements(uri, checksums!));
 }
 
-public virtual bool HasElement(global::DripSharp.Brine.Packages.PackageAssetUri uri, global::DripSharp.Brine.Packages.Checksums? checksums) {
+public override bool HasElement(global::DripSharp.Brine.Packages.PackageAssetUri uri, global::DripSharp.Brine.Packages.Checksums? checksums) {
 this.CheckNotClosed();
 return this.DoHasElement(uri, checksums!);
 }
 
-public virtual void Close() {
+public override void Close() {
 if (!(this.isClosed).GetAndSet(true)) {
 lock (this.@lock) {
 this.cachedDependencyMetadata.Clear();
@@ -123,7 +119,7 @@ this.securityManager.CheckReadResource(uri);
 var request = global::DripSharp.Brine.Runtime.JavaHttpRequest.NewBuilder(uri).Build();
 global::DripSharp.Brine.Runtime.JavaHttpResponse<global::System.IO.Stream> response;
 try {
-response = global::DripSharp.Brine.Http.HttpClientCompatibility.Send<global::System.IO.Stream>(this.httpClient, request, global::DripSharp.Brine.Runtime.JavaHttpBodyHandlers.OfInputStream(), this.securityManager.CheckReadResource);
+response = ((global::DripSharp.Brine.Runtime.JavaHttpResponse<global::System.IO.Stream>)(global::DripSharp.Brine.Http.HttpClientCompatibility.Send<global::System.IO.Stream>(this.httpClient, request, global::DripSharp.Brine.Runtime.JavaHttpBodyHandlers.OfInputStream(), this.securityManager.CheckReadResource)));
 } catch (global::System.IO.IOException e) {
 throw new global::DripSharp.Brine.Packages.PackageLoadError(e, "ioErrorMakingHttpGet", uri, global::DripSharp.Runtime.JavaCompat.ExceptionMessage(e));
 }
@@ -302,7 +298,7 @@ internal static readonly string CACHE_DIR_PREFIX = "package-2";
 
 internal readonly global::DripSharp.Brine.Runtime.GraalCollections.EconomicMap<global::DripSharp.Brine.Packages.PackageUri, global::DripSharp.Brine.Runtime.JavaFileSystem> fileSystems = global::DripSharp.Brine.Util.EconomicMaps.Create<global::DripSharp.Brine.Packages.PackageUri, global::DripSharp.Brine.Runtime.JavaFileSystem>();
 
-internal static readonly global::System.Collections.Generic.ISet<global::System.IO.UnixFileMode> FILE_PERMISSIONS = global::DripSharp.Runtime.JavaCompat.SetOf<global::System.IO.UnixFileMode>(global::System.IO.UnixFileMode.UserRead, global::System.IO.UnixFileMode.GroupRead, global::System.IO.UnixFileMode.OtherRead);
+internal static readonly global::System.Collections.Generic.ISet<global::DripSharp.Runtime.JavaUnixFileMode> FILE_PERMISSIONS = global::DripSharp.Runtime.JavaCompat.SetOf<global::DripSharp.Runtime.JavaUnixFileMode>(global::DripSharp.Runtime.JavaUnixFileMode.UserRead, global::DripSharp.Runtime.JavaUnixFileMode.GroupRead, global::DripSharp.Runtime.JavaUnixFileMode.OtherRead);
 
 public DiskCachedPackageResolver(global::DripSharp.Brine.SecurityManager securityManager, global::DripSharp.Brine.Http.HttpClient httpClient, string cacheDir) : base(securityManager, httpClient) {
 
@@ -367,7 +363,7 @@ if (global::DripSharp.Runtime.JavaCompat.Exists(cachePath)) {
 return cachePath;
 }
 global::DripSharp.Runtime.JavaCompat.CreateDirectories(this.tmpDir);
-var tmpPath = global::DripSharp.Runtime.JavaCompat.createTempFile(this.tmpDir, global::DripSharp.Brine.Util.IoUtils.EncodePath(packageUri.ToString().Replace("/", "-", global::System.StringComparison.Ordinal)), ".json");
+var tmpPath = global::DripSharp.Runtime.JavaCompat.createTempFile(this.tmpDir, global::DripSharp.Brine.Util.IoUtils.EncodePath(global::DripSharp.Runtime.JavaCompat.ReplaceOrdinal(packageUri.ToString(), "/", "-")), ".json");
 try {
 this.DownloadMetadata(packageUri, requestUri, tmpPath, checksums!);
 global::DripSharp.Runtime.JavaCompat.CreateDirectories(global::DripSharp.Runtime.JavaCompat.PathParent(cachePath));
@@ -407,7 +403,7 @@ if (global::DripSharp.Runtime.JavaCompat.Exists(cachePath)) {
 return cachePath;
 }
 global::DripSharp.Runtime.JavaCompat.CreateDirectories(this.tmpDir);
-var tmpPath = global::DripSharp.Runtime.JavaCompat.createTempFile(this.tmpDir, global::DripSharp.Brine.Util.IoUtils.EncodePath(packageUri.ToString().Replace("/", "-", global::System.StringComparison.Ordinal)), ".zip");
+var tmpPath = global::DripSharp.Runtime.JavaCompat.createTempFile(this.tmpDir, global::DripSharp.Brine.Util.IoUtils.EncodePath(global::DripSharp.Runtime.JavaCompat.ReplaceOrdinal(packageUri.ToString(), "/", "-")), ".zip");
 try {
 var checksumBytes = this.DownloadUriToPathAndComputeChecksum(dependencyMetadata.GetPackageZipUrl(), tmpPath);
 this.VerifyPackageZipBytes(packageUri, dependencyMetadata, checksumBytes);
@@ -448,7 +444,7 @@ this.DownloadPackage(dependency.GetPackageUri(), dependency.GetChecksums()!, fal
 }
 }
 
-public override global::DripSharp.Brine.Util.Pair<global::DripSharp.Brine.Packages.DependencyMetadata, global::DripSharp.Brine.Packages.Checksums> GetDependencyMetadataAndComputeChecksum(global::DripSharp.Brine.Packages.PackageUri packageUri) {
+internal override global::DripSharp.Brine.Util.Pair<global::DripSharp.Brine.Packages.DependencyMetadata, global::DripSharp.Brine.Packages.Checksums> GetDependencyMetadataAndComputeChecksum(global::DripSharp.Brine.Packages.PackageUri packageUri) {
 var packageDir = global::DripSharp.Runtime.JavaCompat.PathResolve(this.cacheDir, this.GetRelativePath(packageUri));
 var cacheFile = global::DripSharp.Runtime.JavaCompat.PathResolve(packageDir, global::DripSharp.Runtime.JavaCompat.Concat(global::System.IO.Path.GetFileName(packageDir), ".json"));
 if (global::DripSharp.Runtime.JavaCompat.Exists(cacheFile)) {

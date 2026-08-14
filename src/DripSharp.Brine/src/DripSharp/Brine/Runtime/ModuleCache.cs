@@ -98,8 +98,7 @@ moduleInitializer(moduleKey, resolvedKey, moduleResolver, result, module, import
 } catch (global::System.Exception e) when (e is not global::System.TypeInitializationException) {
 global::DripSharp.Runtime.JavaCompat.MapPut(this.modulesByOriginalUri, moduleKey.GetUri(), e);
 global::DripSharp.Runtime.JavaCompat.MapPut(this.modulesByResolvedUri, resolvedKey.GetUri(), e);
-global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(e);
-throw new global::System.InvalidOperationException("unreachable");
+throw;
 }
 return module;
 }

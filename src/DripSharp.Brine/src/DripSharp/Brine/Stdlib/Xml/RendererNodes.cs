@@ -299,7 +299,7 @@ return ((value is global::DripSharp.Brine.Runtime.VmTyped typed) && (typed.GetVm
 internal void RenderXmlCData(global::DripSharp.Brine.Runtime.VmTyped @object) {
 global::DripSharp.Runtime.JavaCompat.Assert(() => Renderer.IsXmlCData(@object));
 var text = global::DripSharp.Brine.Runtime.VmUtils.ReadTextProperty(@object);
-var cdataContents = text.Replace("]]>", "]]]]><![CDATA[>", global::System.StringComparison.Ordinal);
+var cdataContents = global::DripSharp.Runtime.JavaCompat.ReplaceOrdinal(text, "]]>", "]]]]><![CDATA[>");
 base.builder.Append("<![CDATA[").Append(cdataContents).Append("]]>");
 }
 

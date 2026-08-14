@@ -14,26 +14,9 @@ public void Report(global::DripSharp.Brine.TestResults results, global::System.I
 
 public void Summarize(global::System.Collections.Generic.IList<global::DripSharp.Brine.TestResults> allTestResults, global::System.IO.TextWriter writer);
 
-public string Report(global::DripSharp.Brine.TestResults results) {
-try {
-var builder = new global::System.Text.StringBuilder();
-var writer = new global::DripSharp.Brine.Util.StringBuilderWriter(builder);
-this.Report(results, writer);
-return builder.ToString();
-} catch (global::System.IO.IOException e) {
-throw new global::DripSharp.Brine.PklBugException("Unexpected IO exception.", e);
-}
-}
+public string Report(global::DripSharp.Brine.TestResults results);
 
-public void ReportToPath(global::DripSharp.Brine.TestResults results, string path) {
-using (var writer = global::DripSharp.Runtime.JavaCompat.NewFileWriter(new global::System.IO.FileInfo(path), global::DripSharp.Runtime.JavaStandardCharsets.UTF8)) {
-this.Report(results, writer);
-}
-}
+public void ReportToPath(global::DripSharp.Brine.TestResults results, string path);
 
-public void SummarizeToPath(global::System.Collections.Generic.IList<global::DripSharp.Brine.TestResults> allTestResults, string path) {
-using (var writer = global::DripSharp.Runtime.JavaCompat.NewFileWriter(new global::System.IO.FileInfo(path), global::DripSharp.Runtime.JavaStandardCharsets.UTF8)) {
-this.Summarize(allTestResults, writer);
-}
-}
+public void SummarizeToPath(global::System.Collections.Generic.IList<global::DripSharp.Brine.TestResults> allTestResults, string path);
 }

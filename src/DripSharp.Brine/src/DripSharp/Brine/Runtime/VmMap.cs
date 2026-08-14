@@ -84,7 +84,7 @@ if (other.IsEmpty()) {
 return this;
 }
 var mapBuilder = global::DripSharp.Runtime.JavaCompat.Mutable(this.map);
-var keyOrderBuilder = this.keyOrder.Mutable();
+var keyOrderBuilder = ((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.MutRrbt<object>)(this.keyOrder.Mutable()));
 foreach (var key in other.keyOrder) {
 var value = global::DripSharp.Runtime.JavaCompat.OrganicGet(other.map, key);
 if (!global::DripSharp.Runtime.JavaCompat.MapContainsKey(this.map, key)) {
@@ -92,7 +92,7 @@ keyOrderBuilder.Append(key);
 }
 global::DripSharp.Runtime.JavaCompat.OrganicPut(mapBuilder, key, value);
 }
-return VmMap.Create(mapBuilder, keyOrderBuilder.Immutable());
+return VmMap.Create(mapBuilder, ((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.ImRrbt<object>)(keyOrderBuilder.Immutable())));
 }
 
 public bool ContainsKey(object key) {
@@ -104,7 +104,7 @@ return global::DripSharp.Runtime.JavaCompat.MapContainsValue(this.map, value);
 }
 
 public VmMap Put(object key, object value) {
-var newKeyOrder = (global::DripSharp.Runtime.JavaCompat.MapContainsKey(this.map, key) ? this.keyOrder : this.keyOrder.Append(key));
+var newKeyOrder = (global::DripSharp.Runtime.JavaCompat.MapContainsKey(this.map, key) ? this.keyOrder : ((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.ImRrbt<object>)(this.keyOrder.Append(key))));
 return new VmMap(global::DripSharp.Runtime.JavaCompat.Assoc(this.map, key, value), newKeyOrder);
 }
 
@@ -112,7 +112,7 @@ public VmMap Remove(object key) {
 if (!global::DripSharp.Runtime.JavaCompat.MapContainsKey(this.map, key)) {
 return this;
 }
-return new VmMap(global::DripSharp.Runtime.JavaCompat.Without(this.map, key), this.keyOrder.Without((this.keyOrder).IndexOf(key)));
+return new VmMap(global::DripSharp.Runtime.JavaCompat.Without(this.map, key), ((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.ImRrbt<object>)(this.keyOrder.Without((this.keyOrder).IndexOf(key)))));
 }
 
 public global::DripSharp.Brine.Runtime.VmSet Keys() {
@@ -120,7 +120,7 @@ return global::DripSharp.Brine.Runtime.VmSet.Create(global::DripSharp.Runtime.Ja
 }
 
 public global::DripSharp.Brine.Runtime.VmList Values() {
-var builder = global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder()));
 foreach (var key in this.keyOrder) {
 var value = global::DripSharp.Runtime.JavaCompat.OrganicGet(this.map, key);
 global::DripSharp.Runtime.JavaCompat.Assert(() => (value != default!));
@@ -130,7 +130,7 @@ return builder.Build();
 }
 
 public global::DripSharp.Brine.Runtime.VmList Entries() {
-var builder = global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder()));
 foreach (var key in this.keyOrder) {
 var value = global::DripSharp.Runtime.JavaCompat.OrganicGet(this.map, key);
 global::DripSharp.Runtime.JavaCompat.Assert(() => (value != default!));
@@ -149,10 +149,9 @@ foreach (var elem in this.map) {
 global::DripSharp.Brine.Runtime.VmValue.Force(elem.Key, allowUndefinedValues);
 global::DripSharp.Brine.Runtime.VmValue.Force(elem.Value, allowUndefinedValues);
 }
-} catch (global::System.Exception t) {
+} catch (global::System.Exception) {
 this.forced = false;
-global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(t);
-throw new global::System.InvalidOperationException("unreachable");
+throw;
 }
 }
 
@@ -178,7 +177,7 @@ builder.AddEntry(key, value);
 return builder.ToDynamic();
 }
 
-public override global::System.Collections.Generic.IDictionary<object, object> Export() {
+public override object Export() {
 var result = global::DripSharp.Brine.Util.CollectionUtils.NewLinkedHashMap<object, object>(this.keyOrder.Size());
 foreach (var key in this.keyOrder) {
 var value = global::DripSharp.Runtime.JavaCompat.OrganicGet(this.map, key);
@@ -240,7 +239,7 @@ public VmMap Build() {
 if (global::DripSharp.Runtime.JavaCompat.CollectionIsEmpty(this.mapBuilder)) {
 return VmMap.EMPTY;
 }
-return VmMap.Create(this.mapBuilder, this.keyOrderBuilder.Immutable());
+return VmMap.Create(this.mapBuilder, ((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.ImRrbt<object>)(this.keyOrderBuilder.Immutable())));
 }
 }
 
@@ -250,7 +249,7 @@ private readonly VmMap __outer;
 
 public Anonymous_88_12(VmMap __outer) {
 this.__outer = __outer;
-this.keyIterator = this.__outer.keyOrder.Iterator();
+this.keyIterator = ((global::DripSharp.Runtime.JavaIterator<object>)(this.__outer.keyOrder.Iterator()));
 }
 
 internal readonly global::DripSharp.Runtime.JavaIterator<object> keyIterator = default!;

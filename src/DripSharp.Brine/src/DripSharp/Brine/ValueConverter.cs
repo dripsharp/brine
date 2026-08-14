@@ -30,7 +30,7 @@ public T ConvertPair(global::DripSharp.Brine.Pair<object, object> value);
 
 public T ConvertList(global::System.Collections.Generic.IReadOnlyList<object> value);
 
-public T ConvertSet(global::System.Collections.Generic.IReadOnlySet<object> value);
+public T ConvertSet(global::System.Collections.Generic.ISet<object> value);
 
 public T ConvertMap(global::System.Collections.Generic.IReadOnlyDictionary<object, object> value);
 
@@ -46,43 +46,5 @@ public T ConvertRegex(global::System.Text.RegularExpressions.Regex value);
 
 public T ConvertReference(global::DripSharp.Brine.Reference value);
 
-public T Convert(object value) {
-if ((value is global::DripSharp.Brine.Value v)) {
-return v.Accept<T>(this);
-} else {
-if ((value is string @string)) {
-return this.ConvertString(@string);
-} else {
-if ((value is bool b)) {
-return this.ConvertBoolean(b);
-} else {
-if ((value is long l)) {
-return this.ConvertInt(l);
-} else {
-if ((value is double d)) {
-return this.ConvertFloat(d);
-} else {
-if ((value is global::System.Collections.Generic.IList<object> list)) {
-return this.ConvertList(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<object>>(global::DripSharp.Runtime.JavaCompat.CastObjects(list)));
-} else {
-if ((value is global::System.Collections.Generic.ISet<object> set)) {
-return this.ConvertSet(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlySet<object>>(set));
-} else {
-if ((value is global::System.Collections.Generic.IDictionary<object, object> map)) {
-return this.ConvertMap(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<object, object>>(global::DripSharp.Runtime.JavaCompat.CastDictionary<object, object>(map)));
-} else {
-if ((value is global::System.Text.RegularExpressions.Regex pattern)) {
-return this.ConvertRegex(pattern);
-} else {
-throw new global::System.ArgumentException(global::DripSharp.Runtime.JavaCompat.Concat("Cannot convert value with unexpected type: ", value));
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
+public T Convert(object value);
 }

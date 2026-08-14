@@ -10,7 +10,7 @@ namespace DripSharp.Brine.Stdlib;
 
 internal sealed partial class PklConverter : global::DripSharp.Brine.Runtime.VmValueConverter<object>
 {
-public object Convert(object value, global::System.Collections.Generic.IEnumerable<object> path) {
+public override object Convert(object value, global::System.Collections.Generic.IEnumerable<object> path) {
 if ((value is global::DripSharp.Brine.Runtime.VmValue vmValue)) {
 return vmValue.Accept(this, path);
 }
@@ -119,95 +119,95 @@ var converters = (global::DripSharp.Brine.Runtime.VmMapping)(global::DripSharp.B
 return new PklConverter(converters, global::DripSharp.Brine.Runtime.VmMapping.Empty(), parser);
 }
 
-public object ConvertString(string value, global::System.Collections.Generic.IEnumerable<object> path) {
+public override object ConvertString(string value, global::System.Collections.Generic.IEnumerable<object> path) {
 return this.DoConvert(value, path, this.stringConverter!);
 }
 
-public object ConvertBoolean(bool value, global::System.Collections.Generic.IEnumerable<object> path) {
+public override object ConvertBoolean(bool value, global::System.Collections.Generic.IEnumerable<object> path) {
 return this.DoConvert(value, path, this.booleanConverter!);
 }
 
-public object ConvertInt(long value, global::System.Collections.Generic.IEnumerable<object> path) {
+public override object ConvertInt(long value, global::System.Collections.Generic.IEnumerable<object> path) {
 return this.DoConvert(value, path, this.intConverter!);
 }
 
-public object ConvertFloat(double value, global::System.Collections.Generic.IEnumerable<object> path) {
+public override object ConvertFloat(double value, global::System.Collections.Generic.IEnumerable<object> path) {
 return this.DoConvert(value, path, this.floatConverter!);
 }
 
-public object ConvertDuration(global::DripSharp.Brine.Runtime.VmDuration value, global::System.Collections.Generic.IEnumerable<object> path) {
+public override object ConvertDuration(global::DripSharp.Brine.Runtime.VmDuration value, global::System.Collections.Generic.IEnumerable<object> path) {
 return this.DoConvert(value, path, this.durationConverter!);
 }
 
-public object ConvertDataSize(global::DripSharp.Brine.Runtime.VmDataSize value, global::System.Collections.Generic.IEnumerable<object> path) {
+public override object ConvertDataSize(global::DripSharp.Brine.Runtime.VmDataSize value, global::System.Collections.Generic.IEnumerable<object> path) {
 return this.DoConvert(value, path, this.dataSizeConverter!);
 }
 
-public object ConvertBytes(global::DripSharp.Brine.Runtime.VmBytes value, global::System.Collections.Generic.IEnumerable<object> path) {
+public override object ConvertBytes(global::DripSharp.Brine.Runtime.VmBytes value, global::System.Collections.Generic.IEnumerable<object> path) {
 return this.DoConvert(value, path, this.bytesConverter!);
 }
 
-public object ConvertIntSeq(global::DripSharp.Brine.Runtime.VmIntSeq value, global::System.Collections.Generic.IEnumerable<object> path) {
+public override object ConvertIntSeq(global::DripSharp.Brine.Runtime.VmIntSeq value, global::System.Collections.Generic.IEnumerable<object> path) {
 return this.DoConvert(value, path, this.intSeqConverter!);
 }
 
-public object ConvertList(global::DripSharp.Brine.Runtime.VmList value, global::System.Collections.Generic.IEnumerable<object> path) {
+public override object ConvertList(global::DripSharp.Brine.Runtime.VmList value, global::System.Collections.Generic.IEnumerable<object> path) {
 return this.DoConvert(value, path, this.listConverter!);
 }
 
-public object ConvertSet(global::DripSharp.Brine.Runtime.VmSet value, global::System.Collections.Generic.IEnumerable<object> path) {
+public override object ConvertSet(global::DripSharp.Brine.Runtime.VmSet value, global::System.Collections.Generic.IEnumerable<object> path) {
 return this.DoConvert(value, path, this.setConverter!);
 }
 
-public object ConvertMap(global::DripSharp.Brine.Runtime.VmMap value, global::System.Collections.Generic.IEnumerable<object> path) {
+public override object ConvertMap(global::DripSharp.Brine.Runtime.VmMap value, global::System.Collections.Generic.IEnumerable<object> path) {
 return this.DoConvert(value, path, this.mapConverter!);
 }
 
-public object ConvertListing(global::DripSharp.Brine.Runtime.VmListing value, global::System.Collections.Generic.IEnumerable<object> path) {
+public override object ConvertListing(global::DripSharp.Brine.Runtime.VmListing value, global::System.Collections.Generic.IEnumerable<object> path) {
 return this.DoConvert(value, path, this.listingConverter!);
 }
 
-public object ConvertMapping(global::DripSharp.Brine.Runtime.VmMapping value, global::System.Collections.Generic.IEnumerable<object> path) {
+public override object ConvertMapping(global::DripSharp.Brine.Runtime.VmMapping value, global::System.Collections.Generic.IEnumerable<object> path) {
 return this.DoConvert(value, path, this.mappingConverter!);
 }
 
-public object ConvertDynamic(global::DripSharp.Brine.Runtime.VmDynamic value, global::System.Collections.Generic.IEnumerable<object> path) {
+public override object ConvertDynamic(global::DripSharp.Brine.Runtime.VmDynamic value, global::System.Collections.Generic.IEnumerable<object> path) {
 return this.DoConvert(value, path, this.dynamicConverter!);
 }
 
-public object ConvertTyped(global::DripSharp.Brine.Runtime.VmTyped value, global::System.Collections.Generic.IEnumerable<object> path) {
+public override object ConvertTyped(global::DripSharp.Brine.Runtime.VmTyped value, global::System.Collections.Generic.IEnumerable<object> path) {
 return this.DoConvert(value, path, this.FindTypeConverter(value.GetVmClass())!);
 }
 
-public object ConvertPair(global::DripSharp.Brine.Runtime.VmPair value, global::System.Collections.Generic.IEnumerable<object> path) {
+public override object ConvertPair(global::DripSharp.Brine.Runtime.VmPair value, global::System.Collections.Generic.IEnumerable<object> path) {
 return this.DoConvert(value, path, this.pairConverter!);
 }
 
-public object ConvertRegex(global::DripSharp.Brine.Runtime.VmRegex value, global::System.Collections.Generic.IEnumerable<object> path) {
+public override object ConvertRegex(global::DripSharp.Brine.Runtime.VmRegex value, global::System.Collections.Generic.IEnumerable<object> path) {
 return this.DoConvert(value, path, this.regexConverter!);
 }
 
-public object ConvertFunction(global::DripSharp.Brine.Runtime.VmFunction value, global::System.Collections.Generic.IEnumerable<object> path) {
+public override object ConvertFunction(global::DripSharp.Brine.Runtime.VmFunction value, global::System.Collections.Generic.IEnumerable<object> path) {
 return this.DoConvert(value, path, global::DripSharp.Runtime.JavaCompat.MapGet(this.typeConverters, value.GetVmClass()));
 }
 
-public object ConvertClass(global::DripSharp.Brine.Runtime.VmClass value, global::System.Collections.Generic.IEnumerable<object> path) {
+public override object ConvertClass(global::DripSharp.Brine.Runtime.VmClass value, global::System.Collections.Generic.IEnumerable<object> path) {
 return this.DoConvert(value, path, this.classConverter!);
 }
 
-public object ConvertTypeAlias(global::DripSharp.Brine.Runtime.VmTypeAlias value, global::System.Collections.Generic.IEnumerable<object> path) {
+public override object ConvertTypeAlias(global::DripSharp.Brine.Runtime.VmTypeAlias value, global::System.Collections.Generic.IEnumerable<object> path) {
 return this.DoConvert(value, path, this.typeAliasConverter!);
 }
 
-public object ConvertNull(global::DripSharp.Brine.Runtime.VmNull value, global::System.Collections.Generic.IEnumerable<object> path) {
+public override object ConvertNull(global::DripSharp.Brine.Runtime.VmNull value, global::System.Collections.Generic.IEnumerable<object> path) {
 return this.DoConvert(value, path, this.nullConverter!);
 }
 
-public object ConvertReference(global::DripSharp.Brine.Runtime.VmReference value, global::System.Collections.Generic.IEnumerable<object> path) {
+public override object ConvertReference(global::DripSharp.Brine.Runtime.VmReference value, global::System.Collections.Generic.IEnumerable<object> path) {
 return this.DoConvert(value, path, this.referenceConverter!);
 }
 
-public global::DripSharp.Brine.Util.Pair<global::DripSharp.Brine.Runtime.Identifier, object> ConvertProperty(global::DripSharp.Brine.Ast.Member.ClassProperty property, object value, global::System.Collections.Generic.IEnumerable<object> path) {
+public override global::DripSharp.Brine.Util.Pair<global::DripSharp.Brine.Runtime.Identifier, object> ConvertProperty(global::DripSharp.Brine.Ast.Member.ClassProperty property, object value, global::System.Collections.Generic.IEnumerable<object> path) {
 var name = property.GetName();
 var annotations = property.GetAllAnnotations(false);
 if (global::DripSharp.Runtime.JavaCompat.ListIsEmpty(annotations)) {

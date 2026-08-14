@@ -78,6 +78,15 @@ return new CachedModuleKey(@delegate, text);
 
 internal partial class CachedModuleKey : global::DripSharp.Brine.Module.ModuleKey, global::DripSharp.Brine.Module.ResolvedModuleKey
 {
+global::System.Uri global::DripSharp.Brine.Module.ModuleKey.Uri => this.GetUri();
+bool global::DripSharp.Brine.Module.ModuleKey.Cached => this.IsCached();
+bool global::DripSharp.Brine.Module.ModuleKey.Local => this.IsLocal();
+string? global::DripSharp.Brine.Module.ModuleKey.FileCachePath => this.GetFileCacheLocation();
+
+global::DripSharp.Brine.Module.ModuleKey global::DripSharp.Brine.Module.ResolvedModuleKey.Original => this.GetOriginal();
+global::System.Uri global::DripSharp.Brine.Module.ResolvedModuleKey.Uri => this.GetUri();
+string global::DripSharp.Brine.Module.ResolvedModuleKey.Source => this.LoadSource();
+
 public virtual string? GetFileCacheLocation() {
 return default!;
 }
@@ -146,6 +155,11 @@ return global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collection
 
 internal partial class Synthetic : global::DripSharp.Brine.Module.ModuleKey
 {
+global::System.Uri global::DripSharp.Brine.Module.ModuleKey.Uri => this.GetUri();
+bool global::DripSharp.Brine.Module.ModuleKey.Cached => this.IsCached();
+bool global::DripSharp.Brine.Module.ModuleKey.Local => this.IsLocal();
+string? global::DripSharp.Brine.Module.ModuleKey.FileCachePath => this.GetFileCacheLocation();
+
 public virtual string? GetFileCacheLocation() {
 return default!;
 }
@@ -213,6 +227,15 @@ return this.isCached;
 
 internal partial class StandardLibrary : global::DripSharp.Brine.Module.ModuleKey, global::DripSharp.Brine.Module.ResolvedModuleKey
 {
+global::System.Uri global::DripSharp.Brine.Module.ModuleKey.Uri => this.GetUri();
+bool global::DripSharp.Brine.Module.ModuleKey.Cached => this.IsCached();
+bool global::DripSharp.Brine.Module.ModuleKey.Local => this.IsLocal();
+string? global::DripSharp.Brine.Module.ModuleKey.FileCachePath => this.GetFileCacheLocation();
+
+global::DripSharp.Brine.Module.ModuleKey global::DripSharp.Brine.Module.ResolvedModuleKey.Original => this.GetOriginal();
+global::System.Uri global::DripSharp.Brine.Module.ResolvedModuleKey.Uri => this.GetUri();
+string global::DripSharp.Brine.Module.ResolvedModuleKey.Source => this.LoadSource();
+
 public virtual string? GetFileCacheLocation() {
 return default!;
 }
@@ -282,6 +305,11 @@ return global::DripSharp.Brine.Util.IoUtils.ReadClassPathResourceAsString(((obje
 
 internal partial class File : global::DripSharp.Brine.Module.ModuleKey
 {
+global::System.Uri global::DripSharp.Brine.Module.ModuleKey.Uri => this.GetUri();
+bool global::DripSharp.Brine.Module.ModuleKey.Cached => this.IsCached();
+bool global::DripSharp.Brine.Module.ModuleKey.Local => this.IsLocal();
+string? global::DripSharp.Brine.Module.ModuleKey.FileCachePath => this.GetFileCacheLocation();
+
 public virtual string? GetFileCacheLocation() {
 return default!;
 }
@@ -356,6 +384,11 @@ return true;
 
 internal sealed partial class ModulePath : global::DripSharp.Brine.Module.ModuleKey
 {
+global::System.Uri global::DripSharp.Brine.Module.ModuleKey.Uri => this.GetUri();
+bool global::DripSharp.Brine.Module.ModuleKey.Cached => this.IsCached();
+bool global::DripSharp.Brine.Module.ModuleKey.Local => this.IsLocal();
+string? global::DripSharp.Brine.Module.ModuleKey.FileCachePath => this.GetFileCacheLocation();
+
 public string? GetFileCacheLocation() {
 return default!;
 }
@@ -428,6 +461,11 @@ return global::DripSharp.Brine.Module.ResolvedModuleKeys.File(this, global::Drip
 
 internal sealed partial class ClassPath : global::DripSharp.Brine.Module.ModuleKey
 {
+global::System.Uri global::DripSharp.Brine.Module.ModuleKey.Uri => this.GetUri();
+bool global::DripSharp.Brine.Module.ModuleKey.Cached => this.IsCached();
+bool global::DripSharp.Brine.Module.ModuleKey.Local => this.IsLocal();
+string? global::DripSharp.Brine.Module.ModuleKey.FileCachePath => this.GetFileCacheLocation();
+
 public string? GetFileCacheLocation() {
 return default!;
 }
@@ -509,6 +547,11 @@ return path.Substring(1);
 
 internal partial class Http : global::DripSharp.Brine.Module.ModuleKey
 {
+global::System.Uri global::DripSharp.Brine.Module.ModuleKey.Uri => this.GetUri();
+bool global::DripSharp.Brine.Module.ModuleKey.Cached => this.IsCached();
+bool global::DripSharp.Brine.Module.ModuleKey.Local => this.IsLocal();
+string? global::DripSharp.Brine.Module.ModuleKey.FileCachePath => this.GetFileCacheLocation();
+
 public virtual string? GetFileCacheLocation() {
 return default!;
 }
@@ -562,7 +605,7 @@ return false;
 public virtual global::DripSharp.Brine.Module.ResolvedModuleKey Resolve(global::DripSharp.Brine.SecurityManager securityManager) {
 var httpClient = global::DripSharp.Brine.Runtime.VmContext.Get((global::DripSharp.Brine.Runtime.Truffle.api.nodes.Node?)default!).GetHttpClient();
 var request = global::DripSharp.Brine.Runtime.JavaHttpRequest.NewBuilder(this.uri).Build();
-var response = global::DripSharp.Brine.Http.HttpClientCompatibility.Send<global::System.IO.Stream>(httpClient, request, global::DripSharp.Brine.Runtime.JavaHttpBodyHandlers.OfInputStream(), securityManager.CheckResolveModule);
+var response = ((global::DripSharp.Brine.Runtime.JavaHttpResponse<global::System.IO.Stream>)(global::DripSharp.Brine.Http.HttpClientCompatibility.Send<global::System.IO.Stream>(httpClient, request, global::DripSharp.Brine.Runtime.JavaHttpBodyHandlers.OfInputStream(), securityManager.CheckResolveModule)));
 using (var body = response.Body()) {
 global::DripSharp.Brine.Util.HttpUtils.CheckHasStatusCode200(response);
 string text = global::DripSharp.Brine.Util.IoUtils.ReadString(body);
@@ -573,6 +616,11 @@ return global::DripSharp.Brine.Module.ResolvedModuleKeys.CreateVirtual(this, thi
 
 internal partial class GenericUrl : global::DripSharp.Brine.Module.ModuleKey
 {
+global::System.Uri global::DripSharp.Brine.Module.ModuleKey.Uri => this.GetUri();
+bool global::DripSharp.Brine.Module.ModuleKey.Cached => this.IsCached();
+bool global::DripSharp.Brine.Module.ModuleKey.Local => this.IsLocal();
+string? global::DripSharp.Brine.Module.ModuleKey.FileCachePath => this.GetFileCacheLocation();
+
 public virtual string? GetFileCacheLocation() {
 return default!;
 }
@@ -647,6 +695,11 @@ return global::DripSharp.Brine.Module.ResolvedModuleKeys.CreateVirtual(this, thi
 
 internal abstract partial class AbstractPackage : global::DripSharp.Brine.Module.ModuleKey
 {
+global::System.Uri global::DripSharp.Brine.Module.ModuleKey.Uri => this.GetUri();
+bool global::DripSharp.Brine.Module.ModuleKey.Cached => this.IsCached();
+bool global::DripSharp.Brine.Module.ModuleKey.Local => this.IsLocal();
+string? global::DripSharp.Brine.Module.ModuleKey.FileCachePath => this.GetFileCacheLocation();
+
 public virtual string? GetFileCacheLocation() {
 return default!;
 }
@@ -842,6 +895,11 @@ return global::DripSharp.Runtime.JavaCompat.CastDictionary<string, global::DripS
 
 public partial class ExternalResolver : global::DripSharp.Brine.Module.ModuleKey
 {
+global::System.Uri global::DripSharp.Brine.Module.ModuleKey.Uri => this.GetUri();
+bool global::DripSharp.Brine.Module.ModuleKey.Cached => this.IsCached();
+bool global::DripSharp.Brine.Module.ModuleKey.Local => this.IsLocal();
+string? global::DripSharp.Brine.Module.ModuleKey.FileCachePath => this.GetFileCacheLocation();
+
 public virtual string? GetFileCacheLocation() {
 return default!;
 }

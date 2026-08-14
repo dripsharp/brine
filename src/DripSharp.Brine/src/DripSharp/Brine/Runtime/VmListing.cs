@@ -51,7 +51,7 @@ public override global::DripSharp.Brine.Runtime.VmClass GetVmClass() {
 return global::DripSharp.Brine.Runtime.BaseModule.GetListingClass();
 }
 
-public override global::System.Collections.Generic.IList<object> Export() {
+public override object Export() {
 var properties = new global::System.Collections.Generic.List<object>(global::DripSharp.Brine.Util.EconomicMaps.Size<object, object>(base.cachedValues));
 this.IterateMemberValues((key, prop, value) => {
 if (VmListing.IsDefaultProperty(key)) {

@@ -23,7 +23,7 @@ this.securityManager = securityManager;
 foreach (var reader in readers) {
 global::DripSharp.Runtime.JavaCompat.MapPut(this.resourceReaders, reader.GetUriScheme(), reader);
 }
-this.resourceFactory = new global::DripSharp.Brine.Stdlib.VmObjectFactory<global::DripSharp.Brine.Resource.Resource>(global::DripSharp.Brine.Runtime.BaseModule.GetResourceClass).AddProperty<string>("uri", (resource) => global::DripSharp.Runtime.JavaCompat.UriToString(resource.Uri)).AddProperty<string>("text", (value0) => value0.GetText()).AddProperty<global::DripSharp.Brine.Runtime.VmBytes>("bytes", (resource) => new global::DripSharp.Brine.Runtime.VmBytes(resource.Bytes));
+this.resourceFactory = ((global::DripSharp.Brine.Stdlib.VmObjectFactory<global::DripSharp.Brine.Resource.Resource>)(((global::DripSharp.Brine.Stdlib.VmObjectFactory<global::DripSharp.Brine.Resource.Resource>)(((global::DripSharp.Brine.Stdlib.VmObjectFactory<global::DripSharp.Brine.Resource.Resource>)(new global::DripSharp.Brine.Stdlib.VmObjectFactory<global::DripSharp.Brine.Resource.Resource>(global::DripSharp.Brine.Runtime.BaseModule.GetResourceClass).AddProperty<string>("uri", (resource) => global::DripSharp.Runtime.JavaCompat.UriToString(resource.Uri)))).AddProperty<string>("text", (value0) => value0.GetText()))).AddProperty<global::DripSharp.Brine.Runtime.VmBytes>("bytes", (resource) => new global::DripSharp.Brine.Runtime.VmBytes(resource.Bytes))));
 }
 
 public global::DripSharp.Brine.Resource.ResourceReader GetReader(global::System.Uri resourceUri, global::DripSharp.Brine.Runtime.Truffle.api.nodes.Node readNode) {

@@ -17,11 +17,11 @@ return new global::System.Collections.Generic.HashSet<T>();
 }
 
 public static global::System.Collections.Generic.HashSet<T> NewHashSet<T>(int expectedSize) {
-return new global::System.Collections.Generic.HashSet<T>(((int)((expectedSize / (float)(CollectionUtils.LOAD_FACTOR))) + 1));
+return new global::System.Collections.Generic.HashSet<T>();
 }
 
 public static global::System.Collections.Generic.HashSet<T> NewLinkedHashSet<T>(int expectedSize) {
-return new global::System.Collections.Generic.HashSet<T>(((int)((expectedSize / (float)(CollectionUtils.LOAD_FACTOR))) + 1));
+return new global::System.Collections.Generic.HashSet<T>();
 }
 
 public static global::DripSharp.Runtime.JavaLinkedHashMap<K, V> NewLinkedHashMap<K, V>(int expectedSize) {

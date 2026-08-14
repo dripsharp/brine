@@ -24,7 +24,7 @@ this.unresolvedFunctionNode = functionNode;
 this.isCustomThisScope = isCustomThisScope;
 }
 
-public override global::DripSharp.Brine.Runtime.VmFunction ExecuteGeneric(global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame frame) {
+public override object ExecuteGeneric(global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame frame) {
 if ((this.functionNode! == default!)) {
 global::DripSharp.Brine.Runtime.Truffle.api.CompilerDirectives.TransferToInterpreterAndInvalidate();
 this.functionNode = this.unresolvedFunctionNode.Execute(frame);

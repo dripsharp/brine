@@ -21,11 +21,11 @@ this.rrbt = rrbt;
 }
 
 public static VmList Of(object value) {
-return new VmList(global::DripSharp.Brine.Util.Paguro.RrbTree<object>.EmptyMutable<object>().Append(value).Immutable());
+return new VmList(((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.ImRrbt<object>)(((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.MutRrbt<object>)(global::DripSharp.Brine.Util.Paguro.RrbTree<object>.EmptyMutable<object>().Append(value))).Immutable())));
 }
 
 public static VmList Of(object value1, object value2) {
-return new VmList(global::DripSharp.Brine.Util.Paguro.RrbTree<object>.EmptyMutable<object>().Append(value1).Append(value2).Immutable());
+return new VmList(((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.ImRrbt<object>)(((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.MutRrbt<object>)(((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.MutRrbt<object>)(global::DripSharp.Brine.Util.Paguro.RrbTree<object>.EmptyMutable<object>().Append(value1))).Append(value2))).Immutable())));
 }
 
 internal static VmList Create(global::DripSharp.Brine.Util.Paguro.RrbTree<object>.ImRrbt<object> rrbt) {
@@ -39,11 +39,11 @@ internal static VmList Create(global::DripSharp.Brine.Util.Paguro.RrbTree<object
 if (global::DripSharp.Runtime.JavaCompat.CollectionIsEmpty(rrbt)) {
 return VmList.EMPTY;
 }
-return new VmList((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.ImRrbt<object>)(rrbt.Immutable()!));
+return new VmList((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.ImRrbt<object>)(((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.ImRrbt<object>)(rrbt.Immutable()))!));
 }
 
 public static VmList CreateFromIterable(global::System.Collections.Generic.IEnumerable<object> iterable) {
-return VmList.Create((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.EmptyMutable<object>()).Concat(iterable).Immutable());
+return VmList.Create(((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.ImRrbt<object>)(((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.MutRrbt<object>)((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.EmptyMutable<object>()).Concat(iterable))).Immutable())));
 }
 
 internal static VmList CreateFromUnmodIterable(global::System.Collections.Generic.IEnumerable<object> iterable) {
@@ -54,7 +54,7 @@ internal static VmList Create(global::System.Collections.Generic.ICollection<obj
 if (global::DripSharp.Runtime.JavaCompat.CollectionIsEmpty(collection)) {
 return VmList.EMPTY;
 }
-return new VmList((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.EmptyMutable<object>()).Concat(collection).Immutable());
+return new VmList(((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.ImRrbt<object>)(((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.MutRrbt<object>)((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.EmptyMutable<object>()).Concat(collection))).Immutable())));
 }
 
 public static VmList Create(object[] elements) {
@@ -65,7 +65,7 @@ var vector = global::DripSharp.Brine.Util.Paguro.RrbTree<object>.EmptyMutable<ob
 foreach (var elem in elements) {
 vector.Append(elem);
 }
-return new VmList(vector.Immutable());
+return new VmList(((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.ImRrbt<object>)(vector.Immutable())));
 }
 
 public static VmList Create(sbyte[] elements) {
@@ -76,7 +76,7 @@ var vector = global::DripSharp.Brine.Util.Paguro.RrbTree<object>.EmptyMutable<ob
 foreach (var elem in elements) {
 vector.Append(global::DripSharp.Runtime.JavaCompat.ToUnsignedLong(elem));
 }
-return new VmList(vector.Immutable());
+return new VmList(((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.ImRrbt<object>)(vector.Immutable())));
 }
 
 public static VmList Create(object[] elements, int length) {
@@ -87,7 +87,7 @@ var vector = global::DripSharp.Brine.Util.Paguro.RrbTree<object>.EmptyMutable<ob
 for (var i = 0; (i < length); i++) {
 vector.Append(elements[i]);
 }
-return new VmList(vector.Immutable());
+return new VmList(((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.ImRrbt<object>)(vector.Immutable())));
 }
 
 public static VmList CreateFromConstantNodes(global::DripSharp.Brine.Ast.ExpressionNode[] elements) {
@@ -99,7 +99,7 @@ foreach (var elem in elements) {
 global::DripSharp.Runtime.JavaCompat.Assert(() => (elem is global::DripSharp.Brine.Ast.ConstantNode));
 vector.Append(((global::DripSharp.Brine.Ast.ConstantNode)(elem!)).GetValue());
 }
-return new VmList(vector.Immutable());
+return new VmList(((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.ImRrbt<object>)(vector.Immutable())));
 }
 
 public override global::DripSharp.Brine.Runtime.VmClass GetVmClass() {
@@ -122,34 +122,34 @@ public long GetLastIndex() {
 return (this.rrbt.Size() - 1);
 }
 
-public override VmList Add(object element) {
-return VmList.Create(this.rrbt.Append(element));
+public override global::DripSharp.Brine.Runtime.VmCollection Add(object element) {
+return VmList.Create(((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.ImRrbt<object>)(this.rrbt.Append(element))));
 }
 
 public VmList Replace(long index, object element) {
-return VmList.Create(this.rrbt.Replace((int)((int)(index)), element));
+return VmList.Create(((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.ImRrbt<object>)(this.rrbt.Replace((int)((int)(index)), element))));
 }
 
 public object ReplaceOrNull(long index, object element) {
 if (((index < 0) || (index >= this.GetLength()))) {
 return global::DripSharp.Brine.Runtime.VmNull.WithoutDefault();
 }
-return VmList.Create(this.rrbt.Replace((int)((int)(index)), element));
+return VmList.Create(((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.ImRrbt<object>)(this.rrbt.Replace((int)((int)(index)), element))));
 }
 
-public override VmList Concatenate(global::DripSharp.Brine.Runtime.VmCollection other) {
-return (other.IsEmpty() ? this : VmList.Create((this.rrbt).Concat(other)));
+public override global::DripSharp.Brine.Runtime.VmCollection Concatenate(global::DripSharp.Brine.Runtime.VmCollection other) {
+return (other.IsEmpty() ? this : VmList.Create(((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.ImRrbt<object>)((this.rrbt).Concat(other)))));
 }
 
 public object Get(long index) {
-return this.rrbt.Get((int)((int)(index)));
+return ((object)(this.rrbt.Get((int)((int)(index)))));
 }
 
 public object GetOrNull(long index) {
 if (((index < 0) || (index >= this.GetLength()))) {
 return global::DripSharp.Brine.Runtime.VmNull.WithoutDefault();
 }
-return this.rrbt.Get((int)((int)(index)));
+return ((object)(this.rrbt.Get((int)((int)(index)))));
 }
 
 public VmList SubList(long start, long exclusiveEnd) {
@@ -181,20 +181,20 @@ return global::DripSharp.Runtime.JavaCompat.EmptyJavaIterator<object>();
 return new global::DripSharp.Brine.Runtime.Iterators.ReverseTruffleIterator<object>(this.rrbt);
 }
 
-public override global::DripSharp.Brine.Runtime.VmCollection.Builder<VmList> CreateBuilder() {
+public override global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmCollection> CreateBuilder() {
 return new Builder();
 }
 
 public object GetFirst() {
 this.CheckNonEmpty();
-return this.rrbt.Get(0);
+return ((object)(this.rrbt.Get(0)));
 }
 
 public object GetFirstOrNull() {
 if (global::DripSharp.Runtime.JavaCompat.CollectionIsEmpty(this.rrbt)) {
 return global::DripSharp.Brine.Runtime.VmNull.WithoutDefault();
 }
-return this.rrbt.Get(0);
+return ((object)(this.rrbt.Get(0)));
 }
 
 public VmList GetRest() {
@@ -211,26 +211,26 @@ return VmList.CreateFromUnmodIterable((this.rrbt).Drop((long)(1)));
 
 public object GetLast() {
 this.CheckNonEmpty();
-return this.rrbt.Get((this.rrbt.Size() - 1));
+return ((object)(this.rrbt.Get((this.rrbt.Size() - 1))));
 }
 
 public object GetLastOrNull() {
 if (this.IsEmpty()) {
 return global::DripSharp.Brine.Runtime.VmNull.WithoutDefault();
 }
-return this.rrbt.Get((this.rrbt.Size() - 1));
+return ((object)(this.rrbt.Get((this.rrbt.Size() - 1))));
 }
 
 public object GetSingle() {
 this.CheckLengthOne();
-return this.rrbt.Get(0);
+return ((object)(this.rrbt.Get(0)));
 }
 
 public object GetSingleOrNull() {
 if (!(this.IsLengthOne())) {
 return global::DripSharp.Brine.Runtime.VmNull.WithoutDefault();
 }
-return this.rrbt.Get(0);
+return ((object)(this.rrbt.Get(0)));
 }
 
 public bool Contains(object element) {
@@ -325,9 +325,9 @@ var remaining = n;
 var result = global::DripSharp.Brine.Util.Paguro.RrbTree<object>.Empty<object>();
 var factor = this.rrbt;
 while (remaining > 0) {
-if ((remaining & 1L) != 0) result = result.Join(factor);
+if ((remaining & 1L) != 0) result = (global::DripSharp.Brine.Util.Paguro.RrbTree<object>.ImRrbt<object>)result.Join(factor);
 remaining >>= 1;
-if (remaining > 0) factor = factor.Join(factor);
+if (remaining > 0) factor = (global::DripSharp.Brine.Util.Paguro.RrbTree<object>.ImRrbt<object>)factor.Join(factor);
 }
 return global::DripSharp.Brine.Runtime.VmList.Create(result);
 }
@@ -372,14 +372,13 @@ try {
 foreach (var elem in this.rrbt) {
 global::DripSharp.Brine.Runtime.VmValue.Force(elem, allowUndefinedValues);
 }
-} catch (global::System.Exception t) {
+} catch (global::System.Exception) {
 this.forced = false;
-global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(t);
-throw new global::System.InvalidOperationException("unreachable");
+throw;
 }
 }
 
-public override global::System.Collections.Generic.IList<object> Export() {
+public override object Export() {
 var result = new global::System.Collections.Generic.List<object>(this.rrbt.Size());
 foreach (var elem in this.rrbt) {
 global::DripSharp.Runtime.JavaCompat.Add(result, global::DripSharp.Brine.Runtime.VmValue.Export(elem));

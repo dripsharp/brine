@@ -25,7 +25,7 @@ internal abstract partial class ModuleOf : global::DripSharp.Brine.Stdlib.Extern
 protected internal virtual global::DripSharp.Brine.Runtime.VmTyped Eval(global::DripSharp.Brine.Runtime.VmTyped self, global::DripSharp.Brine.Runtime.VmTyped module) {
 var candidate = module;
 while (!(candidate.IsModuleObject())) {
-candidate = candidate.GetParent()!;
+candidate = ((global::DripSharp.Brine.Runtime.VmTyped)(candidate.GetParent()))!;
 if ((candidate == default!)) {
 throw this.ExceptionBuilder().Bug("No module found in prototype chain.").WithLocation(this.GetArg1Node()).Build();
 }
@@ -54,7 +54,7 @@ protected internal virtual global::DripSharp.Brine.Runtime.VmTyped Eval(global::
 var extraStorage = referent.GetExtraStorage();
 global::DripSharp.Runtime.JavaCompat.Assert(() => ((extraStorage is global::DripSharp.Brine.Runtime.VmClass) || (extraStorage is global::DripSharp.Brine.Runtime.VmTypeAlias)));
 var typeParameterCount = ((extraStorage is global::DripSharp.Brine.Runtime.VmClass vmClass) ? vmClass.GetTypeParameterCount() : ((global::DripSharp.Brine.Runtime.VmTypeAlias)(extraStorage!)).GetTypeParameterCount());
-var builder = global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder()));
 for (var i = 0; (i < typeParameterCount); i++) {
 builder.Add((global::DripSharp.Brine.Runtime.MirrorFactories.unknownTypeFactory).Create(default!));
 }

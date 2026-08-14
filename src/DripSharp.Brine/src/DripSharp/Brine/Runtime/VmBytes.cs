@@ -53,7 +53,7 @@ return global::DripSharp.Brine.Runtime.BaseModule.GetBytesClass();
 
 public override void Force(bool allowUndefinedValues) {}
 
-public override byte[] Export() {
+public override object Export() {
 return global::DripSharp.Runtime.JavaCompat.ToUnsignedBytes(this.GetBytes());
 }
 
@@ -185,6 +185,8 @@ public Anonymous_188_12(VmBytes __outer) {
 this.__outer = __outer;
 this.index = 0;
 }
+
+public void Remove() => throw new global::System.NotSupportedException();
 
 public long Next() => this.NextLong();
 

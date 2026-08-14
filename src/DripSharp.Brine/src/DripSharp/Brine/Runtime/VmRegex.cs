@@ -30,7 +30,7 @@ return global::DripSharp.Brine.Runtime.BaseModule.GetRegexClass();
 
 public override void Force(bool allowUndefinedValues) {}
 
-public override global::System.Text.RegularExpressions.Regex Export() {
+public override object Export() {
 return this.pattern;
 }
 

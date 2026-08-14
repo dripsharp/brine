@@ -46,7 +46,7 @@ private void AddMembers(global::DripSharp.Brine.Runtime.Truffle.api.frame.Virtua
 this.InitThisSlot(frame);
 var previousValue = frame.GetAuxiliarySlot(this.customThisSlot);
 var visitedKeys = global::DripSharp.Brine.Util.EconomicSets.Create<object>();
-for (var owner = parent; (owner != default!); owner = owner.GetParent()!) {
+for (var owner = parent; (owner != default!); owner = ((global::DripSharp.Brine.Runtime.VmObject)(owner.GetParent()))!) {
 var entries = global::DripSharp.Brine.Util.EconomicMaps.GetEntries<object, global::DripSharp.Brine.Ast.Member.ObjectMember>(owner.GetMembers());
 while (entries.Advance()) {
 var key = entries.GetKey();

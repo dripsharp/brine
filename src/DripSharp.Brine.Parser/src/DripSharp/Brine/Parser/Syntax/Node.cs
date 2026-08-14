@@ -20,7 +20,5 @@ public global::System.Collections.Generic.IReadOnlyList<Node?> Children();
 
 public T Accept<T>(global::DripSharp.Brine.Parser.ParserVisitor<T> visitor);
 
-public string Text(char[] source) {
-return new string(source, (this.Span()).CharIndex, (this.Span()).Length);
-}
+public string Text(char[] source);
 }

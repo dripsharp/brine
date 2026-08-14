@@ -65,7 +65,7 @@ return global::DripSharp.Brine.Ast.VmModifier.GetMirrors(base.modifiers, false);
 }
 
 public global::DripSharp.Brine.Runtime.VmList GetTypeParameterMirrors() {
-var builder = global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder()));
 foreach (var typeParameter in this.typeParameters) {
 builder.Add(global::DripSharp.Brine.Runtime.MirrorFactories.typeParameterFactory.Create(typeParameter));
 }

@@ -31,8 +31,7 @@ return uri;
 if (global::DripSharp.Runtime.JavaCompat.Equals((((object)(e)).GetType().FullName ?? ((object)(e)).GetType().Name), "com.oracle.svm.core.jdk.UnsupportedFeatureError")) {
 throw new global::System.IO.IOException(global::DripSharp.Runtime.JavaCompat.Concat("Unsupported protocol: ", global::DripSharp.Runtime.JavaCompat.UriScheme(uri)!));
 }
-global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(e);
-throw new global::System.InvalidOperationException("unreachable");
+throw;
 }
 }
 
@@ -566,7 +565,7 @@ return sb.ToString();
 
 public static string ToNormalizedPathString(string path) {
 if (IoUtils.IsWindows()) {
-return path.ToString()!.Replace("\\", "/", global::System.StringComparison.Ordinal);
+return global::DripSharp.Runtime.JavaCompat.ReplaceOrdinal(path.ToString()!, "\\", "/");
 }
 return path.ToString()!;
 }

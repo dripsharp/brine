@@ -16,7 +16,7 @@ return (global::DripSharp.Brine.Util.MathUtils.IsMathematicalInteger(value) ? gl
 
 public static string ToIsoString(double value, global::DripSharp.Brine.DurationUnit unit) {
 var totalSeconds = (value * (unit.GetNanos() / (double)(1.0E9D)));
-if (!(double.IsFinite(totalSeconds))) {
+if (!(global::DripSharp.Runtime.JavaCompat.IsFinite(totalSeconds))) {
 throw new global::System.ArithmeticException(global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat("Cannot convert Pkl duration `", DurationUtils.ToPklString(value, unit)), "` to ISO 8601 duration."));
 }
 var absoluteSeconds = global::System.Math.Abs(totalSeconds);

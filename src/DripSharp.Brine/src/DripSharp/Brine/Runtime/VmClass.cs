@@ -383,7 +383,7 @@ return global::DripSharp.Brine.Ast.VmModifier.GetMirrors(this.modifiers, true);
 }
 
 public global::DripSharp.Brine.Runtime.VmList GetTypeParameterMirrors() {
-var builder = global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder()));
 foreach (var typeParameter in this.typeParameters) {
 builder.Add(global::DripSharp.Brine.Runtime.MirrorFactories.typeParameterFactory.Create(typeParameter));
 }
@@ -442,14 +442,14 @@ builder.Add(method.GetName().ToString(), method.GetMirror());
 return builder.Build();
 }
 
-public override global::DripSharp.Brine.PClass Export() {
+public override object Export() {
 lock (this.pClassLock) {
 if ((this.__pClass != default!)) {
 return this.__pClass;
 }
 global::DripSharp.Brine.PClass moduleClass = default!;
 if (!(this.classInfo.IsModuleClass())) {
-moduleClass = this.GetModule().GetVmClass().Export();
+moduleClass = ((global::DripSharp.Brine.PClass)(this.GetModule().GetVmClass().Export()));
 }
 if ((this.__pClass != default!)) {
 return this.__pClass;
@@ -457,13 +457,13 @@ return this.__pClass;
 var exportedAnnotations = new global::System.Collections.Generic.List<global::DripSharp.Brine.PObject>();
 var properties = global::DripSharp.Brine.Util.CollectionUtils.NewLinkedHashMap<string, global::DripSharp.Brine.PClass.Property>(global::DripSharp.Brine.Util.EconomicMaps.Size<global::DripSharp.Brine.Runtime.Identifier, global::DripSharp.Brine.Ast.Member.ClassProperty>(this.declaredProperties));
 var methods = global::DripSharp.Brine.Util.CollectionUtils.NewLinkedHashMap<string, global::DripSharp.Brine.PClass.Method>(global::DripSharp.Brine.Util.EconomicMaps.Size<global::DripSharp.Brine.Runtime.Identifier, global::DripSharp.Brine.Ast.Member.ClassMethod>(this.declaredMethods));
-this.__pClass = new global::DripSharp.Brine.PClass(global::DripSharp.Brine.Runtime.VmUtils.ExportDocComment(this.docComment)!, new global::DripSharp.Brine.Member.SourceLocation(this.headerSection.GetStartLine(), this.sourceSection.GetEndLine()), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlySet<global::DripSharp.Brine.Modifier>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlySet<global::DripSharp.Brine.Modifier>>(global::DripSharp.Brine.Ast.VmModifier.Export(this.modifiers, true))), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.PObject>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.PObject>>(exportedAnnotations)), global::DripSharp.Brine.Runtime.PklRuntimeBridge.PClassInfoAsObject(this.classInfo), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.TypeParameter>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.TypeParameter>>(this.typeParameters)), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<string, global::DripSharp.Brine.PClass.Property>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<string, global::DripSharp.Brine.PClass.Property>>(properties)), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<string, global::DripSharp.Brine.PClass.Method>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<string, global::DripSharp.Brine.PClass.Method>>(methods)), moduleClass!);
+this.__pClass = new global::DripSharp.Brine.PClass(global::DripSharp.Brine.Runtime.VmUtils.ExportDocComment(this.docComment)!, new global::DripSharp.Brine.Member.SourceLocation(this.headerSection.GetStartLine(), this.sourceSection.GetEndLine()), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.ISet<global::DripSharp.Brine.Modifier>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.ISet<global::DripSharp.Brine.Modifier>>(global::DripSharp.Brine.Ast.VmModifier.Export(this.modifiers, true))), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.PObject>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.PObject>>(exportedAnnotations)), global::DripSharp.Brine.Runtime.PklRuntimeBridge.PClassInfoAsObject(this.classInfo), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.TypeParameter>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.TypeParameter>>(this.typeParameters)), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<string, global::DripSharp.Brine.PClass.Property>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<string, global::DripSharp.Brine.PClass.Property>>(properties)), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<string, global::DripSharp.Brine.PClass.Method>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<string, global::DripSharp.Brine.PClass.Method>>(methods)), moduleClass!);
 foreach (var parameter in this.typeParameters) {
 parameter.InitOwner(this.__pClass);
 }
 if ((this.supertypeNode! != default!)) {
 global::DripSharp.Runtime.JavaCompat.Assert(() => (this.superclass! != default!));
-this.__pClass.InitSupertype(global::DripSharp.Brine.Ast.Type.TypeNode.Export(this.supertypeNode!), this.superclass!.Export());
+this.__pClass.InitSupertype(global::DripSharp.Brine.Ast.Type.TypeNode.Export(this.supertypeNode!), ((global::DripSharp.Brine.PClass)(this.superclass!.Export())));
 }
 global::DripSharp.Brine.Runtime.VmUtils.ExportAnnotations(this.annotations, exportedAnnotations);
 foreach (var property in global::DripSharp.Brine.Util.EconomicMaps.GetValues<global::DripSharp.Brine.Runtime.Identifier, global::DripSharp.Brine.Ast.Member.ClassProperty>(this.declaredProperties)) {

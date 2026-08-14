@@ -56,7 +56,7 @@ return this.DoParseAll(self, text, uri);
 internal global::DripSharp.Brine.Runtime.VmList DoParseAll(global::DripSharp.Brine.Runtime.VmTyped self, string text, string uri) {
 var converter = global::DripSharp.Brine.Stdlib.PklConverter.FromParser(self);
 var load = ParserNodes.CreateLoad(self, text, uri, converter);
-var builder = global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder()));
 try {
 foreach (var document in load.LoadAllFromString(text)) {
 builder.Add(converter.Convert(document, global::DripSharp.Runtime.JavaCompat.ListOf<object>(global::DripSharp.Brine.Runtime.VmValueConverter<object>.TOP_LEVEL_VALUE)));
@@ -115,6 +115,8 @@ global::DripSharp.Runtime.JavaCompat.MapPut(base.TagConstructors, new global::Dr
 
 internal partial class ConstructBoolean : global::DripSharp.Brine.Runtime.SnakeYaml.api.ConstructNode
 {
+public void ConstructRecursive(global::DripSharp.Brine.Runtime.SnakeYaml.nodes.Node node, object? data) { }
+
 public virtual object Construct(global::DripSharp.Brine.Runtime.SnakeYaml.nodes.Node node) {
 var value = ((global::DripSharp.Brine.Runtime.SnakeYaml.nodes.ScalarNode)(node!)).GetValue();
 return ((global::System.Func<object>)(() => { switch (value) {
@@ -138,6 +140,8 @@ return false;
 
 internal partial class ConstructStr : global::DripSharp.Brine.Runtime.SnakeYaml.api.ConstructNode
 {
+public void ConstructRecursive(global::DripSharp.Brine.Runtime.SnakeYaml.nodes.Node node, object? data) { }
+
 public virtual object Construct(global::DripSharp.Brine.Runtime.SnakeYaml.nodes.Node node) {
 return ((global::DripSharp.Brine.Runtime.SnakeYaml.nodes.ScalarNode)(node!)).GetValue();
 }
@@ -145,6 +149,8 @@ return ((global::DripSharp.Brine.Runtime.SnakeYaml.nodes.ScalarNode)(node!)).Get
 
 internal partial class ConstructNull : global::DripSharp.Brine.Runtime.SnakeYaml.api.ConstructNode
 {
+public void ConstructRecursive(global::DripSharp.Brine.Runtime.SnakeYaml.nodes.Node node, object? data) { }
+
 public virtual object Construct(global::DripSharp.Brine.Runtime.SnakeYaml.nodes.Node node) {
 return global::DripSharp.Brine.Runtime.VmNull.WithoutDefault();
 }
@@ -152,6 +158,8 @@ return global::DripSharp.Brine.Runtime.VmNull.WithoutDefault();
 
 internal partial class ConstructInt : global::DripSharp.Brine.Runtime.SnakeYaml.api.ConstructNode
 {
+public void ConstructRecursive(global::DripSharp.Brine.Runtime.SnakeYaml.nodes.Node node, object? data) { }
+
 internal readonly bool enable11Octals;
 
 internal ConstructInt(bool enable11Octals) {
@@ -159,7 +167,7 @@ this.enable11Octals = enable11Octals;
 }
 
 public virtual object Construct(global::DripSharp.Brine.Runtime.SnakeYaml.nodes.Node node) {
-var value = ((global::DripSharp.Brine.Runtime.SnakeYaml.nodes.ScalarNode)(node!)).GetValue().Replace("_", "", global::System.StringComparison.Ordinal);
+var value = global::DripSharp.Runtime.JavaCompat.ReplaceOrdinal(((global::DripSharp.Brine.Runtime.SnakeYaml.nodes.ScalarNode)(node!)).GetValue(), "_", "");
 var firstChar = value[0];
 var isNegative = ((int)(firstChar) == (int)('-'));
 var offset = ((isNegative || ((int)(firstChar) == (int)('+'))) ? 1 : 0);
@@ -220,8 +228,10 @@ return result;
 
 internal partial class ConstructFloat : global::DripSharp.Brine.Runtime.SnakeYaml.api.ConstructNode
 {
+public void ConstructRecursive(global::DripSharp.Brine.Runtime.SnakeYaml.nodes.Node node, object? data) { }
+
 public virtual object Construct(global::DripSharp.Brine.Runtime.SnakeYaml.nodes.Node node) {
-var value = ((global::DripSharp.Brine.Runtime.SnakeYaml.nodes.ScalarNode)(node!)).GetValue().Replace("_", "", global::System.StringComparison.Ordinal);
+var value = global::DripSharp.Runtime.JavaCompat.ReplaceOrdinal(((global::DripSharp.Brine.Runtime.SnakeYaml.nodes.ScalarNode)(node!)).GetValue(), "_", "");
 if (global::DripSharp.Runtime.JavaCompat.Equals(value, ".")) {
 return 0.0D;
 }
@@ -269,6 +279,8 @@ return result;
 
 internal partial class ConstructBinary : global::DripSharp.Brine.Runtime.SnakeYaml.api.ConstructNode
 {
+public void ConstructRecursive(global::DripSharp.Brine.Runtime.SnakeYaml.nodes.Node node, object? data) { }
+
 public virtual object Construct(global::DripSharp.Brine.Runtime.SnakeYaml.nodes.Node node) {
 var value = ((global::DripSharp.Brine.Runtime.SnakeYaml.nodes.ScalarNode)(node!)).GetValue();
 var encoded = global::DripSharp.Runtime.JavaCompat.RegexMatcher(ParserNodes.WHITESPACE, value).ReplaceAll("");

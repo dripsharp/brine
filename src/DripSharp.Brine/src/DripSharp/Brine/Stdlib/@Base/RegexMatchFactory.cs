@@ -17,22 +17,22 @@ return RegexMatchFactory.factory.Create(extraStorage);
 private static readonly global::DripSharp.Brine.Stdlib.VmObjectFactory<global::DripSharp.Brine.Util.Pair<global::DripSharp.Runtime.JavaRegexMatcher, int>> factory = new global::DripSharp.Brine.Stdlib.VmObjectFactory<global::DripSharp.Brine.Util.Pair<global::DripSharp.Runtime.JavaRegexMatcher, int>>(global::DripSharp.Brine.Runtime.BaseModule.GetRegexMatchClass);
 
 static RegexMatchFactory() {
-RegexMatchFactory.factory.AddStringProperty("value", (resultAndIndex) => {
+((global::DripSharp.Brine.Stdlib.VmObjectFactory<global::DripSharp.Brine.Util.Pair<global::DripSharp.Runtime.JavaRegexMatcher, int>>)(((global::DripSharp.Brine.Stdlib.VmObjectFactory<global::DripSharp.Brine.Util.Pair<global::DripSharp.Runtime.JavaRegexMatcher, int>>)(((global::DripSharp.Brine.Stdlib.VmObjectFactory<global::DripSharp.Brine.Util.Pair<global::DripSharp.Runtime.JavaRegexMatcher, int>>)(RegexMatchFactory.factory.AddStringProperty("value", (resultAndIndex) => {
 var index = resultAndIndex.second;
 return resultAndIndex.first.Group(((index == -1) ? 0 : index));
-}).AddIntProperty("start", (resultAndIndex) => {
+}))).AddIntProperty("start", (resultAndIndex) => {
 var index = resultAndIndex.second;
 return resultAndIndex.first.Start(((index == -1) ? 0 : index));
-}).AddIntProperty("end", (resultAndIndex) => {
+}))).AddIntProperty("end", (resultAndIndex) => {
 var index = resultAndIndex.second;
 return resultAndIndex.first.End(((index == -1) ? 0 : index));
-}).AddListProperty("groups", (resultAndIndex) => {
+}))).AddListProperty("groups", (resultAndIndex) => {
 var groupIndex = resultAndIndex.second;
 if ((groupIndex != -1)) {
 return global::DripSharp.Brine.Runtime.VmList.EMPTY;
 }
 var result = resultAndIndex.first;
-var builder = global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder()));
 for (var i = 0; (i <= result.GroupCount()); i++) {
 if ((result.Start(i) == -1)) {
 builder.Add(global::DripSharp.Brine.Runtime.VmNull.WithoutDefault());

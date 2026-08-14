@@ -14,19 +14,11 @@ public bool HasHierarchicalUris();
 
 public bool IsGlobbable();
 
-public bool HasFragmentPaths() {
-return false;
-}
+public bool HasFragmentPaths();
 
-public bool HasElement(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri elementUri) {
-throw new global::System.NotSupportedException();
-}
+public bool HasElement(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri elementUri);
 
-public global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement> ListElements(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri baseUri) {
-throw new global::System.NotSupportedException();
-}
+public global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement> ListElements(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri baseUri);
 
-public global::System.Uri ResolveUri(global::System.Uri baseUri, global::System.Uri uri) {
-return global::DripSharp.Brine.Util.IoUtils.Resolve(this, baseUri, uri);
-}
+public global::System.Uri ResolveUri(global::System.Uri baseUri, global::System.Uri uri);
 }

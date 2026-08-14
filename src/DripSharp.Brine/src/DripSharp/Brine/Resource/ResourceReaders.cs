@@ -66,42 +66,42 @@ internal sealed partial class EnvironmentVariable : global::DripSharp.Brine.Reso
 {
 public void Dispose() => this.Close();
 
-public void Close() {}
+public override void Close() {}
 
-public bool HasElement(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri elementUri) {
+public override bool HasElement(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri elementUri) {
 throw new global::System.NotSupportedException();
 }
 
-public bool HasFragmentPaths() {
+public override bool HasFragmentPaths() {
 return false;
 }
 
-public global::System.Uri ResolveUri(global::System.Uri baseUri, global::System.Uri uri) {
+public override global::System.Uri ResolveUri(global::System.Uri baseUri, global::System.Uri uri) {
 return global::DripSharp.Brine.Util.IoUtils.Resolve(this, baseUri, uri);
 }
 
 internal static readonly global::DripSharp.Brine.Resource.ResourceReader INSTANCE = new EnvironmentVariable();
 
-public string GetUriScheme() {
+public override string GetUriScheme() {
 return "env";
 }
 
-public object? Read(global::System.Uri uri) {
+public override object? Read(global::System.Uri uri) {
 global::DripSharp.Runtime.JavaCompat.Assert(() => global::DripSharp.Runtime.JavaCompat.Equals(global::DripSharp.Runtime.JavaCompat.UriScheme(uri)!, "env"));
 var context = global::DripSharp.Brine.Runtime.VmContext.Get((global::DripSharp.Brine.Runtime.Truffle.api.nodes.Node?)default!);
 var value = global::DripSharp.Runtime.JavaCompat.MapGet(context.GetEnvironmentVariables(), global::DripSharp.Runtime.JavaCompat.UriSchemeSpecificPart(uri)!);
 return (global::DripSharp.Brine.Runtime.JavaOptional<object>.OfNullable(value)).OrElse(default!);
 }
 
-public bool HasHierarchicalUris() {
+public override bool HasHierarchicalUris() {
 return false;
 }
 
-public bool IsGlobbable() {
+public override bool IsGlobbable() {
 return true;
 }
 
-public global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement> ListElements(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri baseUri) {
+public override global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement> ListElements(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri baseUri) {
 securityManager.CheckResolveResource(baseUri);
 var context = global::DripSharp.Brine.Runtime.VmContext.Get((global::DripSharp.Brine.Runtime.Truffle.api.nodes.Node?)default!);
 var ret = new global::System.Collections.Generic.List<global::DripSharp.Brine.Module.PathElement>();
@@ -116,42 +116,42 @@ internal sealed partial class ExternalProperty : global::DripSharp.Brine.Resourc
 {
 public void Dispose() => this.Close();
 
-public void Close() {}
+public override void Close() {}
 
-public bool HasElement(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri elementUri) {
+public override bool HasElement(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri elementUri) {
 throw new global::System.NotSupportedException();
 }
 
-public bool HasFragmentPaths() {
+public override bool HasFragmentPaths() {
 return false;
 }
 
-public global::System.Uri ResolveUri(global::System.Uri baseUri, global::System.Uri uri) {
+public override global::System.Uri ResolveUri(global::System.Uri baseUri, global::System.Uri uri) {
 return global::DripSharp.Brine.Util.IoUtils.Resolve(this, baseUri, uri);
 }
 
 internal static readonly global::DripSharp.Brine.Resource.ResourceReader INSTANCE = new ExternalProperty();
 
-public string GetUriScheme() {
+public override string GetUriScheme() {
 return "prop";
 }
 
-public object? Read(global::System.Uri uri) {
+public override object? Read(global::System.Uri uri) {
 global::DripSharp.Runtime.JavaCompat.Assert(() => global::DripSharp.Runtime.JavaCompat.Equals(global::DripSharp.Runtime.JavaCompat.UriScheme(uri)!, "prop"));
 var context = global::DripSharp.Brine.Runtime.VmContext.Get((global::DripSharp.Brine.Runtime.Truffle.api.nodes.Node?)default!);
 var value = global::DripSharp.Runtime.JavaCompat.MapGet(context.GetExternalProperties(), global::DripSharp.Runtime.JavaCompat.UriSchemeSpecificPart(uri)!);
 return (global::DripSharp.Brine.Runtime.JavaOptional<object>.OfNullable(value)).OrElse(default!);
 }
 
-public bool HasHierarchicalUris() {
+public override bool HasHierarchicalUris() {
 return false;
 }
 
-public bool IsGlobbable() {
+public override bool IsGlobbable() {
 return true;
 }
 
-public global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement> ListElements(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri baseUri) {
+public override global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement> ListElements(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri baseUri) {
 securityManager.CheckResolveResource(baseUri);
 var context = global::DripSharp.Brine.Runtime.VmContext.Get((global::DripSharp.Brine.Runtime.Truffle.api.nodes.Node?)default!);
 var ret = new global::System.Collections.Generic.List<global::DripSharp.Brine.Module.PathElement>();
@@ -248,37 +248,37 @@ internal abstract partial class UrlResource : global::DripSharp.Brine.Resource.R
 {
 public void Dispose() => this.Close();
 
-public virtual void Close() {}
+public override void Close() {}
 
-public abstract string GetUriScheme();
+public abstract override string GetUriScheme();
 
-public virtual bool HasElement(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri elementUri) {
+public override bool HasElement(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri elementUri) {
 throw new global::System.NotSupportedException();
 }
 
-public virtual bool HasFragmentPaths() {
+public override bool HasFragmentPaths() {
 return false;
 }
 
-public abstract bool HasHierarchicalUris();
+public abstract override bool HasHierarchicalUris();
 
-public abstract bool IsGlobbable();
+public abstract override bool IsGlobbable();
 
-public virtual global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement> ListElements(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri baseUri) {
+public override global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement> ListElements(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri baseUri) {
 throw new global::System.NotSupportedException();
 }
 
-public virtual global::System.Uri ResolveUri(global::System.Uri baseUri, global::System.Uri uri) {
+public override global::System.Uri ResolveUri(global::System.Uri baseUri, global::System.Uri uri) {
 return global::DripSharp.Brine.Util.IoUtils.Resolve(this, baseUri, uri);
 }
 
-public virtual object? Read(global::System.Uri uri) {
+public override object? Read(global::System.Uri uri) {
 if (global::DripSharp.Brine.Util.HttpUtils.IsHttpUrlFromURI(uri)) {
 var vmContext = global::DripSharp.Brine.Runtime.VmContext.Get((global::DripSharp.Brine.Runtime.Truffle.api.nodes.Node?)default!);
 var securityManager = vmContext.GetSecurityManager();
 var httpClient = vmContext.GetHttpClient();
 var request = global::DripSharp.Brine.Runtime.JavaHttpRequest.NewBuilder(uri).Build();
-var response = global::DripSharp.Brine.Http.HttpClientCompatibility.Send<sbyte[]>(httpClient, request, global::DripSharp.Brine.Runtime.JavaHttpBodyHandlers.OfByteArray(), securityManager.CheckReadResource);
+var response = ((global::DripSharp.Brine.Runtime.JavaHttpResponse<sbyte[]>)(global::DripSharp.Brine.Http.HttpClientCompatibility.Send<sbyte[]>(httpClient, request, global::DripSharp.Brine.Runtime.JavaHttpBodyHandlers.OfByteArray(), securityManager.CheckReadResource)));
 if ((response.StatusCode() == 404)) {
 return (global::DripSharp.Brine.Runtime.JavaOptional<object>.Empty()).OrElse(default!);
 }
@@ -298,17 +298,17 @@ internal sealed partial class ClassPathResource : global::DripSharp.Brine.Resour
 {
 public void Dispose() => this.Close();
 
-public void Close() {}
+public override void Close() {}
 
-public bool HasFragmentPaths() {
+public override bool HasFragmentPaths() {
 return false;
 }
 
-public global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement> ListElements(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri baseUri) {
+public override global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement> ListElements(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri baseUri) {
 throw new global::System.NotSupportedException();
 }
 
-public global::System.Uri ResolveUri(global::System.Uri baseUri, global::System.Uri uri) {
+public override global::System.Uri ResolveUri(global::System.Uri baseUri, global::System.Uri uri) {
 return global::DripSharp.Brine.Util.IoUtils.Resolve(this, baseUri, uri);
 }
 
@@ -318,11 +318,11 @@ public ClassPathResource(global::System.Reflection.Assembly classLoader) {
 this.classLoader = classLoader;
 }
 
-public string GetUriScheme() {
+public override string GetUriScheme() {
 return "modulepath";
 }
 
-public object? Read(global::System.Uri uri) {
+public override object? Read(global::System.Uri uri) {
 global::DripSharp.Runtime.JavaCompat.Assert(() => global::DripSharp.Runtime.JavaCompat.Equals(global::DripSharp.Runtime.JavaCompat.UriScheme(uri)!, "modulepath"));
 if ((global::DripSharp.Runtime.JavaCompat.UriPath(uri)! == default!)) {
 throw global::DripSharp.Runtime.JavaCompat.NewUriSyntaxException(global::DripSharp.Runtime.JavaCompat.UriToString(uri), global::DripSharp.Brine.Util.ErrorMessages.Create("invalidModuleUriMissingSlash", uri, "modulepath"));
@@ -343,15 +343,15 @@ global::DripSharp.Runtime.JavaCompat.Assert(() => ((int)(path[0]) == (int)('/'))
 return path.Substring(1);
 }
 
-public bool HasHierarchicalUris() {
+public override bool HasHierarchicalUris() {
 return true;
 }
 
-public bool IsGlobbable() {
+public override bool IsGlobbable() {
 return false;
 }
 
-public bool HasElement(global::DripSharp.Brine.SecurityManager manager, global::System.Uri uri) {
+public override bool HasElement(global::DripSharp.Brine.SecurityManager manager, global::System.Uri uri) {
 manager.CheckResolveResource(uri);
 var uriPath = global::DripSharp.Runtime.JavaCompat.UriPath(uri)!;
 global::DripSharp.Runtime.JavaCompat.Assert(() => ((int)(uriPath[0]) == (int)('/')));
@@ -363,17 +363,17 @@ internal sealed partial class ModulePathResource : global::DripSharp.Brine.Resou
 {
 public void Dispose() => this.Close();
 
-public void Close() {}
+public override void Close() {}
 
-public bool HasFragmentPaths() {
+public override bool HasFragmentPaths() {
 return false;
 }
 
-public global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement> ListElements(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri baseUri) {
+public override global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement> ListElements(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri baseUri) {
 throw new global::System.NotSupportedException();
 }
 
-public global::System.Uri ResolveUri(global::System.Uri baseUri, global::System.Uri uri) {
+public override global::System.Uri ResolveUri(global::System.Uri baseUri, global::System.Uri uri) {
 return global::DripSharp.Brine.Util.IoUtils.Resolve(this, baseUri, uri);
 }
 
@@ -383,11 +383,11 @@ public ModulePathResource(global::DripSharp.Brine.Module.ModulePathResolver reso
 this.resolver = resolver;
 }
 
-public string GetUriScheme() {
+public override string GetUriScheme() {
 return "modulepath";
 }
 
-public object? Read(global::System.Uri uri) {
+public override object? Read(global::System.Uri uri) {
 global::DripSharp.Runtime.JavaCompat.Assert(() => global::DripSharp.Runtime.JavaCompat.Equals(global::DripSharp.Runtime.JavaCompat.UriScheme(uri)!, "modulepath"));
 if ((global::DripSharp.Runtime.JavaCompat.UriPath(uri)! == default!)) {
 throw global::DripSharp.Runtime.JavaCompat.NewUriSyntaxException(global::DripSharp.Runtime.JavaCompat.UriToString(uri), global::DripSharp.Brine.Util.ErrorMessages.Create("invalidModuleUriMissingSlash", uri, "modulepath"));
@@ -401,15 +401,15 @@ return (global::DripSharp.Brine.Runtime.JavaOptional<object>.Empty()).OrElse(def
 }
 }
 
-public bool HasHierarchicalUris() {
+public override bool HasHierarchicalUris() {
 return true;
 }
 
-public bool IsGlobbable() {
+public override bool IsGlobbable() {
 return false;
 }
 
-public bool HasElement(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri elementUri) {
+public override bool HasElement(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri elementUri) {
 securityManager.CheckResolveResource(elementUri);
 return this.resolver.HasElement(elementUri);
 }
@@ -419,43 +419,43 @@ internal sealed partial class PackageResource : global::DripSharp.Brine.Resource
 {
 public void Dispose() => this.Close();
 
-public void Close() {}
+public override void Close() {}
 
-public global::System.Uri ResolveUri(global::System.Uri baseUri, global::System.Uri uri) {
+public override global::System.Uri ResolveUri(global::System.Uri baseUri, global::System.Uri uri) {
 return global::DripSharp.Brine.Util.IoUtils.Resolve(this, baseUri, uri);
 }
 
 internal static readonly PackageResource INSTANCE = new PackageResource();
 
-public string GetUriScheme() {
+public override string GetUriScheme() {
 return "package";
 }
 
-public object? Read(global::System.Uri uri) {
+public override object? Read(global::System.Uri uri) {
 var assetUri = new global::DripSharp.Brine.Packages.PackageAssetUri(uri);
 var bytes = this.GetPackageResolver().GetBytes(assetUri, true, (global::DripSharp.Brine.Packages.Checksums?)default!);
 return (global::DripSharp.Brine.Runtime.JavaOptional<object>.Of(new global::DripSharp.Brine.Resource.Resource(uri, bytes))).OrElse(default!);
 }
 
-public bool HasHierarchicalUris() {
+public override bool HasHierarchicalUris() {
 return true;
 }
 
-public bool IsGlobbable() {
+public override bool IsGlobbable() {
 return true;
 }
 
-public bool HasFragmentPaths() {
+public override bool HasFragmentPaths() {
 return true;
 }
 
-public global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement> ListElements(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri baseUri) {
+public override global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement> ListElements(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri baseUri) {
 securityManager.CheckResolveResource(baseUri);
 var packageAssetUri = global::DripSharp.Brine.Packages.PackageAssetUri.Create(baseUri);
 return global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement>>(this.GetPackageResolver().ListElements(packageAssetUri, packageAssetUri.GetPackageUri().GetChecksums()!));
 }
 
-public bool HasElement(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri elementUri) {
+public override bool HasElement(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri elementUri) {
 securityManager.CheckResolveResource(elementUri);
 var packageAssetUri = global::DripSharp.Brine.Packages.PackageAssetUri.Create(elementUri);
 return this.GetPackageResolver().HasElement(packageAssetUri, packageAssetUri.GetPackageUri().GetChecksums()!);
@@ -472,19 +472,19 @@ internal sealed partial class ProjectPackageResource : global::DripSharp.Brine.R
 {
 public void Dispose() => this.Close();
 
-public void Close() {}
+public override void Close() {}
 
-public global::System.Uri ResolveUri(global::System.Uri baseUri, global::System.Uri uri) {
+public override global::System.Uri ResolveUri(global::System.Uri baseUri, global::System.Uri uri) {
 return global::DripSharp.Brine.Util.IoUtils.Resolve(this, baseUri, uri);
 }
 
 internal static readonly ProjectPackageResource INSTANCE = new ProjectPackageResource();
 
-public string GetUriScheme() {
+public override string GetUriScheme() {
 return "projectpackage";
 }
 
-public object? Read(global::System.Uri uri) {
+public override object? Read(global::System.Uri uri) {
 var assetUri = new global::DripSharp.Brine.Packages.PackageAssetUri(uri);
 var dependency = this.GetProjectDepsResolver().GetResolvedDependency(assetUri.GetPackageUri());
 var local = this.GetLocalUri(dependency, assetUri)!;
@@ -503,19 +503,19 @@ var bytes = this.GetPackageResolver().GetBytes(assetUri, true, remoteDep.GetChec
 return (global::DripSharp.Brine.Runtime.JavaOptional<object>.Of(new global::DripSharp.Brine.Resource.Resource(uri, bytes))).OrElse(default!);
 }
 
-public bool HasHierarchicalUris() {
+public override bool HasHierarchicalUris() {
 return true;
 }
 
-public bool IsGlobbable() {
+public override bool IsGlobbable() {
 return true;
 }
 
-public bool HasFragmentPaths() {
+public override bool HasFragmentPaths() {
 return true;
 }
 
-public global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement> ListElements(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri baseUri) {
+public override global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement> ListElements(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri baseUri) {
 securityManager.CheckResolveResource(baseUri);
 var packageAssetUri = global::DripSharp.Brine.Packages.PackageAssetUri.Create(baseUri);
 var dependency = this.GetProjectDepsResolver().GetResolvedDependency(packageAssetUri.GetPackageUri());
@@ -531,7 +531,7 @@ var remoteDep = (global::DripSharp.Brine.Packages.Dependency.RemoteDependency)(d
 return global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement>>(this.GetPackageResolver().ListElements(global::DripSharp.Brine.Packages.PackageAssetUri.Create(baseUri), remoteDep.GetChecksums()!));
 }
 
-public bool HasElement(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri elementUri) {
+public override bool HasElement(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri elementUri) {
 securityManager.CheckResolveResource(elementUri);
 var packageAssetUri = global::DripSharp.Brine.Packages.PackageAssetUri.Create(elementUri);
 var dependency = this.GetProjectDepsResolver().GetResolvedDependency(packageAssetUri.GetPackageUri());
@@ -583,11 +583,11 @@ internal sealed partial class ExternalProcess : global::DripSharp.Brine.Resource
 {
 public void Dispose() => this.Close();
 
-public bool HasFragmentPaths() {
+public override bool HasFragmentPaths() {
 return false;
 }
 
-public global::System.Uri ResolveUri(global::System.Uri baseUri, global::System.Uri uri) {
+public override global::System.Uri ResolveUri(global::System.Uri baseUri, global::System.Uri uri) {
 return global::DripSharp.Brine.Util.IoUtils.Resolve(this, baseUri, uri);
 }
 
@@ -617,31 +617,31 @@ this.underlying = new ExternalResolver(spec!, this.process.GetResourceResolver(t
 return this.underlying!;
 }
 
-public string GetUriScheme() {
+public override string GetUriScheme() {
 return this.scheme;
 }
 
-public bool HasHierarchicalUris() {
+public override bool HasHierarchicalUris() {
 return this.GetUnderlyingReader().HasHierarchicalUris();
 }
 
-public bool IsGlobbable() {
+public override bool IsGlobbable() {
 return this.GetUnderlyingReader().IsGlobbable();
 }
 
-public object? Read(global::System.Uri uri) {
+public override object? Read(global::System.Uri uri) {
 return this.GetUnderlyingReader().Read(uri);
 }
 
-public bool HasElement(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri elementUri) {
+public override bool HasElement(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri elementUri) {
 return this.GetUnderlyingReader().HasElement(securityManager, elementUri);
 }
 
-public global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement> ListElements(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri baseUri) {
+public override global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement> ListElements(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri baseUri) {
 return global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement>>(this.GetUnderlyingReader().ListElements(securityManager, baseUri));
 }
 
-public void Close() {
+public override void Close() {
 this.process.Close();
 }
 }
@@ -650,13 +650,13 @@ internal sealed partial class ExternalResolver : global::DripSharp.Brine.Resourc
 {
 public void Dispose() => this.Close();
 
-public void Close() {}
+public override void Close() {}
 
-public bool HasFragmentPaths() {
+public override bool HasFragmentPaths() {
 return false;
 }
 
-public global::System.Uri ResolveUri(global::System.Uri baseUri, global::System.Uri uri) {
+public override global::System.Uri ResolveUri(global::System.Uri baseUri, global::System.Uri uri) {
 return global::DripSharp.Brine.Util.IoUtils.Resolve(this, baseUri, uri);
 }
 
@@ -669,27 +669,27 @@ this.readerSpec = readerSpec;
 this.resolver = resolver;
 }
 
-public bool HasHierarchicalUris() {
+public override bool HasHierarchicalUris() {
 return (this.readerSpec).HasHierarchicalUris;
 }
 
-public bool IsGlobbable() {
+public override bool IsGlobbable() {
 return (this.readerSpec).IsGlobbable;
 }
 
-public string GetUriScheme() {
+public override string GetUriScheme() {
 return (this.readerSpec).Scheme;
 }
 
-public object? Read(global::System.Uri uri) {
+public override object? Read(global::System.Uri uri) {
 return this.resolver.Read(uri);
 }
 
-public bool HasElement(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri elementUri) {
+public override bool HasElement(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri elementUri) {
 return this.resolver.HasElement(securityManager, elementUri);
 }
 
-public global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement> ListElements(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri baseUri) {
+public override global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement> ListElements(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri baseUri) {
 return global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement>>(this.resolver.ListElements(securityManager, baseUri));
 }
 }

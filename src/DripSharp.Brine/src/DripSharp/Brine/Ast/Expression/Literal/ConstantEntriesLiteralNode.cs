@@ -14,7 +14,7 @@ public ConstantEntriesLiteralNode(global::DripSharp.Brine.Runtime.Truffle.api.so
 
 }
 
-protected internal override ConstantEntriesLiteralNode Copy(global::DripSharp.Brine.Ast.ExpressionNode newParentNode) {
+protected internal override global::DripSharp.Brine.Ast.Expression.Literal.ObjectLiteralNode Copy(global::DripSharp.Brine.Ast.ExpressionNode newParentNode) {
 return global::DripSharp.Brine.Ast.Expression.Literal.ConstantEntriesLiteralNodeGen.Create(base.sourceSection, base.language, base.qualifiedScopeName, base.isCustomThisScope, (global::DripSharp.Brine.Runtime.Truffle.api.frame.FrameDescriptor)default!, new global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode[0], base.members, newParentNode);
 }
 

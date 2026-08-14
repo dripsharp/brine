@@ -54,11 +54,11 @@ internal partial class StandardLibrary : global::DripSharp.Brine.Module.ModuleKe
 {
 public void Dispose() => this.Close();
 
-public virtual void Close() {}
+public override void Close() {}
 
 internal StandardLibrary() {}
 
-public virtual global::DripSharp.Brine.Module.ModuleKey? Create(global::System.Uri uri) {
+public override global::DripSharp.Brine.Module.ModuleKey? Create(global::System.Uri uri) {
 if (!(global::DripSharp.Runtime.JavaCompat.EqualsIgnoreCase(global::DripSharp.Runtime.JavaCompat.UriScheme(uri)!, "pkl"))) {
 return (global::DripSharp.Brine.Runtime.JavaOptional<global::DripSharp.Brine.Module.ModuleKey>.Empty()).OrElse(default!);
 }
@@ -76,7 +76,7 @@ public ModulePath(global::DripSharp.Brine.Module.ModulePathResolver resolver) {
 this.resolver = resolver;
 }
 
-public virtual global::DripSharp.Brine.Module.ModuleKey? Create(global::System.Uri uri) {
+public override global::DripSharp.Brine.Module.ModuleKey? Create(global::System.Uri uri) {
 if (global::DripSharp.Runtime.JavaCompat.EqualsIgnoreCase(global::DripSharp.Runtime.JavaCompat.UriScheme(uri)!, "modulepath")) {
 return (global::DripSharp.Brine.Runtime.JavaOptional<global::DripSharp.Brine.Module.ModuleKey>.Of(global::DripSharp.Brine.Module.ModuleKeys.CreateModulePath(uri, this.resolver))).OrElse(default!);
 }
@@ -91,7 +91,7 @@ return (global::DripSharp.Brine.Runtime.JavaOptional<global::DripSharp.Brine.Mod
 return (global::DripSharp.Brine.Runtime.JavaOptional<global::DripSharp.Brine.Module.ModuleKey>.Empty()).OrElse(default!);
 }
 
-public virtual void Close() {
+public override void Close() {
 this.resolver.Close();
 }
 }
@@ -100,7 +100,7 @@ internal partial class ClassPath : global::DripSharp.Brine.Module.ModuleKeyFacto
 {
 public void Dispose() => this.Close();
 
-public virtual void Close() {}
+public override void Close() {}
 
 internal readonly global::System.Reflection.Assembly classLoader = default!;
 
@@ -108,7 +108,7 @@ public ClassPath(global::System.Reflection.Assembly classLoader) {
 this.classLoader = classLoader;
 }
 
-public virtual global::DripSharp.Brine.Module.ModuleKey? Create(global::System.Uri uri) {
+public override global::DripSharp.Brine.Module.ModuleKey? Create(global::System.Uri uri) {
 if (!(global::DripSharp.Runtime.JavaCompat.EqualsIgnoreCase(global::DripSharp.Runtime.JavaCompat.UriScheme(uri)!, "modulepath"))) {
 return (global::DripSharp.Brine.Runtime.JavaOptional<global::DripSharp.Brine.Module.ModuleKey>.Empty()).OrElse(default!);
 }
@@ -120,9 +120,9 @@ internal partial class File : global::DripSharp.Brine.Module.ModuleKeyFactory
 {
 public void Dispose() => this.Close();
 
-public virtual void Close() {}
+public override void Close() {}
 
-public virtual global::DripSharp.Brine.Module.ModuleKey? Create(global::System.Uri uri) {
+public override global::DripSharp.Brine.Module.ModuleKey? Create(global::System.Uri uri) {
 if (global::DripSharp.Runtime.JavaCompat.EqualsIgnoreCase(global::DripSharp.Runtime.JavaCompat.UriScheme(uri)!, "file")) {
 return (global::DripSharp.Brine.Runtime.JavaOptional<global::DripSharp.Brine.Module.ModuleKey>.Of(global::DripSharp.Brine.Module.ModuleKeys.CreateFile(uri))).OrElse(default!);
 }
@@ -142,11 +142,11 @@ internal partial class Http : global::DripSharp.Brine.Module.ModuleKeyFactory
 {
 public void Dispose() => this.Close();
 
-public virtual void Close() {}
+public override void Close() {}
 
 internal Http() {}
 
-public virtual global::DripSharp.Brine.Module.ModuleKey? Create(global::System.Uri uri) {
+public override global::DripSharp.Brine.Module.ModuleKey? Create(global::System.Uri uri) {
 var scheme = global::DripSharp.Runtime.JavaCompat.UriScheme(uri)!;
 if ((global::DripSharp.Runtime.JavaCompat.EqualsIgnoreCase("http", scheme) || global::DripSharp.Runtime.JavaCompat.EqualsIgnoreCase("https", scheme))) {
 return (global::DripSharp.Brine.Runtime.JavaOptional<global::DripSharp.Brine.Module.ModuleKey>.Of(global::DripSharp.Brine.Module.ModuleKeys.CreateHttp(uri))).OrElse(default!);
@@ -159,11 +159,11 @@ internal partial class GenericUrl : global::DripSharp.Brine.Module.ModuleKeyFact
 {
 public void Dispose() => this.Close();
 
-public virtual void Close() {}
+public override void Close() {}
 
 internal GenericUrl() {}
 
-public virtual global::DripSharp.Brine.Module.ModuleKey? Create(global::System.Uri uri) {
+public override global::DripSharp.Brine.Module.ModuleKey? Create(global::System.Uri uri) {
 if (!uri.IsAbsoluteUri) {
 return (global::DripSharp.Brine.Runtime.JavaOptional<global::DripSharp.Brine.Module.ModuleKey>.Empty()).OrElse(default!);
 }
@@ -178,9 +178,9 @@ internal sealed partial class Package : global::DripSharp.Brine.Module.ModuleKey
 {
 public void Dispose() => this.Close();
 
-public void Close() {}
+public override void Close() {}
 
-public global::DripSharp.Brine.Module.ModuleKey? Create(global::System.Uri uri) {
+public override global::DripSharp.Brine.Module.ModuleKey? Create(global::System.Uri uri) {
 if (global::DripSharp.Runtime.JavaCompat.EqualsIgnoreCase(global::DripSharp.Runtime.JavaCompat.UriScheme(uri)!, "package")) {
 return (global::DripSharp.Brine.Runtime.JavaOptional<global::DripSharp.Brine.Module.ModuleKey>.Of(global::DripSharp.Brine.Module.ModuleKeys.Pkg(uri))).OrElse(default!);
 }
@@ -192,9 +192,9 @@ internal sealed partial class ProjectPackage : global::DripSharp.Brine.Module.Mo
 {
 public void Dispose() => this.Close();
 
-public void Close() {}
+public override void Close() {}
 
-public global::DripSharp.Brine.Module.ModuleKey? Create(global::System.Uri uri) {
+public override global::DripSharp.Brine.Module.ModuleKey? Create(global::System.Uri uri) {
 if (global::DripSharp.Runtime.JavaCompat.EqualsIgnoreCase(global::DripSharp.Runtime.JavaCompat.UriScheme(uri)!, "projectpackage")) {
 return (global::DripSharp.Brine.Runtime.JavaOptional<global::DripSharp.Brine.Module.ModuleKey>.Of(global::DripSharp.Brine.Module.ModuleKeys.Projectpackage(uri))).OrElse(default!);
 }
@@ -240,7 +240,7 @@ this.resolver = this.process.GetModuleResolver(this.evaluatorId);
 return this.resolver!;
 }
 
-public global::DripSharp.Brine.Module.ModuleKey? Create(global::System.Uri uri) {
+public override global::DripSharp.Brine.Module.ModuleKey? Create(global::System.Uri uri) {
 if (!(global::DripSharp.Runtime.JavaCompat.EqualsIgnoreCase(this.scheme, global::DripSharp.Runtime.JavaCompat.UriScheme(uri)!))) {
 return (global::DripSharp.Brine.Runtime.JavaOptional<global::DripSharp.Brine.Module.ModuleKey>.Empty()).OrElse(default!);
 }
@@ -251,7 +251,7 @@ throw new global::DripSharp.Brine.Externalreader.ExternalReaderProcessException(
 return (global::DripSharp.Brine.Runtime.JavaOptional<global::DripSharp.Brine.Module.ModuleKey>.Of(global::DripSharp.Brine.Module.ModuleKeys.CreateExternalResolver(uri, spec!, this.GetResolver()))).OrElse(default!);
 }
 
-public void Close() {
+public override void Close() {
 this.process.Close();
 }
 }

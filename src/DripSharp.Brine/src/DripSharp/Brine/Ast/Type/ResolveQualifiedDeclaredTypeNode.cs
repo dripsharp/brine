@@ -32,7 +32,7 @@ public override object ExecuteGeneric(global::DripSharp.Brine.Runtime.Truffle.ap
 global::DripSharp.Brine.Runtime.Truffle.api.CompilerDirectives.TransferToInterpreter();
 var enclosingModule = this.GetEnclosingModule(global::DripSharp.Brine.Runtime.VmUtils.GetOwner(frame));
 var importedModule = this.GetImport(enclosingModule, this.moduleName, this.moduleNameSection);
-for (var currModule = importedModule; (currModule != default!); currModule = currModule.GetParent()!) {
+for (var currModule = importedModule; (currModule != default!); currModule = ((global::DripSharp.Brine.Runtime.VmTyped)(currModule.GetParent()))!) {
 var result = this.GetType(currModule, this.typeName, base.sourceSection)!;
 if ((result! != default!)) {
 return result!;

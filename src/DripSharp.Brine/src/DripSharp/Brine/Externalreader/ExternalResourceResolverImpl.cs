@@ -10,10 +10,6 @@ namespace DripSharp.Brine.Externalreader;
 
 internal sealed partial class ExternalResourceResolverImpl : global::DripSharp.Brine.Externalreader.ExternalResourceResolver
 {
-public global::DripSharp.Brine.Externalreader.ExternalResourceResolver Of(global::DripSharp.Brine.Messaging.MessageTransport transport, long evaluatorId) {
-return new ExternalResourceResolverImpl(transport, evaluatorId);
-}
-
 private readonly global::DripSharp.Brine.Messaging.MessageTransport transport = default!;
 
 private readonly long evaluatorId;
@@ -29,12 +25,12 @@ this.transport = transport;
 this.evaluatorId = evaluatorId;
 }
 
-public object? Read(global::System.Uri uri) {
+public override object? Read(global::System.Uri uri) {
 var result = this.DoRead(uri);
 return (((result == default!) ? global::DripSharp.Brine.Runtime.JavaOptional<object>.Empty() : global::DripSharp.Brine.Runtime.JavaOptional<object>.Of(new global::DripSharp.Brine.Resource.Resource(uri, result)))).OrElse(default!);
 }
 
-public bool HasElement(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri elementUri) {
+public override bool HasElement(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri elementUri) {
 securityManager.CheckResolveResource(elementUri);
 try {
 return (this.DoRead(elementUri) != default!);
@@ -43,7 +39,7 @@ return false;
 }
 }
 
-public global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement> ListElements(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri baseUri) {
+public override global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement> ListElements(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri baseUri) {
 securityManager.CheckResolveResource(baseUri);
 return global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement>>(this.DoListElements(baseUri));
 }

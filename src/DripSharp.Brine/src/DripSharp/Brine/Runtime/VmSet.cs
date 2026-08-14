@@ -25,7 +25,7 @@ this.elementOrder = elementOrder;
 }
 
 public static VmSet Of(object value) {
-return new VmSet(global::DripSharp.Runtime.JavaCompat.OrganicPut(global::DripSharp.Runtime.JavaCompat.SetOf<object>(), value), global::DripSharp.Brine.Util.Paguro.RrbTree<object>.EmptyMutable<object>().Append(value).Immutable());
+return new VmSet(global::DripSharp.Runtime.JavaCompat.OrganicPut(global::DripSharp.Runtime.JavaCompat.SetOf<object>(), value), ((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.ImRrbt<object>)(((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.MutRrbt<object>)(global::DripSharp.Brine.Util.Paguro.RrbTree<object>.EmptyMutable<object>().Append(value))).Immutable())));
 }
 
 internal static VmSet Create(global::System.Collections.Generic.ISet<object> set, global::DripSharp.Brine.Util.Paguro.RrbTree<object>.ImRrbt<object> elementOrder) {
@@ -36,13 +36,13 @@ return new VmSet(set, elementOrder);
 }
 
 public static VmSet Create(global::System.Collections.Generic.IEnumerable<object> iterable) {
-var builder = VmSet.EMPTY.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<VmSet>)(VmSet.EMPTY.CreateBuilder()));
 builder.AddAll(iterable);
 return builder.Build();
 }
 
 public static VmSet CreateFromConstantNodes(global::DripSharp.Brine.Ast.ExpressionNode[] elements) {
-var builder = VmSet.EMPTY.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<VmSet>)(VmSet.EMPTY.CreateBuilder()));
 foreach (var elem in elements) {
 global::DripSharp.Runtime.JavaCompat.Assert(() => (elem is global::DripSharp.Brine.Ast.ConstantNode));
 builder.Add(((global::DripSharp.Brine.Ast.ConstantNode)(elem!)).GetValue());
@@ -66,26 +66,26 @@ public override bool IsLengthOne() {
 return (this.elementOrder.Size() == 1);
 }
 
-public override VmSet Add(object element) {
+public override global::DripSharp.Brine.Runtime.VmCollection Add(object element) {
 if (global::DripSharp.Runtime.JavaCompat.CollectionContains(this.set, element)) {
 return this;
 }
-return VmSet.Create(global::DripSharp.Runtime.JavaCompat.Assoc(this.set, element), this.elementOrder.Append(element));
+return VmSet.Create(global::DripSharp.Runtime.JavaCompat.Assoc(this.set, element), ((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.ImRrbt<object>)(this.elementOrder.Append(element))));
 }
 
-public override VmSet Concatenate(global::DripSharp.Brine.Runtime.VmCollection other) {
+public override global::DripSharp.Brine.Runtime.VmCollection Concatenate(global::DripSharp.Brine.Runtime.VmCollection other) {
 if (other.IsEmpty()) {
 return this;
 }
 var setBuilder = global::DripSharp.Runtime.JavaCompat.Mutable(this.set);
-var elementOrderBuilder = this.elementOrder.Mutable();
+var elementOrderBuilder = ((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.MutRrbt<object>)(this.elementOrder.Mutable()));
 foreach (var element in other) {
 if (!global::DripSharp.Runtime.JavaCompat.CollectionContains(setBuilder, element)) {
 global::DripSharp.Runtime.JavaCompat.OrganicPut(setBuilder, element);
 elementOrderBuilder.Append(element);
 }
 }
-return VmSet.Create(setBuilder, elementOrderBuilder.Immutable());
+return VmSet.Create(setBuilder, ((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.ImRrbt<object>)(elementOrderBuilder.Immutable())));
 }
 
 public override global::DripSharp.Runtime.JavaIterator<object> Iterator() {
@@ -102,7 +102,7 @@ return global::DripSharp.Runtime.JavaCompat.EmptyJavaIterator<object>();
 return new global::DripSharp.Brine.Runtime.Iterators.ReverseTruffleIterator<object>(this.elementOrder);
 }
 
-public override global::DripSharp.Brine.Runtime.VmCollection.Builder<VmSet> CreateBuilder() {
+public override global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmCollection> CreateBuilder() {
 return new Builder();
 }
 
@@ -112,52 +112,52 @@ return new Builder(set);
 
 public object GetFirst() {
 this.CheckNonEmpty();
-return this.elementOrder.Get(0);
+return ((object)(this.elementOrder.Get(0)));
 }
 
 public object GetFirstOrNull() {
 if (global::DripSharp.Runtime.JavaCompat.CollectionIsEmpty(this.elementOrder)) {
 return global::DripSharp.Brine.Runtime.VmNull.WithoutDefault();
 }
-return this.elementOrder.Get(0);
+return ((object)(this.elementOrder.Get(0)));
 }
 
 public VmSet GetRest() {
 this.CheckNonEmpty();
-var first = this.elementOrder.Get(0);
-return VmSet.Create(global::DripSharp.Runtime.JavaCompat.Without(this.set, first), this.elementOrder.Without(0));
+var first = ((object)(this.elementOrder.Get(0)));
+return VmSet.Create(global::DripSharp.Runtime.JavaCompat.Without(this.set, first), ((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.ImRrbt<object>)(this.elementOrder.Without(0))));
 }
 
 public object GetRestOrNull() {
 if (global::DripSharp.Runtime.JavaCompat.CollectionIsEmpty(this.elementOrder)) {
 return global::DripSharp.Brine.Runtime.VmNull.WithoutDefault();
 }
-var first = this.elementOrder.Get(0);
-return VmSet.Create(global::DripSharp.Runtime.JavaCompat.Without(this.set, first), this.elementOrder.Without(0));
+var first = ((object)(this.elementOrder.Get(0)));
+return VmSet.Create(global::DripSharp.Runtime.JavaCompat.Without(this.set, first), ((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.ImRrbt<object>)(this.elementOrder.Without(0))));
 }
 
 public object GetLast() {
 this.CheckNonEmpty();
-return this.elementOrder.Get((this.elementOrder.Size() - 1));
+return ((object)(this.elementOrder.Get((this.elementOrder.Size() - 1))));
 }
 
 public object GetLastOrNull() {
 if (global::DripSharp.Runtime.JavaCompat.CollectionIsEmpty(this.elementOrder)) {
 return global::DripSharp.Brine.Runtime.VmNull.WithoutDefault();
 }
-return this.elementOrder.Get((this.elementOrder.Size() - 1));
+return ((object)(this.elementOrder.Get((this.elementOrder.Size() - 1))));
 }
 
 public object GetSingle() {
 this.CheckLengthOne();
-return this.elementOrder.Get(0);
+return ((object)(this.elementOrder.Get(0)));
 }
 
 public object GetSingleOrNull() {
 if (!(this.IsLengthOne())) {
 return global::DripSharp.Brine.Runtime.VmNull.WithoutDefault();
 }
-return this.elementOrder.Get(0);
+return ((object)(this.elementOrder.Get(0)));
 }
 
 public bool Contains(object element) {
@@ -265,14 +265,13 @@ try {
 foreach (var elem in this.elementOrder) {
 global::DripSharp.Brine.Runtime.VmValue.Force(elem, allowUndefinedValues);
 }
-} catch (global::System.Exception t) {
+} catch (global::System.Exception) {
 this.forced = false;
-global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(t);
-throw new global::System.InvalidOperationException("unreachable");
+throw;
 }
 }
 
-public override global::System.Collections.Generic.ISet<object> Export() {
+public override object Export() {
 var result = global::DripSharp.Brine.Util.CollectionUtils.NewLinkedHashSet<object>(this.elementOrder.Size());
 foreach (var elem in this.elementOrder) {
 result.Add(global::DripSharp.Brine.Runtime.VmValue.Export(elem));
@@ -315,7 +314,7 @@ this.elementOrderBuilder = global::DripSharp.Brine.Util.Paguro.RrbTree<object>.E
 
 internal Builder(VmSet set) {
 this.setBuilder = global::DripSharp.Runtime.JavaCompat.Mutable(set.set);
-this.elementOrderBuilder = set.elementOrder.Mutable();
+this.elementOrderBuilder = ((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.MutRrbt<object>)(set.elementOrder.Mutable()));
 }
 
 public void Add(object element) {
@@ -338,7 +337,7 @@ public VmSet Build() {
 if (global::DripSharp.Runtime.JavaCompat.CollectionIsEmpty(this.elementOrderBuilder)) {
 return VmSet.EMPTY;
 }
-return VmSet.Create(this.setBuilder, this.elementOrderBuilder.Immutable());
+return VmSet.Create(this.setBuilder, ((global::DripSharp.Brine.Util.Paguro.RrbTree<object>.ImRrbt<object>)(this.elementOrderBuilder.Immutable())));
 }
 }
 }

@@ -1,0 +1,56 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "DripSharp.Brine.CoreTestRunner/1.0.0": {
+        "dependencies": {
+          "DripSharp.Brine": "0.32.0-alpha.1",
+          "DripSharp.Brine.Parser": "0.32.0-alpha.1"
+        },
+        "runtime": {
+          "DripSharp.Brine.CoreTestRunner.dll": {}
+        }
+      },
+      "DripSharp.Brine/0.32.0-alpha.1": {
+        "dependencies": {
+          "DripSharp.Brine.Parser": "0.32.0-alpha.1"
+        },
+        "runtime": {
+          "DripSharp.Brine.dll": {
+            "assemblyVersion": "0.32.0.0",
+            "fileVersion": "0.32.0.0"
+          }
+        }
+      },
+      "DripSharp.Brine.Parser/0.32.0-alpha.1": {
+        "runtime": {
+          "DripSharp.Brine.Parser.dll": {
+            "assemblyVersion": "0.32.0.0",
+            "fileVersion": "0.32.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "DripSharp.Brine.CoreTestRunner/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DripSharp.Brine/0.32.0-alpha.1": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DripSharp.Brine.Parser/0.32.0-alpha.1": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

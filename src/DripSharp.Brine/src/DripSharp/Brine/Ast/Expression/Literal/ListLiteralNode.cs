@@ -18,8 +18,8 @@ public ListLiteralNode(global::DripSharp.Brine.Runtime.Truffle.api.source.Source
 this.elements = elements;
 }
 
-public override global::DripSharp.Brine.Runtime.VmList ExecuteGeneric(global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame frame) {
-var builder = global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder();
+public override object ExecuteGeneric(global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame frame) {
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder()));
 foreach (var element in this.elements) {
 builder.Add(element.ExecuteGeneric(frame));
 }

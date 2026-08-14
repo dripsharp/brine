@@ -68,6 +68,8 @@ this.__outer = __outer;
 this.pos = 0;
 }
 
+public void Remove() => throw new global::System.NotSupportedException();
+
 internal int pos;
 
 public bool HasNext() {

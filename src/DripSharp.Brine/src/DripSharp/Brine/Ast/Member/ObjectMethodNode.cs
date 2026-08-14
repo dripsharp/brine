@@ -33,7 +33,7 @@ global::DripSharp.Runtime.JavaCompat.Assert(() => (this.functionNode != default!
 return this.functionNode.GetReturnTypeNode()!;
 }
 
-protected internal override global::DripSharp.Brine.Runtime.Truffle.api.CallTarget ExecuteImpl(global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame frame) {
+protected internal override object ExecuteImpl(global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame frame) {
 if ((this.functionNode == default!)) {
 global::DripSharp.Brine.Runtime.Truffle.api.CompilerDirectives.TransferToInterpreter();
 var parameterTypeNodes = global::DripSharp.Brine.Runtime.VmUtils.ResolveParameterTypes(frame, this.GetFrameDescriptor(), this.unresolvedParameterTypeNodes!);

@@ -14,19 +14,11 @@ public global::System.Uri GetUri();
 
 public global::DripSharp.Brine.Module.ResolvedModuleKey Resolve(global::DripSharp.Brine.SecurityManager securityManager);
 
-public global::System.Uri ResolveUri(global::System.Uri uri) {
-return this.ResolveUri(this.GetUri(), uri);
-}
+public global::System.Uri ResolveUri(global::System.Uri uri);
 
-public bool IsCached() {
-return true;
-}
+public bool IsCached();
 
-public bool IsLocal() {
-return false;
-}
+public bool IsLocal();
 
-public string? GetFileCacheLocation() {
-return default!;
-}
+public string? GetFileCacheLocation();
 }

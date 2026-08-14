@@ -12,14 +12,6 @@ internal sealed partial class RequestRewritingClient : global::DripSharp.Brine.H
 {
 public void Dispose() => this.Close();
 
-public global::DripSharp.Brine.Http.HttpClient.Builder CreateBuilder() {
-return new global::DripSharp.Brine.Http.HttpClientBuilder();
-}
-
-public global::DripSharp.Brine.Http.HttpClient DummyClient() {
-return new global::DripSharp.Brine.Http.DummyHttpClient();
-}
-
 internal readonly string userAgent = default!;
 
 internal readonly global::System.TimeSpan requestTimeout = default!;
@@ -80,7 +72,7 @@ redirectCount++;
 }
 }
 
-public global::DripSharp.Brine.Runtime.JavaHttpResponse<T> SendCompatibility<T>(global::DripSharp.Brine.Runtime.JavaHttpRequest request, global::DripSharp.Brine.Runtime.JavaHttpBodyHandler<T> responseBodyHandler, global::DripSharp.Brine.Http.HttpClient.HttpRequestChecker httpRequestChecker) {
+internal override global::DripSharp.Brine.Runtime.JavaHttpResponse<T> SendCompatibility<T>(global::DripSharp.Brine.Runtime.JavaHttpRequest request, global::DripSharp.Brine.Runtime.JavaHttpBodyHandler<T> responseBodyHandler, global::DripSharp.Brine.Http.HttpClient.HttpRequestChecker httpRequestChecker) {
 this.CheckNotClosed(request);
 try {
 return this.DoSend(request, responseBodyHandler, httpRequestChecker);
@@ -89,12 +81,11 @@ var rewrittenUri = this.RewriteUri(request.Uri());
 if ((rewrittenUri != request.Uri())) {
 throw new global::System.IO.IOException(global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.ExceptionMessage(e), global::DripSharp.Runtime.JavaCompat.Formatted(" (request was rewritten: %s -> %s)", request.Uri(), rewrittenUri)), e);
 }
-global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(e);
-throw new global::System.InvalidOperationException("unreachable");
+throw;
 }
 }
 
-public void Close() {
+public override void Close() {
 if (!(this.closed).GetAndSet(true)) {
 this.@delegate.Close();
 }

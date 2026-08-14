@@ -18,11 +18,7 @@ public void CheckReadResource(global::System.Uri resource);
 
 public void CheckResolveResource(global::System.Uri resource);
 
-public string? ResolveSecurePath(global::System.Uri uri, bool isResource) {
-return default!;
-}
+public string? ResolveSecurePath(global::System.Uri uri, bool isResource);
 
-public string? ResolveSecurePath(global::System.Uri uri) {
-return this.ResolveSecurePath(uri, false)!;
-}
+public string? ResolveSecurePath(global::System.Uri uri);
 }

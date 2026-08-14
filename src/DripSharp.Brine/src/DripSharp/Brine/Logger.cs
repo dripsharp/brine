@@ -10,7 +10,7 @@ namespace DripSharp.Brine;
 
 public partial interface Logger
 {
-public void Trace(string message, global::DripSharp.Brine.StackFrame frame) {}
+public void Trace(string message, global::DripSharp.Brine.StackFrame frame);
 
-public void Warn(string message, global::DripSharp.Brine.StackFrame frame) {}
+public void Warn(string message, global::DripSharp.Brine.StackFrame frame);
 }

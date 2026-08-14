@@ -209,7 +209,7 @@ this.expectedReferentType = expectedReferentType;
 }
 
 public override void BuildMessage(global::DripSharp.Brine.Util.AnsiStringBuilder builder, string indent, bool withPowerAssertions) {
-builder.Append(global::DripSharp.Brine.Util.ErrorMessages.CreateIndented("typeMismatch", indent, new global::DripSharp.Brine.PType.Class(global::DripSharp.Brine.Runtime.RefModule.GetReferenceClass().Export(), this.expectedDomainType, this.expectedReferentType), ((global::DripSharp.Brine.Runtime.VmReference)(base.actualValue!)).ExportType())).Append("\n").Append(indent).Append("Value: ").Append(global::DripSharp.Brine.Runtime.VmValueRenderer.SingleLine((80 - indent.Length)).Render(base.actualValue));
+builder.Append(global::DripSharp.Brine.Util.ErrorMessages.CreateIndented("typeMismatch", indent, new global::DripSharp.Brine.PType.Class(((global::DripSharp.Brine.PClass)(global::DripSharp.Brine.Runtime.RefModule.GetReferenceClass().Export())), this.expectedDomainType, this.expectedReferentType), ((global::DripSharp.Brine.Runtime.VmReference)(base.actualValue!)).ExportType())).Append("\n").Append(indent).Append("Value: ").Append(global::DripSharp.Brine.Runtime.VmValueRenderer.SingleLine((80 - indent.Length)).Render(base.actualValue));
 }
 
 protected internal override bool HasHint() {

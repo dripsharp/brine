@@ -78,7 +78,7 @@ return ((node! != default!) ? node!.GetMirror() : (global::DripSharp.Brine.Runti
 }
 
 public static global::DripSharp.Brine.Runtime.VmList GetMirrors(TypeNode[] nodes) {
-var builder = global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder()));
 foreach (var node in nodes) {
 builder.Add(node.GetMirror());
 }
@@ -88,11 +88,11 @@ return builder.Build();
 protected internal virtual global::DripSharp.Brine.PType DoExport() {
 var alias = this.GetVmTypeAlias()!;
 if ((alias! != default!)) {
-return new global::DripSharp.Brine.PType.Alias(alias!.Export());
+return new global::DripSharp.Brine.PType.Alias(((global::DripSharp.Brine.TypeAlias)(alias!.Export())));
 }
 var clazz = this.GetVmClass()!;
 if ((clazz! != default!)) {
-return new global::DripSharp.Brine.PType.Class(clazz!.Export());
+return new global::DripSharp.Brine.PType.Class(((global::DripSharp.Brine.PClass)(clazz!.Export())));
 }
 global::DripSharp.Brine.Runtime.Truffle.api.CompilerDirectives.TransferToInterpreter();
 throw this.ExceptionBuilder().Bug("`%s` must override method `doExport()`.", (((object)(this)).GetType().FullName ?? ((object)(this)).GetType().Name)).Build();
@@ -812,7 +812,7 @@ return global::DripSharp.Brine.Runtime.MirrorFactories.unionOfStringLiteralsType
 }
 
 public global::DripSharp.Brine.Runtime.VmList GetElementTypeMirrors() {
-var builder = global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder()));
 foreach (var literal in this.stringLiterals) {
 builder.Add(global::DripSharp.Brine.Runtime.MirrorFactories.stringLiteralTypeFactory2.Create(literal));
 }
@@ -896,7 +896,7 @@ return global::DripSharp.Brine.Runtime.BaseModule.GetCollectionClass();
 }
 
 protected internal override global::DripSharp.Brine.PType DoExport() {
-return new global::DripSharp.Brine.PType.Class(global::DripSharp.Brine.Runtime.BaseModule.GetCollectionClass().Export(), this.elementTypeNode.DoExport());
+return new global::DripSharp.Brine.PType.Class(((global::DripSharp.Brine.PClass)(global::DripSharp.Brine.Runtime.BaseModule.GetCollectionClass().Export())), this.elementTypeNode.DoExport());
 }
 
 public override global::DripSharp.Brine.Runtime.VmList GetTypeArgumentMirrors() {
@@ -985,7 +985,7 @@ return global::DripSharp.Brine.Runtime.VmList.Of(this.elementTypeNode.GetMirror(
 }
 
 protected internal override global::DripSharp.Brine.PType DoExport() {
-return new global::DripSharp.Brine.PType.Class(global::DripSharp.Brine.Runtime.BaseModule.GetListClass().Export(), this.elementTypeNode.DoExport());
+return new global::DripSharp.Brine.PType.Class(((global::DripSharp.Brine.PClass)(global::DripSharp.Brine.Runtime.BaseModule.GetListClass().Export())), this.elementTypeNode.DoExport());
 }
 
 public override object ExecuteEagerly(global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame frame, object value) {
@@ -1070,7 +1070,7 @@ return this.elementTypeNode.IsEquivalentTo(setTypeNode.elementTypeNode);
 }
 
 protected internal sealed override global::DripSharp.Brine.PType DoExport() {
-return new global::DripSharp.Brine.PType.Class(global::DripSharp.Brine.Runtime.BaseModule.GetSetClass().Export(), this.elementTypeNode.DoExport());
+return new global::DripSharp.Brine.PType.Class(((global::DripSharp.Brine.PClass)(global::DripSharp.Brine.Runtime.BaseModule.GetSetClass().Export())), this.elementTypeNode.DoExport());
 }
 
 protected internal override bool AcceptTypeNode(bool visitTypeArguments, TypeNodeConsumer consumer) {
@@ -1157,7 +1157,7 @@ return (this.keyTypeNode.IsEquivalentTo(mapTypeNode.keyTypeNode) && this.valueTy
 }
 
 protected internal override global::DripSharp.Brine.PType DoExport() {
-return new global::DripSharp.Brine.PType.Class(global::DripSharp.Brine.Runtime.BaseModule.GetMapClass().Export(), this.keyTypeNode.DoExport(), this.valueTypeNode.DoExport());
+return new global::DripSharp.Brine.PType.Class(((global::DripSharp.Brine.PClass)(global::DripSharp.Brine.Runtime.BaseModule.GetMapClass().Export())), this.keyTypeNode.DoExport(), this.valueTypeNode.DoExport());
 }
 
 protected internal override bool AcceptTypeNode(bool visitTypeArguments, TypeNodeConsumer consumer) {
@@ -1234,7 +1234,7 @@ return global::DripSharp.Brine.Runtime.VmList.Of(base.valueTypeNode.GetMirror())
 }
 
 protected internal override global::DripSharp.Brine.PType DoExport() {
-return new global::DripSharp.Brine.PType.Class(global::DripSharp.Brine.Runtime.BaseModule.GetListingClass().Export(), base.valueTypeNode.DoExport());
+return new global::DripSharp.Brine.PType.Class(((global::DripSharp.Brine.PClass)(global::DripSharp.Brine.Runtime.BaseModule.GetListingClass().Export())), base.valueTypeNode.DoExport());
 }
 
 protected internal override bool DoIsEquivalentTo(TypeNode other) {
@@ -1288,7 +1288,7 @@ return global::DripSharp.Brine.Runtime.VmList.Of(base.keyTypeNode!.GetMirror(), 
 
 protected internal override global::DripSharp.Brine.PType DoExport() {
 global::DripSharp.Runtime.JavaCompat.Assert(() => (base.keyTypeNode! != default!));
-return new global::DripSharp.Brine.PType.Class(global::DripSharp.Brine.Runtime.BaseModule.GetMappingClass().Export(), base.keyTypeNode!.DoExport(), base.valueTypeNode.DoExport());
+return new global::DripSharp.Brine.PType.Class(((global::DripSharp.Brine.PClass)(global::DripSharp.Brine.Runtime.BaseModule.GetMappingClass().Export())), base.keyTypeNode!.DoExport(), base.valueTypeNode.DoExport());
 }
 
 protected internal override bool DoIsEquivalentTo(TypeNode other) {
@@ -1394,7 +1394,7 @@ if ((skipKeyTypeChecks && skipValueTypeChecks)) {
 return;
 }
 var loopCount = 0;
-for (var owner = @object; (owner != default!); owner = owner.GetParent()!) {
+for (var owner = @object; (owner != default!); owner = ((global::DripSharp.Brine.Runtime.VmObject)(owner.GetParent()))!) {
 var cursor = global::DripSharp.Brine.Util.EconomicMaps.GetEntries<object, global::DripSharp.Brine.Ast.Member.ObjectMember>(owner.GetMembers());
 while (cursor.Advance()) {
 loopCount += 1;
@@ -1410,8 +1410,7 @@ this.keyTypeNode!.ExecuteEagerly(frame, memberKey);
 } catch (global::DripSharp.Brine.Ast.Type.VmTypeMismatchException e) {
 global::DripSharp.Brine.Runtime.Truffle.api.CompilerDirectives.TransferToInterpreter();
 e.PutInsertedStackFrame(this.GetRootNode().GetCallTarget(), global::DripSharp.Brine.Runtime.VmUtils.CreateStackFrame(member.GetHeaderSection(), member.GetQualifiedName()));
-global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(e);
-throw new global::System.InvalidOperationException("unreachable");
+throw;
 }
 }
 if (!skipValueTypeChecks) {
@@ -1533,7 +1532,7 @@ return global::DripSharp.Brine.Runtime.VmList.Of(this.typeArgumentNode.GetMirror
 }
 
 protected internal sealed override global::DripSharp.Brine.PType DoExport() {
-return new global::DripSharp.Brine.PType.Class(global::DripSharp.Brine.Runtime.BaseModule.GetFunctionClass().Export(), TypeNode.Export(this.typeArgumentNode));
+return new global::DripSharp.Brine.PType.Class(((global::DripSharp.Brine.PClass)(global::DripSharp.Brine.Runtime.BaseModule.GetFunctionClass().Export())), TypeNode.Export(this.typeArgumentNode));
 }
 
 protected internal virtual object Eval(global::DripSharp.Brine.Runtime.VmFunction value) {
@@ -1601,7 +1600,7 @@ return ret;
 
 protected internal sealed override global::DripSharp.Brine.PType DoExport() {
 var typeArguments = global::DripSharp.Runtime.JavaCompat.ToListValues(global::DripSharp.Runtime.JavaCompat.Map(global::DripSharp.Runtime.JavaCompat.StreamOf<TypeNode>(this.typeArgumentNodes), TypeNode.Export));
-return new global::DripSharp.Brine.PType.Class(this.GetFunctionNClass().Export(), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.PType>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.PType>>(typeArguments)));
+return new global::DripSharp.Brine.PType.Class(((global::DripSharp.Brine.PClass)(this.GetFunctionNClass().Export())), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.PType>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.PType>>(typeArguments)));
 }
 
 protected internal virtual object Eval(global::DripSharp.Brine.Runtime.VmFunction value) {
@@ -1657,7 +1656,7 @@ return this.DoEval(value, module);
 
 internal object DoEval(global::DripSharp.Brine.Runtime.VmReference value, global::DripSharp.Brine.Runtime.VmTyped module) {
 var referentType = TypeNode.Export(this.referentTypeNode);
-if (value.ReferentTypeIsSubtypeOf(referentType, module.GetVmClass().Export())) {
+if (value.ReferentTypeIsSubtypeOf(referentType, ((global::DripSharp.Brine.PClass)(module.GetVmClass().Export())))) {
 return value;
 }
 throw new global::DripSharp.Brine.Ast.Type.VmTypeMismatchException.Reference(base.sourceSection, value, TypeNode.Export(this.domainTypeNode), referentType);
@@ -1708,7 +1707,7 @@ return (this.domainTypeNode.IsNoopTypeCheck() && this.referentTypeNode.IsNoopTyp
 }
 
 protected internal override global::DripSharp.Brine.PType DoExport() {
-return new global::DripSharp.Brine.PType.Class(global::DripSharp.Brine.Runtime.RefModule.GetReferenceClass().Export(), this.domainTypeNode.DoExport(), this.referentTypeNode.DoExport());
+return new global::DripSharp.Brine.PType.Class(((global::DripSharp.Brine.PClass)(global::DripSharp.Brine.Runtime.RefModule.GetReferenceClass().Export())), this.domainTypeNode.DoExport(), this.referentTypeNode.DoExport());
 }
 
 protected internal override bool IsParametric() {
@@ -1765,7 +1764,7 @@ return (this.firstTypeNode.IsEquivalentTo(pairTypeNode.firstTypeNode) && this.se
 }
 
 protected internal override global::DripSharp.Brine.PType DoExport() {
-return new global::DripSharp.Brine.PType.Class(global::DripSharp.Brine.Runtime.BaseModule.GetPairClass().Export(), this.firstTypeNode.DoExport(), this.secondTypeNode.DoExport());
+return new global::DripSharp.Brine.PType.Class(((global::DripSharp.Brine.PClass)(global::DripSharp.Brine.Runtime.BaseModule.GetPairClass().Export())), this.firstTypeNode.DoExport(), this.secondTypeNode.DoExport());
 }
 
 protected internal override bool AcceptTypeNode(bool visitTypeArguments, TypeNodeConsumer consumer) {
@@ -1803,7 +1802,7 @@ throw this.ExceptionBuilder().EvalError("internalStdLibClass", "VarArgs").WithSo
 }
 
 protected internal sealed override global::DripSharp.Brine.PType DoExport() {
-return new global::DripSharp.Brine.PType.Class(global::DripSharp.Brine.Runtime.BaseModule.GetVarArgsClass().Export(), this.elementTypeNode.DoExport());
+return new global::DripSharp.Brine.PType.Class(((global::DripSharp.Brine.PClass)(global::DripSharp.Brine.Runtime.BaseModule.GetVarArgsClass().Export())), this.elementTypeNode.DoExport());
 }
 
 protected internal override object ExecuteLazily(global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame frame, object value) {
@@ -2183,7 +2182,7 @@ return this.aliasedTypeNode.IsEquivalentTo(other);
 }
 
 protected internal override global::DripSharp.Brine.PType DoExport() {
-return new global::DripSharp.Brine.PType.Alias(this.typeAlias.Export(), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.PType>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.PType>>(global::DripSharp.Runtime.JavaCompat.ToListValues(global::DripSharp.Runtime.JavaCompat.Map(global::DripSharp.Runtime.JavaCompat.StreamOf<TypeNode>(this.typeArgumentNodes), TypeNode.Export)))), this.aliasedTypeNode.DoExport());
+return new global::DripSharp.Brine.PType.Alias(((global::DripSharp.Brine.TypeAlias)(this.typeAlias.Export())), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.PType>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.PType>>(global::DripSharp.Runtime.JavaCompat.ToListValues(global::DripSharp.Runtime.JavaCompat.Map(global::DripSharp.Runtime.JavaCompat.StreamOf<TypeNode>(this.typeArgumentNodes), TypeNode.Export)))), this.aliasedTypeNode.DoExport());
 }
 
 protected internal override bool AcceptTypeNode(bool visitTypeArguments, TypeNodeConsumer consumer) {
@@ -2535,7 +2534,7 @@ var typeParameterCount = clazz.GetTypeParameterCount();
 if ((typeParameterCount == 0)) {
 return global::DripSharp.Brine.Runtime.VmList.EMPTY;
 }
-var builder = global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder()));
 for (var i = 0; (i < typeParameterCount); i++) {
 builder.Add((global::DripSharp.Brine.Runtime.MirrorFactories.unknownTypeFactory).Create(default!));
 }

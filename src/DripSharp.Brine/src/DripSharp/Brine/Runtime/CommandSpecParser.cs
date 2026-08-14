@@ -819,7 +819,7 @@ return global::DripSharp.Brine.CommandSpec.CompletionCandidates.PATH;
 if (!((value is global::DripSharp.Brine.Runtime.VmListing vmListing))) {
 throw global::DripSharp.Brine.PklBugException.UnreachableCode();
 }
-var result = new global::System.Collections.Generic.HashSet<string>(vmListing.GetLength());
+var result = new global::System.Collections.Generic.HashSet<string>();
 vmListing.ForceAndIterateMemberValues((key, member, val) => result.Add((string)(val!)));
 return new global::DripSharp.Brine.CommandSpec.CompletionCandidates.Fixed(result);
 }
@@ -918,7 +918,7 @@ moduleNode.GetCallTarget().Call(emptyModule, emptyModule);
 global::DripSharp.Brine.Runtime.MinPklVersionChecker.Check(emptyModule, importNode);
 }, (global::DripSharp.Brine.Runtime.Truffle.api.nodes.Node?)default!);
 var output = global::DripSharp.Brine.Runtime.VmUtils.ReadModuleOutput(evaluated);
-return new global::DripSharp.Brine.CommandSpec.Result(global::DripSharp.Brine.Runtime.VmUtils.ReadBytesProperty(output).Export(), global::DripSharp.Brine.Runtime.VmUtils.ReadFilesProperty(output, this.makeFileOutput));
+return new global::DripSharp.Brine.CommandSpec.Result(((byte[])(global::DripSharp.Brine.Runtime.VmUtils.ReadBytesProperty(output).Export())), global::DripSharp.Brine.Runtime.VmUtils.ReadFilesProperty(output, this.makeFileOutput));
 }
 
 private static bool IsImport(global::DripSharp.Brine.Runtime.VmTyped value) {

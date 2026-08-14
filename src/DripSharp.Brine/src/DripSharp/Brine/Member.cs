@@ -20,7 +20,7 @@ private readonly global::System.Collections.Generic.IList<global::DripSharp.Brin
 
 private readonly string simpleName = default!;
 
-public Member(string? docComment, SourceLocation sourceLocation, global::System.Collections.Generic.IReadOnlySet<global::DripSharp.Brine.Modifier> modifiers, global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.PObject> annotations, string simpleName) {
+public Member(string? docComment, SourceLocation sourceLocation, global::System.Collections.Generic.ISet<global::DripSharp.Brine.Modifier> modifiers, global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.PObject> annotations, string simpleName) {
 this.docComment = docComment!;
 this.sourceLocation = global::DripSharp.Runtime.JavaCompat.RequireNonNull(sourceLocation, "sourceLocation");
 this.modifiers = global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.ISet<global::DripSharp.Brine.Modifier>>(global::DripSharp.Runtime.JavaCompat.RequireNonNull(global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.ISet<global::DripSharp.Brine.Modifier>>(modifiers), "modifiers"));
@@ -38,8 +38,8 @@ public virtual SourceLocation GetSourceLocation() {
 return this.sourceLocation;
 }
 
-public virtual global::System.Collections.Generic.IReadOnlySet<global::DripSharp.Brine.Modifier> GetModifiers() {
-return global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlySet<global::DripSharp.Brine.Modifier>>(this.modifiers);
+public virtual global::System.Collections.Generic.ISet<global::DripSharp.Brine.Modifier> GetModifiers() {
+return global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.ISet<global::DripSharp.Brine.Modifier>>(this.modifiers);
 }
 
 public virtual global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.PObject> GetAnnotations() {

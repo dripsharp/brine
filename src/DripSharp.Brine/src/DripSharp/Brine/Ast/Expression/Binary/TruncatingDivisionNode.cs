@@ -82,7 +82,7 @@ try {
 return global::DripSharp.Brine.Util.MathUtils.RoundToLong(((double)(x) / (double)(y)), global::DripSharp.Runtime.JavaRoundingMode.Down);
 } catch (global::System.ArithmeticException) {
 global::DripSharp.Brine.Runtime.Truffle.api.CompilerDirectives.TransferToInterpreter();
-throw this.ExceptionBuilder().EvalError((double.IsFinite(x) ? "cannotConvertLargeFloat" : "cannotConvertNonFiniteFloat"), new global::DripSharp.Brine.Runtime.VmException.ProgramValue("Float", x)).Build();
+throw this.ExceptionBuilder().EvalError((global::DripSharp.Runtime.JavaCompat.IsFinite(x) ? "cannotConvertLargeFloat" : "cannotConvertNonFiniteFloat"), new global::DripSharp.Brine.Runtime.VmException.ProgramValue("Float", x)).Build();
 }
 }
 }

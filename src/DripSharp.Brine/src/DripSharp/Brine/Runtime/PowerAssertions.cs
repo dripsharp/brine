@@ -283,9 +283,7 @@ public int Length();
 
 public void AppendTo(global::DripSharp.Brine.Util.AnsiStringBuilder builder);
 
-public MarkerEntry ToMarker() {
-return new MarkerEntry(this.StartLine, this.StartColumn);
-}
+public MarkerEntry ToMarker();
 }
 
 internal sealed partial record class SourceEntry(int StartLine, int StartColumn, string Src) : global::DripSharp.Brine.Runtime.PowerAssertions.LayerEntry

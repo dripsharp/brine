@@ -151,7 +151,7 @@ return false;
 internal abstract partial class Chars : global::DripSharp.Brine.Stdlib.ExternalPropertyNode
 {
 protected internal virtual global::DripSharp.Brine.Runtime.VmList Eval(string self) {
-var builder = global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder()));
 global::DripSharp.Runtime.JavaCompat.ForEach(global::DripSharp.Runtime.JavaCompat.StringCodePoints(self), (cp) => builder.Add(global::DripSharp.Runtime.JavaCompat.CodePointToString(cp)));
 return builder.Build();
 }
@@ -160,7 +160,7 @@ return builder.Build();
 internal abstract partial class CodePoints : global::DripSharp.Brine.Stdlib.ExternalPropertyNode
 {
 protected internal virtual global::DripSharp.Brine.Runtime.VmList Eval(string self) {
-var builder = global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder()));
 global::DripSharp.Runtime.JavaCompat.ForEach(global::DripSharp.Runtime.JavaCompat.StringCodePoints(self), (cp) => builder.Add((long)(cp)));
 return builder.Build();
 }
@@ -408,7 +408,7 @@ return StringNodes.SubstringUntil(self, idx);
 internal abstract partial class ReplaceAll : global::DripSharp.Brine.Stdlib.ExternalMethod2Node
 {
 protected internal virtual string Eval(string self, string pattern, string replacement) {
-return self.Replace(pattern, replacement, global::System.StringComparison.Ordinal);
+return global::DripSharp.Runtime.JavaCompat.ReplaceOrdinal(self, pattern, replacement);
 }
 
 protected internal virtual string Eval(string self, global::DripSharp.Brine.Runtime.VmRegex regex, string replacement) {

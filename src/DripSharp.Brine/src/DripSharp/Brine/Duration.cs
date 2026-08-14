@@ -116,7 +116,7 @@ return global::DripSharp.Runtime.JavaCompat.MathRound(this.InDays());
 }
 
 internal global::System.TimeSpan ToJavaDuration() {
-if (!(double.IsFinite(this.value))) {
+if (!(global::DripSharp.Runtime.JavaCompat.IsFinite(this.value))) {
 throw new global::System.ArithmeticException(global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat("Cannot convert Pkl duration `", this), "` to `java.time.Duration`."));
 }
 var l = (long)(this.value);

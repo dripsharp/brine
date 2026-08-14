@@ -52,7 +52,7 @@ global::DripSharp.Brine.Runtime.MinPklVersionChecker.Check(moduleName, e.GetPart
 throw global::DripSharp.Brine.Runtime.VmUtils.ToVmException(e, source, moduleName);
 }
 var builder = global::DripSharp.Brine.Ast.Builder.AstBuilder.Create(source, this, moduleContext, moduleKey, resolvedModuleKey, moduleResolver);
-var moduleNode = builder.VisitModule(moduleContext);
+var moduleNode = ((global::DripSharp.Brine.Ast.PklRootNode)(builder.VisitModule(moduleContext)));
 moduleNode.GetCallTarget().Call(emptyModule, emptyModule);
 global::DripSharp.Brine.Runtime.MinPklVersionChecker.Check(emptyModule, importNode!);
 }

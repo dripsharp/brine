@@ -12,10 +12,6 @@ internal sealed partial class ExternalReaderProcessImpl : global::DripSharp.Brin
 {
 public void Dispose() => this.Close();
 
-public global::DripSharp.Brine.Externalreader.ExternalReaderProcess Of(global::DripSharp.Brine.EvaluatorSettings.PklEvaluatorSettings.ExternalReader spec) {
-return new ExternalReaderProcessImpl(spec);
-}
-
 private static readonly global::System.TimeSpan CLOSE_TIMEOUT = global::DripSharp.Runtime.JavaCompat.DurationOfSeconds((long)(3));
 
 private readonly global::DripSharp.Brine.EvaluatorSettings.PklEvaluatorSettings.ExternalReader spec = default!;
@@ -47,11 +43,11 @@ this.spec = spec;
 this.logPrefix = (global::DripSharp.Runtime.JavaCompat.Equals(global::DripSharp.Runtime.JavaCompat.Getenv("PKL_DEBUG"), "1") ? global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat("[pkl-core][external-process][", spec.Executable), "] ") : (string)(default!));
 }
 
-public global::DripSharp.Brine.Externalreader.ExternalModuleResolver GetModuleResolver(long evaluatorId) {
+public override global::DripSharp.Brine.Externalreader.ExternalModuleResolver GetModuleResolver(long evaluatorId) {
 return global::DripSharp.Brine.Externalreader.ExternalModuleResolver.Of(this.GetTransport(), evaluatorId);
 }
 
-public global::DripSharp.Brine.Externalreader.ExternalResourceResolver GetResourceResolver(long evaluatorId) {
+public override global::DripSharp.Brine.Externalreader.ExternalResourceResolver GetResourceResolver(long evaluatorId) {
 return global::DripSharp.Brine.Externalreader.ExternalResourceResolver.Of(this.GetTransport(), evaluatorId);
 }
 
@@ -90,11 +86,11 @@ failure = error;
 this.FinishDestinationTransport(transport, failure);
 }
 
-public void Close() {
+public override void Close() {
 this.CloseDestinationProcess();
 }
 
-public global::DripSharp.Brine.Externalreader.ModuleReaderSpec? GetModuleReaderSpec(string uriScheme) {
+public override global::DripSharp.Brine.Externalreader.ModuleReaderSpec? GetModuleReaderSpec(string uriScheme) {
 return global::DripSharp.Brine.Messaging.MessageTransports.ResolveFuture<global::DripSharp.Brine.Externalreader.ModuleReaderSpec>(global::DripSharp.Runtime.JavaCompat.ComputeIfAbsent(this.initializeModuleReaderResponses, uriScheme, (scheme) => {
 var future = new global::DripSharp.Runtime.JavaFuture<global::DripSharp.Brine.Externalreader.ModuleReaderSpec?>();
 var request = new global::DripSharp.Brine.Externalreader.ExternalReaderMessages.InitializeModuleReaderRequest(this.requestIdGenerator.NextLong(), scheme);
@@ -114,7 +110,7 @@ return future;
 }));
 }
 
-public global::DripSharp.Brine.Externalreader.ResourceReaderSpec? GetResourceReaderSpec(string uriScheme) {
+public override global::DripSharp.Brine.Externalreader.ResourceReaderSpec? GetResourceReaderSpec(string uriScheme) {
 return global::DripSharp.Brine.Messaging.MessageTransports.ResolveFuture<global::DripSharp.Brine.Externalreader.ResourceReaderSpec>(global::DripSharp.Runtime.JavaCompat.ComputeIfAbsent(this.initializeResourceReaderResponses, uriScheme, (scheme) => {
 var future = new global::DripSharp.Runtime.JavaFuture<global::DripSharp.Brine.Externalreader.ResourceReaderSpec?>();
 var request = new global::DripSharp.Brine.Externalreader.ExternalReaderMessages.InitializeResourceReaderRequest(this.requestIdGenerator.NextLong(), scheme);

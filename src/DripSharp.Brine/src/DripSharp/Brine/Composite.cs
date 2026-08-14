@@ -10,20 +10,13 @@ namespace DripSharp.Brine;
 
 public partial interface Composite : global::DripSharp.Brine.Value
 {
-public bool HasProperty(string name) {
-return global::DripSharp.Runtime.JavaCompat.MapContainsKey(this.GetProperties(), name);
-}
+public bool HasProperty(string name);
 
 public object GetProperty(string name);
 
-public object? GetPropertyOrNull(string name) {
-return global::DripSharp.Runtime.JavaCompat.MapGet(this.GetProperties(), name);
-}
+public object? GetPropertyOrNull(string name);
 
-public object? Get(string name) {
-var result = this.GetProperty(name);
-return ((result is global::DripSharp.Brine.PNull) ? (object)(default!) : result);
-}
+public object? Get(string name);
 
 public global::System.Collections.Generic.IReadOnlyDictionary<string, object> GetProperties();
 }

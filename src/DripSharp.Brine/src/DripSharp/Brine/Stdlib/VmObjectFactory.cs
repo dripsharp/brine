@@ -88,9 +88,9 @@ internal delegate long IntProperty<ENested>(ENested extraStorage);
 
 internal delegate bool BooleanProperty<ENested>(ENested extraStorage);
 
-internal partial interface Property<ENested, T>
+internal abstract partial class Property<ENested, T>
 {
-public T Evaluate(ENested extraStorage);
+public abstract T Evaluate(ENested extraStorage);
 
 public static global::System.Func<T, T> Identity<T>() {
 return (t) => t;

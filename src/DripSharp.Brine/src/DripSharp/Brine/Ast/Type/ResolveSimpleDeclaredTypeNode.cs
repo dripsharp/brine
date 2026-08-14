@@ -40,7 +40,7 @@ if ((result! != default!)) {
 return result!;
 }
 }
-currModule = currModule.GetParent()!;
+currModule = ((global::DripSharp.Brine.Runtime.VmTyped)(currModule.GetParent()))!;
 } while ((currModule != default!));
 throw this.ExceptionBuilder().EvalError("cannotFindSimpleType", this.typeName, enclosingModule.GetModuleInfo().GetModuleName()).Build();
 }

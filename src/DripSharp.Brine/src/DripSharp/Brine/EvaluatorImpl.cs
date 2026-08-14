@@ -12,10 +12,6 @@ internal sealed partial class EvaluatorImpl : global::DripSharp.Brine.Evaluator
 {
 public void Dispose() => this.Close();
 
-public global::DripSharp.Brine.Evaluator Preconfigured() {
-return global::DripSharp.Brine.EvaluatorBuilder.Preconfigured().Build();
-}
-
 private readonly global::DripSharp.Brine.StackFrameTransformer frameTransformer = default!;
 
 private readonly bool color;
@@ -64,29 +60,29 @@ return t;
 }));
 }
 
-public global::DripSharp.Brine.PModule Evaluate(global::DripSharp.Brine.ModuleSource moduleSource) {
+public override global::DripSharp.Brine.PModule Evaluate(global::DripSharp.Brine.ModuleSource moduleSource) {
 return this.DoEvaluate<global::DripSharp.Brine.PModule>(moduleSource, (module) => {
 module.Force(false);
-return (global::DripSharp.Brine.PModule)(module.Export()!);
+return (global::DripSharp.Brine.PModule)(((global::DripSharp.Brine.Composite)(module.Export()))!);
 });
 }
 
-public string EvaluateOutputText(global::DripSharp.Brine.ModuleSource moduleSource) {
+public override string EvaluateOutputText(global::DripSharp.Brine.ModuleSource moduleSource) {
 return this.DoEvaluate<string>(moduleSource, (module) => {
 var output = global::DripSharp.Brine.Runtime.VmUtils.ReadModuleOutput(module);
 return global::DripSharp.Brine.Runtime.VmUtils.ReadTextProperty(output);
 });
 }
 
-public byte[] EvaluateOutputBytes(global::DripSharp.Brine.ModuleSource moduleSource) {
+public override byte[] EvaluateOutputBytes(global::DripSharp.Brine.ModuleSource moduleSource) {
 return global::DripSharp.Runtime.JavaCompat.ToUnsignedBytes(this.DoEvaluate<byte[]>(moduleSource, (module) => {
 var output = global::DripSharp.Brine.Runtime.VmUtils.ReadModuleOutput(module);
 var vmBytes = global::DripSharp.Brine.Runtime.VmUtils.ReadBytesProperty(output);
-return vmBytes.Export();
+return ((byte[])(vmBytes.Export()));
 }));
 }
 
-public object EvaluateOutputValue(global::DripSharp.Brine.ModuleSource moduleSource) {
+public override object EvaluateOutputValue(global::DripSharp.Brine.ModuleSource moduleSource) {
 return this.DoEvaluate<object>(moduleSource, (module) => {
 var output = global::DripSharp.Brine.Runtime.VmUtils.ReadModuleOutput(module);
 var value = global::DripSharp.Brine.Runtime.VmUtils.ReadMember(output, global::DripSharp.Brine.Runtime.Identifier.VALUE);
@@ -98,14 +94,14 @@ return value;
 });
 }
 
-public global::System.Collections.Generic.IReadOnlyDictionary<string, global::DripSharp.Brine.FileOutput> EvaluateOutputFiles(global::DripSharp.Brine.ModuleSource moduleSource) {
+public override global::System.Collections.Generic.IReadOnlyDictionary<string, global::DripSharp.Brine.FileOutput> EvaluateOutputFiles(global::DripSharp.Brine.ModuleSource moduleSource) {
 return global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<string, global::DripSharp.Brine.FileOutput>>(this.DoEvaluate<global::System.Collections.Generic.IDictionary<string, global::DripSharp.Brine.FileOutput>>(moduleSource, (module) => {
 var output = global::DripSharp.Brine.Runtime.VmUtils.ReadModuleOutput(module);
 return global::DripSharp.Brine.Runtime.VmUtils.ReadFilesProperty(output, (fileOutput) => new global::DripSharp.Brine.FileOutputImpl(this, fileOutput));
 }));
 }
 
-public object EvaluateExpression(global::DripSharp.Brine.ModuleSource moduleSource, string expression) {
+public override object EvaluateExpression(global::DripSharp.Brine.ModuleSource moduleSource, string expression) {
 return ((global::System.Func<object>)(() => { switch (expression) {
 case var __case_207_12_0 when global::System.Object.Equals(__case_207_12_0, "output.text"):
 return this.EvaluateOutputText(moduleSource);
@@ -133,7 +129,7 @@ this.messagePacker = global::DripSharp.Brine.Runtime.ExcludedMessagePack.NewDefa
 return this.messagePacker!;
 }
 
-public sbyte[] EvaluateExpressionPklBinary(global::DripSharp.Brine.ModuleSource moduleSource, string expression) {
+internal override sbyte[] EvaluateExpressionPklBinary(global::DripSharp.Brine.ModuleSource moduleSource, string expression) {
 return this.DoEvaluate<sbyte[]>(moduleSource, (module) => {
 var expressionResult = ((global::System.Func<object>)(() => { switch (expression) {
 case var __case_240_22_0 when global::System.Object.Equals(__case_240_22_0, "module"):
@@ -154,7 +150,7 @@ return packer.ToByteArray();
 });
 }
 
-public string EvaluateExpressionString(global::DripSharp.Brine.ModuleSource moduleSource, string expression) {
+public override string EvaluateExpressionString(global::DripSharp.Brine.ModuleSource moduleSource, string expression) {
 if (global::DripSharp.Runtime.JavaCompat.Equals(expression, "output.text")) {
 return this.EvaluateOutputText(moduleSource);
 }
@@ -166,18 +162,18 @@ return (string)(stringified!);
 });
 }
 
-public global::DripSharp.Brine.ModuleSchema EvaluateSchema(global::DripSharp.Brine.ModuleSource moduleSource) {
+public override global::DripSharp.Brine.ModuleSchema EvaluateSchema(global::DripSharp.Brine.ModuleSource moduleSource) {
 return this.DoEvaluate<global::DripSharp.Brine.ModuleSchema>(moduleSource, (module) => module.GetModuleInfo().GetModuleSchema(module));
 }
 
-public global::DripSharp.Brine.TestResults EvaluateTest(global::DripSharp.Brine.ModuleSource moduleSource, bool overwrite) {
+internal override global::DripSharp.Brine.TestResults EvaluateTest(global::DripSharp.Brine.ModuleSource moduleSource, bool overwrite) {
 return this.DoEvaluate<global::DripSharp.Brine.TestResults>(moduleSource, (module) => {
 var testRunner = new global::DripSharp.Brine.Runtime.TestRunner(this.logger, this.frameTransformer, overwrite, this.color);
 return testRunner.Run(module);
 });
 }
 
-public void EvaluateCommand(global::DripSharp.Brine.ModuleSource moduleSource, global::System.Collections.Generic.ISet<string> reservedFlagNames, global::System.Collections.Generic.ISet<string> reservedFlagShortNames, global::System.Action<global::DripSharp.Brine.CommandSpec> run) {
+internal override void EvaluateCommand(global::DripSharp.Brine.ModuleSource moduleSource, global::System.Collections.Generic.ISet<string> reservedFlagNames, global::System.Collections.Generic.ISet<string> reservedFlagShortNames, global::System.Action<global::DripSharp.Brine.CommandSpec> run) {
 this.DoEvaluate<bool>(moduleSource, (module) => {
 var commandRunner = new global::DripSharp.Brine.Runtime.CommandSpecParser(this.moduleResolver, this.securityManager, this.frameTransformer, this.color, reservedFlagNames, reservedFlagShortNames, (fileOutput) => new global::DripSharp.Brine.FileOutputImpl(this, fileOutput));
 run(commandRunner.Parse(module));
@@ -185,7 +181,7 @@ return true;
 });
 }
 
-public T EvaluateOutputValueAs<T>(global::DripSharp.Brine.ModuleSource moduleSource, global::DripSharp.Brine.PClassInfo<T> classInfo) {
+public override T EvaluateOutputValueAs<T>(global::DripSharp.Brine.ModuleSource moduleSource, global::DripSharp.Brine.PClassInfo<T> classInfo) {
 return this.DoEvaluate(moduleSource, (module) => {
 var output = global::DripSharp.Brine.Runtime.VmUtils.ReadModuleOutput(module);
 var value = global::DripSharp.Brine.Runtime.VmUtils.ReadMember(output, global::DripSharp.Brine.Runtime.Identifier.VALUE);
@@ -201,7 +197,7 @@ throw this.ModuleOutputValueTypeMismatch(module, global::DripSharp.Brine.Runtime
 });
 }
 
-public void Close() {
+public override void Close() {
 this.polyglotContext.Close(true);
 try {
 this.packageResolver.Dispose();
@@ -216,7 +212,7 @@ return this.DoEvaluate<string>(() => global::DripSharp.Brine.Runtime.VmUtils.Rea
 }
 
 internal byte[] EvaluateOutputBytes(global::DripSharp.Brine.Runtime.VmTyped fileOutput) {
-return global::DripSharp.Runtime.JavaCompat.ToUnsignedBytes(this.DoEvaluate<byte[]>(() => global::DripSharp.Brine.Runtime.VmUtils.ReadBytesProperty(fileOutput).Export()));
+return global::DripSharp.Runtime.JavaCompat.ToUnsignedBytes(this.DoEvaluate<byte[]>(() => ((byte[])(global::DripSharp.Brine.Runtime.VmUtils.ReadBytesProperty(fileOutput).Export()))));
 }
 
 private T DoEvaluate<T>(global::System.Func<T> supplier) {
@@ -316,7 +312,7 @@ var uriOfValueMember = outputValueMember!.GetSourceSection().GetSource().GetURI(
 if (!(global::DripSharp.Runtime.JavaCompat.Equals(uriOfValueMember, global::DripSharp.Brine.PClassInfo<object>.pklBaseUri))) {
 return builder.WithSourceSection(outputValueMember!.GetBodySection()).WithMemberName("value").Build();
 } else {
-if ((((module.GetParent()! != default!) && module.GetParent()!.GetVmClass().Equals(global::DripSharp.Brine.Runtime.BaseModule.GetModuleClass())) && expectedClassInfo.IsModuleClass())) {
+if ((((((global::DripSharp.Brine.Runtime.VmTyped)(module.GetParent()))! != default!) && ((global::DripSharp.Brine.Runtime.VmTyped)(module.GetParent()))!.GetVmClass().Equals(global::DripSharp.Brine.Runtime.BaseModule.GetModuleClass())) && expectedClassInfo.IsModuleClass())) {
 builder.WithHint(global::DripSharp.Runtime.JavaCompat.JavaStringFormat("Try adding `amends %s` to the module header.", this.vmValueRenderer.Render(global::DripSharp.Runtime.JavaCompat.UriToString(expectedClassInfo.GetModuleUri()))));
 }
 return builder.WithSourceSection(module.GetModuleInfo().GetHeaderSection()).WithMemberName(module.GetModuleInfo().GetModuleName()).Build();

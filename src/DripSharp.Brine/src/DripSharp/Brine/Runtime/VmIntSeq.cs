@@ -106,6 +106,8 @@ this.hasNext = !(this.__outer.IsEmpty());
 this.next = (this.hasNext ? this.__outer.start : this.__outer.last);
 }
 
+public void Remove() => throw new global::System.NotSupportedException();
+
 public long Next() => this.NextLong();
 
 internal bool hasNext;

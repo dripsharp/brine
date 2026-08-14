@@ -8,7 +8,7 @@
 #nullable enable
 namespace DripSharp.Brine.Runtime;
 
-internal partial interface VmValueConverter<T>
+internal abstract partial class VmValueConverter<T>
 {
 public static readonly object WILDCARD_PROPERTY = new Anonymous_23_7();
 
@@ -16,53 +16,53 @@ public static readonly object WILDCARD_ELEMENT = new Anonymous_31_7();
 
 public static readonly object TOP_LEVEL_VALUE = new Anonymous_39_7();
 
-public T ConvertString(string value, global::System.Collections.Generic.IEnumerable<object> path);
+public abstract T ConvertString(string value, global::System.Collections.Generic.IEnumerable<object> path);
 
-public T ConvertBoolean(bool value, global::System.Collections.Generic.IEnumerable<object> path);
+public abstract T ConvertBoolean(bool value, global::System.Collections.Generic.IEnumerable<object> path);
 
-public T ConvertInt(long value, global::System.Collections.Generic.IEnumerable<object> path);
+public abstract T ConvertInt(long value, global::System.Collections.Generic.IEnumerable<object> path);
 
-public T ConvertFloat(double value, global::System.Collections.Generic.IEnumerable<object> path);
+public abstract T ConvertFloat(double value, global::System.Collections.Generic.IEnumerable<object> path);
 
-public T ConvertDuration(global::DripSharp.Brine.Runtime.VmDuration value, global::System.Collections.Generic.IEnumerable<object> path);
+public abstract T ConvertDuration(global::DripSharp.Brine.Runtime.VmDuration value, global::System.Collections.Generic.IEnumerable<object> path);
 
-public T ConvertDataSize(global::DripSharp.Brine.Runtime.VmDataSize value, global::System.Collections.Generic.IEnumerable<object> path);
+public abstract T ConvertDataSize(global::DripSharp.Brine.Runtime.VmDataSize value, global::System.Collections.Generic.IEnumerable<object> path);
 
-public T ConvertBytes(global::DripSharp.Brine.Runtime.VmBytes vmBytes, global::System.Collections.Generic.IEnumerable<object> path);
+public abstract T ConvertBytes(global::DripSharp.Brine.Runtime.VmBytes vmBytes, global::System.Collections.Generic.IEnumerable<object> path);
 
-public T ConvertIntSeq(global::DripSharp.Brine.Runtime.VmIntSeq value, global::System.Collections.Generic.IEnumerable<object> path);
+public abstract T ConvertIntSeq(global::DripSharp.Brine.Runtime.VmIntSeq value, global::System.Collections.Generic.IEnumerable<object> path);
 
-public T ConvertList(global::DripSharp.Brine.Runtime.VmList value, global::System.Collections.Generic.IEnumerable<object> path);
+public abstract T ConvertList(global::DripSharp.Brine.Runtime.VmList value, global::System.Collections.Generic.IEnumerable<object> path);
 
-public T ConvertSet(global::DripSharp.Brine.Runtime.VmSet value, global::System.Collections.Generic.IEnumerable<object> path);
+public abstract T ConvertSet(global::DripSharp.Brine.Runtime.VmSet value, global::System.Collections.Generic.IEnumerable<object> path);
 
-public T ConvertMap(global::DripSharp.Brine.Runtime.VmMap value, global::System.Collections.Generic.IEnumerable<object> path);
+public abstract T ConvertMap(global::DripSharp.Brine.Runtime.VmMap value, global::System.Collections.Generic.IEnumerable<object> path);
 
-public T ConvertTyped(global::DripSharp.Brine.Runtime.VmTyped value, global::System.Collections.Generic.IEnumerable<object> path);
+public abstract T ConvertTyped(global::DripSharp.Brine.Runtime.VmTyped value, global::System.Collections.Generic.IEnumerable<object> path);
 
-public T ConvertDynamic(global::DripSharp.Brine.Runtime.VmDynamic value, global::System.Collections.Generic.IEnumerable<object> path);
+public abstract T ConvertDynamic(global::DripSharp.Brine.Runtime.VmDynamic value, global::System.Collections.Generic.IEnumerable<object> path);
 
-public T ConvertListing(global::DripSharp.Brine.Runtime.VmListing value, global::System.Collections.Generic.IEnumerable<object> path);
+public abstract T ConvertListing(global::DripSharp.Brine.Runtime.VmListing value, global::System.Collections.Generic.IEnumerable<object> path);
 
-public T ConvertMapping(global::DripSharp.Brine.Runtime.VmMapping value, global::System.Collections.Generic.IEnumerable<object> path);
+public abstract T ConvertMapping(global::DripSharp.Brine.Runtime.VmMapping value, global::System.Collections.Generic.IEnumerable<object> path);
 
-public T ConvertClass(global::DripSharp.Brine.Runtime.VmClass value, global::System.Collections.Generic.IEnumerable<object> path);
+public abstract T ConvertClass(global::DripSharp.Brine.Runtime.VmClass value, global::System.Collections.Generic.IEnumerable<object> path);
 
-public T ConvertTypeAlias(global::DripSharp.Brine.Runtime.VmTypeAlias value, global::System.Collections.Generic.IEnumerable<object> path);
+public abstract T ConvertTypeAlias(global::DripSharp.Brine.Runtime.VmTypeAlias value, global::System.Collections.Generic.IEnumerable<object> path);
 
-public T ConvertNull(global::DripSharp.Brine.Runtime.VmNull value, global::System.Collections.Generic.IEnumerable<object> path);
+public abstract T ConvertNull(global::DripSharp.Brine.Runtime.VmNull value, global::System.Collections.Generic.IEnumerable<object> path);
 
-public T ConvertPair(global::DripSharp.Brine.Runtime.VmPair value, global::System.Collections.Generic.IEnumerable<object> path);
+public abstract T ConvertPair(global::DripSharp.Brine.Runtime.VmPair value, global::System.Collections.Generic.IEnumerable<object> path);
 
-public T ConvertRegex(global::DripSharp.Brine.Runtime.VmRegex value, global::System.Collections.Generic.IEnumerable<object> path);
+public abstract T ConvertRegex(global::DripSharp.Brine.Runtime.VmRegex value, global::System.Collections.Generic.IEnumerable<object> path);
 
-public T ConvertFunction(global::DripSharp.Brine.Runtime.VmFunction value, global::System.Collections.Generic.IEnumerable<object> path);
+public abstract T ConvertFunction(global::DripSharp.Brine.Runtime.VmFunction value, global::System.Collections.Generic.IEnumerable<object> path);
 
-public T ConvertReference(global::DripSharp.Brine.Runtime.VmReference value, global::System.Collections.Generic.IEnumerable<object> path);
+public abstract T ConvertReference(global::DripSharp.Brine.Runtime.VmReference value, global::System.Collections.Generic.IEnumerable<object> path);
 
-public global::DripSharp.Brine.Util.Pair<global::DripSharp.Brine.Runtime.Identifier, T> ConvertProperty(global::DripSharp.Brine.Ast.Member.ClassProperty property, object value, global::System.Collections.Generic.IEnumerable<object> path);
+public abstract global::DripSharp.Brine.Util.Pair<global::DripSharp.Brine.Runtime.Identifier, T> ConvertProperty(global::DripSharp.Brine.Ast.Member.ClassProperty property, object value, global::System.Collections.Generic.IEnumerable<object> path);
 
-public T Convert(object value, global::System.Collections.Generic.IEnumerable<object> path) {
+public virtual T Convert(object value, global::System.Collections.Generic.IEnumerable<object> path) {
 if ((value is global::DripSharp.Brine.Runtime.VmValue vmValue)) {
 return vmValue.Accept(this, path);
 }

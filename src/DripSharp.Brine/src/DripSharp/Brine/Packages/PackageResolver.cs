@@ -8,24 +8,24 @@
 #nullable enable
 namespace DripSharp.Brine.Packages;
 
-public partial interface PackageResolver : global::System.IDisposable
+public abstract partial class PackageResolver : global::System.IDisposable
 {
-public void Close();
+public abstract void Close();
 public void Dispose() => this.Close();
 
 public static PackageResolver GetInstance(global::DripSharp.Brine.SecurityManager securityManager, global::DripSharp.Brine.Http.HttpClient httpClient, string? cachedDir) {
 return ((cachedDir! == default!) ? (PackageResolver)(new global::DripSharp.Brine.Packages.PackageResolvers.InMemoryPackageResolver(securityManager, httpClient)) : (PackageResolver)(new global::DripSharp.Brine.Packages.PackageResolvers.DiskCachedPackageResolver(securityManager, httpClient, cachedDir!)));
 }
 
-public global::DripSharp.Brine.Packages.DependencyMetadata GetDependencyMetadata(global::DripSharp.Brine.Packages.PackageUri uri, global::DripSharp.Brine.Packages.Checksums? checksums);
+public abstract global::DripSharp.Brine.Packages.DependencyMetadata GetDependencyMetadata(global::DripSharp.Brine.Packages.PackageUri uri, global::DripSharp.Brine.Packages.Checksums? checksums);
 
-internal global::DripSharp.Brine.Util.Pair<global::DripSharp.Brine.Packages.DependencyMetadata, global::DripSharp.Brine.Packages.Checksums> GetDependencyMetadataAndComputeChecksum(global::DripSharp.Brine.Packages.PackageUri packageUri);
+internal abstract global::DripSharp.Brine.Util.Pair<global::DripSharp.Brine.Packages.DependencyMetadata, global::DripSharp.Brine.Packages.Checksums> GetDependencyMetadataAndComputeChecksum(global::DripSharp.Brine.Packages.PackageUri packageUri);
 
-public void DownloadPackage(global::DripSharp.Brine.Packages.PackageUri uri, global::DripSharp.Brine.Packages.Checksums? checksums, bool noTransitive);
+public abstract void DownloadPackage(global::DripSharp.Brine.Packages.PackageUri uri, global::DripSharp.Brine.Packages.Checksums? checksums, bool noTransitive);
 
-public byte[] GetBytes(global::DripSharp.Brine.Packages.PackageAssetUri uri, bool allowDirectories, global::DripSharp.Brine.Packages.Checksums? checksums);
+public abstract byte[] GetBytes(global::DripSharp.Brine.Packages.PackageAssetUri uri, bool allowDirectories, global::DripSharp.Brine.Packages.Checksums? checksums);
 
-public global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement> ListElements(global::DripSharp.Brine.Packages.PackageAssetUri uri, global::DripSharp.Brine.Packages.Checksums? checksums);
+public abstract global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement> ListElements(global::DripSharp.Brine.Packages.PackageAssetUri uri, global::DripSharp.Brine.Packages.Checksums? checksums);
 
-public bool HasElement(global::DripSharp.Brine.Packages.PackageAssetUri uri, global::DripSharp.Brine.Packages.Checksums? checksums);
+public abstract bool HasElement(global::DripSharp.Brine.Packages.PackageAssetUri uri, global::DripSharp.Brine.Packages.Checksums? checksums);
 }

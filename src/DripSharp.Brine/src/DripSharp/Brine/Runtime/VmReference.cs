@@ -24,7 +24,7 @@ private static global::DripSharp.Brine.Runtime.VmTyped NewAccess(string? propert
 return new global::DripSharp.Brine.Runtime.VmObjectBuilder().AddProperty(global::DripSharp.Brine.Runtime.Identifier.PROPERTY, ((property! == default!) ? (object)(global::DripSharp.Brine.Runtime.VmNull.WithoutDefault()) : (object)(property!))).AddProperty(global::DripSharp.Brine.Runtime.Identifier.KEY, ((key! == default!) ? (object)(global::DripSharp.Brine.Runtime.VmNull.WithoutDefault()) : key!)).ToTyped(global::DripSharp.Brine.Runtime.RefModule.GetAccessClass());
 }
 
-public VmReference(global::DripSharp.Brine.Runtime.VmTyped domain, global::DripSharp.Brine.Runtime.VmClass clazz, object data) : this(domain, data, global::DripSharp.Brine.Util.Paguro.RrbTree<object>.Empty<global::DripSharp.Brine.Runtime.VmTyped>(), VmReference.NormalizeTypes(new global::DripSharp.Brine.PType.Class(clazz.Export()), clazz.GetModule().GetVmClass().Export())) {
+public VmReference(global::DripSharp.Brine.Runtime.VmTyped domain, global::DripSharp.Brine.Runtime.VmClass clazz, object data) : this(domain, data, global::DripSharp.Brine.Util.Paguro.RrbTree<object>.Empty<global::DripSharp.Brine.Runtime.VmTyped>(), VmReference.NormalizeTypes(new global::DripSharp.Brine.PType.Class(((global::DripSharp.Brine.PClass)(clazz.Export()))), ((global::DripSharp.Brine.PClass)(clazz.GetModule().GetVmClass().Export())))) {
 
 }
 
@@ -64,8 +64,8 @@ return (global::DripSharp.Runtime.JavaCompat.Iterator(types)).Next()!;
 if (global::DripSharp.Runtime.JavaCompat.CollectionContains(types, global::DripSharp.Brine.PType.UNKNOWN)) {
 return global::DripSharp.Brine.PType.UNKNOWN;
 }
-if (VmReference.ContainsClass(types, global::DripSharp.Brine.Runtime.BaseModule.GetAnyClass().Export())) {
-return new global::DripSharp.Brine.PType.Class(global::DripSharp.Brine.Runtime.BaseModule.GetAnyClass().Export());
+if (VmReference.ContainsClass(types, ((global::DripSharp.Brine.PClass)(global::DripSharp.Brine.Runtime.BaseModule.GetAnyClass().Export())))) {
+return new global::DripSharp.Brine.PType.Class(((global::DripSharp.Brine.PClass)(global::DripSharp.Brine.Runtime.BaseModule.GetAnyClass().Export())));
 }
 var typesList = new global::System.Collections.Generic.List<global::DripSharp.Brine.PType>(types);
 global::DripSharp.Runtime.JavaCompat.SortList(typesList, global::DripSharp.Runtime.JavaCompat.ToComparison(global::DripSharp.Runtime.JavaCompat.ComparatorComparing<global::DripSharp.Brine.PType, string>((value0) => global::DripSharp.Runtime.JavaCompat.StringValueOf(value0))));
@@ -90,7 +90,7 @@ result.Add(new global::DripSharp.Brine.PType.Class(clazz.GetPClass(), global::Dr
 } else {
 if ((type is global::DripSharp.Brine.PType.Nullable nullable)) {
 VmReference.NormalizeTypes(nullable.GetBaseType(), moduleClass, result);
-result.Add(new global::DripSharp.Brine.PType.Class(global::DripSharp.Brine.Runtime.BaseModule.GetNullClass().Export()));
+result.Add(new global::DripSharp.Brine.PType.Class(((global::DripSharp.Brine.PClass)(global::DripSharp.Brine.Runtime.BaseModule.GetNullClass().Export()))));
 } else {
 if ((type is global::DripSharp.Brine.PType.Constrained constrained)) {
 VmReference.NormalizeTypes(constrained.GetBaseType(), moduleClass, result);
@@ -142,7 +142,7 @@ checkCandidate(t, candidates);
 if (global::DripSharp.Runtime.JavaCompat.CollectionIsEmpty(candidates)) {
 return default!;
 }
-return new VmReference(this.domain, this.data, this.path.Append(makeAccess()), VmReference.MinimizeTypes(candidates));
+return new VmReference(this.domain, this.data, ((global::DripSharp.Brine.Util.Paguro.RrbTree<global::DripSharp.Brine.Runtime.VmTyped>.ImRrbt<global::DripSharp.Brine.Runtime.VmTyped>)(this.path.Append(makeAccess()))), VmReference.MinimizeTypes(candidates));
 }
 
 private static void GetCandidatePropertyType(global::DripSharp.Brine.PType type, string property, global::System.Collections.Generic.ISet<global::DripSharp.Brine.PType> result) {
@@ -165,7 +165,7 @@ return;
 if ((global::System.Object.Equals((clazz.GetPClass().GetInfo()).AsObject(), (global::DripSharp.Brine.PClassInfo<object>.Listing).AsObject()) || global::System.Object.Equals((clazz.GetPClass().GetInfo()).AsObject(), (global::DripSharp.Brine.PClassInfo<object>.Mapping).AsObject()))) {
 return;
 }
-if ((clazz.GetPClass().IsSubclassOf(global::DripSharp.Brine.Runtime.BaseModule.GetModuleClass().Export()) && global::DripSharp.Runtime.JavaCompat.Equals(property, "output"))) {
+if ((clazz.GetPClass().IsSubclassOf(((global::DripSharp.Brine.PClass)(global::DripSharp.Brine.Runtime.BaseModule.GetModuleClass().Export()))) && global::DripSharp.Runtime.JavaCompat.Equals(property, "output"))) {
 return;
 }
 var prop = global::DripSharp.Runtime.JavaCompat.MapGet(clazz.GetPClass().GetAllProperties(), property);
@@ -210,7 +210,7 @@ if ((this.referentType == global::DripSharp.Brine.PType.UNKNOWN)) {
 return true;
 }
 var checkType = VmReference.NormalizeTypes(type, moduleClass);
-if (((checkType == global::DripSharp.Brine.PType.UNKNOWN) || VmReference.IsClass(checkType, global::DripSharp.Brine.Runtime.BaseModule.GetAnyClass().Export()))) {
+if (((checkType == global::DripSharp.Brine.PType.UNKNOWN) || VmReference.IsClass(checkType, ((global::DripSharp.Brine.PClass)(global::DripSharp.Brine.Runtime.BaseModule.GetAnyClass().Export()))))) {
 return true;
 }
 if ((checkType == global::DripSharp.Brine.PType.NOTHING)) {
@@ -241,7 +241,7 @@ if ((b is global::DripSharp.Brine.PType.StringLiteral bStr)) {
 return global::DripSharp.Runtime.JavaCompat.Equals(aStr.GetLiteral(), bStr.GetLiteral());
 } else {
 if ((b is global::DripSharp.Brine.PType.Class bClass__319_43)) {
-return (bClass__319_43.GetPClass() == global::DripSharp.Brine.Runtime.BaseModule.GetStringClass().Export());
+return (bClass__319_43.GetPClass() == ((global::DripSharp.Brine.PClass)(global::DripSharp.Brine.Runtime.BaseModule.GetStringClass().Export())));
 }
 }
 } else {
@@ -249,27 +249,27 @@ if ((a is global::DripSharp.Brine.PType.Alias aAlias)) {
 var aa = aAlias.GetTypeAlias();
 if (VmReference.IsIntTypeAlias(aa)) {
 if ((b is global::DripSharp.Brine.PType.Class bClass__326_38)) {
-return bClass__326_38.GetPClass().IsSubclassOf(global::DripSharp.Brine.Runtime.BaseModule.GetNumberClass().Export());
+return bClass__326_38.GetPClass().IsSubclassOf(((global::DripSharp.Brine.PClass)(global::DripSharp.Brine.Runtime.BaseModule.GetNumberClass().Export())));
 } else {
 if ((b is global::DripSharp.Brine.PType.Alias bAlias)) {
 var bb = bAlias.GetTypeAlias();
 if ((aa == bb)) {
 return true;
 }
-if ((aa == global::DripSharp.Brine.Runtime.BaseModule.GetInt8TypeAlias().Export())) {
-return ((bb == global::DripSharp.Brine.Runtime.BaseModule.GetInt16TypeAlias().Export()) || (bb == global::DripSharp.Brine.Runtime.BaseModule.GetInt32TypeAlias().Export()));
+if ((aa == ((global::DripSharp.Brine.TypeAlias)(global::DripSharp.Brine.Runtime.BaseModule.GetInt8TypeAlias().Export())))) {
+return ((bb == ((global::DripSharp.Brine.TypeAlias)(global::DripSharp.Brine.Runtime.BaseModule.GetInt16TypeAlias().Export()))) || (bb == ((global::DripSharp.Brine.TypeAlias)(global::DripSharp.Brine.Runtime.BaseModule.GetInt32TypeAlias().Export()))));
 } else {
-if ((aa == global::DripSharp.Brine.Runtime.BaseModule.GetInt16TypeAlias().Export())) {
-return (bb == global::DripSharp.Brine.Runtime.BaseModule.GetInt32TypeAlias().Export());
+if ((aa == ((global::DripSharp.Brine.TypeAlias)(global::DripSharp.Brine.Runtime.BaseModule.GetInt16TypeAlias().Export())))) {
+return (bb == ((global::DripSharp.Brine.TypeAlias)(global::DripSharp.Brine.Runtime.BaseModule.GetInt32TypeAlias().Export())));
 } else {
-if ((aa == global::DripSharp.Brine.Runtime.BaseModule.GetUInt8TypeAlias().Export())) {
-return (((((bb == global::DripSharp.Brine.Runtime.BaseModule.GetInt16TypeAlias().Export()) || (bb == global::DripSharp.Brine.Runtime.BaseModule.GetInt32TypeAlias().Export())) || (bb == global::DripSharp.Brine.Runtime.BaseModule.GetUInt16TypeAlias().Export())) || (bb == global::DripSharp.Brine.Runtime.BaseModule.GetUInt32TypeAlias().Export())) || (bb == global::DripSharp.Brine.Runtime.BaseModule.GetUIntTypeAlias().Export()));
+if ((aa == ((global::DripSharp.Brine.TypeAlias)(global::DripSharp.Brine.Runtime.BaseModule.GetUInt8TypeAlias().Export())))) {
+return (((((bb == ((global::DripSharp.Brine.TypeAlias)(global::DripSharp.Brine.Runtime.BaseModule.GetInt16TypeAlias().Export()))) || (bb == ((global::DripSharp.Brine.TypeAlias)(global::DripSharp.Brine.Runtime.BaseModule.GetInt32TypeAlias().Export())))) || (bb == ((global::DripSharp.Brine.TypeAlias)(global::DripSharp.Brine.Runtime.BaseModule.GetUInt16TypeAlias().Export())))) || (bb == ((global::DripSharp.Brine.TypeAlias)(global::DripSharp.Brine.Runtime.BaseModule.GetUInt32TypeAlias().Export())))) || (bb == ((global::DripSharp.Brine.TypeAlias)(global::DripSharp.Brine.Runtime.BaseModule.GetUIntTypeAlias().Export()))));
 } else {
-if ((aa == global::DripSharp.Brine.Runtime.BaseModule.GetUInt16TypeAlias().Export())) {
-return (((bb == global::DripSharp.Brine.Runtime.BaseModule.GetInt32TypeAlias().Export()) || (bb == global::DripSharp.Brine.Runtime.BaseModule.GetUInt32TypeAlias().Export())) || (bb == global::DripSharp.Brine.Runtime.BaseModule.GetUIntTypeAlias().Export()));
+if ((aa == ((global::DripSharp.Brine.TypeAlias)(global::DripSharp.Brine.Runtime.BaseModule.GetUInt16TypeAlias().Export())))) {
+return (((bb == ((global::DripSharp.Brine.TypeAlias)(global::DripSharp.Brine.Runtime.BaseModule.GetInt32TypeAlias().Export()))) || (bb == ((global::DripSharp.Brine.TypeAlias)(global::DripSharp.Brine.Runtime.BaseModule.GetUInt32TypeAlias().Export())))) || (bb == ((global::DripSharp.Brine.TypeAlias)(global::DripSharp.Brine.Runtime.BaseModule.GetUIntTypeAlias().Export()))));
 } else {
-if ((aa == global::DripSharp.Brine.Runtime.BaseModule.GetUInt32TypeAlias().Export())) {
-return (bb == global::DripSharp.Brine.Runtime.BaseModule.GetUIntTypeAlias().Export());
+if ((aa == ((global::DripSharp.Brine.TypeAlias)(global::DripSharp.Brine.Runtime.BaseModule.GetUInt32TypeAlias().Export())))) {
+return (bb == ((global::DripSharp.Brine.TypeAlias)(global::DripSharp.Brine.Runtime.BaseModule.GetUIntTypeAlias().Export())));
 }
 }
 }
@@ -330,7 +330,7 @@ return false;
 }
 
 private static bool IsIntTypeAlias(global::DripSharp.Brine.TypeAlias t) {
-return (((((((t == global::DripSharp.Brine.Runtime.BaseModule.GetInt8TypeAlias().Export()) || (t == global::DripSharp.Brine.Runtime.BaseModule.GetInt16TypeAlias().Export())) || (t == global::DripSharp.Brine.Runtime.BaseModule.GetInt32TypeAlias().Export())) || (t == global::DripSharp.Brine.Runtime.BaseModule.GetUInt8TypeAlias().Export())) || (t == global::DripSharp.Brine.Runtime.BaseModule.GetUInt16TypeAlias().Export())) || (t == global::DripSharp.Brine.Runtime.BaseModule.GetUInt32TypeAlias().Export())) || (t == global::DripSharp.Brine.Runtime.BaseModule.GetUIntTypeAlias().Export()));
+return (((((((t == ((global::DripSharp.Brine.TypeAlias)(global::DripSharp.Brine.Runtime.BaseModule.GetInt8TypeAlias().Export()))) || (t == ((global::DripSharp.Brine.TypeAlias)(global::DripSharp.Brine.Runtime.BaseModule.GetInt16TypeAlias().Export())))) || (t == ((global::DripSharp.Brine.TypeAlias)(global::DripSharp.Brine.Runtime.BaseModule.GetInt32TypeAlias().Export())))) || (t == ((global::DripSharp.Brine.TypeAlias)(global::DripSharp.Brine.Runtime.BaseModule.GetUInt8TypeAlias().Export())))) || (t == ((global::DripSharp.Brine.TypeAlias)(global::DripSharp.Brine.Runtime.BaseModule.GetUInt16TypeAlias().Export())))) || (t == ((global::DripSharp.Brine.TypeAlias)(global::DripSharp.Brine.Runtime.BaseModule.GetUInt32TypeAlias().Export())))) || (t == ((global::DripSharp.Brine.TypeAlias)(global::DripSharp.Brine.Runtime.BaseModule.GetUIntTypeAlias().Export()))));
 }
 
 private static bool IsPreservedTypeAlias(global::DripSharp.Brine.TypeAlias t) {
@@ -353,16 +353,16 @@ elem.Force(allowUndefinedValues);
 }
 }
 
-public override global::DripSharp.Brine.Reference Export() {
+public override object Export() {
 var pathList = new global::System.Collections.Generic.List<global::DripSharp.Brine.Composite>(this.path.Size());
 foreach (var elem in this.path) {
-global::DripSharp.Runtime.JavaCompat.Add(pathList, elem.Export());
+global::DripSharp.Runtime.JavaCompat.Add(pathList, ((global::DripSharp.Brine.Composite)(elem.Export())));
 }
-return new global::DripSharp.Brine.Reference(this.domain.Export(), global::DripSharp.Brine.Runtime.VmValue.Export(this.data), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Composite>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Composite>>(pathList)), this.GetReferentType());
+return new global::DripSharp.Brine.Reference(((global::DripSharp.Brine.Composite)(this.domain.Export())), global::DripSharp.Brine.Runtime.VmValue.Export(this.data), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Composite>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Composite>>(pathList)), this.GetReferentType());
 }
 
 public global::DripSharp.Brine.PType ExportType() {
-return new global::DripSharp.Brine.PType.Class(global::DripSharp.Brine.Runtime.RefModule.GetReferenceClass().Export(), new global::DripSharp.Brine.PType.Class(this.domain.GetVmClass().Export()), this.GetReferentType());
+return new global::DripSharp.Brine.PType.Class(((global::DripSharp.Brine.PClass)(global::DripSharp.Brine.Runtime.RefModule.GetReferenceClass().Export())), new global::DripSharp.Brine.PType.Class(((global::DripSharp.Brine.PClass)(this.domain.GetVmClass().Export()))), this.GetReferentType());
 }
 
 public override void Accept(global::DripSharp.Brine.Runtime.VmValueVisitor visitor) {

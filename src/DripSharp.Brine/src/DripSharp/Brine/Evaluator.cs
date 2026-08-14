@@ -8,7 +8,7 @@
 #nullable enable
 namespace DripSharp.Brine;
 
-public partial interface Evaluator : global::System.IDisposable
+public abstract partial class Evaluator : global::System.IDisposable
 {
 public void Dispose() => this.Close();
 
@@ -16,29 +16,29 @@ public static Evaluator Preconfigured() {
 return global::DripSharp.Brine.EvaluatorBuilder.Preconfigured().Build();
 }
 
-public global::DripSharp.Brine.PModule Evaluate(global::DripSharp.Brine.ModuleSource moduleSource);
+public abstract global::DripSharp.Brine.PModule Evaluate(global::DripSharp.Brine.ModuleSource moduleSource);
 
-public string EvaluateOutputText(global::DripSharp.Brine.ModuleSource moduleSource);
+public abstract string EvaluateOutputText(global::DripSharp.Brine.ModuleSource moduleSource);
 
-public byte[] EvaluateOutputBytes(global::DripSharp.Brine.ModuleSource moduleSource);
+public abstract byte[] EvaluateOutputBytes(global::DripSharp.Brine.ModuleSource moduleSource);
 
-public object EvaluateOutputValue(global::DripSharp.Brine.ModuleSource moduleSource);
+public abstract object EvaluateOutputValue(global::DripSharp.Brine.ModuleSource moduleSource);
 
-public global::System.Collections.Generic.IReadOnlyDictionary<string, global::DripSharp.Brine.FileOutput> EvaluateOutputFiles(global::DripSharp.Brine.ModuleSource moduleSource);
+public abstract global::System.Collections.Generic.IReadOnlyDictionary<string, global::DripSharp.Brine.FileOutput> EvaluateOutputFiles(global::DripSharp.Brine.ModuleSource moduleSource);
 
-public object EvaluateExpression(global::DripSharp.Brine.ModuleSource moduleSource, string expression);
+public abstract object EvaluateExpression(global::DripSharp.Brine.ModuleSource moduleSource, string expression);
 
-internal sbyte[] EvaluateExpressionPklBinary(global::DripSharp.Brine.ModuleSource moduleSource, string expression);
+internal abstract sbyte[] EvaluateExpressionPklBinary(global::DripSharp.Brine.ModuleSource moduleSource, string expression);
 
-public string EvaluateExpressionString(global::DripSharp.Brine.ModuleSource moduleSource, string expression);
+public abstract string EvaluateExpressionString(global::DripSharp.Brine.ModuleSource moduleSource, string expression);
 
-public global::DripSharp.Brine.ModuleSchema EvaluateSchema(global::DripSharp.Brine.ModuleSource moduleSource);
+public abstract global::DripSharp.Brine.ModuleSchema EvaluateSchema(global::DripSharp.Brine.ModuleSource moduleSource);
 
-public T EvaluateOutputValueAs<T>(global::DripSharp.Brine.ModuleSource moduleSource, global::DripSharp.Brine.PClassInfo<T> classInfo);
+public abstract T EvaluateOutputValueAs<T>(global::DripSharp.Brine.ModuleSource moduleSource, global::DripSharp.Brine.PClassInfo<T> classInfo);
 
-internal global::DripSharp.Brine.TestResults EvaluateTest(global::DripSharp.Brine.ModuleSource moduleSource, bool overwrite);
+internal abstract global::DripSharp.Brine.TestResults EvaluateTest(global::DripSharp.Brine.ModuleSource moduleSource, bool overwrite);
 
-internal void EvaluateCommand(global::DripSharp.Brine.ModuleSource moduleSource, global::System.Collections.Generic.ISet<string> reservedFlagNames, global::System.Collections.Generic.ISet<string> reservedFlagShortNames, global::System.Action<global::DripSharp.Brine.CommandSpec> run);
+internal abstract void EvaluateCommand(global::DripSharp.Brine.ModuleSource moduleSource, global::System.Collections.Generic.ISet<string> reservedFlagNames, global::System.Collections.Generic.ISet<string> reservedFlagShortNames, global::System.Action<global::DripSharp.Brine.CommandSpec> run);
 
-public void Close();
+public abstract void Close();
 }

@@ -12,14 +12,6 @@ internal sealed partial class LazyHttpClient : global::DripSharp.Brine.Http.Http
 {
 public void Dispose() => this.Close();
 
-public global::DripSharp.Brine.Http.HttpClient.Builder CreateBuilder() {
-return new global::DripSharp.Brine.Http.HttpClientBuilder();
-}
-
-public global::DripSharp.Brine.Http.HttpClient DummyClient() {
-return new global::DripSharp.Brine.Http.DummyHttpClient();
-}
-
 private readonly global::System.Func<global::DripSharp.Brine.Http.HttpClient> supplier = default!;
 
 private readonly object @lock = new object();
@@ -32,11 +24,11 @@ internal LazyHttpClient(global::System.Func<global::DripSharp.Brine.Http.HttpCli
 this.supplier = supplier;
 }
 
-public global::DripSharp.Brine.Runtime.JavaHttpResponse<T> SendCompatibility<T>(global::DripSharp.Brine.Runtime.JavaHttpRequest request, global::DripSharp.Brine.Runtime.JavaHttpBodyHandler<T> responseBodyHandler, global::DripSharp.Brine.Http.HttpClient.HttpRequestChecker httpRequestChecker) {
+internal override global::DripSharp.Brine.Runtime.JavaHttpResponse<T> SendCompatibility<T>(global::DripSharp.Brine.Runtime.JavaHttpRequest request, global::DripSharp.Brine.Runtime.JavaHttpBodyHandler<T> responseBodyHandler, global::DripSharp.Brine.Http.HttpClient.HttpRequestChecker httpRequestChecker) {
 return global::DripSharp.Brine.Http.HttpClientCompatibility.Send<T>(this.GetOrCreateClient(), request, responseBodyHandler, httpRequestChecker);
 }
 
-public void Close() {
+public override void Close() {
 this.GetClient().IfPresent((value0) => value0.Close());
 }
 
@@ -50,8 +42,7 @@ try {
 this.client = (this.supplier)();
 } catch (global::System.Exception t) {
 this.exception = t;
-global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(t);
-throw new global::System.InvalidOperationException("unreachable");
+throw;
 }
 }
 return this.client!;

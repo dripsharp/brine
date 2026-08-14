@@ -84,7 +84,7 @@ return new VmDuration(this.GetValue(unit), unit);
 
 public override void Force(bool allowUndefinedValues) {}
 
-public override global::DripSharp.Brine.Value Export() {
+public override object Export() {
 return new global::DripSharp.Brine.Duration(this.value, this.unit);
 }
 

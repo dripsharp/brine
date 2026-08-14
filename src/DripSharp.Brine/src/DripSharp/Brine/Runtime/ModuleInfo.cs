@@ -92,7 +92,7 @@ public global::DripSharp.Brine.ModuleSchema GetModuleSchema(global::DripSharp.Br
 lock (this.moduleSchemaLock) {
 global::DripSharp.Runtime.JavaCompat.Assert(() => (module.GetModuleInfo() == this));
 if ((this.__moduleSchema == default!)) {
-var parent = module.GetParent()!;
+var parent = ((global::DripSharp.Brine.Runtime.VmTyped)(module.GetParent()))!;
 global::DripSharp.Runtime.JavaCompat.Assert(() => (parent! != default!));
 global::DripSharp.Brine.ModuleSchema supermodule = default!;
 if ((parent! != global::DripSharp.Brine.Runtime.BaseModule.GetModuleClass().GetPrototype())) {
@@ -118,7 +118,7 @@ var clazz = (global::DripSharp.Brine.Runtime.VmClass)(module.GetCachedValue(prop
 if ((clazz! == default!)) {
 clazz = (global::DripSharp.Brine.Runtime.VmClass)(propertyDef.GetCallTarget().Call(module, module)!);
 }
-global::DripSharp.Runtime.JavaCompat.MapPut(classes, clazz!.GetSimpleName(), clazz!.Export());
+global::DripSharp.Runtime.JavaCompat.MapPut(classes, clazz!.GetSimpleName(), ((global::DripSharp.Brine.PClass)(clazz!.Export())));
 continue;
 }
 if (propertyDef.IsTypeAlias()) {
@@ -126,10 +126,10 @@ var typeAlias = (global::DripSharp.Brine.Runtime.VmTypeAlias)(module.GetCachedVa
 if ((typeAlias! == default!)) {
 typeAlias = (global::DripSharp.Brine.Runtime.VmTypeAlias)(propertyDef.GetCallTarget().Call(module, module)!);
 }
-global::DripSharp.Runtime.JavaCompat.MapPut(typeAliases, typeAlias!.GetSimpleName(), typeAlias!.Export());
+global::DripSharp.Runtime.JavaCompat.MapPut(typeAliases, typeAlias!.GetSimpleName(), ((global::DripSharp.Brine.TypeAlias)(typeAlias!.Export())));
 }
 }
-this.__moduleSchema = new global::DripSharp.Brine.ModuleSchema(this.moduleKey.GetUri(), this.moduleName, this.isAmend, supermodule!, module.GetVmClass().Export(), global::DripSharp.Brine.Runtime.VmUtils.ExportDocComment(module.GetModuleInfo().docComment)!, global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.PObject>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.PObject>>(global::DripSharp.Brine.Runtime.VmUtils.ExportAnnotations(module.GetModuleInfo().annotations))), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<string, global::DripSharp.Brine.PClass>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<string, global::DripSharp.Brine.PClass>>(classes)), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<string, global::DripSharp.Brine.TypeAlias>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<string, global::DripSharp.Brine.TypeAlias>>(typeAliases)), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<string, global::System.Uri>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<string, global::System.Uri>>(imports)));
+this.__moduleSchema = new global::DripSharp.Brine.ModuleSchema(this.moduleKey.GetUri(), this.moduleName, this.isAmend, supermodule!, ((global::DripSharp.Brine.PClass)(module.GetVmClass().Export())), global::DripSharp.Brine.Runtime.VmUtils.ExportDocComment(module.GetModuleInfo().docComment)!, global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.PObject>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.PObject>>(global::DripSharp.Brine.Runtime.VmUtils.ExportAnnotations(module.GetModuleInfo().annotations))), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<string, global::DripSharp.Brine.PClass>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<string, global::DripSharp.Brine.PClass>>(classes)), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<string, global::DripSharp.Brine.TypeAlias>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<string, global::DripSharp.Brine.TypeAlias>>(typeAliases)), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<string, global::System.Uri>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<string, global::System.Uri>>(imports)));
 }
 return this.__moduleSchema;
 }

@@ -32,6 +32,10 @@ return new Delegated(@delegate, original);
 
 internal partial class FileKey : global::DripSharp.Brine.Module.ResolvedModuleKey
 {
+global::DripSharp.Brine.Module.ModuleKey global::DripSharp.Brine.Module.ResolvedModuleKey.Original => this.GetOriginal();
+global::System.Uri global::DripSharp.Brine.Module.ResolvedModuleKey.Uri => this.GetUri();
+string global::DripSharp.Brine.Module.ResolvedModuleKey.Source => this.LoadSource();
+
 internal readonly global::DripSharp.Brine.Module.ModuleKey original = default!;
 
 internal readonly global::System.Uri uri = default!;
@@ -63,18 +67,21 @@ return global::DripSharp.Runtime.JavaCompat.NewString(global::DripSharp.Runtime.
 }
 }
 return global::DripSharp.Runtime.JavaCompat.ReadString(this.path, global::DripSharp.Runtime.JavaStandardCharsets.UTF8);
-} catch (global::System.UnauthorizedAccessException e) {
+} catch (global::System.UnauthorizedAccessException) {
 if (global::DripSharp.Runtime.JavaCompat.IsDirectory(this.path)) {
 throw new global::System.IO.IOException("Is a directory");
 }
-global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(e);
-throw new global::System.InvalidOperationException("unreachable");
+throw;
 }
 }
 }
 
 internal partial class Url : global::DripSharp.Brine.Module.ResolvedModuleKey
 {
+global::DripSharp.Brine.Module.ModuleKey global::DripSharp.Brine.Module.ResolvedModuleKey.Original => this.GetOriginal();
+global::System.Uri global::DripSharp.Brine.Module.ResolvedModuleKey.Uri => this.GetUri();
+string global::DripSharp.Brine.Module.ResolvedModuleKey.Source => this.LoadSource();
+
 internal readonly global::DripSharp.Brine.Module.ModuleKey original = default!;
 
 internal readonly global::System.Uri uri = default!;
@@ -102,6 +109,10 @@ return global::DripSharp.Brine.Util.IoUtils.ReadString(this.url);
 
 internal partial class Virtual : global::DripSharp.Brine.Module.ResolvedModuleKey
 {
+global::DripSharp.Brine.Module.ModuleKey global::DripSharp.Brine.Module.ResolvedModuleKey.Original => this.GetOriginal();
+global::System.Uri global::DripSharp.Brine.Module.ResolvedModuleKey.Uri => this.GetUri();
+string global::DripSharp.Brine.Module.ResolvedModuleKey.Source => this.LoadSource();
+
 internal readonly global::DripSharp.Brine.Module.ModuleKey original = default!;
 
 internal readonly global::System.Uri uri = default!;
@@ -132,6 +143,10 @@ return this.sourceText;
 
 internal partial class Delegated : global::DripSharp.Brine.Module.ResolvedModuleKey
 {
+global::DripSharp.Brine.Module.ModuleKey global::DripSharp.Brine.Module.ResolvedModuleKey.Original => this.GetOriginal();
+global::System.Uri global::DripSharp.Brine.Module.ResolvedModuleKey.Uri => this.GetUri();
+string global::DripSharp.Brine.Module.ResolvedModuleKey.Source => this.LoadSource();
+
 internal readonly global::DripSharp.Brine.Module.ResolvedModuleKey @delegate = default!;
 
 internal readonly global::DripSharp.Brine.Module.ModuleKey original = default!;

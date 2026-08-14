@@ -60,23 +60,23 @@ moduleInfo = new global::DripSharp.Brine.Runtime.ModuleInfo(sourceSection!, head
 return new AstBuilder(source, language, moduleInfo, moduleResolver);
 }
 
-public override global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode VisitUnknownType(global::DripSharp.Brine.Parser.Syntax.Type.UnknownType type) {
+public override object VisitUnknownType(global::DripSharp.Brine.Parser.Syntax.Type.UnknownType type) {
 return new global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode.Unknown(this.CreateSourceSection(type)!);
 }
 
-public override global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode VisitNothingType(global::DripSharp.Brine.Parser.Syntax.Type.NothingType type) {
+public override object VisitNothingType(global::DripSharp.Brine.Parser.Syntax.Type.NothingType type) {
 return new global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode.Nothing(this.CreateSourceSection(type)!);
 }
 
-public override global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode VisitModuleType(global::DripSharp.Brine.Parser.Syntax.Type.ModuleType type) {
+public override object VisitModuleType(global::DripSharp.Brine.Parser.Syntax.Type.ModuleType type) {
 return new global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode.Module(this.CreateSourceSection(type)!);
 }
 
-public override global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode VisitStringConstantType(global::DripSharp.Brine.Parser.Syntax.Type.StringConstantType type) {
+public override object VisitStringConstantType(global::DripSharp.Brine.Parser.Syntax.Type.StringConstantType type) {
 return new global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode.StringLiteral(this.CreateSourceSection(type)!, type.GetStr().GetString());
 }
 
-public override global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode VisitDeclaredType(global::DripSharp.Brine.Parser.Syntax.Type.DeclaredType type) {
+public override object VisitDeclaredType(global::DripSharp.Brine.Parser.Syntax.Type.DeclaredType type) {
 var identifier = type.GetName();
 var args = type.GetArgs();
 if ((args == default!)) {
@@ -97,15 +97,15 @@ argTypes[i] = this.VisitType(global::DripSharp.Runtime.JavaCompat.ListGet(targs,
 return new global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode.Parameterized(this.CreateSourceSection(type)!, this.language, this.DoVisitTypeName(identifier), argTypes);
 }
 
-public override global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode VisitParenthesizedType(global::DripSharp.Brine.Parser.Syntax.Type.ParenthesizedType type) {
+public override object VisitParenthesizedType(global::DripSharp.Brine.Parser.Syntax.Type.ParenthesizedType type) {
 return this.VisitType(type.GetType());
 }
 
-public override global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode VisitNullableType(global::DripSharp.Brine.Parser.Syntax.Type.NullableType type) {
+public override object VisitNullableType(global::DripSharp.Brine.Parser.Syntax.Type.NullableType type) {
 return new global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode.Nullable(this.CreateSourceSection(type)!, this.VisitType(type.GetType()));
 }
 
-public override global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode VisitConstrainedType(global::DripSharp.Brine.Parser.Syntax.Type.ConstrainedType type) {
+public override object VisitConstrainedType(global::DripSharp.Brine.Parser.Syntax.Type.ConstrainedType type) {
 var childNode = this.VisitType(type.GetType());
 return this.symbolTable.EnterCustomThisScope<global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode.Constrained>((scope) => {
 var exprs = global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IList<global::DripSharp.Brine.Parser.Syntax.Expr>>(type.GetExprs());
@@ -127,7 +127,7 @@ private global::DripSharp.Brine.Ast.ExpressionNode GetExprWithinCustomThis(globa
 return new global::DripSharp.Brine.Ast.Expression.Primary.ExecuteCustomThisWithRootNode(expr.GetSourceSection(), expr, scope.frameDescriptorBuilder.Build(), scope.GetQualifiedName(), scope.forGeneratorSlots, scope.parameterSlots);
 }
 
-public override global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode VisitUnionType(global::DripSharp.Brine.Parser.Syntax.Type.UnionType type) {
+public override object VisitUnionType(global::DripSharp.Brine.Parser.Syntax.Type.UnionType type) {
 var elementTypes = global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IList<global::DripSharp.Brine.Parser.Syntax.Type>>(type.GetTypes());
 bool isUnionOfStringLiterals = true;
 foreach (var typ in elementTypes) {
@@ -147,7 +147,7 @@ elements[i] = this.VisitType(global::DripSharp.Runtime.JavaCompat.ListGet(elemen
 return new global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode.Union(this.CreateSourceSection(type)!, defaultIndex, elements);
 }
 
-public override global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode VisitFunctionType(global::DripSharp.Brine.Parser.Syntax.Type.FunctionType type) {
+public override object VisitFunctionType(global::DripSharp.Brine.Parser.Syntax.Type.FunctionType type) {
 var pars = new global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode[global::DripSharp.Runtime.JavaCompat.CollectionCount(type.GetArgs())];
 for (int i = 0; (i < pars.Length); i++) {
 pars[i] = this.VisitType(global::DripSharp.Runtime.JavaCompat.ListGet(type.GetArgs(), i));
@@ -155,7 +155,7 @@ pars[i] = this.VisitType(global::DripSharp.Runtime.JavaCompat.ListGet(type.GetAr
 return new global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode.Function(this.CreateSourceSection(type)!, pars, this.VisitType(type.GetRet()));
 }
 
-public override global::DripSharp.Brine.Ast.ExpressionNode VisitThisExpr(global::DripSharp.Brine.Parser.Syntax.Expr.ThisExpr expr) {
+public override object VisitThisExpr(global::DripSharp.Brine.Parser.Syntax.Expr.ThisExpr expr) {
 if (!((expr.Parent() is global::DripSharp.Brine.Parser.Syntax.Expr.QualifiedAccessExpr))) {
 var currentScope = this.symbolTable.GetCurrentScope();
 var needsConst = (((currentScope.GetConstLevel() == global::DripSharp.Brine.Ast.Builder.ConstLevel.ALL) && (currentScope.GetConstDepth() == -1)) && !(currentScope.IsCustomThisScope()));
@@ -166,7 +166,7 @@ throw this.ExceptionBuilder().WithSourceSection(this.CreateSourceSection(expr)!)
 return global::DripSharp.Brine.Runtime.VmUtils.CreateThisNode(this.CreateSourceSection(expr)!, this.symbolTable.GetCurrentScope().IsCustomThisScope());
 }
 
-public override global::DripSharp.Brine.Ast.Expression.Primary.OuterNode VisitOuterExpr(global::DripSharp.Brine.Parser.Syntax.Expr.OuterExpr expr) {
+public override object VisitOuterExpr(global::DripSharp.Brine.Parser.Syntax.Expr.OuterExpr expr) {
 if (!((expr.Parent() is global::DripSharp.Brine.Parser.Syntax.Expr.QualifiedAccessExpr))) {
 var constLevel = this.symbolTable.GetCurrentScope().GetConstLevel();
 var outerScope = this.GetParentLexicalScope()!;
@@ -177,7 +177,7 @@ throw this.ExceptionBuilder().EvalError("outerIsNotConst").WithSourceSection(thi
 return new global::DripSharp.Brine.Ast.Expression.Primary.OuterNode(this.CreateSourceSection(expr)!);
 }
 
-public override global::DripSharp.Brine.Ast.Expression.Primary.GetModuleNode VisitModuleExpr(global::DripSharp.Brine.Parser.Syntax.Expr.ModuleExpr expr) {
+public override object VisitModuleExpr(global::DripSharp.Brine.Parser.Syntax.Expr.ModuleExpr expr) {
 var currentScope = this.symbolTable.GetCurrentScope();
 if ((currentScope.GetConstLevel().IsConst() && !((expr.Parent() is global::DripSharp.Brine.Parser.Syntax.Expr.QualifiedAccessExpr)))) {
 var scope = currentScope;
@@ -193,11 +193,11 @@ throw this.ExceptionBuilder().EvalError(messageKey).WithSourceSection(this.Creat
 return new global::DripSharp.Brine.Ast.Expression.Primary.GetModuleNode(this.CreateSourceSection(expr)!);
 }
 
-public override global::DripSharp.Brine.Ast.ConstantValueNode VisitNullLiteralExpr(global::DripSharp.Brine.Parser.Syntax.Expr.NullLiteralExpr expr) {
+public override object VisitNullLiteralExpr(global::DripSharp.Brine.Parser.Syntax.Expr.NullLiteralExpr expr) {
 return new global::DripSharp.Brine.Ast.ConstantValueNode(this.CreateSourceSection(expr)!, global::DripSharp.Brine.Runtime.VmNull.WithoutDefault());
 }
 
-public override global::DripSharp.Brine.Ast.ExpressionNode VisitBoolLiteralExpr(global::DripSharp.Brine.Parser.Syntax.Expr.BoolLiteralExpr expr) {
+public override object VisitBoolLiteralExpr(global::DripSharp.Brine.Parser.Syntax.Expr.BoolLiteralExpr expr) {
 if (expr.IsB()) {
 return new global::DripSharp.Brine.Ast.Expression.Literal.TrueLiteralNode(this.CreateSourceSection(expr)!);
 } else {
@@ -225,7 +225,7 @@ text = global::DripSharp.Runtime.JavaCompat.Concat("-", text);
 return parser(text, radix);
 }
 
-public override global::DripSharp.Brine.Ast.Expression.Literal.IntLiteralNode VisitIntLiteralExpr(global::DripSharp.Brine.Parser.Syntax.Expr.IntLiteralExpr expr) {
+public override object VisitIntLiteralExpr(global::DripSharp.Brine.Parser.Syntax.Expr.IntLiteralExpr expr) {
 var section = this.CreateSourceSection(expr)!;
 try {
 var num = this.ParseNumber<long>(expr, (value0, value1) => global::DripSharp.Runtime.JavaCompat.ParseLong(value0, value1));
@@ -236,7 +236,7 @@ throw this.ExceptionBuilder().EvalError("intTooLarge", text).WithSourceSection(s
 }
 }
 
-public override global::DripSharp.Brine.Ast.Expression.Literal.FloatLiteralNode VisitFloatLiteralExpr(global::DripSharp.Brine.Parser.Syntax.Expr.FloatLiteralExpr expr) {
+public override object VisitFloatLiteralExpr(global::DripSharp.Brine.Parser.Syntax.Expr.FloatLiteralExpr expr) {
 var section = this.CreateSourceSection(expr)!;
 var text = AstBuilder.Remove_(expr.GetNumber());
 if ((expr.Parent() is global::DripSharp.Brine.Parser.Syntax.Expr.UnaryMinusExpr)) {
@@ -262,15 +262,15 @@ builder.Append(ch);
 return builder.ToString();
 }
 
-public override global::DripSharp.Brine.Ast.ExpressionNode VisitThrowExpr(global::DripSharp.Brine.Parser.Syntax.Expr.ThrowExpr expr) {
+public override object VisitThrowExpr(global::DripSharp.Brine.Parser.Syntax.Expr.ThrowExpr expr) {
 return global::DripSharp.Brine.Ast.Expression.Unary.ThrowNodeGen.Create(this.CreateSourceSection(expr)!, this.VisitExpr(expr.GetExpr()));
 }
 
-public override global::DripSharp.Brine.Ast.Expression.Unary.TraceNode VisitTraceExpr(global::DripSharp.Brine.Parser.Syntax.Expr.TraceExpr expr) {
+public override object VisitTraceExpr(global::DripSharp.Brine.Parser.Syntax.Expr.TraceExpr expr) {
 return new global::DripSharp.Brine.Ast.Expression.Unary.TraceNode(this.CreateSourceSection(expr)!, this.VisitExpr(expr.GetExpr()));
 }
 
-public override global::DripSharp.Brine.Ast.Expression.Unary.AbstractImportNode VisitImportExpr(global::DripSharp.Brine.Parser.Syntax.Expr.ImportExpr expr) {
+public override object VisitImportExpr(global::DripSharp.Brine.Parser.Syntax.Expr.ImportExpr expr) {
 var importUriCtx = expr.GetImportStr();
 return this.DoVisitImport(expr.IsGlob(), expr, importUriCtx);
 }
@@ -288,7 +288,7 @@ return new global::DripSharp.Brine.Ast.Expression.Unary.ImportGlobNode(section!,
 return new global::DripSharp.Brine.Ast.Expression.Unary.ImportNode(this.language, section!, this.moduleInfo.GetResolvedModuleKey(), resolvedUri);
 }
 
-public override global::DripSharp.Brine.Ast.Expression.Unary.AbstractReadNode VisitReadExpr(global::DripSharp.Brine.Parser.Syntax.Expr.ReadExpr expr) {
+public override object VisitReadExpr(global::DripSharp.Brine.Parser.Syntax.Expr.ReadExpr expr) {
 return ((global::System.Func<global::DripSharp.Brine.Ast.Expression.Unary.AbstractReadNode>)(() => { switch (expr.GetReadType()) {
 case var __case_667_12_0 when global::System.Object.Equals(__case_667_12_0, global::DripSharp.Brine.Parser.Syntax.Expr.ReadType.READ):
 return global::DripSharp.Brine.Ast.Expression.Unary.ReadNodeGen.Create(this.CreateSourceSection(expr)!, this.moduleKey, this.VisitExpr(expr.GetExpr()));
@@ -355,7 +355,7 @@ var resolution = scope.ResolveMethod(name);
 if ((resolution is global::DripSharp.Brine.Ast.Builder.MethodResolution.LexicalMethod method__762_45)) {
 var levelsUp = method__762_45.LevelsUp;
 var identifier__764_11 = global::DripSharp.Brine.Runtime.Identifier.Method(name, method__762_45.IsLocal());
-var args = this.VisitArgumentList(argList);
+var args = ((global::DripSharp.Brine.Ast.ExpressionNode[])(this.VisitArgumentList(argList)));
 var needsConst__766_11 = ((global::System.Func<bool>)(() => { switch (global::DripSharp.Runtime.JavaCompat.EnumOrdinal(constLevel)) {
 case 0:
 return false;
@@ -389,7 +389,7 @@ return this.DoVisitBytesLiteral(expr, argList);
 var baseModule = global::DripSharp.Brine.Runtime.BaseModule.GetModule();
 var method__803_13 = baseModule.GetVmClass().GetDeclaredMethod(identifier__789_11)!;
 global::DripSharp.Runtime.JavaCompat.Assert(() => (method__803_13! != default!));
-return new global::DripSharp.Brine.Ast.Expression.Member.InvokeMethodDirectNode(this.CreateSourceSection(expr)!, method__803_13!, new global::DripSharp.Brine.Ast.ConstantValueNode(baseModule), this.VisitArgumentList(argList));
+return new global::DripSharp.Brine.Ast.Expression.Member.InvokeMethodDirectNode(this.CreateSourceSection(expr)!, method__803_13!, new global::DripSharp.Brine.Ast.ConstantValueNode(baseModule), ((global::DripSharp.Brine.Ast.ExpressionNode[])(this.VisitArgumentList(argList))));
 }
 }
 }
@@ -398,7 +398,7 @@ return new global::DripSharp.Brine.Ast.Expression.Member.InvokeMethodDirectNode(
 if ((resolution is global::DripSharp.Brine.Ast.Builder.MethodResolution.ImplicitThisMethod)) {
 var isCustomThis = scope.IsCustomThisScope();
 var needsConst__813_11 = (((constLevel == global::DripSharp.Brine.Ast.Builder.ConstLevel.ALL) && (constDepth == -1)) && !isCustomThis);
-return global::DripSharp.Brine.Ast.Expression.Member.InvokeMethodVirtualNodeGen.Create(sourceSection!, global::DripSharp.Brine.Runtime.Identifier.Get(name), this.VisitArgumentList(argList), global::DripSharp.Brine.Ast.MemberLookupMode.IMPLICIT_THIS, needsConst__813_11, global::DripSharp.Brine.Runtime.VmUtils.CreateThisNode(global::DripSharp.Brine.Runtime.VmUtils.UnavailableSourceSection(), isCustomThis), global::DripSharp.Brine.Ast.@Internal.GetClassNodeGen.Create((global::DripSharp.Brine.Ast.ExpressionNode)default!));
+return global::DripSharp.Brine.Ast.Expression.Member.InvokeMethodVirtualNodeGen.Create(sourceSection!, global::DripSharp.Brine.Runtime.Identifier.Get(name), ((global::DripSharp.Brine.Ast.ExpressionNode[])(this.VisitArgumentList(argList))), global::DripSharp.Brine.Ast.MemberLookupMode.IMPLICIT_THIS, needsConst__813_11, global::DripSharp.Brine.Runtime.VmUtils.CreateThisNode(global::DripSharp.Brine.Runtime.VmUtils.UnavailableSourceSection(), isCustomThis), global::DripSharp.Brine.Ast.@Internal.GetClassNodeGen.Create((global::DripSharp.Brine.Ast.ExpressionNode)default!));
 } else {
 throw global::DripSharp.Brine.PklBugException.UnreachableCode();
 }
@@ -406,16 +406,16 @@ throw global::DripSharp.Brine.PklBugException.UnreachableCode();
 }
 }
 
-public override global::DripSharp.Brine.Ast.ExpressionNode VisitUnqualifiedAccessExpr(global::DripSharp.Brine.Parser.Syntax.Expr.UnqualifiedAccessExpr expr) {
+public override object VisitUnqualifiedAccessExpr(global::DripSharp.Brine.Parser.Syntax.Expr.UnqualifiedAccessExpr expr) {
 var argList = expr.GetArgumentList();
 return ((argList == default!) ? this.ResolveReadVariable(expr) : this.ResolvedMethodCall(expr, argList));
 }
 
-public override global::DripSharp.Brine.Ast.ExpressionNode VisitStringConstant(global::DripSharp.Brine.Parser.Syntax.StringConstant expr) {
+public override object VisitStringConstant(global::DripSharp.Brine.Parser.Syntax.StringConstant expr) {
 return new global::DripSharp.Brine.Ast.ConstantValueNode(this.CreateSourceSection(expr)!, expr.GetString());
 }
 
-public override global::DripSharp.Brine.Ast.ExpressionNode VisitStringPart(global::DripSharp.Brine.Parser.Syntax.StringPart spart) {
+public override object VisitStringPart(global::DripSharp.Brine.Parser.Syntax.StringPart spart) {
 return this.DoVisitStringPart(spart, spart.Span());
 }
 
@@ -429,7 +429,7 @@ return new global::DripSharp.Brine.Ast.ConstantValueNode(this.CreateSourceSectio
 throw this.ExceptionBuilder().UnreachableCode().Build();
 }
 
-public override global::DripSharp.Brine.Ast.ExpressionNode VisitSingleLineStringLiteralExpr(global::DripSharp.Brine.Parser.Syntax.Expr.SingleLineStringLiteralExpr expr) {
+public override object VisitSingleLineStringLiteralExpr(global::DripSharp.Brine.Parser.Syntax.Expr.SingleLineStringLiteralExpr expr) {
 var parts = global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IList<global::DripSharp.Brine.Parser.Syntax.StringPart>>(expr.GetParts());
 if (global::DripSharp.Runtime.JavaCompat.ListIsEmpty(parts)) {
 return new global::DripSharp.Brine.Ast.ConstantValueNode(this.CreateSourceSection(expr)!, "");
@@ -439,24 +439,24 @@ return this.DoVisitStringPart(global::DripSharp.Runtime.JavaCompat.ListGet(parts
 }
 var nodes = new global::DripSharp.Brine.Ast.ExpressionNode[global::DripSharp.Runtime.JavaCompat.CollectionCount(parts)];
 for (int i = 0; (i < nodes.Length); i++) {
-nodes[i] = this.VisitStringPart(global::DripSharp.Runtime.JavaCompat.ListGet(parts, i));
+nodes[i] = ((global::DripSharp.Brine.Ast.ExpressionNode)(this.VisitStringPart(global::DripSharp.Runtime.JavaCompat.ListGet(parts, i))));
 }
 return new global::DripSharp.Brine.Ast.Expression.Literal.InterpolatedStringLiteralNode(this.CreateSourceSection(expr)!, nodes);
 }
 
-public override global::DripSharp.Brine.Ast.ExpressionNode VisitMultiLineStringLiteralExpr(global::DripSharp.Brine.Parser.Syntax.Expr.MultiLineStringLiteralExpr expr) {
+public override object VisitMultiLineStringLiteralExpr(global::DripSharp.Brine.Parser.Syntax.Expr.MultiLineStringLiteralExpr expr) {
 var parts = global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IList<global::DripSharp.Brine.Parser.Syntax.StringPart>>(expr.GetParts());
 if ((global::DripSharp.Runtime.JavaCompat.CollectionCount(parts) == 1)) {
 return this.DoVisitStringPart(global::DripSharp.Runtime.JavaCompat.ListGet(parts, 0), expr.Span());
 }
 var nodes = new global::DripSharp.Brine.Ast.ExpressionNode[global::DripSharp.Runtime.JavaCompat.CollectionCount(parts)];
 for (int i = 0; (i < nodes.Length); i++) {
-nodes[i] = this.VisitStringPart(global::DripSharp.Runtime.JavaCompat.ListGet(parts, i));
+nodes[i] = ((global::DripSharp.Brine.Ast.ExpressionNode)(this.VisitStringPart(global::DripSharp.Runtime.JavaCompat.ListGet(parts, i))));
 }
 return new global::DripSharp.Brine.Ast.Expression.Literal.InterpolatedStringLiteralNode(this.CreateSourceSection(expr)!, nodes);
 }
 
-public override global::DripSharp.Brine.Ast.ExpressionNode VisitNewExpr(global::DripSharp.Brine.Parser.Syntax.Expr.NewExpr expr) {
+public override object VisitNewExpr(global::DripSharp.Brine.Parser.Syntax.Expr.NewExpr expr) {
 var type = expr.GetType();
 return ((type != default!) ? this.DoVisitNewExprWithExplicitParent(expr, type) : this.DoVisitNewExprWithInferredParent(expr));
 }
@@ -501,11 +501,11 @@ throw this.ExceptionBuilder().EvalError("cannotInferParent").WithSourceSection(t
 return this.DoVisitObjectBody(expr.GetBody(), inferredParentNode);
 }
 
-public override global::DripSharp.Brine.Ast.ExpressionNode VisitAmendsExpr(global::DripSharp.Brine.Parser.Syntax.Expr.AmendsExpr expr) {
+public override object VisitAmendsExpr(global::DripSharp.Brine.Parser.Syntax.Expr.AmendsExpr expr) {
 return this.DoVisitObjectBody(expr.GetBody(), this.VisitExpr(expr.GetExpr()));
 }
 
-public override global::DripSharp.Brine.Ast.ExpressionNode VisitSuperAccessExpr(global::DripSharp.Brine.Parser.Syntax.Expr.SuperAccessExpr expr) {
+public override object VisitSuperAccessExpr(global::DripSharp.Brine.Parser.Syntax.Expr.SuperAccessExpr expr) {
 var sourceSection = this.CreateSourceSection(expr)!;
 var memberName = this.ToIdentifier(expr.GetIdentifier().GetValue());
 var argCtx = expr.GetArgumentList();
@@ -515,31 +515,31 @@ if ((argCtx != default!)) {
 if (!(this.symbolTable.GetCurrentScope().IsClassMemberScope())) {
 throw this.ExceptionBuilder().EvalError("cannotInvokeSupermethodFromHere").WithSourceSection(sourceSection!).Build();
 }
-return global::DripSharp.Brine.Ast.Expression.Member.InvokeSuperMethodNodeGen.Create(sourceSection!, memberName, this.VisitArgumentList(argCtx), needsConst);
+return global::DripSharp.Brine.Ast.Expression.Member.InvokeSuperMethodNodeGen.Create(sourceSection!, memberName, ((global::DripSharp.Brine.Ast.ExpressionNode[])(this.VisitArgumentList(argCtx))), needsConst);
 }
 return new global::DripSharp.Brine.Ast.Expression.Member.ReadSuperPropertyNode(this.CreateSourceSection(expr)!, memberName, needsConst);
 }
 
-public override global::DripSharp.Brine.Ast.ExpressionNode VisitSuperSubscriptExpr(global::DripSharp.Brine.Parser.Syntax.Expr.SuperSubscriptExpr expr) {
+public override object VisitSuperSubscriptExpr(global::DripSharp.Brine.Parser.Syntax.Expr.SuperSubscriptExpr expr) {
 return new global::DripSharp.Brine.Ast.Expression.Member.ReadSuperEntryNode(this.CreateSourceSection(expr)!, this.VisitExpr(expr.GetArg()));
 }
 
-public override global::DripSharp.Brine.Ast.ExpressionNode VisitQualifiedAccessExpr(global::DripSharp.Brine.Parser.Syntax.Expr.QualifiedAccessExpr expr) {
+public override object VisitQualifiedAccessExpr(global::DripSharp.Brine.Parser.Syntax.Expr.QualifiedAccessExpr expr) {
 if ((expr.GetArgumentList() != default!)) {
 return this.DoVisitMethodAccessExpr(expr);
 }
 return this.DoVisitPropertyInvocationExpr(expr);
 }
 
-public override global::DripSharp.Brine.Ast.ExpressionNode VisitSubscriptExpr(global::DripSharp.Brine.Parser.Syntax.Expr.SubscriptExpr expr) {
+public override object VisitSubscriptExpr(global::DripSharp.Brine.Parser.Syntax.Expr.SubscriptExpr expr) {
 return global::DripSharp.Brine.Ast.Expression.Binary.SubscriptNodeGen.Create(this.CreateSourceSection(expr)!, this.VisitExpr(expr.GetExpr()), this.VisitExpr(expr.GetArg()));
 }
 
-public override global::DripSharp.Brine.Ast.ExpressionNode VisitNonNullExpr(global::DripSharp.Brine.Parser.Syntax.Expr.NonNullExpr expr) {
+public override object VisitNonNullExpr(global::DripSharp.Brine.Parser.Syntax.Expr.NonNullExpr expr) {
 return new global::DripSharp.Brine.Ast.Expression.Unary.NonNullNode(this.CreateSourceSection(expr)!, this.VisitExpr(expr.GetExpr()));
 }
 
-public override global::DripSharp.Brine.Ast.ExpressionNode VisitUnaryMinusExpr(global::DripSharp.Brine.Parser.Syntax.Expr.UnaryMinusExpr expr) {
+public override object VisitUnaryMinusExpr(global::DripSharp.Brine.Parser.Syntax.Expr.UnaryMinusExpr expr) {
 var childNode = expr.GetExpr();
 var childExpr = this.VisitExpr(childNode);
 if (((childNode is global::DripSharp.Brine.Parser.Syntax.Expr.IntLiteralExpr) || (childNode is global::DripSharp.Brine.Parser.Syntax.Expr.FloatLiteralExpr))) {
@@ -548,11 +548,11 @@ return childExpr;
 return global::DripSharp.Brine.Ast.Expression.Unary.UnaryMinusNodeGen.Create(this.CreateSourceSection(expr)!, childExpr);
 }
 
-public override global::DripSharp.Brine.Ast.ExpressionNode VisitLogicalNotExpr(global::DripSharp.Brine.Parser.Syntax.Expr.LogicalNotExpr expr) {
+public override object VisitLogicalNotExpr(global::DripSharp.Brine.Parser.Syntax.Expr.LogicalNotExpr expr) {
 return global::DripSharp.Brine.Ast.Expression.Unary.LogicalNotNodeGen.Create(this.CreateSourceSection(expr)!, this.VisitExpr(expr.GetExpr()));
 }
 
-public override global::DripSharp.Brine.Ast.ExpressionNode VisitBinaryOperatorExpr(global::DripSharp.Brine.Parser.Syntax.Expr.BinaryOperatorExpr expr) {
+public override object VisitBinaryOperatorExpr(global::DripSharp.Brine.Parser.Syntax.Expr.BinaryOperatorExpr expr) {
 return ((global::System.Func<global::DripSharp.Brine.Ast.ExpressionNode>)(() => { switch (expr.GetOp()) {
 case var __case_1040_12_0 when global::System.Object.Equals(__case_1040_12_0, global::DripSharp.Brine.Parser.Syntax.Operator.POW):
 return global::DripSharp.Brine.Ast.Expression.Binary.ExponentiationNodeGen.Create(this.CreateSourceSection(expr)!, this.VisitExpr(expr.GetLeft()), this.VisitExpr(expr.GetRight()));
@@ -593,26 +593,26 @@ throw global::DripSharp.Brine.PklBugException.UnreachableCode();
 } }))();
 }
 
-public override global::DripSharp.Brine.Ast.ExpressionNode VisitTypeCheckExpr(global::DripSharp.Brine.Parser.Syntax.Expr.TypeCheckExpr expr) {
+public override object VisitTypeCheckExpr(global::DripSharp.Brine.Parser.Syntax.Expr.TypeCheckExpr expr) {
 return new global::DripSharp.Brine.Ast.Type.TypeTestNode(this.CreateSourceSection(expr)!, this.VisitExpr(expr.GetExpr()), this.VisitType(expr.GetType()));
 }
 
-public override global::DripSharp.Brine.Ast.ExpressionNode VisitTypeCastExpr(global::DripSharp.Brine.Parser.Syntax.Expr.TypeCastExpr expr) {
+public override object VisitTypeCastExpr(global::DripSharp.Brine.Parser.Syntax.Expr.TypeCastExpr expr) {
 return new global::DripSharp.Brine.Ast.Type.TypeCastNode(this.CreateSourceSection(expr)!, this.VisitExpr(expr.GetExpr()), this.VisitType(expr.GetType()));
 }
 
-public override global::DripSharp.Brine.Ast.ExpressionNode VisitIfExpr(global::DripSharp.Brine.Parser.Syntax.Expr.IfExpr expr) {
+public override object VisitIfExpr(global::DripSharp.Brine.Parser.Syntax.Expr.IfExpr expr) {
 return new global::DripSharp.Brine.Ast.Expression.Ternary.IfElseNode(this.CreateSourceSection(expr)!, this.VisitExpr(expr.GetCond()), this.VisitExpr(expr.GetThen()), this.VisitExpr(expr.GetEls()));
 }
 
-public override global::DripSharp.Brine.Ast.ExpressionNode VisitLetExpr(global::DripSharp.Brine.Parser.Syntax.Expr.LetExpr letExpr) {
+public override object VisitLetExpr(global::DripSharp.Brine.Parser.Syntax.Expr.LetExpr letExpr) {
 var sourceSection = this.CreateSourceSection(letExpr)!;
 var parameter = letExpr.GetParameter();
 global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode typeNode = default!;
 global::DripSharp.Brine.Runtime.FrameSlotVariable? binding = default!;
 var frameDescriptorBuilder = this.symbolTable.GetCurrentScope().frameDescriptorBuilder;
 if ((parameter is global::DripSharp.Brine.Parser.Syntax.Parameter.TypedIdentifier par)) {
-typeNode = this.VisitTypeAnnotation(par.GetTypeAnnotation())!;
+typeNode = ((global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode)(this.VisitTypeAnnotation(par.GetTypeAnnotation())))!;
 binding = frameDescriptorBuilder.AddSlot(global::DripSharp.Brine.Runtime.Truffle.api.frame.FrameSlotKind.Illegal, this.ToIdentifier(par.GetIdentifier().GetValue()), global::DripSharp.Brine.Ast.Builder.SymbolTable.LetExpressionScope.LET_BINDING_SLOT);
 }
 var bindingExpr = this.VisitExpr(letExpr.GetBindingExpr());
@@ -624,7 +624,7 @@ return global::DripSharp.Brine.Ast.Expression.Binary.LetExprNodeGen.Create(sourc
 });
 }
 
-public override global::DripSharp.Brine.Ast.ExpressionNode VisitFunctionLiteralExpr(global::DripSharp.Brine.Parser.Syntax.Expr.FunctionLiteralExpr expr) {
+public override object VisitFunctionLiteralExpr(global::DripSharp.Brine.Parser.Syntax.Expr.FunctionLiteralExpr expr) {
 var sourceSection = this.CreateSourceSection(expr)!;
 var @params = expr.GetParameterList();
 var descriptorBuilderAndBindings = this.CreateFrameDescriptorBuilderAndSlotVariables(@params);
@@ -642,7 +642,7 @@ return new global::DripSharp.Brine.Ast.Expression.Literal.FunctionLiteralNode(so
 });
 }
 
-public override global::DripSharp.Brine.Ast.ExpressionNode VisitParenthesizedExpr(global::DripSharp.Brine.Parser.Syntax.Expr.ParenthesizedExpr expr) {
+public override object VisitParenthesizedExpr(global::DripSharp.Brine.Parser.Syntax.Expr.ParenthesizedExpr expr) {
 return this.VisitExpr(expr.GetExpr());
 }
 
@@ -719,19 +719,19 @@ public virtual global::DripSharp.Brine.Ast.Expression.Generator.GeneratorMemberN
 return (global::DripSharp.Brine.Ast.Expression.Generator.GeneratorMemberNode)(member.Accept<object>(this)!);
 }
 
-public override global::DripSharp.Brine.Ast.Expression.Generator.GeneratorPropertyNode VisitObjectProperty(global::DripSharp.Brine.Parser.Syntax.ObjectMember.ObjectProperty member) {
+public override object VisitObjectProperty(global::DripSharp.Brine.Parser.Syntax.ObjectMember.ObjectProperty member) {
 this.CheckNotInsideForGenerator(member, "forGeneratorCannotGenerateProperties");
 var memberNode = this.DoVisitObjectProperty(member);
 return global::DripSharp.Brine.Ast.Expression.Generator.GeneratorPropertyNodeGen.Create(memberNode);
 }
 
-public override global::DripSharp.Brine.Ast.Expression.Generator.GeneratorMemberNode VisitObjectMethod(global::DripSharp.Brine.Parser.Syntax.ObjectMember.ObjectMethod memberNode) {
+public override object VisitObjectMethod(global::DripSharp.Brine.Parser.Syntax.ObjectMember.ObjectMethod memberNode) {
 this.CheckNotInsideForGenerator(memberNode, "forGeneratorCannotGenerateMethods");
 var member = this.DoVisitObjectMethod(memberNode);
 return global::DripSharp.Brine.Ast.Expression.Generator.GeneratorPropertyNodeGen.Create(member);
 }
 
-public override global::DripSharp.Brine.Ast.Expression.Generator.GeneratorMemberNode VisitMemberPredicate(global::DripSharp.Brine.Parser.Syntax.ObjectMember.MemberPredicate ctx) {
+public override object VisitMemberPredicate(global::DripSharp.Brine.Parser.Syntax.ObjectMember.MemberPredicate ctx) {
 var keyNode = this.symbolTable.EnterEagerGenerator<global::DripSharp.Brine.Ast.ExpressionNode>((scp) => this.symbolTable.EnterCustomThisScope<global::DripSharp.Brine.Ast.ExpressionNode>((scope) => {
 var currentFrameDescriptorSize = scope.frameDescriptorBuilder.GetSize();
 var expr = this.VisitExpr(ctx.GetPred());
@@ -746,13 +746,13 @@ var isFrameStored = ((member.GetMemberNode()! != default!) && this.symbolTable.G
 return global::DripSharp.Brine.Ast.Expression.Generator.GeneratorPredicateMemberNodeGen.Create(keyNode, member, isFrameStored);
 }
 
-public override global::DripSharp.Brine.Ast.Expression.Generator.GeneratorMemberNode VisitObjectElement(global::DripSharp.Brine.Parser.Syntax.ObjectMember.ObjectElement member) {
+public override object VisitObjectElement(global::DripSharp.Brine.Parser.Syntax.ObjectMember.ObjectElement member) {
 var memberNode = this.DoVisitObjectElement(member);
 var isFrameStored = ((memberNode.GetMemberNode()! != default!) && this.symbolTable.GetCurrentScope().IsForGeneratorScope());
 return global::DripSharp.Brine.Ast.Expression.Generator.GeneratorElementNodeGen.Create(memberNode, isFrameStored);
 }
 
-public override global::DripSharp.Brine.Ast.Expression.Generator.GeneratorMemberNode VisitObjectEntry(global::DripSharp.Brine.Parser.Syntax.ObjectMember.ObjectEntry member) {
+public override object VisitObjectEntry(global::DripSharp.Brine.Parser.Syntax.ObjectMember.ObjectEntry member) {
 var keyNodeAndMember = this.DoVisitObjectEntry(member);
 var keyNode = keyNodeAndMember.first;
 var memberNode = keyNodeAndMember.second;
@@ -760,12 +760,12 @@ var isFrameStored = ((memberNode.GetMemberNode()! != default!) && this.symbolTab
 return global::DripSharp.Brine.Ast.Expression.Generator.GeneratorEntryNodeGen.Create(keyNode, memberNode, isFrameStored);
 }
 
-public override global::DripSharp.Brine.Ast.Expression.Generator.GeneratorMemberNode VisitObjectSpread(global::DripSharp.Brine.Parser.Syntax.ObjectMember.ObjectSpread member) {
+public override object VisitObjectSpread(global::DripSharp.Brine.Parser.Syntax.ObjectMember.ObjectSpread member) {
 var expr = this.symbolTable.EnterEagerGenerator<global::DripSharp.Brine.Ast.ExpressionNode>((ignored) => this.VisitExpr(member.GetExpr()));
 return global::DripSharp.Brine.Ast.Expression.Generator.GeneratorSpreadNodeGen.Create(this.CreateSourceSection(member)!, expr, member.IsNullable());
 }
 
-public override global::DripSharp.Brine.Ast.Expression.Generator.GeneratorMemberNode VisitWhenGenerator(global::DripSharp.Brine.Parser.Syntax.ObjectMember.WhenGenerator member) {
+public override object VisitWhenGenerator(global::DripSharp.Brine.Parser.Syntax.ObjectMember.WhenGenerator member) {
 var sourceSection = this.CreateSourceSection(member)!;
 var thenNodes = this.DoVisitForWhenBody(member.GetThenClause());
 var elseNodes = ((member.GetElseClause() == default!) ? new global::DripSharp.Brine.Ast.Expression.Generator.GeneratorMemberNode[0] : this.DoVisitForWhenBody(member.GetElseClause()));
@@ -788,7 +788,7 @@ var name = typedIdentifier.GetIdentifier().GetValue();
 return this.symbolTable.GetCurrentScope().frameDescriptorBuilder.AddSlot(global::DripSharp.Brine.Runtime.Truffle.api.frame.FrameSlotKind.Illegal, this.ToIdentifier(name), (object?)default!);
 }
 
-public override global::DripSharp.Brine.Ast.Expression.Generator.GeneratorMemberNode VisitForGenerator(global::DripSharp.Brine.Parser.Syntax.ObjectMember.ForGenerator ctx) {
+public override object VisitForGenerator(global::DripSharp.Brine.Parser.Syntax.ObjectMember.ForGenerator ctx) {
 var keyParameter = ((ctx.GetP2() == default!) ? (global::DripSharp.Brine.Parser.Syntax.Parameter)(default!) : ctx.GetP1());
 var valueParameter = ((ctx.GetP2() == default!) ? ctx.GetP1() : ctx.GetP2());
 var keyBinding = this.MakeBinding(keyParameter)!;
@@ -798,8 +798,8 @@ var valueIdentifier = ((valueParameter is global::DripSharp.Brine.Parser.Syntax.
 if ((((keyIdentifier != default!) && (valueIdentifier != default!)) && global::DripSharp.Runtime.JavaCompat.Equals(keyIdentifier.GetIdentifier().GetValue(), valueIdentifier.GetIdentifier().GetValue()))) {
 throw this.ExceptionBuilder().EvalError("duplicateDefinition", valueIdentifier.GetIdentifier().GetValue()).WithSourceSection(this.CreateSourceSection(valueIdentifier)!).Build();
 }
-var unresolvedKeyTypeNode = ((keyIdentifier == default!) ? (global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode)(default!) : this.VisitTypeAnnotation(keyIdentifier.GetTypeAnnotation())!);
-var unresolvedValueTypeNode = ((valueIdentifier == default!) ? (global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode)(default!) : this.VisitTypeAnnotation(valueIdentifier.GetTypeAnnotation())!);
+var unresolvedKeyTypeNode = ((keyIdentifier == default!) ? (global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode)(default!) : ((global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode)(this.VisitTypeAnnotation(keyIdentifier.GetTypeAnnotation())))!);
+var unresolvedValueTypeNode = ((valueIdentifier == default!) ? (global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode)(default!) : ((global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode)(this.VisitTypeAnnotation(valueIdentifier.GetTypeAnnotation())))!);
 var keyTypeNode = (((unresolvedKeyTypeNode == default!) && !global::System.Object.ReferenceEquals(keyBinding!, default!)) ? new global::DripSharp.Brine.Ast.Type.TypeNode.UnknownTypeNode(global::DripSharp.Brine.Runtime.VmUtils.UnavailableSourceSection()).InitWriteSlotNode((keyBinding!).Slot) : (global::DripSharp.Brine.Ast.Type.TypeNode)(default!));
 var valueTypeNode = (((unresolvedValueTypeNode == default!) && !global::System.Object.ReferenceEquals(valueBinding!, default!)) ? new global::DripSharp.Brine.Ast.Type.TypeNode.UnknownTypeNode(global::DripSharp.Brine.Runtime.VmUtils.UnavailableSourceSection()).InitWriteSlotNode((valueBinding!).Slot) : (global::DripSharp.Brine.Ast.Type.TypeNode)(default!));
 var iterableNode = this.symbolTable.EnterEagerGenerator<global::DripSharp.Brine.Ast.ExpressionNode>((scope) => this.VisitExpr(ctx.GetExpr()));
@@ -810,7 +810,7 @@ return global::DripSharp.Brine.Ast.Expression.Generator.GeneratorForNodeGen.Crea
 });
 }
 
-public override global::DripSharp.Brine.Ast.PklRootNode VisitModule(global::DripSharp.Brine.Parser.Syntax.Module mod) {
+public override object VisitModule(global::DripSharp.Brine.Parser.Syntax.Module mod) {
 var moduleDecl = mod.GetDecl();
 int modifiers;
 if ((moduleDecl == default!)) {
@@ -827,7 +827,7 @@ scope.SetModifiers(modifiers);
 var imports = global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IList<global::DripSharp.Brine.Parser.Syntax.ImportClause>>(mod.GetImports());
 var importMembers = new global::DripSharp.Brine.Ast.Member.ObjectMember[global::DripSharp.Runtime.JavaCompat.CollectionCount(imports)];
 for (var i = 0; (i < global::DripSharp.Runtime.JavaCompat.CollectionCount(imports)); i++) {
-importMembers[i] = this.VisitImportClause(global::DripSharp.Runtime.JavaCompat.ListGet(imports, i));
+importMembers[i] = ((global::DripSharp.Brine.Ast.Member.ObjectMember)(this.VisitImportClause(global::DripSharp.Runtime.JavaCompat.ListGet(imports, i))));
 }
 this.RegisterModuleScopeNames(mod, importMembers);
 var annotationNodes = ((moduleDecl != default!) ? this.DoVisitAnnotations(global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IList<global::DripSharp.Brine.Parser.Syntax.Annotation>>(moduleDecl.GetAnnotations()), (global::DripSharp.Brine.Runtime.Identifier?)default!) : new global::DripSharp.Brine.Ast.ExpressionNode[] {  });
@@ -859,7 +859,7 @@ this.CheckDuplicateMember(member__1590_14.GetName(), member__1590_14.GetHeaderSe
 global::DripSharp.Brine.Util.EconomicMaps.Put<object, global::DripSharp.Brine.Ast.Member.ObjectMember>(result, member__1590_14.GetName(), member__1590_14);
 }
 foreach (var clazz in classes) {
-global::DripSharp.Brine.Ast.Member.ObjectMember member__1596_20 = this.VisitClass(clazz);
+global::DripSharp.Brine.Ast.Member.ObjectMember member__1596_20 = ((global::DripSharp.Brine.Ast.Member.ObjectMember)(this.VisitClass(clazz)));
 if ((moduleInfo.IsAmend() && !(member__1596_20.IsLocal()))) {
 throw this.ExceptionBuilder().EvalError("classMustBeLocal").WithSourceSection(member__1596_20.GetHeaderSection()).Build();
 }
@@ -867,7 +867,7 @@ this.CheckDuplicateMember(member__1596_20.GetName(), member__1596_20.GetHeaderSe
 global::DripSharp.Brine.Util.EconomicMaps.Put<object, global::DripSharp.Brine.Ast.Member.ObjectMember>(result, member__1596_20.GetName(), member__1596_20);
 }
 foreach (var typeAlias in typeAliases) {
-var member__1610_11 = this.VisitTypeAlias(typeAlias);
+var member__1610_11 = ((global::DripSharp.Brine.Ast.Member.ObjectMember)(this.VisitTypeAlias(typeAlias)));
 if ((moduleInfo.IsAmend() && !(member__1610_11.IsLocal()))) {
 throw this.ExceptionBuilder().EvalError("typeAliasMustBeLocal").WithSourceSection(member__1610_11.GetHeaderSection()).Build();
 }
@@ -885,7 +885,7 @@ global::DripSharp.Brine.Util.EconomicMaps.Put<object, global::DripSharp.Brine.As
 return result;
 }
 
-public override global::DripSharp.Brine.Ast.Member.ObjectMember VisitImportClause(global::DripSharp.Brine.Parser.Syntax.ImportClause imp) {
+public override object VisitImportClause(global::DripSharp.Brine.Parser.Syntax.ImportClause imp) {
 var importNode = this.DoVisitImport(imp.IsGlob(), imp, imp.GetImportStr());
 var moduleKey = this.moduleResolver.Resolve(importNode.GetImportUri());
 var importName = global::DripSharp.Brine.Runtime.Identifier.Property(((imp.GetAlias() != default!) ? imp.GetAlias().GetValue() : global::DripSharp.Brine.Util.IoUtils.InferModuleName(moduleKey)), true);
@@ -909,10 +909,10 @@ scope.AddMethod(global::DripSharp.Brine.Runtime.Identifier.Method(method.GetName
 }
 }
 
-public override global::DripSharp.Brine.Ast.Member.ObjectMember VisitClass(global::DripSharp.Brine.Parser.Syntax.Class clazz) {
+public override object VisitClass(global::DripSharp.Brine.Parser.Syntax.Class clazz) {
 var sourceSection = this.CreateSourceSection(clazz)!;
 var headerSection = this.CreateSourceSection(clazz.GetHeaderSpan());
-var typeParameters = this.VisitTypeParameterList(clazz.GetTypeParameterList());
+var typeParameters = ((global::System.Collections.Generic.IList<global::DripSharp.Brine.TypeParameter>)(this.VisitTypeParameterList(clazz.GetTypeParameterList())));
 var modifiers = (this.DoVisitModifiers(global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IList<global::DripSharp.Brine.Parser.Syntax.Modifier>>(clazz.GetModifiers()), global::DripSharp.Brine.Ast.VmModifier.VALID_CLASS_MODIFIERS, "invalidClassModifier") | global::DripSharp.Brine.Ast.VmModifier.CLASS);
 var isLocalClass = global::DripSharp.Brine.Ast.VmModifier.IsLocal(modifiers);
 var className = global::DripSharp.Brine.Runtime.Identifier.Property(clazz.GetName().GetValue(), isLocalClass);
@@ -966,7 +966,7 @@ return global::DripSharp.Brine.Ast.VmModifier.CONST;
 private global::DripSharp.Brine.Ast.Member.UnresolvedPropertyNode[] DoVisitClassProperties(global::System.Collections.Generic.IList<global::DripSharp.Brine.Parser.Syntax.ClassProperty> propertyContexts, global::System.Collections.Generic.ISet<string> propertyNames) {
 var propertyNodes = new global::DripSharp.Brine.Ast.Member.UnresolvedPropertyNode[global::DripSharp.Runtime.JavaCompat.CollectionCount(propertyContexts)];
 for (var i = 0; (i < propertyNodes.Length); i++) {
-var propertyNode = this.VisitClassProperty(global::DripSharp.Runtime.JavaCompat.ListGet(propertyContexts, i));
+var propertyNode = ((global::DripSharp.Brine.Ast.Member.UnresolvedPropertyNode)(this.VisitClassProperty(global::DripSharp.Runtime.JavaCompat.ListGet(propertyContexts, i))));
 this.CheckDuplicateMember(propertyNode.GetName(), propertyNode.GetHeaderSection(), propertyNames);
 propertyNodes[i] = propertyNode;
 }
@@ -977,14 +977,14 @@ private global::DripSharp.Brine.Ast.Member.UnresolvedMethodNode[] DoVisitMethodD
 var methodNodes = new global::DripSharp.Brine.Ast.Member.UnresolvedMethodNode[global::DripSharp.Runtime.JavaCompat.CollectionCount(methodDefs)];
 var methodNames = global::DripSharp.Brine.Util.CollectionUtils.NewHashSet<string>(global::DripSharp.Runtime.JavaCompat.CollectionCount(methodDefs));
 for (var i = 0; (i < methodNodes.Length); i++) {
-var methodNode = this.VisitClassMethod(global::DripSharp.Runtime.JavaCompat.ListGet(methodDefs, i));
+var methodNode = ((global::DripSharp.Brine.Ast.Member.UnresolvedMethodNode)(this.VisitClassMethod(global::DripSharp.Runtime.JavaCompat.ListGet(methodDefs, i))));
 this.CheckDuplicateMember(methodNode.GetName(), methodNode.GetHeaderSection(), methodNames);
 methodNodes[i] = methodNode;
 }
 return methodNodes;
 }
 
-public override global::DripSharp.Brine.Ast.Member.UnresolvedPropertyNode VisitClassProperty(global::DripSharp.Brine.Parser.Syntax.ClassProperty entry) {
+public override object VisitClassProperty(global::DripSharp.Brine.Parser.Syntax.ClassProperty entry) {
 var docCom = entry.GetDocComment();
 var annotations = global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IList<global::DripSharp.Brine.Parser.Syntax.Annotation>>(entry.GetAnnotations());
 var modifierList = global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IList<global::DripSharp.Brine.Parser.Syntax.Modifier>>(entry.GetModifiers());
@@ -1036,14 +1036,14 @@ bodyNode = default!;
 }
 }
 }
-var typeAnnNode = this.VisitTypeAnnotation(typeAnnotation)!;
+var typeAnnNode = ((global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode)(this.VisitTypeAnnotation(typeAnnotation)))!;
 return new global::DripSharp.Brine.Ast.Member.UnresolvedPropertyNode(this.language, sourceSection!, headerSection, this.CreateSourceSection(name)!, scope.BuildFrameDescriptor(), docComment, annotationNodes, modifiers, scope.GetName(), scope.GetQualifiedName(), typeAnnNode!, bodyNode);
 });
 }
 
-public override global::DripSharp.Brine.Ast.Member.UnresolvedMethodNode VisitClassMethod(global::DripSharp.Brine.Parser.Syntax.ClassMethod entry) {
+public override object VisitClassMethod(global::DripSharp.Brine.Parser.Syntax.ClassMethod entry) {
 var headerSection = this.CreateSourceSection(entry.GetHeaderSpan());
-var typeParameters = this.VisitTypeParameterList(entry.GetTypeParameterList());
+var typeParameters = ((global::System.Collections.Generic.IList<global::DripSharp.Brine.TypeParameter>)(this.VisitTypeParameterList(entry.GetTypeParameterList())));
 var modifiers = this.DoVisitModifiers(global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IList<global::DripSharp.Brine.Parser.Syntax.Modifier>>(entry.GetModifiers()), global::DripSharp.Brine.Ast.VmModifier.VALID_METHOD_MODIFIERS, "invalidMethodModifier");
 var isLocal = global::DripSharp.Brine.Ast.VmModifier.IsLocal(modifiers);
 var methodName = global::DripSharp.Brine.Runtime.Identifier.Method(entry.GetName().GetValue(), isLocal);
@@ -1078,17 +1078,17 @@ throw this.ExceptionBuilder().EvalError("missingMethodBody", methodName).WithSou
 }
 }
 }
-return new global::DripSharp.Brine.Ast.Member.UnresolvedMethodNode(this.language, this.CreateSourceSection(entry)!, headerSection, scope.BuildFrameDescriptor(), this.CreateDocSourceSection(entry.GetDocComment()), annotations, modifiers, methodName, scope.GetQualifiedName(), paramCount, typeParameters, this.DoVisitParameterTypes(paramListCtx), this.VisitTypeAnnotation(entry.GetTypeAnnotation())!, this.isMethodReturnTypeChecked, bodyNode);
+return new global::DripSharp.Brine.Ast.Member.UnresolvedMethodNode(this.language, this.CreateSourceSection(entry)!, headerSection, scope.BuildFrameDescriptor(), this.CreateDocSourceSection(entry.GetDocComment()), annotations, modifiers, methodName, scope.GetQualifiedName(), paramCount, typeParameters, this.DoVisitParameterTypes(paramListCtx), ((global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode)(this.VisitTypeAnnotation(entry.GetTypeAnnotation())))!, this.isMethodReturnTypeChecked, bodyNode);
 });
 }
 
-public override global::DripSharp.Brine.Ast.Member.ObjectMember VisitTypeAlias(global::DripSharp.Brine.Parser.Syntax.TypeAlias typeAlias) {
+public override object VisitTypeAlias(global::DripSharp.Brine.Parser.Syntax.TypeAlias typeAlias) {
 var sourceSection = this.CreateSourceSection(typeAlias)!;
 var headerSection = this.CreateSourceSection(typeAlias.GetHeaderSpan());
 var modifiers = (this.DoVisitModifiers(global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IList<global::DripSharp.Brine.Parser.Syntax.Modifier>>(typeAlias.GetModifiers()), global::DripSharp.Brine.Ast.VmModifier.VALID_TYPE_ALIAS_MODIFIERS, "invalidTypeAliasModifier") | global::DripSharp.Brine.Ast.VmModifier.TYPE_ALIAS);
 var isLocal = global::DripSharp.Brine.Ast.VmModifier.IsLocal(modifiers);
 var name = global::DripSharp.Brine.Runtime.Identifier.Property(typeAlias.GetName().GetValue(), isLocal);
-var typeParameters = this.VisitTypeParameterList(typeAlias.GetTypeParameterList());
+var typeParameters = ((global::System.Collections.Generic.IList<global::DripSharp.Brine.TypeParameter>)(this.VisitTypeParameterList(typeAlias.GetTypeParameterList())));
 var objectMemberModifiers = (isLocal ? global::DripSharp.Brine.Ast.VmModifier.LOCAL_TYPEALIAS_OBJECT_MEMBER : global::DripSharp.Brine.Ast.VmModifier.TYPEALIAS_OBJECT_MEMBER);
 var annotations = this.DoVisitAnnotations(global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IList<global::DripSharp.Brine.Parser.Syntax.Annotation>>(typeAlias.GetAnnotations()), name);
 return this.symbolTable.EnterTypeAlias(name, typeParameters, (scope) => {
@@ -1126,7 +1126,7 @@ public virtual global::DripSharp.Brine.Ast.ExpressionNode VisitExpr(global::Drip
 return (global::DripSharp.Brine.Ast.ExpressionNode)(expr.Accept<object>(this)!);
 }
 
-public override global::System.Collections.Generic.IList<global::DripSharp.Brine.TypeParameter> VisitTypeParameterList(global::DripSharp.Brine.Parser.Syntax.TypeParameterList? ctx) {
+public override object VisitTypeParameterList(global::DripSharp.Brine.Parser.Syntax.TypeParameterList? ctx) {
 if ((ctx! == default!)) {
 return global::DripSharp.Runtime.JavaCompat.ListOf<global::DripSharp.Brine.TypeParameter>();
 }
@@ -1159,11 +1159,11 @@ global::DripSharp.Runtime.JavaCompat.Add(result, new global::DripSharp.Brine.Typ
 return result;
 }
 
-public override global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode? VisitTypeAnnotation(global::DripSharp.Brine.Parser.Syntax.TypeAnnotation? typeAnnotation) {
+public override object VisitTypeAnnotation(global::DripSharp.Brine.Parser.Syntax.TypeAnnotation? typeAnnotation) {
 return ((typeAnnotation! == default!) ? (global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode)(default!) : this.VisitType(typeAnnotation!.GetType()));
 }
 
-public override global::DripSharp.Brine.Ast.ExpressionNode[] VisitArgumentList(global::DripSharp.Brine.Parser.Syntax.ArgumentList argumentList) {
+public override object VisitArgumentList(global::DripSharp.Brine.Parser.Syntax.ArgumentList argumentList) {
 var args = global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IList<global::DripSharp.Brine.Parser.Syntax.Expr>>(argumentList.GetArguments());
 var res = new global::DripSharp.Brine.Ast.ExpressionNode[global::DripSharp.Runtime.JavaCompat.CollectionCount(args)];
 for (int i = 0; (i < res.Length); i++) {
@@ -1348,7 +1348,7 @@ bodyNode = this.DoVisitObjectBody(global::DripSharp.Runtime.JavaCompat.ToListVal
 global::DripSharp.Runtime.JavaCompat.Assert(() => (expr! != default!));
 bodyNode = this.VisitExpr(expr!);
 }
-return (isLocal ? global::DripSharp.Brine.Runtime.VmUtils.CreateLocalObjectProperty(this.language, sourceSection, headerSection, scope.GetName(), scope.GetQualifiedName(), scope.BuildFrameDescriptor(), modifiers, bodyNode, this.VisitTypeAnnotation(typeAnn!)!) : global::DripSharp.Brine.Runtime.VmUtils.CreateObjectProperty(this.language, sourceSection, headerSection, scope.GetName(), scope.GetQualifiedName(), scope.BuildFrameDescriptor(), modifiers, bodyNode, (global::DripSharp.Brine.Ast.Member.PropertyTypeNode?)default!));
+return (isLocal ? global::DripSharp.Brine.Runtime.VmUtils.CreateLocalObjectProperty(this.language, sourceSection, headerSection, scope.GetName(), scope.GetQualifiedName(), scope.BuildFrameDescriptor(), modifiers, bodyNode, ((global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode)(this.VisitTypeAnnotation(typeAnn!)))!) : global::DripSharp.Brine.Runtime.VmUtils.CreateObjectProperty(this.language, sourceSection, headerSection, scope.GetName(), scope.GetQualifiedName(), scope.BuildFrameDescriptor(), modifiers, bodyNode, (global::DripSharp.Brine.Ast.Member.PropertyTypeNode?)default!));
 });
 }
 
@@ -1400,7 +1400,7 @@ throw this.ExceptionBuilder().EvalError("cannotDeclareTypeParameter").WithSource
 }
 var member = new global::DripSharp.Brine.Ast.Member.ObjectMember(this.CreateSourceSection(method)!, this.CreateSourceSection(headerSpan), modifiers, scope.GetName(), scope.GetQualifiedName());
 var body = this.VisitExpr(expr);
-var node = new global::DripSharp.Brine.Ast.Member.ObjectMethodNode(this.language, scope.BuildFrameDescriptor(), member, body, global::DripSharp.Runtime.JavaCompat.CollectionCount(paramList.GetParameters()), this.DoVisitParameterTypes(paramList), this.VisitTypeAnnotation(typeAnnotation!)!);
+var node = new global::DripSharp.Brine.Ast.Member.ObjectMethodNode(this.language, scope.BuildFrameDescriptor(), member, body, global::DripSharp.Runtime.JavaCompat.CollectionCount(paramList.GetParameters()), this.DoVisitParameterTypes(paramList), ((global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode)(this.VisitTypeAnnotation(typeAnnotation!)))!);
 member.InitMemberNode(node);
 return member;
 });
@@ -1460,9 +1460,9 @@ var argCtx = expr.GetArgumentList();
 var receiver = this.VisitExpr(expr.GetExpr());
 var needsConst = this.NeedsConst(receiver);
 if (expr.IsNullable()) {
-return new global::DripSharp.Brine.Ast.Expression.Unary.NullPropagatingOperationNode(sourceSection!, global::DripSharp.Brine.Ast.Expression.Member.InvokeMethodVirtualNodeGen.Create(sourceSection!, functionName, this.VisitArgumentList(argCtx), global::DripSharp.Brine.Ast.MemberLookupMode.EXPLICIT_RECEIVER, needsConst, global::DripSharp.Brine.Ast.Expression.Unary.PropagateNullReceiverNodeGen.Create(AstBuilder.UnavailableSourceSection(), receiver), global::DripSharp.Brine.Ast.@Internal.GetClassNodeGen.Create((global::DripSharp.Brine.Ast.ExpressionNode)default!)));
+return new global::DripSharp.Brine.Ast.Expression.Unary.NullPropagatingOperationNode(sourceSection!, global::DripSharp.Brine.Ast.Expression.Member.InvokeMethodVirtualNodeGen.Create(sourceSection!, functionName, ((global::DripSharp.Brine.Ast.ExpressionNode[])(this.VisitArgumentList(argCtx))), global::DripSharp.Brine.Ast.MemberLookupMode.EXPLICIT_RECEIVER, needsConst, global::DripSharp.Brine.Ast.Expression.Unary.PropagateNullReceiverNodeGen.Create(AstBuilder.UnavailableSourceSection(), receiver), global::DripSharp.Brine.Ast.@Internal.GetClassNodeGen.Create((global::DripSharp.Brine.Ast.ExpressionNode)default!)));
 }
-return global::DripSharp.Brine.Ast.Expression.Member.InvokeMethodVirtualNodeGen.Create(sourceSection!, functionName, this.VisitArgumentList(argCtx), global::DripSharp.Brine.Ast.MemberLookupMode.EXPLICIT_RECEIVER, needsConst, receiver, global::DripSharp.Brine.Ast.@Internal.GetClassNodeGen.Create((global::DripSharp.Brine.Ast.ExpressionNode)default!));
+return global::DripSharp.Brine.Ast.Expression.Member.InvokeMethodVirtualNodeGen.Create(sourceSection!, functionName, ((global::DripSharp.Brine.Ast.ExpressionNode[])(this.VisitArgumentList(argCtx))), global::DripSharp.Brine.Ast.MemberLookupMode.EXPLICIT_RECEIVER, needsConst, receiver, global::DripSharp.Brine.Ast.@Internal.GetClassNodeGen.Create((global::DripSharp.Brine.Ast.ExpressionNode)default!));
 }
 
 private void AddConstantEntries(global::DripSharp.Brine.Runtime.GraalCollections.EconomicMap<object, global::DripSharp.Brine.Ast.Member.ObjectMember> members, global::System.Collections.Generic.IList<global::DripSharp.Brine.Ast.ExpressionNode> keyNodes, global::System.Collections.Generic.IList<global::DripSharp.Brine.Ast.Member.ObjectMember> values) {
@@ -1480,7 +1480,7 @@ throw this.ExceptionBuilder().EvalError("duplicateDefinition", new global::DripS
 private int DoVisitModifiers(global::System.Collections.Generic.IEnumerable<global::DripSharp.Brine.Parser.Syntax.Modifier> modifiers, int validModifiers, string errorMessage) {
 var result = global::DripSharp.Brine.Ast.VmModifier.NONE;
 foreach (var ctx in modifiers) {
-int modifier = global::DripSharp.Runtime.JavaCompat.UnboxObject<int>(this.VisitModifier(ctx));
+int modifier = global::DripSharp.Runtime.JavaCompat.UnboxObject<int>(((int)(this.VisitModifier(ctx))));
 if (((modifier & validModifiers) == 0)) {
 throw this.ExceptionBuilder().EvalError(errorMessage, global::DripSharp.Runtime.JavaCompat.EnumName(ctx.GetValue()).ToLowerInvariant()).WithSourceSection(this.CreateSourceSection(ctx)!).Build();
 }
@@ -1513,7 +1513,7 @@ private global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode[] DoVisitParameterTy
 var typeNodes = new global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode[global::DripSharp.Runtime.JavaCompat.CollectionCount(@params)];
 for (int i = 0; (i < typeNodes.Length); i++) {
 if ((global::DripSharp.Runtime.JavaCompat.ListGet(@params, i) is global::DripSharp.Brine.Parser.Syntax.Parameter.TypedIdentifier typedIdentifier)) {
-typeNodes[i] = this.VisitTypeAnnotation(typedIdentifier.GetTypeAnnotation())!;
+typeNodes[i] = ((global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode)(this.VisitTypeAnnotation(typedIdentifier.GetTypeAnnotation())))!;
 } else {
 typeNodes[i] = default!;
 }

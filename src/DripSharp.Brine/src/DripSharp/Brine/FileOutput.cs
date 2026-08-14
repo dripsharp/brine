@@ -8,9 +8,9 @@
 #nullable enable
 namespace DripSharp.Brine;
 
-public partial interface FileOutput
+public abstract partial class FileOutput
 {
-public string GetText();
+public abstract string GetText();
 
-public byte[] GetBytes();
+public abstract byte[] GetBytes();
 }

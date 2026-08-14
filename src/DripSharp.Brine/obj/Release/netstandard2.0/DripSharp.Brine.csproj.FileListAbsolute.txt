@@ -1,0 +1,14 @@
+/Users/admin/src/dripsharp/dripsharp/products/brine/src/DripSharp.Brine/bin/Release/netstandard2.0/DripSharp.Brine.deps.json
+/Users/admin/src/dripsharp/dripsharp/products/brine/src/DripSharp.Brine/bin/Release/netstandard2.0/DripSharp.Brine.dll
+/Users/admin/src/dripsharp/dripsharp/products/brine/src/DripSharp.Brine/bin/Release/netstandard2.0/DripSharp.Brine.pdb
+/Users/admin/src/dripsharp/dripsharp/products/brine/src/DripSharp.Brine/bin/Release/netstandard2.0/DripSharp.Brine.Parser.dll
+/Users/admin/src/dripsharp/dripsharp/products/brine/src/DripSharp.Brine/bin/Release/netstandard2.0/DripSharp.Brine.Parser.pdb
+/Users/admin/src/dripsharp/dripsharp/products/brine/src/DripSharp.Brine/obj/Release/netstandard2.0/DripSharp.Brine.csproj.AssemblyReference.cache
+/Users/admin/src/dripsharp/dripsharp/products/brine/src/DripSharp.Brine/obj/Release/netstandard2.0/DripSharp.Brine.GeneratedMSBuildEditorConfig.editorconfig
+/Users/admin/src/dripsharp/dripsharp/products/brine/src/DripSharp.Brine/obj/Release/netstandard2.0/DripSharp.Brine.AssemblyInfoInputs.cache
+/Users/admin/src/dripsharp/dripsharp/products/brine/src/DripSharp.Brine/obj/Release/netstandard2.0/DripSharp.Brine.AssemblyInfo.cs
+/Users/admin/src/dripsharp/dripsharp/products/brine/src/DripSharp.Brine/obj/Release/netstandard2.0/DripSharp.Brine.csproj.CoreCompileInputs.cache
+/Users/admin/src/dripsharp/dripsharp/products/brine/src/DripSharp.Brine/obj/Release/netstandard2.0/DripSharp.Brine.sourcelink.json
+/Users/admin/src/dripsharp/dripsharp/products/brine/src/DripSharp.Brine/obj/Release/netstandard2.0/DripShar.C2E0C41A.Up2Date
+/Users/admin/src/dripsharp/dripsharp/products/brine/src/DripSharp.Brine/obj/Release/netstandard2.0/DripSharp.Brine.dll
+/Users/admin/src/dripsharp/dripsharp/products/brine/src/DripSharp.Brine/obj/Release/netstandard2.0/DripSharp.Brine.pdb

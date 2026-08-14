@@ -12,14 +12,6 @@ internal sealed partial class JdkHttpClient : global::DripSharp.Brine.Http.HttpC
 {
 public void Dispose() => this.Close();
 
-public global::DripSharp.Brine.Http.HttpClient.Builder CreateBuilder() {
-return new global::DripSharp.Brine.Http.HttpClientBuilder();
-}
-
-public global::DripSharp.Brine.Http.HttpClient DummyClient() {
-return new global::DripSharp.Brine.Http.DummyHttpClient();
-}
-
 internal readonly global::DripSharp.Brine.Runtime.JavaHttpClient underlying = default!;
 
 private static readonly global::DripSharp.Runtime.JavaMethodHandle closeMethod = default!;
@@ -28,7 +20,7 @@ internal JdkHttpClient(global::System.Collections.Generic.IList<string> certific
 this.underlying = global::DripSharp.Brine.Runtime.JavaHttpClient.NewBuilder().SslContext(JdkHttpClient.CreateSslContext(certificateFiles, certificateBytes)).ConnectTimeout(connectTimeout).Proxy(proxySelector).FollowRedirects(global::DripSharp.Brine.Runtime.JavaHttpRedirect.NEVER).Build();
 }
 
-public global::DripSharp.Brine.Runtime.JavaHttpResponse<T> SendCompatibility<T>(global::DripSharp.Brine.Runtime.JavaHttpRequest request, global::DripSharp.Brine.Runtime.JavaHttpBodyHandler<T> responseBodyHandler, global::DripSharp.Brine.Http.HttpClient.HttpRequestChecker httpRequestChecker) {
+internal override global::DripSharp.Brine.Runtime.JavaHttpResponse<T> SendCompatibility<T>(global::DripSharp.Brine.Runtime.JavaHttpRequest request, global::DripSharp.Brine.Runtime.JavaHttpBodyHandler<T> responseBodyHandler, global::DripSharp.Brine.Http.HttpClient.HttpRequestChecker httpRequestChecker) {
 try {
 return (this.underlying).Send(request, responseBodyHandler);
 } catch (global::System.Net.Sockets.SocketException) {
@@ -43,12 +35,11 @@ throw new global::System.IO.IOException(null, e);
 }
 }
 
-public void Close() {
+public override void Close() {
 try {
 JdkHttpClient.closeMethod.invoke(this.underlying);
 } catch (global::System.Exception e) when (e is global::System.Exception) {
-global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(e);
-throw new global::System.InvalidOperationException("unreachable");
+throw;
 } catch (global::System.Exception t) {
 throw new global::DripSharp.Runtime.JavaAssertionError(t);
 }

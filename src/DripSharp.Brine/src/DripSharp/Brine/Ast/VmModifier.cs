@@ -181,7 +181,7 @@ throw new global::DripSharp.Brine.Runtime.VmExceptionBuilder().Bug("Cannot conve
 }
 
 public static global::DripSharp.Brine.Runtime.VmSet GetMirrors(int modifiers, bool isClass) {
-var builder = global::DripSharp.Brine.Runtime.VmSet.EMPTY.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmSet>)(global::DripSharp.Brine.Runtime.VmSet.EMPTY.CreateBuilder()));
 if (VmModifier.IsAbstract(modifiers)) {
 builder.Add(VmModifier.ToString(VmModifier.ABSTRACT));
 }

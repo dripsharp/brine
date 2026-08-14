@@ -68,7 +68,7 @@ return builder.Build();
 internal abstract partial class ToList : global::DripSharp.Brine.Stdlib.ExternalMethod0Node
 {
 protected internal virtual global::DripSharp.Brine.Runtime.VmList Eval(global::DripSharp.Brine.Runtime.VmDynamic self) {
-var builder = global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder()));
 self.ForceAndIterateMemberValues((key, member, value) => {
 if (member.IsElement()) {
 builder.Add(value);

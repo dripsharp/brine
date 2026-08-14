@@ -45,7 +45,7 @@ var commitish = (version.IsNormal() ? version.ToString() : commitId);
 var docsVersion = (version.IsNormal() ? version.ToString() : "latest");
 var docsHomepage = global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat(Release.DOCUMENTATION_HOMEPAGE, docsVersion), "/");
 var stdlibModules = new global::System.Collections.Generic.HashSet<string>(global::DripSharp.Runtime.JavaCompat.ListOf<string>(global::DripSharp.Runtime.JavaCompat.StringSplit(properties.GetProperty("stdlibModules"), ",", 0)));
-Release.CURRENT = new Release(version, os, flavor, versionInfo, commitId, new SourceCode(Release.SOURCE_CODE_HOMEPAGE, commitish), new Documentation(docsHomepage), new StandardLibrary(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlySet<string>>(stdlibModules)));
+Release.CURRENT = new Release(version, os, flavor, versionInfo, commitId, new SourceCode(Release.SOURCE_CODE_HOMEPAGE, commitish), new Documentation(docsHomepage), new StandardLibrary(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.ISet<string>>(stdlibModules)));
 }
 
 public static Release Current() {
@@ -95,7 +95,7 @@ return global::DripSharp.Runtime.JavaCompat.Hash(this.Homepage);
 }
 }
 
-public sealed partial record class StandardLibrary(global::System.Collections.Generic.IReadOnlySet<string> Modules)
+public sealed partial record class StandardLibrary(global::System.Collections.Generic.ISet<string> Modules)
 {
 public bool Equals(StandardLibrary? other) {
 if (global::System.Object.ReferenceEquals(this, other)) return true;

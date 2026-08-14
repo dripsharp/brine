@@ -53,8 +53,7 @@ return this.bodyNode.ExecuteGeneric(frame);
 } catch (global::DripSharp.Brine.Runtime.VmException e) {
 global::DripSharp.Brine.Runtime.Truffle.api.CompilerDirectives.TransferToInterpreter();
 global::DripSharp.Runtime.JavaCompat.MapPut(e.GetInsertedStackFrames(), this.GetRootNode().GetCallTarget(), global::DripSharp.Brine.Runtime.VmUtils.CreateStackFrame(this.GetSourceSection(), this.qualifiedName));
-global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(e);
-throw new global::System.InvalidOperationException("unreachable");
+throw;
 }
 }
 }

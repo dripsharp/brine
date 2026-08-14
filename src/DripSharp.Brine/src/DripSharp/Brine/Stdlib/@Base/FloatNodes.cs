@@ -185,7 +185,7 @@ try {
 return global::DripSharp.Brine.Util.MathUtils.RoundToLong(self, global::DripSharp.Runtime.JavaRoundingMode.Down);
 } catch (global::System.ArithmeticException) {
 global::DripSharp.Brine.Runtime.Truffle.api.CompilerDirectives.TransferToInterpreter();
-throw this.ExceptionBuilder().EvalError((double.IsFinite(self) ? "cannotConvertLargeFloat" : "cannotConvertNonFiniteFloat"), new global::DripSharp.Brine.Runtime.VmException.ProgramValue("Float", self)).Build();
+throw this.ExceptionBuilder().EvalError((global::DripSharp.Runtime.JavaCompat.IsFinite(self) ? "cannotConvertLargeFloat" : "cannotConvertNonFiniteFloat"), new global::DripSharp.Brine.Runtime.VmException.ProgramValue("Float", self)).Build();
 }
 }
 }
@@ -208,7 +208,7 @@ internal abstract partial class ToFixed : global::DripSharp.Brine.Stdlib.Externa
 {
 protected internal virtual string Eval(double self, long fractionDigits) {
 global::DripSharp.Runtime.JavaCompat.Assert(() => ((fractionDigits >= 0) && (fractionDigits <= 20)));
-if (double.IsFinite(self)) {
+if (global::DripSharp.Runtime.JavaCompat.IsFinite(self)) {
 global::DripSharp.Runtime.JavaDecimalFormat format = global::DripSharp.Brine.Runtime.VmUtils.CreateDecimalFormat((int)((int)(fractionDigits)));
 return format.Format(self);
 }
@@ -244,7 +244,7 @@ return (self >= 0);
 internal abstract partial class IsFinite : global::DripSharp.Brine.Stdlib.ExternalPropertyNode
 {
 protected internal virtual bool Eval(double self) {
-return double.IsFinite(self);
+return global::DripSharp.Runtime.JavaCompat.IsFinite(self);
 }
 }
 

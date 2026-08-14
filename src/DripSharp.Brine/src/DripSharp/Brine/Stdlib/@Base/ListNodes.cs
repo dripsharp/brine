@@ -161,8 +161,8 @@ internal abstract partial class Partition : global::DripSharp.Brine.Stdlib.Exter
 internal global::DripSharp.Brine.Ast.Lambda.ApplyVmFunction1Node applyLambdaNode = global::DripSharp.Brine.Ast.Lambda.ApplyVmFunction1Node.Create();
 
 protected internal virtual global::DripSharp.Brine.Runtime.VmPair Eval(global::DripSharp.Brine.Runtime.VmList self, global::DripSharp.Brine.Runtime.VmFunction function) {
-var builder1 = self.CreateBuilder();
-var builder2 = self.CreateBuilder();
+var builder1 = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(self.CreateBuilder()));
+var builder2 = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(self.CreateBuilder()));
 foreach (var elem in self) {
 if (this.applyLambdaNode.ExecuteBoolean(function, elem)) {
 builder1.Add(elem);
@@ -383,7 +383,7 @@ internal abstract partial class Filter : global::DripSharp.Brine.Stdlib.External
 internal global::DripSharp.Brine.Ast.Lambda.ApplyVmFunction1Node applyLambdaNode = global::DripSharp.Brine.Ast.Lambda.ApplyVmFunction1Node.Create();
 
 protected internal virtual global::DripSharp.Brine.Runtime.VmList Eval(global::DripSharp.Brine.Runtime.VmList self, global::DripSharp.Brine.Runtime.VmFunction function) {
-var builder = self.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(self.CreateBuilder()));
 foreach (var elem in self) {
 if (this.applyLambdaNode.ExecuteBoolean(function, elem)) {
 builder.Add(elem);
@@ -397,7 +397,7 @@ return builder.Build();
 internal abstract partial class FilterNonNull : global::DripSharp.Brine.Stdlib.ExternalMethod0Node
 {
 protected internal virtual global::DripSharp.Brine.Runtime.VmList Eval(global::DripSharp.Brine.Runtime.VmList self) {
-var builder = self.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(self.CreateBuilder()));
 foreach (var elem in self) {
 if ((elem is global::DripSharp.Brine.Runtime.VmNull)) {
 continue;
@@ -414,7 +414,7 @@ internal abstract partial class FilterIndexed : global::DripSharp.Brine.Stdlib.E
 internal global::DripSharp.Brine.Ast.Lambda.ApplyVmFunction2Node applyLambdaNode = global::DripSharp.Brine.Ast.Lambda.ApplyVmFunction2NodeGen.Create();
 
 protected internal virtual global::DripSharp.Brine.Runtime.VmList Eval(global::DripSharp.Brine.Runtime.VmList self, global::DripSharp.Brine.Runtime.VmFunction function) {
-var builder = self.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(self.CreateBuilder()));
 long index = 0;
 foreach (var elem in self) {
 if (this.applyLambdaNode.ExecuteBoolean(function, index++, elem)) {
@@ -431,7 +431,7 @@ internal abstract partial class FilterIsInstance : global::DripSharp.Brine.Stdli
 internal global::DripSharp.Brine.Ast.@Internal.IsInstanceOfNode isInstanceOfNode = global::DripSharp.Brine.Ast.@Internal.IsInstanceOfNodeGen.Create();
 
 protected internal virtual global::DripSharp.Brine.Runtime.VmList Eval(global::DripSharp.Brine.Runtime.VmList self, global::DripSharp.Brine.Runtime.VmClass clazz) {
-var builder = self.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(self.CreateBuilder()));
 foreach (var elem in self) {
 if (this.isInstanceOfNode.ExecuteBoolean(elem, clazz)) {
 builder.Add(elem);
@@ -475,7 +475,7 @@ return true;
 internal abstract partial class Distinct : global::DripSharp.Brine.Stdlib.ExternalPropertyNode
 {
 protected internal virtual global::DripSharp.Brine.Runtime.VmList Eval(global::DripSharp.Brine.Runtime.VmList self) {
-var builder = self.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(self.CreateBuilder()));
 var visited = global::DripSharp.Brine.Util.EconomicSets.Create<object>();
 foreach (var elem in self) {
 if (global::DripSharp.Brine.Util.EconomicSets.Add<object>(visited, elem)) {
@@ -492,7 +492,7 @@ internal abstract partial class DistinctBy : global::DripSharp.Brine.Stdlib.Exte
 internal global::DripSharp.Brine.Ast.Lambda.ApplyVmFunction1Node applyLambdaNode = global::DripSharp.Brine.Ast.Lambda.ApplyVmFunction1Node.Create();
 
 protected internal virtual global::DripSharp.Brine.Runtime.VmList Eval(global::DripSharp.Brine.Runtime.VmList self, global::DripSharp.Brine.Runtime.VmFunction function) {
-var builder = self.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(self.CreateBuilder()));
 var visited = global::DripSharp.Brine.Util.EconomicSets.Create<object>();
 foreach (var elem in self) {
 if (global::DripSharp.Brine.Util.EconomicSets.Add<object>(visited, this.applyLambdaNode.Execute(function, elem))) {
@@ -509,7 +509,7 @@ internal abstract partial class Map : global::DripSharp.Brine.Stdlib.ExternalMet
 internal global::DripSharp.Brine.Ast.Lambda.ApplyVmFunction1Node applyLambdaNode = global::DripSharp.Brine.Ast.Lambda.ApplyVmFunction1Node.Create();
 
 protected internal virtual global::DripSharp.Brine.Runtime.VmList Eval(global::DripSharp.Brine.Runtime.VmList self, global::DripSharp.Brine.Runtime.VmFunction function) {
-var builder = self.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(self.CreateBuilder()));
 foreach (var elem in self) {
 builder.Add(this.applyLambdaNode.Execute(function, elem));
 }
@@ -523,7 +523,7 @@ internal abstract partial class MapIndexed : global::DripSharp.Brine.Stdlib.Exte
 internal global::DripSharp.Brine.Ast.Lambda.ApplyVmFunction2Node applyLambdaNode = global::DripSharp.Brine.Ast.Lambda.ApplyVmFunction2NodeGen.Create();
 
 protected internal virtual global::DripSharp.Brine.Runtime.VmList Eval(global::DripSharp.Brine.Runtime.VmList self, global::DripSharp.Brine.Runtime.VmFunction function) {
-var builder = self.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(self.CreateBuilder()));
 long index = 0;
 foreach (var elem in self) {
 builder.Add(this.applyLambdaNode.Execute(function, index++, elem));
@@ -538,7 +538,7 @@ internal abstract partial class MapNonNull : global::DripSharp.Brine.Stdlib.Exte
 internal global::DripSharp.Brine.Ast.Lambda.ApplyVmFunction1Node applyLambdaNode = global::DripSharp.Brine.Ast.Lambda.ApplyVmFunction1Node.Create();
 
 protected internal virtual global::DripSharp.Brine.Runtime.VmList Eval(global::DripSharp.Brine.Runtime.VmList self, global::DripSharp.Brine.Runtime.VmFunction function) {
-var builder = self.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(self.CreateBuilder()));
 foreach (var elem in self) {
 var newValue = this.applyLambdaNode.Execute(function, elem);
 if ((newValue is global::DripSharp.Brine.Runtime.VmNull)) {
@@ -556,7 +556,7 @@ internal abstract partial class MapNonNullIndexed : global::DripSharp.Brine.Stdl
 internal global::DripSharp.Brine.Ast.Lambda.ApplyVmFunction2Node applyLambdaNode = global::DripSharp.Brine.Ast.Lambda.ApplyVmFunction2NodeGen.Create();
 
 protected internal virtual global::DripSharp.Brine.Runtime.VmList Eval(global::DripSharp.Brine.Runtime.VmList self, global::DripSharp.Brine.Runtime.VmFunction function) {
-var builder = self.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(self.CreateBuilder()));
 long index = 0;
 foreach (var elem in self) {
 var newValue = this.applyLambdaNode.Execute(function, index++, elem);
@@ -575,7 +575,7 @@ internal abstract partial class FlatMap : global::DripSharp.Brine.Stdlib.Externa
 internal global::DripSharp.Brine.Ast.Lambda.ApplyVmFunction1Node applyLambdaNode = global::DripSharp.Brine.Ast.Lambda.ApplyVmFunction1Node.Create();
 
 protected internal virtual global::DripSharp.Brine.Runtime.VmList Eval(global::DripSharp.Brine.Runtime.VmList self, global::DripSharp.Brine.Runtime.VmFunction function) {
-var builder = self.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(self.CreateBuilder()));
 foreach (var elem in self) {
 builder.AddAll(this.applyLambdaNode.ExecuteCollection(function, elem));
 }
@@ -589,7 +589,7 @@ internal abstract partial class FlatMapIndexed : global::DripSharp.Brine.Stdlib.
 internal global::DripSharp.Brine.Ast.Lambda.ApplyVmFunction2Node applyLambdaNode = global::DripSharp.Brine.Ast.Lambda.ApplyVmFunction2NodeGen.Create();
 
 protected internal virtual global::DripSharp.Brine.Runtime.VmList Eval(global::DripSharp.Brine.Runtime.VmList self, global::DripSharp.Brine.Runtime.VmFunction function) {
-var builder = self.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(self.CreateBuilder()));
 long index = 0;
 foreach (var elem in self) {
 builder.AddAll(this.applyLambdaNode.ExecuteCollection(function, index++, elem));
@@ -618,7 +618,7 @@ internal abstract partial class TakeWhile : global::DripSharp.Brine.Stdlib.Exter
 internal global::DripSharp.Brine.Ast.Lambda.ApplyVmFunction1Node applyLambdaNode = global::DripSharp.Brine.Ast.Lambda.ApplyVmFunction1Node.Create();
 
 protected internal virtual global::DripSharp.Brine.Runtime.VmList Eval(global::DripSharp.Brine.Runtime.VmList self, global::DripSharp.Brine.Runtime.VmFunction function) {
-var builder = self.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(self.CreateBuilder()));
 foreach (var elem in self) {
 if (!(this.applyLambdaNode.ExecuteBoolean(function, elem))) {
 return builder.Build();
@@ -794,7 +794,7 @@ var builder = global::DripSharp.Brine.Runtime.VmMap.CreateBuilder();
 foreach (object elem in self) {
 var key = this.applyLambdaNode.Execute(function, elem);
 var value = builder.Get(key)!;
-var newValue = ((value! == default!) ? global::DripSharp.Brine.Runtime.VmList.Of(elem) : ((global::DripSharp.Brine.Runtime.VmList)(value!)).Add(elem));
+var newValue = ((value! == default!) ? global::DripSharp.Brine.Runtime.VmList.Of(elem) : ((global::DripSharp.Brine.Runtime.VmList)(((global::DripSharp.Brine.Runtime.VmList)(value!)).Add(elem))));
 builder.Add(key, newValue);
 }
 global::DripSharp.Brine.Runtime.Truffle.api.nodes.LoopNode.ReportLoopCount(this, self.GetLength());
@@ -1096,7 +1096,7 @@ return global::DripSharp.Brine.Runtime.VmList.Create(global::DripSharp.Brine.Std
 internal abstract partial class Add : global::DripSharp.Brine.Stdlib.ExternalMethod1Node
 {
 protected internal virtual global::DripSharp.Brine.Runtime.VmList Eval(global::DripSharp.Brine.Runtime.VmList self, object element) {
-return self.Add(element);
+return ((global::DripSharp.Brine.Runtime.VmList)(self.Add(element)));
 }
 }
 

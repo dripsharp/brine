@@ -75,7 +75,7 @@ var constModifierIdx = source.IndexOf("const", global::System.StringComparison.O
 throw this.ExceptionBuilder().WithSourceSection(base.headerSection.GetSource().CreateSection((base.headerSection.GetCharIndex() + constModifierIdx), 5)).EvalError("cannotApplyConstModifier", base.name, superClass!.GetQualifiedName()).Build();
 }
 
-public override global::DripSharp.Brine.Ast.Member.ClassProperty Execute(global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame frame, global::DripSharp.Brine.Runtime.VmClass clazz) {
+public override global::DripSharp.Brine.Ast.Member.ClassMember Execute(global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame frame, global::DripSharp.Brine.Runtime.VmClass clazz) {
 global::DripSharp.Brine.Runtime.Truffle.api.CompilerDirectives.TransferToInterpreter();
 var annotations = global::DripSharp.Brine.Runtime.VmUtils.EvaluateAnnotations(frame, base.annotationNodes);
 var typeNode = ((this.unresolvedTypeNode! == default!) ? (global::DripSharp.Brine.Ast.Member.PropertyTypeNode)(default!) : new global::DripSharp.Brine.Ast.Member.PropertyTypeNode(base.language, base.descriptor, base.qualifiedName, this.unresolvedTypeNode!.Execute(frame)));

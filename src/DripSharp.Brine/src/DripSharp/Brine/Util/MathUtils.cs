@@ -165,7 +165,7 @@ case var __case_256_12_0 when global::System.Object.Equals(__case_256_12_0, glob
 {
 var z__258_15 = global::System.Math.Round(x);
 if ((global::System.Math.Abs((x - z__258_15)) == 0.5D)) {
-return (x + global::System.Math.CopySign(0.5D, x));
+return (x + global::DripSharp.Runtime.JavaCompat.CopySign(0.5D, x));
 } else {
 return z__258_15;
 }

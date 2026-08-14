@@ -33,47 +33,47 @@ var release = global::DripSharp.Brine.Release.Current();
 this.userAgent = global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat("Pkl/", release.Version), " ("), release.Os), "; "), release.Flavor), ")");
 }
 
-public global::DripSharp.Brine.Http.HttpClient.Builder SetUserAgent(string userAgent) {
+public override global::DripSharp.Brine.Http.HttpClient.Builder SetUserAgent(string userAgent) {
 this.userAgent = userAgent;
 return this;
 }
 
-public global::DripSharp.Brine.Http.HttpClient.Builder SetConnectTimeout(global::System.TimeSpan timeout) {
+public override global::DripSharp.Brine.Http.HttpClient.Builder SetConnectTimeout(global::System.TimeSpan timeout) {
 this.connectTimeout = timeout;
 return this;
 }
 
-public global::DripSharp.Brine.Http.HttpClient.Builder SetRequestTimeout(global::System.TimeSpan timeout) {
+public override global::DripSharp.Brine.Http.HttpClient.Builder SetRequestTimeout(global::System.TimeSpan timeout) {
 this.requestTimeout = timeout;
 return this;
 }
 
-public global::DripSharp.Brine.Http.HttpClient.Builder AddCertificates(string path) {
+public override global::DripSharp.Brine.Http.HttpClient.Builder AddCertificates(string path) {
 global::DripSharp.Runtime.JavaCompat.Add(this.certificateFiles, path);
 return this;
 }
 
-public global::DripSharp.Brine.Http.HttpClient.Builder AddCertificates(byte[] certificateBytes) {
+public override global::DripSharp.Brine.Http.HttpClient.Builder AddCertificates(byte[] certificateBytes) {
 global::DripSharp.Runtime.JavaCompat.Add(this.certificateBytes, global::DripSharp.Runtime.JavaByteBuffer.wrap(global::DripSharp.Runtime.JavaCompat.ToSignedBytes(certificateBytes)));
 return this;
 }
 
-public global::DripSharp.Brine.Http.HttpClient.Builder SetTestPort(int port) {
+internal override global::DripSharp.Brine.Http.HttpClient.Builder SetTestPort(int port) {
 this.testPort = port;
 return this;
 }
 
-public global::DripSharp.Brine.Http.HttpClient.Builder SetProxySelector(global::DripSharp.Brine.Runtime.JavaProxySelector proxySelector) {
+internal override global::DripSharp.Brine.Http.HttpClient.Builder SetProxySelector(global::DripSharp.Brine.Runtime.JavaProxySelector proxySelector) {
 this.proxySelector = proxySelector;
 return this;
 }
 
-public global::DripSharp.Brine.Http.HttpClient.Builder SetProxy(global::System.Uri? proxyAddress, global::System.Collections.Generic.IReadOnlyList<string> noProxy) {
+public override global::DripSharp.Brine.Http.HttpClient.Builder SetProxy(global::System.Uri? proxyAddress, global::System.Collections.Generic.IReadOnlyList<string> noProxy) {
 this.proxySelector = new global::DripSharp.Brine.Http.ProxySelector(proxyAddress!, global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IList<string>>(global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IList<string>>(noProxy)));
 return this;
 }
 
-public global::DripSharp.Brine.Http.HttpClient.Builder SetRewrites(global::System.Collections.Generic.IReadOnlyDictionary<global::System.Uri, global::System.Uri> rewrites) {
+public override global::DripSharp.Brine.Http.HttpClient.Builder SetRewrites(global::System.Collections.Generic.IReadOnlyDictionary<global::System.Uri, global::System.Uri> rewrites) {
 foreach (var entry in global::DripSharp.Runtime.JavaCompat.MapEntrySet(rewrites)) {
 global::DripSharp.Brine.Util.IoUtils.ValidateRewriteRule(entry.Key);
 global::DripSharp.Brine.Util.IoUtils.ValidateRewriteRule(entry.Value);
@@ -82,14 +82,14 @@ this.rewrites = global::DripSharp.Runtime.JavaCompat.NewJavaDictionary<global::S
 return this;
 }
 
-public global::DripSharp.Brine.Http.HttpClient.Builder AddRewrite(global::System.Uri sourcePrefix, global::System.Uri targetPrefix) {
+public override global::DripSharp.Brine.Http.HttpClient.Builder AddRewrite(global::System.Uri sourcePrefix, global::System.Uri targetPrefix) {
 global::DripSharp.Brine.Util.IoUtils.ValidateRewriteRule(sourcePrefix);
 global::DripSharp.Brine.Util.IoUtils.ValidateRewriteRule(targetPrefix);
 global::DripSharp.Runtime.JavaCompat.MapPut(this.rewrites, sourcePrefix, targetPrefix);
 return this;
 }
 
-public global::DripSharp.Brine.Http.HttpClient.Builder SetHeaders(global::System.Collections.Generic.IReadOnlyDictionary<string, global::System.Collections.Generic.IReadOnlyDictionary<string, global::System.Collections.Generic.IReadOnlyList<string>>> headers) {
+public override global::DripSharp.Brine.Http.HttpClient.Builder SetHeaders(global::System.Collections.Generic.IReadOnlyDictionary<string, global::System.Collections.Generic.IReadOnlyDictionary<string, global::System.Collections.Generic.IReadOnlyList<string>>> headers) {
 var newHeaders = new global::DripSharp.Runtime.JavaLinkedHashMap<global::System.Text.RegularExpressions.Regex, global::System.Collections.Generic.IDictionary<string, global::System.Collections.Generic.IList<string>>>(global::DripSharp.Runtime.JavaCompat.MapCount(headers));
 foreach (var rule in global::DripSharp.Runtime.JavaCompat.MapEntrySet(headers)) {
 global::System.Text.RegularExpressions.Regex pattern;
@@ -112,7 +112,7 @@ this.headers = newHeaders;
 return this;
 }
 
-public global::DripSharp.Brine.Http.HttpClient.Builder AddHeaders(string globPattern, global::System.Collections.Generic.IReadOnlyDictionary<string, global::System.Collections.Generic.IReadOnlyList<string>> headers) {
+public override global::DripSharp.Brine.Http.HttpClient.Builder AddHeaders(string globPattern, global::System.Collections.Generic.IReadOnlyDictionary<string, global::System.Collections.Generic.IReadOnlyList<string>> headers) {
 try {
 var pattern = global::DripSharp.Brine.Util.GlobResolver.ToRegexPattern(globPattern);
 var existingHeaders = global::DripSharp.Runtime.JavaCompat.ComputeIfAbsent(this.headers, pattern, (k) => global::DripSharp.Runtime.JavaCompat.NewJavaDictionary<string, global::System.Collections.Generic.IList<string>>());
@@ -134,11 +134,11 @@ throw new global::System.ArgumentException(global::DripSharp.Runtime.JavaCompat.
 }
 }
 
-public global::DripSharp.Brine.Http.HttpClient Build() {
+public override global::DripSharp.Brine.Http.HttpClient Build() {
 return (this.DoBuild())();
 }
 
-public global::DripSharp.Brine.Http.HttpClient BuildLazily() {
+public override global::DripSharp.Brine.Http.HttpClient BuildLazily() {
 return new global::DripSharp.Brine.Http.LazyHttpClient(this.DoBuild());
 }
 

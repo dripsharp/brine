@@ -8,15 +8,15 @@
 #nullable enable
 namespace DripSharp.Brine.Externalreader;
 
-public partial interface ExternalModuleResolver
+public abstract partial class ExternalModuleResolver
 {
 internal static ExternalModuleResolver Of(global::DripSharp.Brine.Messaging.MessageTransport transport, long evaluatorId) {
 return new global::DripSharp.Brine.Externalreader.ExternalModuleResolverImpl(transport, evaluatorId);
 }
 
-public string ResolveModule(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri uri);
+public abstract string ResolveModule(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri uri);
 
-public bool HasElement(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri elementUri);
+public abstract bool HasElement(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri elementUri);
 
-public global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement> ListElements(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri baseUri);
+public abstract global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement> ListElements(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri baseUri);
 }

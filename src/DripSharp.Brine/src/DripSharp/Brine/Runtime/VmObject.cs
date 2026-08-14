@@ -37,7 +37,7 @@ global::DripSharp.Runtime.JavaCompat.Assert(() => (this.parent! == default!));
 this.parent = parent;
 }
 
-public override VmObject? GetParent() {
+public override global::DripSharp.Brine.Runtime.VmObjectLike? GetParent() {
 return this.parent!;
 }
 
@@ -95,7 +95,7 @@ return consumer(key, member, cachedValue!);
 }
 
 public sealed override bool IterateMembers(global::System.Func<object, global::DripSharp.Brine.Ast.Member.ObjectMember, bool> consumer) {
-var parent = this.GetParent()!;
+var parent = ((VmObject)(this.GetParent()))!;
 if ((parent! != default!)) {
 var completed = parent!.IterateMembers(consumer);
 if (!completed) {
@@ -136,10 +136,9 @@ var memberValue = this.GetCachedValue(memberKey)!;
 if ((memberValue! == default!)) {
 try {
 memberValue = global::DripSharp.Brine.Runtime.VmUtils.DoReadMember(this, owner, memberKey, member);
-} catch (global::DripSharp.Brine.Runtime.VmUndefinedValueException e) {
+} catch (global::DripSharp.Brine.Runtime.VmUndefinedValueException) {
 if (!allowUndefinedValues) {
-global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(e);
-throw new global::System.InvalidOperationException("unreachable");
+throw;
 }
 continue;
 }
@@ -149,10 +148,9 @@ global::DripSharp.Brine.Runtime.VmValue.Force(memberValue!, allowUndefinedValues
 }
 }
 }
-} catch (global::System.Exception t) {
+} catch (global::System.Exception) {
 this.forced = false;
-global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(t);
-throw new global::System.InvalidOperationException("unreachable");
+throw;
 }
 }
 

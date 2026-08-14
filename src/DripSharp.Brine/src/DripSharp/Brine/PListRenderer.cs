@@ -65,7 +65,7 @@ if ((value is global::System.Collections.Generic.IList<object> list)) {
 this.VisitList(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<object>>(global::DripSharp.Runtime.JavaCompat.CastObjects(list)));
 } else {
 if ((value is global::System.Collections.Generic.ISet<object> set)) {
-this.VisitSet(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlySet<object>>(set));
+this.VisitSet(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.ISet<object>>(set));
 } else {
 if ((value is global::System.Collections.Generic.IDictionary<object, object> map)) {
 this.VisitMap(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<object, object>>(global::DripSharp.Runtime.JavaCompat.CastDictionary<object, object>(map)));
@@ -160,7 +160,7 @@ public virtual void VisitList(global::System.Collections.Generic.IReadOnlyList<o
 this.DoVisitIterable(global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IList<object>>(value), global::DripSharp.Runtime.JavaCompat.ListIsEmpty(value));
 }
 
-public virtual void VisitSet(global::System.Collections.Generic.IReadOnlySet<object> value) {
+public virtual void VisitSet(global::System.Collections.Generic.ISet<object> value) {
 this.DoVisitIterable(global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.ISet<object>>(value), global::DripSharp.Runtime.JavaCompat.CollectionIsEmpty(value));
 }
 

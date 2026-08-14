@@ -102,7 +102,7 @@ switch (type) {
 case var __case_207_14_0 when global::System.Object.Equals(__case_207_14_0, "Set"):
 {
 var value__208_15 = jsObj.GetArray("value");
-var set = new global::System.Collections.Generic.HashSet<object>(value__208_15.Size());
+var set = new global::System.Collections.Generic.HashSet<object>();
 foreach (var element__210_20 in value__208_15) {
 set.Add(DependencyMetadata.ParsePObject(element__210_20));
 }

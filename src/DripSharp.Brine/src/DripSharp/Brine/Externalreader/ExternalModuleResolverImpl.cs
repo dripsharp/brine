@@ -10,10 +10,6 @@ namespace DripSharp.Brine.Externalreader;
 
 internal sealed partial class ExternalModuleResolverImpl : global::DripSharp.Brine.Externalreader.ExternalModuleResolver
 {
-public global::DripSharp.Brine.Externalreader.ExternalModuleResolver Of(global::DripSharp.Brine.Messaging.MessageTransport transport, long evaluatorId) {
-return new ExternalModuleResolverImpl(transport, evaluatorId);
-}
-
 private readonly global::DripSharp.Brine.Messaging.MessageTransport transport = default!;
 
 private readonly long evaluatorId;
@@ -29,12 +25,12 @@ this.transport = transport;
 this.evaluatorId = evaluatorId;
 }
 
-public global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement> ListElements(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri uri) {
+public override global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement> ListElements(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri uri) {
 securityManager.CheckResolveModule(uri);
 return global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Module.PathElement>>(this.DoListElements(uri));
 }
 
-public bool HasElement(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri uri) {
+public override bool HasElement(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri uri) {
 securityManager.CheckResolveModule(uri);
 try {
 this.DoReadModule(uri);
@@ -44,7 +40,7 @@ return false;
 }
 }
 
-public string ResolveModule(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri uri) {
+public override string ResolveModule(global::DripSharp.Brine.SecurityManager securityManager, global::System.Uri uri) {
 securityManager.CheckResolveModule(uri);
 return this.DoReadModule(uri);
 }

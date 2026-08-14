@@ -47,7 +47,7 @@ public static global::DripSharp.Brine.StackFrameTransformer DefaultTransformer {
 
 private static global::DripSharp.Brine.StackFrame TransformUri(global::DripSharp.Brine.StackFrame frame, string path, string format) {
 var uri = frame.GetModuleUri();
-var newUri = format.Replace("%{path}", path, global::System.StringComparison.Ordinal).Replace("%{url}", uri, global::System.StringComparison.Ordinal).Replace("%{line}", global::DripSharp.Runtime.JavaCompat.StringValueOf(frame.GetStartLine()), global::System.StringComparison.Ordinal).Replace("%{endLine}", global::DripSharp.Runtime.JavaCompat.StringValueOf(frame.GetEndLine()), global::System.StringComparison.Ordinal).Replace("%{column}", global::DripSharp.Runtime.JavaCompat.StringValueOf(frame.GetStartColumn()), global::System.StringComparison.Ordinal).Replace("%{endColumn}", global::DripSharp.Runtime.JavaCompat.StringValueOf(frame.GetEndColumn()), global::System.StringComparison.Ordinal);
+var newUri = global::DripSharp.Runtime.JavaCompat.ReplaceOrdinal(global::DripSharp.Runtime.JavaCompat.ReplaceOrdinal(global::DripSharp.Runtime.JavaCompat.ReplaceOrdinal(global::DripSharp.Runtime.JavaCompat.ReplaceOrdinal(global::DripSharp.Runtime.JavaCompat.ReplaceOrdinal(global::DripSharp.Runtime.JavaCompat.ReplaceOrdinal(format, "%{path}", path), "%{url}", uri), "%{line}", global::DripSharp.Runtime.JavaCompat.StringValueOf(frame.GetStartLine())), "%{endLine}", global::DripSharp.Runtime.JavaCompat.StringValueOf(frame.GetEndLine())), "%{column}", global::DripSharp.Runtime.JavaCompat.StringValueOf(frame.GetStartColumn())), "%{endColumn}", global::DripSharp.Runtime.JavaCompat.StringValueOf(frame.GetEndColumn()));
 return frame.WithModuleUri(newUri);
 }
 

@@ -8,13 +8,13 @@
 #nullable enable
 namespace DripSharp.Brine.Resource;
 
-public partial interface ResourceReader : global::System.IDisposable
+public abstract partial class ResourceReader : global::System.IDisposable
 {
 public void Dispose() => this.Close();
 
-public string GetUriScheme();
+public abstract string GetUriScheme();
 
-public object? Read(global::System.Uri uri);
+public abstract object? Read(global::System.Uri uri);
 
-public void Close() {}
+public virtual void Close() {}
 }

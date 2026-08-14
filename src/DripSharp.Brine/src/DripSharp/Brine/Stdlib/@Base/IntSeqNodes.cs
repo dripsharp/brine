@@ -58,7 +58,7 @@ internal abstract partial class Map : global::DripSharp.Brine.Stdlib.ExternalMet
 internal global::DripSharp.Brine.Ast.Lambda.ApplyVmFunction1Node applyLambdaNode = global::DripSharp.Brine.Ast.Lambda.ApplyVmFunction1Node.Create();
 
 protected internal virtual global::DripSharp.Brine.Runtime.VmList Eval(global::DripSharp.Brine.Runtime.VmIntSeq self, global::DripSharp.Brine.Runtime.VmFunction function) {
-var builder = global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder()));
 var iterator = self.Iterator();
 while (iterator.HasNext()) {
 builder.Add(this.applyLambdaNode.Execute(function, iterator.Next()));
@@ -71,7 +71,7 @@ return builder.Build();
 internal abstract partial class ToList : global::DripSharp.Brine.Stdlib.ExternalMethod0Node
 {
 protected internal virtual global::DripSharp.Brine.Runtime.VmList Eval(global::DripSharp.Brine.Runtime.VmIntSeq self) {
-var builder = global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder()));
 var iterator = self.Iterator();
 while (iterator.HasNext()) {
 builder.Add(iterator.Next());

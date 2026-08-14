@@ -44,7 +44,7 @@ public override bool IsSequence() {
 return this.HasElements();
 }
 
-public override global::DripSharp.Brine.PObject Export() {
+public override object Export() {
 var properties = global::DripSharp.Brine.Util.CollectionUtils.NewLinkedHashMap<string, object>(global::DripSharp.Brine.Util.EconomicMaps.Size<object, object>(base.cachedValues));
 this.IterateMemberValues((key, member, value) => {
 global::DripSharp.Runtime.JavaCompat.MapPut(properties, global::DripSharp.Runtime.JavaCompat.StringValueOf(key), global::DripSharp.Brine.Runtime.VmValue.ExportNullable(value)!);

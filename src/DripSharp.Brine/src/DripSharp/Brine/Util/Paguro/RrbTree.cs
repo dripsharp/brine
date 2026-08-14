@@ -60,13 +60,13 @@ this.root = r;
 this.size = s;
 }
 
-protected internal override global::DripSharp.Brine.Util.Paguro.RrbTree<E>.MutRrbt<ENested> MakeNew(ENested[] f, int fi, int fl, global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Node<ENested> r, int s) {
+protected internal override global::DripSharp.Brine.Util.Paguro.RrbTree<ENested> MakeNew(ENested[] f, int fi, int fl, global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Node<ENested> r, int s) {
 return new global::DripSharp.Brine.Util.Paguro.RrbTree<E>.MutRrbt<ENested>(f, fi, fl, r, s);
 }
 
-public override global::DripSharp.Brine.Util.Paguro.RrbTree<E>.MutRrbt<ENested> Append(ENested val) {
+public override global::DripSharp.Brine.Util.Paguro.RrbTree<ENested> Append(ENested val) {
 if (((this.focusLength >= RrbTree<object>.STRICT_NODE_LENGTH) || ((this.focusLength > 0) && (this.focusStartIndex < (this.size - this.focusLength))))) {
-this.root = this.root.PushFocus(this.focusStartIndex, global::DripSharp.Runtime.JavaCompat.ArrayCopy<ENested>(this.focus, this.focusLength, (global::System.Type)default!));
+this.root = ((global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Node<ENested>)(this.root.PushFocus(this.focusStartIndex, global::DripSharp.Runtime.JavaCompat.ArrayCopy<ENested>(this.focus, this.focusLength, (global::System.Type)default!))));
 this.focus = (ENested[])(new ENested[RrbTree<object>.STRICT_NODE_LENGTH]!);
 this.focus[0] = val;
 this.focusStartIndex = this.size;
@@ -83,7 +83,7 @@ this.size++;
 return this;
 }
 
-public override global::DripSharp.Brine.Util.Paguro.RrbTree<E>.MutRrbt<ENested> AppendSome(global::System.Func<global::DripSharp.Brine.Runtime.JavaOptional<ENested>> supplier) {
+public override global::DripSharp.Brine.Util.Paguro.RrbTree<ENested> AppendSome(global::System.Func<global::DripSharp.Brine.Runtime.JavaOptional<ENested>> supplier) {
 return supplier().Match(this.Append, () => this);
 }
 
@@ -91,7 +91,7 @@ public virtual global::DripSharp.Brine.Util.Paguro.RrbTree<E>.MutRrbt<ENested> C
 return (global::DripSharp.Brine.Util.Paguro.RrbTree<E>.MutRrbt<ENested>)(global::DripSharp.Brine.Runtime.PklRuntimeBridge.MutableConcat(this, es!)!);
 }
 
-public override global::DripSharp.Brine.Util.Paguro.RrbTree<E>.MutRrbt<ENested> Precat(global::System.Collections.Generic.IEnumerable<ENested>? es) {
+public override global::DripSharp.Brine.Util.Paguro.RrbTree<ENested> Precat(global::System.Collections.Generic.IEnumerable<ENested>? es) {
 int idx = 0;
 if ((es! != default!)) {
 foreach (ENested e in es!) {
@@ -116,17 +116,17 @@ i -= this.focusLength;
 return this.root.Get(i);
 }
 
-public virtual global::DripSharp.Brine.Util.Paguro.RrbTree<E>.ImRrbt<ENested> Immutable() {
-return new global::DripSharp.Brine.Util.Paguro.RrbTree<E>.ImRrbt<ENested>(global::DripSharp.Runtime.JavaCompat.ArrayCopy<ENested>(this.focus, this.focusLength, (global::System.Type)default!), this.focusStartIndex, this.root, this.size);
+public virtual global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.ImRrbt<ENested> Immutable() {
+return new global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.ImRrbt<ENested>(global::DripSharp.Runtime.JavaCompat.ArrayCopy<ENested>(this.focus, this.focusLength, (global::System.Type)default!), this.focusStartIndex, this.root, this.size);
 }
 
 public override string IndentedStr(int indent) {
 return global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat("RrbTree(size=", this.size), " fsi="), this.focusStartIndex), " focus="), global::DripSharp.Runtime.JavaCompat.ArrayString(this.focus)), "\n"), global::DripSharp.Runtime.JavaCompat.IndentSpace((indent + 8))), "root="), (this.root).IndentedStr((indent + 13))), ")");
 }
 
-public override global::DripSharp.Brine.Util.Paguro.RrbTree<E>.MutRrbt<ENested> Insert(int idx, ENested element) {
+public override global::DripSharp.Brine.Util.Paguro.RrbTree<ENested> Insert(int idx, ENested element) {
 if ((this.focusLength >= RrbTree<object>.STRICT_NODE_LENGTH)) {
-this.root = this.root.PushFocus(this.focusStartIndex, global::DripSharp.Runtime.JavaCompat.ArrayCopy<ENested>(this.focus, this.focusLength, (global::System.Type)default!));
+this.root = ((global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Node<ENested>)(this.root.PushFocus(this.focusStartIndex, global::DripSharp.Runtime.JavaCompat.ArrayCopy<ENested>(this.focus, this.focusLength, (global::System.Type)default!))));
 this.focus = global::DripSharp.Runtime.JavaCompat.SingleElementArray<ENested>(element);
 this.focusStartIndex = idx;
 this.focusLength = 1;
@@ -156,7 +156,7 @@ this.size++;
 return this;
 }
 if ((this.focusLength > 0)) {
-this.root = this.root.PushFocus(this.focusStartIndex, global::DripSharp.Runtime.JavaCompat.ArrayCopy<ENested>(this.focus, this.focusLength, (global::System.Type)default!));
+this.root = ((global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Node<ENested>)(this.root.PushFocus(this.focusStartIndex, global::DripSharp.Runtime.JavaCompat.ArrayCopy<ENested>(this.focus, this.focusLength, (global::System.Type)default!))));
 }
 this.focus = global::DripSharp.Runtime.JavaCompat.SingleElementArray<ENested>(element);
 this.focusStartIndex = idx;
@@ -170,18 +170,18 @@ return new global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Iter(this, this.
 }
 
 internal override global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Node<ENested> PushFocus() {
-return ((this.focusLength == 0) ? this.root : this.root.PushFocus(this.focusStartIndex, global::DripSharp.Runtime.JavaCompat.ArrayCopy<ENested>(this.focus, this.focusLength, (global::System.Type)default!)));
+return ((this.focusLength == 0) ? this.root : ((global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Node<ENested>)(this.root.PushFocus(this.focusStartIndex, global::DripSharp.Runtime.JavaCompat.ArrayCopy<ENested>(this.focus, this.focusLength, (global::System.Type)default!)))));
 }
 
 public override string ToString() {
 return global::DripSharp.Runtime.JavaCompat.IterableString("MutRrbt", this);
 }
 
-public override global::DripSharp.Brine.Util.Paguro.RrbTree<E>.MutRrbt<ENested> Join(RrbTree<ENested> that) {
+public override global::DripSharp.Brine.Util.Paguro.RrbTree<ENested> Join(RrbTree<ENested> that) {
 return (global::DripSharp.Brine.Util.Paguro.RrbTree<E>.MutRrbt<ENested>)(base.Join(that)!);
 }
 
-public override global::DripSharp.Brine.Util.Paguro.RrbTree<E>.MutRrbt<ENested> Replace(int index, ENested item) {
+public override global::DripSharp.Brine.Util.Paguro.RrbTree<ENested> Replace(int index, ENested item) {
 if (((index < 0) || (index > this.size))) {
 throw new global::System.ArgumentOutOfRangeException(global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat("Index: ", index), " size: "), this.size));
 }
@@ -193,11 +193,11 @@ return this;
 }
 index -= this.focusLength;
 }
-this.root = this.root.Replace(index, item);
+this.root = ((global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Node<ENested>)(this.root.Replace(index, item)));
 return this;
 }
 
-public override global::DripSharp.Brine.Util.Paguro.RrbTree<E>.MutRrbt<ENested> Without(int index) {
+public override global::DripSharp.Brine.Util.Paguro.RrbTree<ENested> Without(int index) {
 return (global::DripSharp.Brine.Util.Paguro.RrbTree<E>.MutRrbt<ENested>)(base.Without(index)!);
 }
 
@@ -205,7 +205,7 @@ public override int Size() {
 return this.size;
 }
 
-protected internal override global::DripSharp.Brine.Util.Paguro.RrbTree<E>.MutRrbt<ENested> Mt() {
+protected internal override global::DripSharp.Brine.Util.Paguro.RrbTree<ENested> Mt() {
 return new global::DripSharp.Brine.Util.Paguro.RrbTree<E>.MutRrbt<ENested>(global::System.Array.Empty<ENested>(), 0, 0, new global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Leaf<ENested>(global::System.Array.Empty<ENested>()), 0);
 }
 
@@ -216,8 +216,8 @@ return base.Split(splitIndex);
 
 internal partial class ImRrbt<ENested> : global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>, global::System.Collections.Generic.IList<ENested>
 {
-public new global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.ImRrbt<ENested> SubList(int fromIndex, int toIndex) { var result = global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Empty<ENested>(); foreach (var value in global::System.Linq.Enumerable.Take(global::System.Linq.Enumerable.Skip(this, fromIndex), toIndex - fromIndex)) result = result.Append(value); return result; }
-public global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.ImRrbt<ENested> Reverse() { var result = global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Empty<ENested>(); foreach (var value in global::System.Linq.Enumerable.Reverse(this)) result = result.Append(value); return result; }
+public new global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.ImRrbt<ENested> SubList(int fromIndex, int toIndex) { var result = global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Empty<ENested>(); foreach (var value in global::System.Linq.Enumerable.Take(global::System.Linq.Enumerable.Skip(this, fromIndex), toIndex - fromIndex)) result = (global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.ImRrbt<ENested>)result.Append(value); return result; }
+public global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.ImRrbt<ENested> Reverse() { var result = global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Empty<ENested>(); foreach (var value in global::System.Linq.Enumerable.Reverse(this)) result = (global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.ImRrbt<ENested>)result.Append(value); return result; }
 
 internal readonly ENested[] focus = default!;
 
@@ -234,28 +234,28 @@ this.root = r;
 this.size = s;
 }
 
-protected internal override global::DripSharp.Brine.Util.Paguro.RrbTree<E>.ImRrbt<ENested> MakeNew(ENested[] f, int fi, int fl, global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Node<ENested> r, int s) {
-return new global::DripSharp.Brine.Util.Paguro.RrbTree<E>.ImRrbt<ENested>(f, fi, r, s);
+protected internal override global::DripSharp.Brine.Util.Paguro.RrbTree<ENested> MakeNew(ENested[] f, int fi, int fl, global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Node<ENested> r, int s) {
+return new global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.ImRrbt<ENested>(f, fi, r, s);
 }
 
-public override global::DripSharp.Brine.Util.Paguro.RrbTree<E>.ImRrbt<ENested> Append(ENested val) {
+public override global::DripSharp.Brine.Util.Paguro.RrbTree<ENested> Append(ENested val) {
 if (((this.focus.Length >= RrbTree<object>.STRICT_NODE_LENGTH) || ((this.focus.Length > 0) && (this.focusStartIndex < (this.size - this.focus.Length))))) {
-global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Node<ENested> newRoot = this.root.PushFocus(this.focusStartIndex, this.focus);
-return new global::DripSharp.Brine.Util.Paguro.RrbTree<E>.ImRrbt<ENested>(global::DripSharp.Runtime.JavaCompat.SingleElementArray<ENested>(val), this.size, newRoot, (this.size + 1));
+global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Node<ENested> newRoot = ((global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Node<ENested>)(this.root.PushFocus(this.focusStartIndex, this.focus)));
+return new global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.ImRrbt<ENested>(global::DripSharp.Runtime.JavaCompat.SingleElementArray<ENested>(val), this.size, newRoot, (this.size + 1));
 }
-return new global::DripSharp.Brine.Util.Paguro.RrbTree<E>.ImRrbt<ENested>(global::DripSharp.Runtime.JavaCompat.InsertIntoArrayAt<ENested>(val, this.focus, this.focus.Length, (global::System.Type)default!), this.focusStartIndex, this.root, (this.size + 1));
+return new global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.ImRrbt<ENested>(global::DripSharp.Runtime.JavaCompat.InsertIntoArrayAt<ENested>(val, this.focus, this.focus.Length, (global::System.Type)default!), this.focusStartIndex, this.root, (this.size + 1));
 }
 
-public override global::DripSharp.Brine.Util.Paguro.RrbTree<E>.ImRrbt<ENested> AppendSome(global::System.Func<global::DripSharp.Brine.Runtime.JavaOptional<ENested>> supplier) {
+public override global::DripSharp.Brine.Util.Paguro.RrbTree<ENested> AppendSome(global::System.Func<global::DripSharp.Brine.Runtime.JavaOptional<ENested>> supplier) {
 return supplier().Match(this.Append, () => this);
 }
 
-public virtual global::DripSharp.Brine.Util.Paguro.RrbTree<E>.ImRrbt<ENested> Concat(global::System.Collections.Generic.IEnumerable<ENested>? es) {
+public virtual global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.ImRrbt<ENested> Concat(global::System.Collections.Generic.IEnumerable<ENested>? es) {
 return (this.Mutable()).Concat(es!).Immutable();
 }
 
-public override global::DripSharp.Brine.Util.Paguro.RrbTree<E>.ImRrbt<ENested> Precat(global::System.Collections.Generic.IEnumerable<ENested>? es) {
-return this.Mutable().Precat(es!).Immutable();
+public override global::DripSharp.Brine.Util.Paguro.RrbTree<ENested> Precat(global::System.Collections.Generic.IEnumerable<ENested>? es) {
+return ((global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.MutRrbt<ENested>)(this.Mutable().Precat(es!))).Immutable();
 }
 
 public override ENested Get(int i) {
@@ -272,24 +272,24 @@ i -= this.focus.Length;
 return this.root.Get(i);
 }
 
-public override global::DripSharp.Brine.Util.Paguro.RrbTree<E>.ImRrbt<ENested> Insert(int idx, ENested element) {
+public override global::DripSharp.Brine.Util.Paguro.RrbTree<ENested> Insert(int idx, ENested element) {
 if ((this.focus.Length >= RrbTree<object>.STRICT_NODE_LENGTH)) {
-global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Node<ENested> newRoot__487_17 = this.root.PushFocus(this.focusStartIndex, this.focus);
+global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Node<ENested> newRoot__487_17 = ((global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Node<ENested>)(this.root.PushFocus(this.focusStartIndex, this.focus)));
 ENested[] newFocus__488_13 = global::DripSharp.Runtime.JavaCompat.SingleElementArray<ENested>(element);
-return new global::DripSharp.Brine.Util.Paguro.RrbTree<E>.ImRrbt<ENested>(newFocus__488_13, idx, newRoot__487_17, (this.size + 1));
+return new global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.ImRrbt<ENested>(newFocus__488_13, idx, newRoot__487_17, (this.size + 1));
 }
 int diff = (idx - this.focusStartIndex);
 if (((diff >= 0) && (diff <= this.focus.Length))) {
 ENested[] newFocus__497_13 = global::DripSharp.Runtime.JavaCompat.InsertIntoArrayAt<ENested>(element, this.focus, diff, (global::System.Type)default!);
-return new global::DripSharp.Brine.Util.Paguro.RrbTree<E>.ImRrbt<ENested>(newFocus__497_13, this.focusStartIndex, this.root, (this.size + 1));
+return new global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.ImRrbt<ENested>(newFocus__497_13, this.focusStartIndex, this.root, (this.size + 1));
 }
-global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Node<ENested> newRoot__502_15 = ((this.focus.Length > 0) ? this.root.PushFocus(this.focusStartIndex, this.focus) : this.root);
+global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Node<ENested> newRoot__502_15 = ((this.focus.Length > 0) ? ((global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Node<ENested>)(this.root.PushFocus(this.focusStartIndex, this.focus))) : this.root);
 ENested[] newFocus__503_11 = global::DripSharp.Runtime.JavaCompat.SingleElementArray<ENested>(element);
-return new global::DripSharp.Brine.Util.Paguro.RrbTree<E>.ImRrbt<ENested>(newFocus__503_11, idx, newRoot__502_15, (this.size + 1));
+return new global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.ImRrbt<ENested>(newFocus__503_11, idx, newRoot__502_15, (this.size + 1));
 }
 
-public virtual global::DripSharp.Brine.Util.Paguro.RrbTree<E>.MutRrbt<ENested> Mutable() {
-return new global::DripSharp.Brine.Util.Paguro.RrbTree<E>.MutRrbt<ENested>(global::DripSharp.Runtime.JavaCompat.ArrayCopy<ENested>(this.focus, this.focus.Length, (global::System.Type)default!), this.focusStartIndex, this.focus.Length, this.root, this.size);
+public virtual global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.MutRrbt<ENested> Mutable() {
+return new global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.MutRrbt<ENested>(global::DripSharp.Runtime.JavaCompat.ArrayCopy<ENested>(this.focus, this.focus.Length, (global::System.Type)default!), this.focusStartIndex, this.focus.Length, this.root, this.size);
 }
 
 public override global::DripSharp.Runtime.JavaIterator<ENested> Iterator() {
@@ -297,36 +297,36 @@ return new global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Iter(this, this.
 }
 
 internal override global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Node<ENested> PushFocus() {
-return ((this.focus.Length == 0) ? this.root : this.root.PushFocus(this.focusStartIndex, this.focus));
+return ((this.focus.Length == 0) ? this.root : ((global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Node<ENested>)(this.root.PushFocus(this.focusStartIndex, this.focus))));
 }
 
-public override global::DripSharp.Brine.Util.Paguro.RrbTree<E>.ImRrbt<ENested> Join(RrbTree<ENested> that) {
-return (global::DripSharp.Brine.Util.Paguro.RrbTree<E>.ImRrbt<ENested>)(base.Join(that)!);
+public override global::DripSharp.Brine.Util.Paguro.RrbTree<ENested> Join(RrbTree<ENested> that) {
+return (global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.ImRrbt<ENested>)(base.Join(that)!);
 }
 
-public override global::DripSharp.Brine.Util.Paguro.RrbTree<E>.ImRrbt<ENested> Replace(int index, ENested item) {
+public override global::DripSharp.Brine.Util.Paguro.RrbTree<ENested> Replace(int index, ENested item) {
 if (((index < 0) || (index > this.size))) {
 throw new global::System.ArgumentOutOfRangeException(global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat(global::DripSharp.Runtime.JavaCompat.Concat("Index: ", index), " size: "), this.size));
 }
 if ((index >= this.focusStartIndex)) {
 int focusOffset = (index - this.focusStartIndex);
 if ((focusOffset < this.focus.Length)) {
-return new global::DripSharp.Brine.Util.Paguro.RrbTree<E>.ImRrbt<ENested>(global::DripSharp.Runtime.JavaCompat.ReplaceInArrayAt<ENested>(item, this.focus, focusOffset, (global::System.Type)default!), this.focusStartIndex, this.root, this.size);
+return new global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.ImRrbt<ENested>(global::DripSharp.Runtime.JavaCompat.ReplaceInArrayAt<ENested>(item, this.focus, focusOffset, (global::System.Type)default!), this.focusStartIndex, this.root, this.size);
 }
 index -= this.focus.Length;
 }
-return new global::DripSharp.Brine.Util.Paguro.RrbTree<E>.ImRrbt<ENested>(this.focus, this.focusStartIndex, this.root.Replace(index, item), this.size);
+return new global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.ImRrbt<ENested>(this.focus, this.focusStartIndex, ((global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Node<ENested>)(this.root.Replace(index, item))), this.size);
 }
 
-public override global::DripSharp.Brine.Util.Paguro.RrbTree<E>.ImRrbt<ENested> Without(int index) {
-return (global::DripSharp.Brine.Util.Paguro.RrbTree<E>.ImRrbt<ENested>)(base.Without(index)!);
+public override global::DripSharp.Brine.Util.Paguro.RrbTree<ENested> Without(int index) {
+return (global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.ImRrbt<ENested>)(base.Without(index)!);
 }
 
 public override int Size() {
 return this.size;
 }
 
-protected internal override global::DripSharp.Brine.Util.Paguro.RrbTree<E>.ImRrbt<ENested> Mt() {
+protected internal override global::DripSharp.Brine.Util.Paguro.RrbTree<ENested> Mt() {
 return new global::DripSharp.Brine.Util.Paguro.RrbTree<E>.ImRrbt<ENested>(global::System.Array.Empty<ENested>(), 0, new global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Leaf<ENested>(global::System.Array.Empty<ENested>()), 0);
 }
 
@@ -384,13 +384,13 @@ global::DripSharp.Brine.Util.Paguro.RrbTree<E>.Node<E>[] ancestors = global::Dri
 int i__734_9 = 0;
 for (; (i__734_9 < ancestors.Length); i__734_9++) {
 ancestors[i__734_9] = n;
-n = n.EndChild(leftIntoRight);
+n = ((global::DripSharp.Brine.Util.Paguro.RrbTree<E>.Node<E>)(n.EndChild(leftIntoRight)));
 }
 i__734_9--;
 if (n.ThisNodeHasRelaxedCapacity(shorter.NumChildren())) {
 global::DripSharp.Brine.Util.Paguro.RrbTree<E>.Node<E>[] kids;
 kids = ((global::DripSharp.Brine.Util.Paguro.RrbTree<E>.Relaxed<E>)(shorter!)).nodes;
-n = n.AddEndChildren(leftIntoRight, kids);
+n = ((global::DripSharp.Brine.Util.Paguro.RrbTree<E>.Node<E>)(n.AddEndChildren(leftIntoRight, kids)));
 }
 if ((i__734_9 >= 0)) {
 n = ancestors[i__734_9];
@@ -407,7 +407,7 @@ rightRoot = shorter;
 }
 }
 if ((shorter.Height() == (n.Height() - 1))) {
-n = n.AddEndChild(leftIntoRight, shorter);
+n = ((global::DripSharp.Brine.Util.Paguro.RrbTree<E>.Node<E>)(n.AddEndChild(leftIntoRight, shorter)));
 } else {
 if ((i__734_9 < 0)) {
 global::DripSharp.Brine.Util.Paguro.RrbTree<E>.Node<E>[] newRootArray = new global::DripSharp.Brine.Util.Paguro.RrbTree<E>.Node<E>[] { leftRoot, rightRoot };
@@ -457,11 +457,11 @@ throw new global::System.ArgumentOutOfRangeException("Constraint violation faile
 }
 }
 global::DripSharp.Brine.Util.Paguro.RrbTree<E>.Node<E> newRoot = this.PushFocus();
-global::DripSharp.Brine.Util.Paguro.RrbTree<E>.SplitNode<E> split = newRoot.SplitAt(splitIndex);
+global::DripSharp.Brine.Util.Paguro.RrbTree<E>.SplitNode<E> split = ((global::DripSharp.Brine.Util.Paguro.RrbTree<E>.SplitNode<E>)(newRoot.SplitAt(splitIndex)));
 E[] lFocus = split.LeftFocus();
-global::DripSharp.Brine.Util.Paguro.RrbTree<E>.Node<E> left = RrbTree<object>.EliminateUnnecessaryAncestors(split.Left());
+global::DripSharp.Brine.Util.Paguro.RrbTree<E>.Node<E> left = RrbTree<object>.EliminateUnnecessaryAncestors(((global::DripSharp.Brine.Util.Paguro.RrbTree<E>.Node<E>)(split.Left())));
 E[] rFocus = split.RightFocus();
-global::DripSharp.Brine.Util.Paguro.RrbTree<E>.Node<E> right = RrbTree<object>.EliminateUnnecessaryAncestors(split.Right());
+global::DripSharp.Brine.Util.Paguro.RrbTree<E>.Node<E> right = RrbTree<object>.EliminateUnnecessaryAncestors(((global::DripSharp.Brine.Util.Paguro.RrbTree<E>.Node<E>)(split.Right())));
 return global::DripSharp.Brine.Runtime.JavaTuple2<object, object>.Of(this.MakeNew(lFocus, left.Size(), lFocus.Length, left, (left.Size() + lFocus.Length)), this.MakeNew(rFocus, 0, rFocus.Length, right, (right.Size() + rFocus.Length)));
 }
 
@@ -485,7 +485,7 @@ throw new global::System.ArgumentOutOfRangeException("Failed test: 0 <= index < 
 
 private static global::DripSharp.Brine.Util.Paguro.RrbTree<E>.Node<E> EliminateUnnecessaryAncestors<E>(global::DripSharp.Brine.Util.Paguro.RrbTree<E>.Node<E> n) {
 while ((!global::DripSharp.Brine.Runtime.PklRuntimeBridge.IsRrbTreeLeaf(n) && (n.NumChildren() == 1))) {
-n = n.Child(0);
+n = ((global::DripSharp.Brine.Util.Paguro.RrbTree<E>.Node<E>)(n.Child(0)));
 }
 return n;
 }
@@ -1052,12 +1052,14 @@ return (this.idx < this.node.NumChildren());
 }
 
 internal global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Node<ENested> Next() {
-return this.node.Child(this.idx++);
+return ((global::DripSharp.Brine.Util.Paguro.RrbTree<ENested>.Node<ENested>)(this.node.Child(this.idx++)));
 }
 }
 
 internal sealed partial class Iter : global::DripSharp.Runtime.JavaIterator<E>
 {
+public void Remove() => throw new global::System.NotSupportedException();
+
 private readonly RrbTree<E> __outer = default!;
 
 private readonly global::DripSharp.Brine.Util.Paguro.RrbTree<E>.IdxNode<E>[] stack = default!;

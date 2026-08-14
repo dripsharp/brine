@@ -24,7 +24,7 @@ public virtual global::DripSharp.Brine.Runtime.ModuleInfo GetModuleInfo() {
 return this.moduleInfo;
 }
 
-protected internal override AmendModuleNode Copy(global::DripSharp.Brine.Ast.ExpressionNode newParentNode) {
+protected internal override global::DripSharp.Brine.Ast.Expression.Literal.ObjectLiteralNode Copy(global::DripSharp.Brine.Ast.ExpressionNode newParentNode) {
 throw this.ExceptionBuilder().UnreachableCode().Build();
 }
 

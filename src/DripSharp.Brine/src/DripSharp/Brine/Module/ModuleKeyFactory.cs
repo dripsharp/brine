@@ -8,11 +8,11 @@
 #nullable enable
 namespace DripSharp.Brine.Module;
 
-public partial interface ModuleKeyFactory : global::System.IDisposable
+public abstract partial class ModuleKeyFactory : global::System.IDisposable
 {
 public void Dispose() => this.Close();
 
-public global::DripSharp.Brine.Module.ModuleKey? Create(global::System.Uri uri);
+public abstract global::DripSharp.Brine.Module.ModuleKey? Create(global::System.Uri uri);
 
-public void Close() {}
+public virtual void Close() {}
 }

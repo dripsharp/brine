@@ -10,25 +10,25 @@ namespace DripSharp.Brine.Stdlib.Analyze;
 
 internal sealed partial class AnalyzeNodes
 {
-private static global::DripSharp.Brine.Stdlib.VmObjectFactory<global::DripSharp.Brine.ImportGraph.Import> importFactory = new global::DripSharp.Brine.Stdlib.VmObjectFactory<global::DripSharp.Brine.ImportGraph.Import>(global::DripSharp.Brine.Runtime.AnalyzeModule.GetImportClass).AddStringProperty("uri", (it) => global::DripSharp.Runtime.JavaCompat.UriToString(it.Uri));
+private static global::DripSharp.Brine.Stdlib.VmObjectFactory<global::DripSharp.Brine.ImportGraph.Import> importFactory = ((global::DripSharp.Brine.Stdlib.VmObjectFactory<global::DripSharp.Brine.ImportGraph.Import>)(new global::DripSharp.Brine.Stdlib.VmObjectFactory<global::DripSharp.Brine.ImportGraph.Import>(global::DripSharp.Brine.Runtime.AnalyzeModule.GetImportClass).AddStringProperty("uri", (it) => global::DripSharp.Runtime.JavaCompat.UriToString(it.Uri))));
 
-private static global::DripSharp.Brine.Stdlib.VmObjectFactory<global::DripSharp.Brine.ImportGraph> importGraphFactory = new global::DripSharp.Brine.Stdlib.VmObjectFactory<global::DripSharp.Brine.ImportGraph>(global::DripSharp.Brine.Runtime.AnalyzeModule.GetImportGraphClass).AddMapProperty("imports", (graph) => {
+private static global::DripSharp.Brine.Stdlib.VmObjectFactory<global::DripSharp.Brine.ImportGraph> importGraphFactory = ((global::DripSharp.Brine.Stdlib.VmObjectFactory<global::DripSharp.Brine.ImportGraph>)(((global::DripSharp.Brine.Stdlib.VmObjectFactory<global::DripSharp.Brine.ImportGraph>)(new global::DripSharp.Brine.Stdlib.VmObjectFactory<global::DripSharp.Brine.ImportGraph>(global::DripSharp.Brine.Runtime.AnalyzeModule.GetImportGraphClass).AddMapProperty("imports", (graph) => {
 var builder = global::DripSharp.Brine.Runtime.VmMap.CreateBuilder();
 foreach (var entry in global::DripSharp.Runtime.JavaCompat.MapEntrySet(global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IDictionary<global::System.Uri, global::System.Collections.Generic.ISet<global::DripSharp.Brine.ImportGraph.Import>>>(graph.Imports))) {
-var vmSetBuilder = global::DripSharp.Brine.Runtime.VmSet.EMPTY.CreateBuilder();
+var vmSetBuilder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmSet>)(global::DripSharp.Brine.Runtime.VmSet.EMPTY.CreateBuilder()));
 foreach (var imprt in entry.Value) {
 vmSetBuilder.Add(AnalyzeNodes.importFactory.Create(imprt));
 }
 builder.Add(global::DripSharp.Runtime.JavaCompat.UriToString(entry.Key), vmSetBuilder.Build());
 }
 return builder.Build();
-}).AddMapProperty("resolvedImports", (graph) => {
+}))).AddMapProperty("resolvedImports", (graph) => {
 var builder = global::DripSharp.Brine.Runtime.VmMap.CreateBuilder();
 foreach (var entry in global::DripSharp.Runtime.JavaCompat.MapEntrySet(global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IDictionary<global::System.Uri, global::System.Uri>>(graph.ResolvedImports))) {
 builder.Add(global::DripSharp.Runtime.JavaCompat.UriToString(entry.Key), global::DripSharp.Runtime.JavaCompat.UriToString(entry.Value));
 }
 return builder.Build();
-});
+})));
 
 internal abstract partial class ImportGraph : global::DripSharp.Brine.Stdlib.ExternalMethod1Node
 {

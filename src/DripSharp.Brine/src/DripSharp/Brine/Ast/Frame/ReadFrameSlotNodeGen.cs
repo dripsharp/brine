@@ -21,7 +21,7 @@ this.enclosingFrame_ = enclosingFrame;
 
 public override object ExecuteGeneric(global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame frameValue) {
 int state_0 = this.state_0_;
-global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame enclosingFrameValue_ = this.enclosingFrame_.ExecuteGeneric(frameValue);
+global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame enclosingFrameValue_ = ((global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame)(this.enclosingFrame_.ExecuteGeneric(frameValue)));
 if (((state_0 & 173) != 0)) {
 if (((state_0 & 1) != 0)) {
 try {
@@ -84,7 +84,7 @@ int state_0 = this.state_0_;
 if (((state_0 & 132) != 0)) {
 return global::DripSharp.Brine.Runtime.VmTypesGen.ExpectBoolean(this.ExecuteGeneric(frameValue));
 }
-global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame enclosingFrameValue_ = this.enclosingFrame_.ExecuteGeneric(frameValue);
+global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame enclosingFrameValue_ = ((global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame)(this.enclosingFrame_.ExecuteGeneric(frameValue)));
 if (((state_0 & 32) != 0)) {
 try {
 return this.EvalBoolean(enclosingFrameValue_);
@@ -106,7 +106,7 @@ int state_0 = this.state_0_;
 if (((state_0 & 132) != 0)) {
 return global::DripSharp.Brine.Runtime.VmTypesGen.ExpectDouble(this.ExecuteGeneric(frameValue));
 }
-global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame enclosingFrameValue_ = this.enclosingFrame_.ExecuteGeneric(frameValue);
+global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame enclosingFrameValue_ = ((global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame)(this.enclosingFrame_.ExecuteGeneric(frameValue)));
 if (((state_0 & 8) != 0)) {
 try {
 return this.EvalFloat(enclosingFrameValue_);
@@ -128,7 +128,7 @@ int state_0 = this.state_0_;
 if (((state_0 & 132) != 0)) {
 return global::DripSharp.Brine.Runtime.VmTypesGen.ExpectLong(this.ExecuteGeneric(frameValue));
 }
-global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame enclosingFrameValue_ = this.enclosingFrame_.ExecuteGeneric(frameValue);
+global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame enclosingFrameValue_ = ((global::DripSharp.Brine.Runtime.Truffle.api.frame.VirtualFrame)(this.enclosingFrame_.ExecuteGeneric(frameValue)));
 if (((state_0 & 1) != 0)) {
 try {
 return this.EvalInt(enclosingFrameValue_);

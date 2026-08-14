@@ -18,7 +18,7 @@ this.elements = elements;
 global::DripSharp.Runtime.JavaCompat.Assert(() => (elements.Length > 0));
 }
 
-protected internal override ElementsLiteralNode Copy(global::DripSharp.Brine.Ast.ExpressionNode newParentNode) {
+protected internal override global::DripSharp.Brine.Ast.Expression.Literal.ObjectLiteralNode Copy(global::DripSharp.Brine.Ast.ExpressionNode newParentNode) {
 return global::DripSharp.Brine.Ast.Expression.Literal.ElementsLiteralNodeGen.Create(base.sourceSection, base.language, base.qualifiedScopeName, base.isCustomThisScope, (global::DripSharp.Brine.Runtime.Truffle.api.frame.FrameDescriptor)default!, new global::DripSharp.Brine.Ast.Type.UnresolvedTypeNode[0], base.members, this.elements, newParentNode);
 }
 

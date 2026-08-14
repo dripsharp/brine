@@ -19,7 +19,7 @@ this.evaluator = evaluator;
 this.fileOutput = fileOutput;
 }
 
-public string GetText() {
+public override string GetText() {
 try {
 return this.evaluator.EvaluateOutputText(this.fileOutput);
 } catch (global::DripSharp.Brine.Runtime.Polyglot.PolyglotException e) {
@@ -30,7 +30,7 @@ throw new global::DripSharp.Brine.PklException("The evaluator is no longer avail
 }
 }
 
-public byte[] GetBytes() {
+public override byte[] GetBytes() {
 try {
 return global::DripSharp.Runtime.JavaCompat.ToUnsignedBytes(this.evaluator.EvaluateOutputBytes(this.fileOutput));
 } catch (global::DripSharp.Brine.Runtime.Polyglot.PolyglotException e) {

@@ -57,7 +57,7 @@ return this.__allKeys;
 }
 }
 
-public override global::System.Collections.Generic.IDictionary<object, object> Export() {
+public override object Export() {
 var properties = global::DripSharp.Brine.Util.CollectionUtils.NewLinkedHashMap<object, object>(global::DripSharp.Brine.Util.EconomicMaps.Size<object, object>(base.cachedValues));
 this.IterateMemberValues((key, prop, value) => {
 if (VmMapping.IsDefaultProperty(key)) {

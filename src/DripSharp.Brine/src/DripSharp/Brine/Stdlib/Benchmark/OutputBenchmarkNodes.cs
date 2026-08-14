@@ -31,6 +31,11 @@ return blackhole.Get();
 
 internal sealed partial class UncachedModuleKey : global::DripSharp.Brine.Module.ModuleKey
 {
+global::System.Uri global::DripSharp.Brine.Module.ModuleKey.Uri => this.GetUri();
+bool global::DripSharp.Brine.Module.ModuleKey.Cached => this.IsCached();
+bool global::DripSharp.Brine.Module.ModuleKey.Local => this.IsLocal();
+string? global::DripSharp.Brine.Module.ModuleKey.FileCachePath => this.GetFileCacheLocation();
+
 public bool HasFragmentPaths() {
 return false;
 }
@@ -96,6 +101,10 @@ public Anonymous_81_14(UncachedModuleKey __outer, global::DripSharp.Brine.Module
 this.__outer = __outer;
 this.__capture_0 = __capture_0;
 }
+
+global::DripSharp.Brine.Module.ModuleKey global::DripSharp.Brine.Module.ResolvedModuleKey.Original => this.GetOriginal();
+global::System.Uri global::DripSharp.Brine.Module.ResolvedModuleKey.Uri => this.GetUri();
+string global::DripSharp.Brine.Module.ResolvedModuleKey.Source => this.LoadSource();
 
 public global::DripSharp.Brine.Module.ModuleKey GetOriginal() {
 return this.__outer;

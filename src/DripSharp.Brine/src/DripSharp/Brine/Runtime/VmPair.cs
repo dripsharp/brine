@@ -48,10 +48,9 @@ this.forced = true;
 try {
 global::DripSharp.Brine.Runtime.VmValue.Force(this.first, allowUndefinedValues);
 global::DripSharp.Brine.Runtime.VmValue.Force(this.second, allowUndefinedValues);
-} catch (global::System.Exception t) {
+} catch (global::System.Exception) {
 this.forced = false;
-global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(t);
-throw new global::System.InvalidOperationException("unreachable");
+throw;
 }
 }
 
@@ -94,6 +93,8 @@ public Anonymous_47_12(VmPair __outer) {
 this.__outer = __outer;
 this.pos = 0;
 }
+
+public void Remove() => throw new global::System.NotSupportedException();
 
 internal int pos;
 

@@ -8,39 +8,39 @@
 #nullable enable
 namespace DripSharp.Brine.Http;
 
-public partial interface HttpClient : global::System.IDisposable
+public abstract partial class HttpClient : global::System.IDisposable
 {
 public void Dispose() => this.Close();
 
-public partial interface Builder
+public abstract partial class Builder
 {
-public Builder SetUserAgent(string userAgent);
+public abstract Builder SetUserAgent(string userAgent);
 
-public Builder SetConnectTimeout(global::System.TimeSpan timeout);
+public abstract Builder SetConnectTimeout(global::System.TimeSpan timeout);
 
-public Builder SetRequestTimeout(global::System.TimeSpan timeout);
+public abstract Builder SetRequestTimeout(global::System.TimeSpan timeout);
 
-public Builder AddCertificates(string path);
+public abstract Builder AddCertificates(string path);
 
-public Builder AddCertificates(byte[] certificateBytes);
+public abstract Builder AddCertificates(byte[] certificateBytes);
 
-internal Builder SetTestPort(int port);
+internal abstract Builder SetTestPort(int port);
 
-/* Java ProxySelector configuration (global::DripSharp.Brine.Runtime.JavaProxySelector proxySelector) remains an internal HTTP builder adapter. */
+internal abstract Builder SetProxySelector(global::DripSharp.Brine.Runtime.JavaProxySelector proxySelector);
 
-public Builder SetProxy(global::System.Uri? proxyAddress, global::System.Collections.Generic.IReadOnlyList<string> noProxy);
+public abstract Builder SetProxy(global::System.Uri? proxyAddress, global::System.Collections.Generic.IReadOnlyList<string> noProxy);
 
-public Builder SetRewrites(global::System.Collections.Generic.IReadOnlyDictionary<global::System.Uri, global::System.Uri> rewrites);
+public abstract Builder SetRewrites(global::System.Collections.Generic.IReadOnlyDictionary<global::System.Uri, global::System.Uri> rewrites);
 
-public Builder AddRewrite(global::System.Uri sourcePrefix, global::System.Uri targetPrefix);
+public abstract Builder AddRewrite(global::System.Uri sourcePrefix, global::System.Uri targetPrefix);
 
-public Builder SetHeaders(global::System.Collections.Generic.IReadOnlyDictionary<string, global::System.Collections.Generic.IReadOnlyDictionary<string, global::System.Collections.Generic.IReadOnlyList<string>>> headerRules);
+public abstract Builder SetHeaders(global::System.Collections.Generic.IReadOnlyDictionary<string, global::System.Collections.Generic.IReadOnlyDictionary<string, global::System.Collections.Generic.IReadOnlyList<string>>> headerRules);
 
-public Builder AddHeaders(string globPattern, global::System.Collections.Generic.IReadOnlyDictionary<string, global::System.Collections.Generic.IReadOnlyList<string>> headers);
+public abstract Builder AddHeaders(string globPattern, global::System.Collections.Generic.IReadOnlyDictionary<string, global::System.Collections.Generic.IReadOnlyList<string>> headers);
 
-public HttpClient Build();
+public abstract HttpClient Build();
 
-public HttpClient BuildLazily();
+public abstract HttpClient BuildLazily();
 }
 
 public static Builder CreateBuilder() {
@@ -51,9 +51,9 @@ public static HttpClient DummyClient() {
 return new global::DripSharp.Brine.Http.DummyHttpClient();
 }
 
-/* Java HttpClient.send<T>(global::DripSharp.Brine.Runtime.JavaHttpRequest request, global::DripSharp.Brine.Runtime.JavaHttpBodyHandler<T> responseBodyHandler, HttpRequestChecker httpRequestChecker) is supplied by the internal compatibility adapter. */
+internal abstract global::DripSharp.Brine.Runtime.JavaHttpResponse<T> SendCompatibility<T>(global::DripSharp.Brine.Runtime.JavaHttpRequest request, global::DripSharp.Brine.Runtime.JavaHttpBodyHandler<T> responseBodyHandler, HttpRequestChecker httpRequestChecker);
 
-public void Close();
+public abstract void Close();
 
 public delegate void HttpRequestChecker(global::System.Uri uri);
 }

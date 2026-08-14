@@ -39,7 +39,7 @@ global::DripSharp.Runtime.JavaCompat.Assert(() => (this.clazz != default!), () =
 return this.clazz;
 }
 
-public override VmTyped? GetParent() {
+public override global::DripSharp.Brine.Runtime.VmObjectLike GetParent() {
 return (VmTyped)(base.parent!);
 }
 
@@ -63,7 +63,7 @@ return this.GetModuleInfo().GetMirror(this);
 
 public global::DripSharp.Brine.Runtime.VmValue GetSupermoduleMirror() {
 global::DripSharp.Runtime.JavaCompat.Assert(() => this.IsModuleObject());
-var parent = this.GetParent()!;
+var parent = ((VmTyped)(this.GetParent()))!;
 global::DripSharp.Runtime.JavaCompat.Assert(() => (parent! != default!));
 return ((parent! == global::DripSharp.Brine.Runtime.BaseModule.GetModuleClass().GetPrototype()) ? (global::DripSharp.Brine.Runtime.VmValue)(global::DripSharp.Brine.Runtime.VmNull.WithoutDefault()) : (global::DripSharp.Brine.Runtime.VmValue)(parent!.GetModuleMirror()));
 }
@@ -123,7 +123,7 @@ builder.Add(typeAliasName.ToString(), typeAlias!.GetMirror());
 return builder.Build();
 }
 
-public override global::DripSharp.Brine.Composite Export() {
+public override object Export() {
 if (!(this.IsModuleObject())) {
 return new global::DripSharp.Brine.PObject(global::DripSharp.Brine.Runtime.PklRuntimeBridge.PClassInfoAsObject(this.clazz.GetPClassInfo()), global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<string, object>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<string, object>>(this.ExportMembers())));
 }

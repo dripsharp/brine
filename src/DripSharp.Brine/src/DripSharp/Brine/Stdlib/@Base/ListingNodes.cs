@@ -268,7 +268,7 @@ return builder.ToString();
 internal abstract partial class ToList : global::DripSharp.Brine.Stdlib.ExternalMethod0Node
 {
 protected internal virtual global::DripSharp.Brine.Runtime.VmList Eval(global::DripSharp.Brine.Runtime.VmListing self) {
-var builder = global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder()));
 self.ForceAndIterateMemberValues((key, member, value) => {
 builder.Add(value);
 return true;
@@ -280,7 +280,7 @@ return builder.Build();
 internal abstract partial class ToSet : global::DripSharp.Brine.Stdlib.ExternalMethod0Node
 {
 protected internal virtual global::DripSharp.Brine.Runtime.VmSet Eval(global::DripSharp.Brine.Runtime.VmListing self) {
-var builder = global::DripSharp.Brine.Runtime.VmSet.EMPTY.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmSet>)(global::DripSharp.Brine.Runtime.VmSet.EMPTY.CreateBuilder()));
 self.ForceAndIterateMemberValues((key, member, value) => {
 builder.Add(value);
 return true;

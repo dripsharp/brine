@@ -69,8 +69,7 @@ return new global::DripSharp.Brine.Parser.Syntax.Module(global::DripSharp.Runtim
 } catch (global::DripSharp.Brine.Parser.ParserError pe) {
 var spanEnd = (!global::System.Object.ReferenceEquals(end!, default!) ? end! : start);
 pe.SetPartialParseResult(new global::DripSharp.Brine.Parser.Syntax.Module(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node?>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Node>>(nodes)), start.EndWith(spanEnd)));
-global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(pe);
-throw new global::System.InvalidOperationException("unreachable");
+throw;
 }
 }
 
@@ -188,7 +187,7 @@ return default!;
 }
 
 private global::DripSharp.Brine.Parser.Syntax.QualifiedIdentifier ParseQualifiedIdentifier() {
-var idents = this.ParseListOf<global::DripSharp.Brine.Parser.Syntax.Identifier>(global::DripSharp.Brine.Parser.Token.DOT, this.ParseIdentifier);
+var idents = ((global::System.Collections.Generic.IList<global::DripSharp.Brine.Parser.Syntax.Identifier>)(this.ParseListOf<global::DripSharp.Brine.Parser.Syntax.Identifier>(global::DripSharp.Brine.Parser.Token.DOT, this.ParseIdentifier)));
 return new global::DripSharp.Brine.Parser.Syntax.QualifiedIdentifier(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Identifier>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Identifier>>(idents)));
 }
 
@@ -1394,7 +1393,7 @@ global::DripSharp.Brine.Parser.Span end__1397_14;
 if ((this.lookahead == global::DripSharp.Brine.Parser.Token.RPAREN)) {
 end__1397_14 = this.Next().Span;
 } else {
-global::DripSharp.Runtime.JavaCompat.AddAll(children, this.ParseListOf<global::DripSharp.Brine.Parser.Syntax.Type>(global::DripSharp.Brine.Parser.Token.COMMA, global::DripSharp.Brine.Parser.Token.RPAREN, () => this.ParseType(")")));
+global::DripSharp.Runtime.JavaCompat.AddAll(children, ((global::System.Collections.Generic.IList<global::DripSharp.Brine.Parser.Syntax.Type>)(this.ParseListOf<global::DripSharp.Brine.Parser.Syntax.Type>(global::DripSharp.Brine.Parser.Token.COMMA, global::DripSharp.Brine.Parser.Token.RPAREN, () => this.ParseType(")")))));
 end__1397_14 = this.Expect(global::DripSharp.Brine.Parser.Token.RPAREN, "unexpectedToken2", ",", ")").Span;
 }
 if (((this.lookahead == global::DripSharp.Brine.Parser.Token.ARROW) || (global::DripSharp.Runtime.JavaCompat.CollectionCount(children) > 1))) {
@@ -1453,7 +1452,7 @@ return this.ParseTypeEnd(res__1449_11);
 }
 if ((((this.lookahead == global::DripSharp.Brine.Parser.Token.LPAREN) && !(this.precededBySemicolon)) && (this._lookahead.NewLinesBetween == 0))) {
 this.Next();
-var constraints = this.ParseListOf<global::DripSharp.Brine.Parser.Syntax.Expr>(global::DripSharp.Brine.Parser.Token.COMMA, global::DripSharp.Brine.Parser.Token.RPAREN, () => this.ParseExpr(")"));
+var constraints = ((global::System.Collections.Generic.IList<global::DripSharp.Brine.Parser.Syntax.Expr>)(this.ParseListOf<global::DripSharp.Brine.Parser.Syntax.Expr>(global::DripSharp.Brine.Parser.Token.COMMA, global::DripSharp.Brine.Parser.Token.RPAREN, () => this.ParseExpr(")"))));
 var end__1456_11 = this.Expect(global::DripSharp.Brine.Parser.Token.RPAREN, "unexpectedToken2", ",", ")").Span;
 var children = new global::System.Collections.Generic.List<global::DripSharp.Brine.Parser.Syntax.Node>((global::DripSharp.Runtime.JavaCompat.CollectionCount(constraints) + 1));
 global::DripSharp.Runtime.JavaCompat.Add(children, type);
@@ -1542,14 +1541,14 @@ return bodies;
 
 private global::DripSharp.Brine.Parser.Syntax.TypeParameterList ParseTypeParameterList() {
 var start = this.Expect(global::DripSharp.Brine.Parser.Token.LT, "unexpectedToken", "<").Span;
-var pars = this.ParseListOf<global::DripSharp.Brine.Parser.Syntax.TypeParameter>(global::DripSharp.Brine.Parser.Token.COMMA, global::DripSharp.Brine.Parser.Token.GT, this.ParseTypeParameter);
+var pars = ((global::System.Collections.Generic.IList<global::DripSharp.Brine.Parser.Syntax.TypeParameter>)(this.ParseListOf<global::DripSharp.Brine.Parser.Syntax.TypeParameter>(global::DripSharp.Brine.Parser.Token.COMMA, global::DripSharp.Brine.Parser.Token.GT, this.ParseTypeParameter)));
 var end = this.Expect(global::DripSharp.Brine.Parser.Token.GT, "unexpectedToken2", ",", ">").Span;
 return new global::DripSharp.Brine.Parser.Syntax.TypeParameterList(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.TypeParameter>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.TypeParameter>>(pars)), start.EndWith(end));
 }
 
 private global::DripSharp.Brine.Parser.Syntax.TypeArgumentList ParseTypeArgumentList() {
 var start = this.Expect(global::DripSharp.Brine.Parser.Token.LT, "unexpectedToken", "<").Span;
-var pars = this.ParseListOf<global::DripSharp.Brine.Parser.Syntax.Type>(global::DripSharp.Brine.Parser.Token.COMMA, global::DripSharp.Brine.Parser.Token.GT, this.ParseType);
+var pars = ((global::System.Collections.Generic.IList<global::DripSharp.Brine.Parser.Syntax.Type>)(this.ParseListOf<global::DripSharp.Brine.Parser.Syntax.Type>(global::DripSharp.Brine.Parser.Token.COMMA, global::DripSharp.Brine.Parser.Token.GT, this.ParseType)));
 var end = this.Expect(global::DripSharp.Brine.Parser.Token.GT, "unexpectedToken2", ",", ">").Span;
 return new global::DripSharp.Brine.Parser.Syntax.TypeArgumentList(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Type>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Type>>(pars)), start.EndWith(end));
 }
@@ -1559,7 +1558,7 @@ var start = this.Expect(global::DripSharp.Brine.Parser.Token.LPAREN, "unexpected
 if ((this.lookahead == global::DripSharp.Brine.Parser.Token.RPAREN)) {
 return new global::DripSharp.Brine.Parser.Syntax.ArgumentList(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Expr>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Expr>>(new global::System.Collections.Generic.List<global::DripSharp.Brine.Parser.Syntax.Expr>())), start.EndWith(this.Next().Span));
 }
-var exprs = this.ParseListOf<global::DripSharp.Brine.Parser.Syntax.Expr>(global::DripSharp.Brine.Parser.Token.COMMA, global::DripSharp.Brine.Parser.Token.RPAREN, this.ParseExpr);
+var exprs = ((global::System.Collections.Generic.IList<global::DripSharp.Brine.Parser.Syntax.Expr>)(this.ParseListOf<global::DripSharp.Brine.Parser.Syntax.Expr>(global::DripSharp.Brine.Parser.Token.COMMA, global::DripSharp.Brine.Parser.Token.RPAREN, this.ParseExpr)));
 var end = this.Expect(global::DripSharp.Brine.Parser.Token.RPAREN, "unexpectedToken2", ",", ")").Span;
 return new global::DripSharp.Brine.Parser.Syntax.ArgumentList(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Expr>>(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<global::DripSharp.Brine.Parser.Syntax.Expr>>(exprs)), start.EndWith(end));
 }

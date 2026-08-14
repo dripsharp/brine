@@ -54,28 +54,5 @@ public void VisitFunction(global::DripSharp.Brine.Runtime.VmFunction value);
 
 public void VisitReference(global::DripSharp.Brine.Runtime.VmReference value);
 
-public void Visit(object value) {
-global::DripSharp.Runtime.JavaCompat.RequireNonNull(value, "Value to be visited must be non-null.");
-if ((value is global::DripSharp.Brine.Runtime.VmValue vmValue)) {
-vmValue.Accept(this);
-} else {
-if ((value is string @string)) {
-this.VisitString(@string);
-} else {
-if ((value is bool b)) {
-this.VisitBoolean(b);
-} else {
-if ((value is long l)) {
-this.VisitInt(l);
-} else {
-if ((value is double d)) {
-this.VisitFloat(d);
-} else {
-throw new global::System.ArgumentException(global::DripSharp.Runtime.JavaCompat.Concat("Unknown VM value type: ", (((object)(value)).GetType().FullName ?? ((object)(value)).GetType().Name)));
-}
-}
-}
-}
-}
-}
+public void Visit(object value);
 }

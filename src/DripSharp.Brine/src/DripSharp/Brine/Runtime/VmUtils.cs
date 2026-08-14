@@ -243,8 +243,7 @@ result__357_11 = callNode.Call(callTarget__362_15, receiver, property!.GetOwner(
 } catch (global::DripSharp.Brine.Runtime.VmException e) {
 global::DripSharp.Brine.Runtime.Truffle.api.CompilerDirectives.TransferToInterpreter();
 VmUtils.InsertStackFrame(member, callTarget__362_15, e);
-global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(e);
-throw new global::System.InvalidOperationException("unreachable");
+throw;
 }
 }
 } else {
@@ -437,7 +436,7 @@ return result;
 public static void ExportAnnotations(global::System.Collections.Generic.IList<global::DripSharp.Brine.Runtime.VmTyped> annotations, global::System.Collections.Generic.IList<global::DripSharp.Brine.PObject> result) {
 foreach (var annotation in annotations) {
 annotation.Force(false);
-global::DripSharp.Runtime.JavaCompat.Add(result, (global::DripSharp.Brine.PObject)(annotation.Export()!));
+global::DripSharp.Runtime.JavaCompat.Add(result, (global::DripSharp.Brine.PObject)(((global::DripSharp.Brine.Composite)(annotation.Export()))!));
 }
 }
 

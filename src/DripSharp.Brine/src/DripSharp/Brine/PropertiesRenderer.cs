@@ -52,7 +52,7 @@ if ((value is global::System.Collections.Generic.IList<object> list)) {
 return this.ConvertList(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyList<object>>(global::DripSharp.Runtime.JavaCompat.CastObjects(list)));
 } else {
 if ((value is global::System.Collections.Generic.ISet<object> set)) {
-return this.ConvertSet(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlySet<object>>(set));
+return this.ConvertSet(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.ISet<object>>(set));
 } else {
 if ((value is global::System.Collections.Generic.IDictionary<object, object> map)) {
 return this.ConvertMap(global::DripSharp.Runtime.JavaCompat.ToReadOnly<global::System.Collections.Generic.IReadOnlyDictionary<object, object>>(global::DripSharp.Runtime.JavaCompat.CastDictionary<object, object>(map)));
@@ -139,7 +139,7 @@ public virtual string ConvertList(global::System.Collections.Generic.IReadOnlyLi
 throw new global::DripSharp.Brine.RendererException(global::DripSharp.Runtime.JavaCompat.JavaStringFormat("Values of type `List` cannot be rendered as Properties. Value: %s", global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.IList<object>>(value)));
 }
 
-public virtual string ConvertSet(global::System.Collections.Generic.IReadOnlySet<object> value) {
+public virtual string ConvertSet(global::System.Collections.Generic.ISet<object> value) {
 throw new global::DripSharp.Brine.RendererException(global::DripSharp.Runtime.JavaCompat.JavaStringFormat("Values of type `Set` cannot be rendered as Properties. Value: %s", global::DripSharp.Runtime.JavaCompat.ToMutable<global::System.Collections.Generic.ISet<object>>(value)));
 }
 

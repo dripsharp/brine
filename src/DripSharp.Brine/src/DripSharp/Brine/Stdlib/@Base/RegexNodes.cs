@@ -28,7 +28,7 @@ internal abstract partial class FindMatchesIn : global::DripSharp.Brine.Stdlib.E
 {
 protected internal virtual global::DripSharp.Brine.Runtime.VmList Eval(global::DripSharp.Brine.Runtime.VmRegex self, string str) {
 var matcher = global::DripSharp.Runtime.JavaCompat.RegexMatcher(self.GetPattern(), str);
-var builder = global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder();
+var builder = ((global::DripSharp.Brine.Runtime.VmCollection.Builder<global::DripSharp.Brine.Runtime.VmList>)(global::DripSharp.Brine.Runtime.VmList.EMPTY.CreateBuilder()));
 while (matcher.Find()) {
 builder.Add(global::DripSharp.Brine.Stdlib.@Base.RegexMatchFactory.Create(global::DripSharp.Brine.Util.Pair<object, object>.Of<global::DripSharp.Runtime.JavaRegexMatcher, int>(matcher.ToMatchResult(), -1)));
 }

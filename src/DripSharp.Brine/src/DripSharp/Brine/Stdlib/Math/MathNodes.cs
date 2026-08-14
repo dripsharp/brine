@@ -156,11 +156,11 @@ return global::System.Math.Sqrt(x);
 internal abstract partial class Cbrt : global::DripSharp.Brine.Stdlib.ExternalMethod1Node
 {
 protected internal virtual double Eval(global::DripSharp.Brine.Runtime.VmTyped self, long x) {
-return global::System.Math.Cbrt((double)(x));
+return global::DripSharp.Runtime.JavaCompat.Cbrt((double)(x));
 }
 
 protected internal virtual double Eval(global::DripSharp.Brine.Runtime.VmTyped self, double x) {
-return global::System.Math.Cbrt(x);
+return global::DripSharp.Runtime.JavaCompat.Cbrt(x);
 }
 }
 

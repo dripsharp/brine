@@ -27,10 +27,9 @@ return this.ExecuteImpl(frame);
 } catch (global::DripSharp.Brine.Ast.Type.VmTypeMismatchException e) {
 global::DripSharp.Brine.Runtime.Truffle.api.CompilerDirectives.TransferToInterpreter();
 throw e.ToVmException();
-} catch (global::DripSharp.Brine.Runtime.VmException e) {
+} catch (global::DripSharp.Brine.Runtime.VmException) {
 global::DripSharp.Brine.Runtime.Truffle.api.CompilerDirectives.TransferToInterpreter();
-global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(e);
-throw new global::System.InvalidOperationException("unreachable");
+throw;
 } catch (global::System.StackOverflowException e) {
 global::DripSharp.Brine.Runtime.Truffle.api.CompilerDirectives.TransferToInterpreter();
 throw new global::DripSharp.Brine.Runtime.VmStackOverflowException(e);

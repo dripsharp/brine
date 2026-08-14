@@ -61,7 +61,7 @@ this.WriteLine(global::DripSharp.Brine.Util.IoUtils.Relativize(packageResult.Zip
 }
 
 private string ResolveOutputDirectory(global::DripSharp.Brine.Project.Package pkg) {
-var substituted = this.outputPathPattern.Replace("%{name}", pkg.Name, global::System.StringComparison.Ordinal).Replace("%{version}", pkg.Version.ToString(), global::System.StringComparison.Ordinal);
+var substituted = global::DripSharp.Runtime.JavaCompat.ReplaceOrdinal(global::DripSharp.Runtime.JavaCompat.ReplaceOrdinal(this.outputPathPattern, "%{name}", pkg.Name), "%{version}", pkg.Version.ToString());
 return global::DripSharp.Runtime.JavaCompat.PathResolve(this.workingDir, substituted);
 }
 
@@ -111,8 +111,7 @@ return;
 throw new global::DripSharp.Brine.PklException(global::DripSharp.Brine.Util.ErrorMessages.Create("unableToAccessPublishedPackage", pkg.Name, pkg.PackageZipUrl, statusCode));
 }
 }
-global::System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(e);
-throw new global::System.InvalidOperationException("unreachable");
+throw;
 } catch (global::DripSharp.Brine.SecurityManagerException e) {
 throw new global::DripSharp.Brine.PklException(global::DripSharp.Runtime.JavaCompat.ExceptionMessage(e));
 }
