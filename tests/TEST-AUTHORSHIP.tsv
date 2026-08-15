@@ -1,8 +1,9 @@
 source-path	sha256	lines	line-budget	review-evidence	role
 gradle/pkl-parser-test-contract.gradle	cb101a43b76950e76661a5c87b9133576aecb53adf1a48215d8daed9c207afeb	45	45	beads:pkl-rjf1.1	pkl-parser-junit-discovery
-src/dripsharp/consumer_tests.clj	b533b87a91b7b7a68de3a50c07bd3b8022d65bf68e6cda22d4005d9120a239a1	594	594	beads:pkl-rjf1.1	generic-test-emitter
-src/dripsharp/pkl/brine_xunit.clj	df4afc593f0fd6fd3b9930d93dc1b2ecad4dd4771a63ddce0eba9da6efbd25b8	690	690	beads:pkl-rjf1.1	brine-test-generator
+src/dripsharp/consumer_tests.clj	f59faf6847be37d89942fca48e6757186d9087f1e555f9ad25c45e9813887043	583	594	beads:pkl-zysr.34	generic-test-emitter
+src/dripsharp/pkl/brine_xunit.clj	7b6c3cd1090abbcdaf540a764e2451c3246681a756ca9ca7d48be15cff7047cf	691	691	beads:pkl-zysr.34	brine-test-generator
 src/dripsharp/pkl/parser_test_contract.clj	d13afb824a731bfb00731baaa066ca7f1f7dd181d74f615e130c841766987fae	582	582	beads:pkl-rjf1.1	pkl-parser-contract-generator
+src/dripsharp/tree_cleanup.clj	6d57a4e97cd8a8cc4010321ecfca4898a10f029e2d8a510a5ee0587b04f9e13a	131	131	beads:pkl-zysr.34	generic-test-cleanup
 targets/pkl/consumer-tests/CoreConsumerTests.cs	124ff154dcfdc0e852c7995802f4a249ba6e15325da13de4dee9f28df779d1af	33	33	beads:pkl-nk5q	authored-public-api-smoke-test
 targets/pkl/consumer-tests/ParserConsumerTests.cs	45b80f1e75ca189c3f43c2e646fec8f70c9132aff38018873cc99d9692464fd2	41	41	beads:pkl-nk5q	authored-public-api-smoke-test
 targets/pkl/consumer-tests/UpstreamContractTests.cs	b01808b62b77bfc1e6017e624eec7bd68f7ead1d11075f88aab3caa8e994480b	660	660	beads:pkl-zysr.29	authored-xunit-contract-adapter
