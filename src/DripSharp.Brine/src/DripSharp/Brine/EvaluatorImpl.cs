@@ -235,8 +235,12 @@ try {
 this.polyglotContext.Leave();
 } catch (global::System.InvalidOperationException) {
 }
+catch (global::System.Threading.ThreadInterruptedException error) {
+if (failure is null) failure = error;
+}
 }
 if (failure is not null) {
+if (failure is global::System.Threading.ThreadInterruptedException) this.HandleTimeout(timeoutTask);
 var cancelled = this.polyglotContext.IsCancellationRequested && (failure is global::DripSharp.Runtime.JavaCancellationException || failure is global::System.Threading.ThreadInterruptedException || failure is global::System.OperationCanceledException || failure is global::System.ObjectDisposedException || (failure is global::DripSharp.Brine.Runtime.Polyglot.PolyglotException polyglotFailure && polyglotFailure.IsCancelled()));
 if (cancelled) {
 this.HandleTimeout(timeoutTask);
